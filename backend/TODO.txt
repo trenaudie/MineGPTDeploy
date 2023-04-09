@@ -1,0 +1,11 @@
+- React make it look goooood
+- ChatwithPDF inspiration, with chat bubbles. One with the answer, one with the sources.
+- Navigation bar on the left, whole pane. With a list of sources, that you can click 
+- 
+
+- Pinecone
+
+
+References :
+https://github.com/hwchase17/chroma-langchain/blob/master/persistent-qa.ipynb
+https://python.langchain.com/en/latest/modules/chains/index_examples/qa_with_sources.html

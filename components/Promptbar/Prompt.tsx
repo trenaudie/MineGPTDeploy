@@ -52,7 +52,7 @@ export const PromptComponent: FC<Props> = ({
           setIsDeleting(false);
           setIsRenaming(false);
           setRenameValue('');
-        }}
+        }}  
       >
         <IconBulbFilled size={18} />
 

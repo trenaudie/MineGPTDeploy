@@ -38,6 +38,13 @@ import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 
+//add docsource bar
+import {Docsourcebar} from '@/components/Docsourcebar/Docsourcebar';
+import {Docsource} from '@/types/docsource';
+import {saveDocsources} from '@/utils/app/docsources';
+import { ChangeEvent } from 'react';
+import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 interface HomeProps {
   serverSideApiKeyIsSet: boolean;
   serverSidePluginKeysSet: boolean;
@@ -73,7 +80,11 @@ const Home: React.FC<HomeProps> = ({
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
   const [prompts, setPrompts] = useState<Prompt[]>([]);
-  const [showPromptbar, setShowPromptbar] = useState<boolean>(true);
+  const [showPromptbar, setShowPromptbar] = useState<boolean>(false);
+
+
+  const [docsources, setDocsources] = useState<Docsource[]>([]);
+  const [showDocsourcebar, setShowDocsourcebar] = useState<boolean>(true);
 
   // REFS ----------------------------------------------
 
@@ -394,6 +405,12 @@ const Home: React.FC<HomeProps> = ({
     localStorage.setItem('showPromptbar', JSON.stringify(!showPromptbar));
   };
 
+  const handleToggleDocsourcebar = () => {
+    setShowDocsourcebar(!showDocsourcebar);
+    localStorage.setItem('showDocsourcebar', JSON.stringify(!showDocsourcebar));
+  };
+
+
   const handleExportData = () => {
     exportData();
   };
@@ -631,6 +648,73 @@ const Home: React.FC<HomeProps> = ({
     savePrompts(updatedPrompts);
   };
 
+// DOCSOURCE OPERATIONS --------------------------------------------
+
+ 
+
+
+const handleCreateDocsource = (event: ChangeEvent<HTMLInputElement>) => {
+  console.log(event)
+  const file =  event.target.files && event.target.files[0];
+
+  if (!file) {
+    console.error("No file selected");
+    return;
+  }
+
+  const fileName = file.name;
+  const formData = new FormData();
+  formData.append("sourceInput", file);
+  const id = uuidv4();
+  formData.append("id", id);
+
+  fetch("/upload", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("File upload successful");
+
+      const newDocsource: Docsource = {
+        id: id, //useful for a common index between docsources
+        name: `${fileName}`,
+        description: '', //useful for filtering docsources
+        source: '', //useful for displaying where the docsource came from
+        folderId: null,
+      };
+
+      // Add code here to handle the newDocsource object
+      const updatedDocsources = [...docsources, newDocsource];
+      setDocsources(updatedDocsources);
+      saveDocsources(updatedDocsources);
+    })
+    .catch((error) => {
+      console.error("Error uploading file:", error);
+    });
+};
+
+
+  const handleUpdateDocsource = (docsource: Docsource) => {
+  const updatedDocsources = docsources.map((d) => {
+    if (d.id === docsource.id) {
+      return docsource;
+    }
+
+    return d;
+  });
+
+  setDocsources(updatedDocsources);
+  saveDocsources(updatedDocsources);
+};
+
+  const handleDeleteDocsource = (docsource: Docsource) => {
+  const updatedDocsources = docsources.filter((d) => d.id !== docsource.id);
+  setDocsources(updatedDocsources);
+  saveDocsources(updatedDocsources);
+};
+
+
   // EFFECTS  --------------------------------------------
 
   useEffect(() => {
@@ -688,9 +772,9 @@ const Home: React.FC<HomeProps> = ({
     }
 
     const showPromptbar = localStorage.getItem('showPromptbar');
-    if (showPromptbar) {
-      setShowPromptbar(showPromptbar === 'true');
-    }
+    // if (showPromptbar) {
+    //   setShowPromptbar(showPromptbar === 'true');
+    // }
 
     const folders = localStorage.getItem('folders');
     if (folders) {
@@ -852,6 +936,38 @@ const Home: React.FC<HomeProps> = ({
                 <IconArrowBarLeft />
               </button>
             )}
+            {showDocsourcebar ? (
+              <div>
+                <Docsourcebar
+                  docsources={docsources}
+                  folders={folders.filter((folder) => folder.type === 'docsource')}
+                  onCreateDocsource={handleCreateDocsource}
+                  onUpdateDocsource={handleUpdateDocsource}
+                  onDeleteDocsource={handleDeleteDocsource}
+                  onCreateFolder={(name) => handleCreateFolder(name, 'docsource')}
+                  onDeleteFolder={handleDeleteFolder}
+                  onUpdateFolder={handleUpdateFolder}
+                />
+                <button
+                  className="fixed top-5 right-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
+                  onClick={handleToggleDocsourcebar}
+                >
+                  <IconArrowBarRight />
+                </button>
+                <div
+                  onClick={handleToggleDocsourcebar}
+                  className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
+                ></div>
+              </div>
+            ) : (
+              <button
+                className="fixed top-2.5 right-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-4 sm:h-8 sm:w-8 sm:text-neutral-700"
+                onClick={handleToggleDocsourcebar}
+              >
+                <IconArrowBarLeft />
+              </button>
+            )}
+
           </div>
         </main>
       )}

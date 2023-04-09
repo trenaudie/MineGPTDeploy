@@ -4,4 +4,4 @@ export interface Folder {
   type: FolderType;
 }
 
-export type FolderType = 'chat' | 'prompt';
+export type FolderType = 'chat' | 'prompt' | 'docsource';
