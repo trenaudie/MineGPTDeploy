@@ -22,10 +22,18 @@ def testnot():
 
 def testupload():
     url = "http://localhost:5006/upload"
-    with open('testarticles/articleIsrael.txt', 'rb') as f:
+    with open('backend/testarticles/articleIsrael.txt', 'rb') as f:
         file_data = {'document': f}
         response = requests.post(url, files=file_data)
         assert response.status_code == 200
+
+
+def testRegister():
+    url = "http://localhost:5006/register"
+    headers = {'Content-type': 'application/json'}
+    data = {'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'guigui'}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    print(response.status_code)
 
 
 def testquestion(question=None):
@@ -46,6 +54,5 @@ def testquestion(question=None):
         print(f'Request failed with status code {response.status_code}')
 
 
-
-if __name__=="__main__":
-    testupload()
+if __name__ == "__main__":
+    testRegister()

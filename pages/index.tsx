@@ -39,9 +39,9 @@ import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 
 //add docsource bar
-import {Docsourcebar} from '@/components/Docsourcebar/Docsourcebar';
-import {Docsource} from '@/types/docsource';
-import {saveDocsources} from '@/utils/app/docsources';
+import { Docsourcebar } from '@/components/Docsourcebar/Docsourcebar';
+import { Docsource } from '@/types/docsource';
+import { saveDocsources } from '@/utils/app/docsources';
 import { ChangeEvent } from 'react';
 import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -328,7 +328,7 @@ const Home: React.FC<HomeProps> = ({
           code: data.error?.code,
           messageLines: [data.error?.message],
         });
-      } catch (e) {}
+      } catch (e) { }
       setModelError(error);
       return;
     }
@@ -648,71 +648,71 @@ const Home: React.FC<HomeProps> = ({
     savePrompts(updatedPrompts);
   };
 
-// DOCSOURCE OPERATIONS --------------------------------------------
-
- 
+  // DOCSOURCE OPERATIONS --------------------------------------------
 
 
-const handleCreateDocsource = (event: ChangeEvent<HTMLInputElement>) => {
-  console.log(event)
-  const file =  event.target.files && event.target.files[0];
 
-  if (!file) {
-    console.error("No file selected");
-    return;
-  }
 
-  const fileName = file.name;
-  const formData = new FormData();
-  formData.append("sourceInput", file);
-  const id = uuidv4();
-  formData.append("id", id);
+  const handleCreateDocsource = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event)
+    const file = event.target.files && event.target.files[0];
 
-  fetch("/upload", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("File upload successful");
+    if (!file) {
+      console.error("No file selected");
+      return;
+    }
 
-      const newDocsource: Docsource = {
-        id: id, //useful for a common index between docsources
-        name: `${fileName}`,
-        description: '', //useful for filtering docsources
-        source: '', //useful for displaying where the docsource came from
-        folderId: null,
-      };
+    const fileName = file.name;
+    const formData = new FormData();
+    formData.append("sourceInput", file);
+    const id = uuidv4();
+    formData.append("id", id);
 
-      // Add code here to handle the newDocsource object
-      const updatedDocsources = [...docsources, newDocsource];
-      setDocsources(updatedDocsources);
-      saveDocsources(updatedDocsources);
+    fetch("/upload", {
+      method: "POST",
+      body: formData,
     })
-    .catch((error) => {
-      console.error("Error uploading file:", error);
-    });
-};
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("File upload successful");
+
+        const newDocsource: Docsource = {
+          id: id, //useful for a common index between docsources
+          name: `${fileName}`,
+          description: '', //useful for filtering docsources
+          source: '', //useful for displaying where the docsource came from
+          folderId: null,
+        };
+
+        // Add code here to handle the newDocsource object
+        const updatedDocsources = [...docsources, newDocsource];
+        setDocsources(updatedDocsources);
+        saveDocsources(updatedDocsources);
+      })
+      .catch((error) => {
+        console.error("Error uploading file:", error);
+      });
+  };
 
 
   const handleUpdateDocsource = (docsource: Docsource) => {
-  const updatedDocsources = docsources.map((d) => {
-    if (d.id === docsource.id) {
-      return docsource;
-    }
+    const updatedDocsources = docsources.map((d) => {
+      if (d.id === docsource.id) {
+        return docsource;
+      }
 
-    return d;
-  });
+      return d;
+    });
 
-  setDocsources(updatedDocsources);
-  saveDocsources(updatedDocsources);
-};
+    setDocsources(updatedDocsources);
+    saveDocsources(updatedDocsources);
+  };
 
   const handleDeleteDocsource = (docsource: Docsource) => {
-  const updatedDocsources = docsources.filter((d) => d.id !== docsource.id);
-  setDocsources(updatedDocsources);
-  saveDocsources(updatedDocsources);
-};
+    const updatedDocsources = docsources.filter((d) => d.id !== docsource.id);
+    setDocsources(updatedDocsources);
+    saveDocsources(updatedDocsources);
+  };
 
 
   // EFFECTS  --------------------------------------------
@@ -833,6 +833,7 @@ const handleCreateDocsource = (event: ChangeEvent<HTMLInputElement>) => {
         >
           <div className="fixed top-0 w-full sm:hidden">
             <Navbar
+
               selectedConversation={selectedConversation}
               onNewConversation={handleNewConversation}
             />
@@ -902,6 +903,7 @@ const handleCreateDocsource = (event: ChangeEvent<HTMLInputElement>) => {
                 onUpdateConversation={handleUpdateConversation}
                 onEditMessage={handleEditMessage}
                 stopConversationRef={stopConversationRef}
+
               />
             </div>
 

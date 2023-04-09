@@ -1,5 +1,5 @@
 from getchain import get_chain
-from flask import Flask, request, render_template, jsonify, redirect, flash, session, url_for
+from flask import Flask, request, render_template, jsonify, redirect, session, url_for
 from werkzeug.utils import secure_filename
 import os
 import traceback
@@ -59,31 +59,29 @@ def index():
     return "hello world"
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
 def register():
-    if request.method == 'POST':
-        email = request.form['email']
+    email = request.form['email']
+    if email[-22] == '@etu.minesparis.psl.eu':
         password = generate_password_hash(
             request.form['password'], method='sha256')
         new_user = User(email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
-        flash('Registration successful!')
-        return redirect(url_for('login'))
-    return render_template('register.html')
+        return 'registration successful!', 200
+    else:
+        return 'failed registration', 400
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        user = User.query.filter_by(email=email).first()
-        if user and check_password_hash(user.password, password):
-            session['user_id'] = user.id
-            return redirect(url_for('dashboard'))
-        flash('Invalid email or password')
-    return render_template('login.html')
+    email = request.form['email']
+    password = request.form['password']
+    user = User.query.filter_by(email=email).first()
+    if user and check_password_hash(user.password, password):
+        session['user_id'] = user.id
+        return 'authenticated'
+    return 'incorrect authentification'
 
 
 @app.route('/dashboard')
