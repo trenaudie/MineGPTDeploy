@@ -115,7 +115,6 @@ interface Props {
           )}
     
           <div className="flex-grow overflow-auto">
-            {/* folder length is supposed 0 here */}
     
             {docsources.length > 0 ? (
               <div className="pt-2">
