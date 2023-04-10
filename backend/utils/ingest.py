@@ -6,9 +6,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Pinecone
 from werkzeug.datastructures import FileStorage
 
-from redirect_stdout import redirect_stdout_to_logger
-# from utils.database_management import write_to_file_list
-
+from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.logger import logger
 from werkzeug.utils import secure_filename
 

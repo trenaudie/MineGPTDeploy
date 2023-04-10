@@ -15,10 +15,14 @@ from werkzeug.utils import secure_filename
 from flask import Flask, request, render_template, jsonify, redirect, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from flask_session import Session
+
 
 from utils.logger import logger
-from utils.ingest import save_file_to_database
-from utils.config import Config
+from utils.ingest import save_file_to_Pinecone
+from utils.ask_question import ask_question
+from config import Config
+from utils.getchain import createchain
 
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
@@ -37,9 +41,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
-# You can also use 'redis', 'memcached', or 'sqlalchemy'
 app.config['SESSION_TYPE'] = 'filesystem'
-# This config is only needed for 'filesystem'
 app.config['SESSION_FILE_DIR'] = 'session_files'
 Session(app)
 CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
@@ -62,7 +64,7 @@ PROMPT = PromptTemplate(
 
 chat_history = []
 list_of_files = ['file1', 'file2', 'file3', 'file4']
-chain = createchain(vectorstore, PROMPT)
+chain = createchain(vectorstore)
 
 
 @app.route('/')
@@ -132,9 +134,9 @@ def upload_file():
         uploaded_file.save(filepath)
 
         # embed the vectors in a database eg Pinecone
-        save_file_to_database(vectordb, filepath)
+        save_file_to_Pinecone(vectorstore, filepath)
         logger.info(
-            f"number of documents in db: {vectordb._collection._client._count('langchain')}")
+            f"number of documents in db: {vectorstore._collection._client._count('langchain')}")
         # Remove the temporary file
         os.remove(filepath)
         return 'File uploaded and saved to the database.', 200
@@ -153,20 +155,14 @@ def upload_file():
 def answerQuestion():
     try:
         question = request.form['searchTerm']
-        # only add chat_history if conversationalRetriever
-        # answer = chain({'question': question, 'chat_history': chat_history})
-        # chat_history.append((question, answer['answer']))
-
-        # for k in chat_history:
-        #     logger.info(k)
         result = ask_question(question, vectorstore, chat_history, chain)
+
         logger.info(
             f"(question, answer['answer']) = {question, result['answer']}")
         logger.info('sources')
         for source in result['sources']:
             logger.info(source['filename'])
             logger.info(source['text'])
-        # Convert the list of page contents to a JSON object
 
         # Combine the `processed_text` and `page_content` JSON objects into a single dictionary
         return jsonify(result)
