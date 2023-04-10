@@ -78,16 +78,15 @@ export const ChatMessage: FC<Props> = memo(
 
     return (
       <div
-        className={`group px-4 ${
-          message.role === 'assistant'
-            ? 'border-b border-black/10 bg-gray-50 text-gray-800 dark:border-gray-900/50 dark:bg-[#444654] dark:text-gray-100'
-            : 'border-b border-black/10 bg-white text-gray-800 dark:border-gray-900/50 dark:bg-[#343541] dark:text-gray-100'
-        }`}
+        className={`group px-4 ${message.role === 'assistant'
+          ? 'border-b border-black/10 bg-gray-50 text-gray-800 dark:border-gray-900/50 dark:bg-[#444654] dark:text-gray-100'
+          : 'border-b border-black/10 bg-white text-gray-800 dark:border-gray-900/50 dark:bg-[#343541] dark:text-gray-100'
+          }`}
         style={{ overflowWrap: 'anywhere' }}
       >
         <div className="relative m-auto flex gap-4 p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
           <div className="min-w-[40px] text-right font-bold">
-            {message.role === 'assistant' ? (
+            {message.role === 'assistant' && !message.source ? (
               <IconRobot size={30} />
             ) : (
               <IconUser size={30} />
@@ -144,11 +143,10 @@ export const ChatMessage: FC<Props> = memo(
 
                 {(window.innerWidth < 640 || !isEditing) && (
                   <button
-                    className={`absolute translate-x-[1000px] text-gray-500 hover:text-gray-700 focus:translate-x-0 group-hover:translate-x-0 dark:text-gray-400 dark:hover:text-gray-300 ${
-                      window.innerWidth < 640
-                        ? 'bottom-1 right-3'
-                        : 'right-0 top-[26px]'
-                    }
+                    className={`absolute translate-x-[1000px] text-gray-500 hover:text-gray-700 focus:translate-x-0 group-hover:translate-x-0 dark:text-gray-400 dark:hover:text-gray-300 ${window.innerWidth < 640
+                      ? 'bottom-1 right-3'
+                      : 'right-0 top-[26px]'
+                      }
                     `}
                     onClick={toggleEditing}
                   >
@@ -159,11 +157,10 @@ export const ChatMessage: FC<Props> = memo(
             ) : (
               <>
                 <div
-                  className={`absolute ${
-                    window.innerWidth < 640
-                      ? 'bottom-1 right-3'
-                      : 'right-0 top-[26px] m-0'
-                  }`}
+                  className={`absolute ${window.innerWidth < 640
+                    ? 'bottom-1 right-3'
+                    : 'right-0 top-[26px] m-0'
+                    }`}
                 >
                   {messagedCopied ? (
                     <IconCheck
@@ -226,6 +223,12 @@ export const ChatMessage: FC<Props> = memo(
                 >
                   {message.content}
                 </MemoizedReactMarkdown>
+
+                {message.role === 'assistant' && message.source && (
+                  <div className="mt-2 text-sm text-gray-500 italic">
+                    Source: {message.content}
+                  </div>
+                )}
               </>
             )}
           </div>

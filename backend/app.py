@@ -15,10 +15,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 from utils.logger import logger
-from utils.ingest import save_file_to_Pinecone, save_file_to_temp
-from utils.ask_question import ask_question
-from config import Config
-from utils.getchain import createchain
+from utils.ingest import save_file_to_database
 
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
@@ -36,7 +33,12 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
-CORS(app,  origins=["http://localhost:3000"])
+# You can also use 'redis', 'memcached', or 'sqlalchemy'
+app.config['SESSION_TYPE'] = 'filesystem'
+# This config is only needed for 'filesystem'
+app.config['SESSION_FILE_DIR'] = 'session_files'
+Session(app)
+CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 
 
 class User(db.Model):
@@ -66,27 +68,33 @@ def index():
 
 @app.route('/register', methods=['POST'])
 def register():
-    email = request.form['email']
-    if email[-22] == '@etu.minesparis.psl.eu':
-        password = generate_password_hash(
-            request.form['password'], method='sha256')
-        new_user = User(email=email, password=password)
-        db.session.add(new_user)
-        db.session.commit()
-        return 'registration successful!', 200
+    data = request.get_json()
+    email = data.get('email')
+    if email and email[-22:] == '@etu.minesparis.psl.eu':
+        try:
+            password = generate_password_hash(
+                data.get('password'), method='sha256')
+            new_user = User(email=email, password=password)
+            db.session.add(new_user)
+            db.session.commit()
+            return jsonify(status='registration successful!'), 200
+        except:
+            return jsonify(status='you can only register once'), 400
     else:
-        return 'failed registration', 400
+        return jsonify('failed registration'), 400
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    email = request.form['email']
-    password = request.form['password']
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
     user = User.query.filter_by(email=email).first()
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
-        return 'authenticated'
-    return 'incorrect authentification'
+        return jsonify(status='authenticated'), 200
+
+    return jsonify(status='incorrect authentification'), 400
 
 
 @app.route('/dashboard')
@@ -107,13 +115,22 @@ def upload_file():
     print("received upload request")
     uploaded_file = request.files['document']
     file_id = request.form['id']
+
+    if 'username' not in session:
+        return 'User not logged in.', 403
+
     if uploaded_file:
-        filepath = uploaded_file.save(uploaded_file)
-        save_file_to_temp(filepath)
+        # Save the file temporarily
+        filename = secure_filename(uploaded_file.filename)
+        list_of_files.append(filename)
+        # save the file to a database:
+        filepath = os.path.join('temp', filename)
+        uploaded_file.save(filepath)
+
         # embed the vectors in a database eg Pinecone
-        save_file_to_Pinecone(vectorstore, filepath)
+        save_file_to_database(vectordb, filepath)
         logger.info(
-            f"number of documents in db: {vectorstore._index.describe_index_stats()}")
+            f"number of documents in db: {vectordb._collection._client._count('langchain')}")
         # Remove the temporary file
         os.remove(filepath)
         return 'File uploaded and saved to the database.', 200
@@ -157,4 +174,6 @@ def answerQuestion():
 
 
 if __name__ == '__main__':
-    app.run(port=5006, debug=True)
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True, port=5000)

@@ -91,7 +91,6 @@ const Home: React.FC<HomeProps> = ({
   const stopConversationRef = useRef<boolean>(false);
 
   // FETCH RESPONSE ----------------------------------------------
-
   const handleSend = async (
     message: Message,
     deleteCount = 0,
@@ -122,31 +121,16 @@ const Home: React.FC<HomeProps> = ({
       setMessageIsStreaming(true);
 
       const chatBody: ChatBody = {
-        model: updatedConversation.model,
-        messages: updatedConversation.messages,
-        key: apiKey,
         prompt: updatedConversation.prompt,
       };
 
       const endpoint = getEndpoint(plugin);
-      let body;
-
-      if (!plugin) {
-        body = JSON.stringify(chatBody);
-      } else {
-        body = JSON.stringify({
-          ...chatBody,
-          googleAPIKey: pluginKeys
-            .find((key) => key.pluginId === 'google-search')
-            ?.requiredKeys.find((key) => key.key === 'GOOGLE_API_KEY')?.value,
-          googleCSEId: pluginKeys
-            .find((key) => key.pluginId === 'google-search')
-            ?.requiredKeys.find((key) => key.key === 'GOOGLE_CSE_ID')?.value,
-        });
-      }
+      const body = JSON.stringify({
+        prompt: message.content,
+      });
 
       const controller = new AbortController();
-      const response = await fetch(endpoint, {
+      const response = await fetch('http://localhost:5000/qa', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -159,8 +143,10 @@ const Home: React.FC<HomeProps> = ({
         setLoading(false);
         setMessageIsStreaming(false);
         toast.error(response.statusText);
+        console.log('Error processing answer in the backend')
         return;
       }
+      console.log('Backend correct')
 
       const data = response.body;
 
@@ -170,132 +156,253 @@ const Home: React.FC<HomeProps> = ({
         return;
       }
 
-      if (!plugin) {
-        if (updatedConversation.messages.length === 1) {
-          const { content } = message;
-          const customName =
-            content.length > 30 ? content.substring(0, 30) + '...' : content;
+      const { content, source } = await response.json();
 
-          updatedConversation = {
-            ...updatedConversation,
-            name: customName,
-          };
-        }
+      const updatedMessages: Message[] = [
+        ...updatedConversation.messages,
+        { role: 'assistant', content: content, source: false },
+      ];
 
-        setLoading(false);
-
-        const reader = data.getReader();
-        const decoder = new TextDecoder();
-        let done = false;
-        let isFirst = true;
-        let text = '';
-
-        while (!done) {
-          if (stopConversationRef.current === true) {
-            controller.abort();
-            done = true;
-            break;
-          }
-          const { value, done: doneReading } = await reader.read();
-          done = doneReading;
-          const chunkValue = decoder.decode(value);
-
-          text += chunkValue;
-
-          if (isFirst) {
-            isFirst = false;
-            const updatedMessages: Message[] = [
-              ...updatedConversation.messages,
-              { role: 'assistant', content: chunkValue },
-            ];
-
-            updatedConversation = {
-              ...updatedConversation,
-              messages: updatedMessages,
-            };
-
-            setSelectedConversation(updatedConversation);
-          } else {
-            const updatedMessages: Message[] = updatedConversation.messages.map(
-              (message, index) => {
-                if (index === updatedConversation.messages.length - 1) {
-                  return {
-                    ...message,
-                    content: text,
-                  };
-                }
-
-                return message;
-              },
-            );
-
-            updatedConversation = {
-              ...updatedConversation,
-              messages: updatedMessages,
-            };
-
-            setSelectedConversation(updatedConversation);
-          }
-        }
-
-        saveConversation(updatedConversation);
-
-        const updatedConversations: Conversation[] = conversations.map(
-          (conversation) => {
-            if (conversation.id === selectedConversation.id) {
-              return updatedConversation;
-            }
-
-            return conversation;
-          },
-        );
-
-        if (updatedConversations.length === 0) {
-          updatedConversations.push(updatedConversation);
-        }
-
-        setConversations(updatedConversations);
-        saveConversations(updatedConversations);
-
-        setMessageIsStreaming(false);
-      } else {
-        const { answer } = await response.json();
-
-        const updatedMessages: Message[] = [
-          ...updatedConversation.messages,
-          { role: 'assistant', content: answer },
-        ];
-
-        updatedConversation = {
-          ...updatedConversation,
-          messages: updatedMessages,
-        };
-
-        setSelectedConversation(updatedConversation);
-        saveConversation(updatedConversation);
-
-        const updatedConversations: Conversation[] = conversations.map(
-          (conversation) => {
-            if (conversation.id === selectedConversation.id) {
-              return updatedConversation;
-            }
-
-            return conversation;
-          },
-        );
-
-        if (updatedConversations.length === 0) {
-          updatedConversations.push(updatedConversation);
-        }
-
-        setConversations(updatedConversations);
-        saveConversations(updatedConversations);
-
-        setLoading(false);
-        setMessageIsStreaming(false);
+      if (source) {
+        updatedMessages.push({ role: 'assistant', content: source, source: true });
       }
+
+
+      updatedConversation = {
+        ...updatedConversation,
+        messages: updatedMessages,
+      };
+
+      setSelectedConversation(updatedConversation);
+      saveConversation(updatedConversation);
+
+      const updatedConversations: Conversation[] = conversations.map(
+        (conversation) => {
+          if (conversation.id === selectedConversation.id) {
+            return updatedConversation;
+          }
+
+          return conversation;
+        },
+      );
+
+      if (updatedConversations.length === 0) {
+        updatedConversations.push(updatedConversation);
+      }
+
+      setConversations(updatedConversations);
+      saveConversations(updatedConversations);
+
+      setLoading(false);
+      setMessageIsStreaming(false);
     }
   };
+
+
+  // const handleSend = async (
+  //   message: Message,
+  //   deleteCount = 0,
+  //   plugin: Plugin | null = null,
+  // ) => {
+  //   if (selectedConversation) {
+  //     let updatedConversation: Conversation;
+
+  //     if (deleteCount) {
+  //       const updatedMessages = [...selectedConversation.messages];
+  //       for (let i = 0; i < deleteCount; i++) {
+  //         updatedMessages.pop();
+  //       }
+
+  //       updatedConversation = {
+  //         ...selectedConversation,
+  //         messages: [...updatedMessages, message],
+  //       };
+  //     } else {
+  //       updatedConversation = {
+  //         ...selectedConversation,
+  //         messages: [...selectedConversation.messages, message],
+  //       };
+  //     }
+
+  //     setSelectedConversation(updatedConversation);
+  //     setLoading(true);
+  //     setMessageIsStreaming(true);
+
+  //     const chatBody: ChatBody = {
+  //       model: updatedConversation.model,
+  //       messages: updatedConversation.messages,
+  //       key: apiKey,
+  //       prompt: updatedConversation.prompt,
+  //     };
+
+  //     const endpoint = getEndpoint(plugin);
+  //     let body;
+
+  //     if (!plugin) {
+  //       body = JSON.stringify(chatBody);
+  //     } else {
+  //       body = JSON.stringify({
+  //         ...chatBody,
+  //         googleAPIKey: pluginKeys
+  //           .find((key) => key.pluginId === 'google-search')
+  //           ?.requiredKeys.find((key) => key.key === 'GOOGLE_API_KEY')?.value,
+  //         googleCSEId: pluginKeys
+  //           .find((key) => key.pluginId === 'google-search')
+  //           ?.requiredKeys.find((key) => key.key === 'GOOGLE_CSE_ID')?.value,
+  //       });
+  //     }
+
+  //     const controller = new AbortController();
+  //     const response = await fetch(endpoint, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       signal: controller.signal,
+  //       body,
+  //     });
+
+  //     if (!response.ok) {
+  //       setLoading(false);
+  //       setMessageIsStreaming(false);
+  //       toast.error(response.statusText);
+  //       return;
+  //     }
+
+  //     const data = response.body;
+
+  //     if (!data) {
+  //       setLoading(false);
+  //       setMessageIsStreaming(false);
+  //       return;
+  //     }
+
+  //     if (!plugin) {
+  //       if (updatedConversation.messages.length === 1) {
+  //         const { content } = message;
+  //         const customName =
+  //           content.length > 30 ? content.substring(0, 30) + '...' : content;
+
+  //         updatedConversation = {
+  //           ...updatedConversation,
+  //           name: customName,
+  //         };
+  //       }
+
+  //       setLoading(false);
+
+  //       const reader = data.getReader();
+  //       const decoder = new TextDecoder();
+  //       let done = false;
+  //       let isFirst = true;
+  //       let text = '';
+
+  //       while (!done) {
+  //         if (stopConversationRef.current === true) {
+  //           controller.abort();
+  //           done = true;
+  //           break;
+  //         }
+  //         const { value, done: doneReading } = await reader.read();
+  //         done = doneReading;
+  //         const chunkValue = decoder.decode(value);
+
+  //         text += chunkValue;
+
+  //         if (isFirst) {
+  //           isFirst = false;
+  //           const updatedMessages: Message[] = [
+  //             ...updatedConversation.messages,
+  //             { role: 'assistant', content: chunkValue },
+  //           ];
+
+  //           updatedConversation = {
+  //             ...updatedConversation,
+  //             messages: updatedMessages,
+  //           };
+
+  //           setSelectedConversation(updatedConversation);
+  //         } else {
+  //           const updatedMessages: Message[] = updatedConversation.messages.map(
+  //             (message, index) => {
+  //               if (index === updatedConversation.messages.length - 1) {
+  //                 return {
+  //                   ...message,
+  //                   content: text,
+  //                 };
+  //               }
+
+  //               return message;
+  //             },
+  //           );
+
+  //           updatedConversation = {
+  //             ...updatedConversation,
+  //             messages: updatedMessages,
+  //           };
+
+  //           setSelectedConversation(updatedConversation);
+  //         }
+  //       }
+
+  //       saveConversation(updatedConversation);
+
+  //       const updatedConversations: Conversation[] = conversations.map(
+  //         (conversation) => {
+  //           if (conversation.id === selectedConversation.id) {
+  //             return updatedConversation;
+  //           }
+
+  //           return conversation;
+  //         },
+  //       );
+
+  //       if (updatedConversations.length === 0) {
+  //         updatedConversations.push(updatedConversation);
+  //       }
+
+  //       setConversations(updatedConversations);
+  //       saveConversations(updatedConversations);
+
+  //       setMessageIsStreaming(false);
+  //     } else {
+  //       const { answer } = await response.json();
+
+  //       const updatedMessages: Message[] = [
+  //         ...updatedConversation.messages,
+  //         { role: 'assistant', content: answer },
+  //       ];
+
+  //       updatedConversation = {
+  //         ...updatedConversation,
+  //         messages: updatedMessages,
+  //       };
+
+  //       setSelectedConversation(updatedConversation);
+  //       saveConversation(updatedConversation);
+
+  //       const updatedConversations: Conversation[] = conversations.map(
+  //         (conversation) => {
+  //           if (conversation.id === selectedConversation.id) {
+  //             return updatedConversation;
+  //           }
+
+  //           return conversation;
+  //         },
+  //       );
+
+  //       if (updatedConversations.length === 0) {
+  //         updatedConversations.push(updatedConversation);
+  //       }
+
+  //       setConversations(updatedConversations);
+  //       saveConversations(updatedConversations);
+
+  //       setLoading(false);
+  //       setMessageIsStreaming(false);
+  //     }
+  //   }
+  // };
 
   // FETCH MODELS ----------------------------------------------
 
@@ -649,11 +756,7 @@ const Home: React.FC<HomeProps> = ({
   };
 
   // DOCSOURCE OPERATIONS --------------------------------------------
-
-
-
-
-  const handleCreateDocsource = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleCreateDocsource = async (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event)
     const file = event.target.files && event.target.files[0];
 
@@ -664,34 +767,40 @@ const Home: React.FC<HomeProps> = ({
 
     const fileName = file.name;
     const formData = new FormData();
-    formData.append("sourceInput", file);
+    formData.append("document", file);
     const id = uuidv4();
     formData.append("id", id);
 
-    fetch("/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("File upload successful");
-
-        const newDocsource: Docsource = {
-          id: id, //useful for a common index between docsources
-          name: `${fileName}`,
-          description: '', //useful for filtering docsources
-          source: '', //useful for displaying where the docsource came from
-          folderId: null,
-        };
-
-        // Add code here to handle the newDocsource object
-        const updatedDocsources = [...docsources, newDocsource];
-        setDocsources(updatedDocsources);
-        saveDocsources(updatedDocsources);
-      })
-      .catch((error) => {
-        console.error("Error uploading file:", error);
+    try {
+      const response = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData,
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("File upload successful");
+
+      const newDocsource: Docsource = {
+        id: id, //useful for a common index between docsources
+        name: `${fileName}`,
+        description: '', //useful for filtering docsources
+        source: '', //useful for displaying where the docsource came from
+        folderId: null,
+      };
+
+      // Add code here to handle the newDocsource object
+      const updatedDocsources = [...docsources, newDocsource];
+      setDocsources(updatedDocsources);
+      saveDocsources(updatedDocsources);
+
+
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
   };
 
 

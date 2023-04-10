@@ -16,7 +16,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
 
         // Send the data to the backend
         try {
-            const response = await fetch('/register', {
+            const response = await fetch('http://localhost:5000/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

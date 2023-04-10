@@ -21,7 +21,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
 
         // Send the data to the backend
         try {
-            const response = await fetch('/login', {
+            const response = await fetch('http://localhost:5000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
