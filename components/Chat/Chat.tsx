@@ -5,7 +5,10 @@ import { OpenAIModel, OpenAIModelID } from '@/types/openai';
 import { Plugin } from '@/types/plugin';
 import { Prompt } from '@/types/prompt';
 import { throttle } from '@/utils';
+import AuthButtons from './AuthButtons';
 import { IconArrowDown, IconClearAll, IconSettings } from '@tabler/icons-react';
+import LoginModal from './LoginModal'; // Add this import
+import RegisterModal from './RegisterModal';
 import { useTranslation } from 'next-i18next';
 import {
   FC,
@@ -73,6 +76,8 @@ export const Chat: FC<Props> = memo(
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
 
     const scrollToBottom = useCallback(() => {
       if (autoScrollEnabled) {
@@ -80,6 +85,23 @@ export const Chat: FC<Props> = memo(
         textareaRef.current?.focus();
       }
     }, [autoScrollEnabled]);
+
+    const handleLoginClick = () => {
+      setShowLoginModal(true);
+      // Add your login functionality here
+    };
+
+    const closeLoginModal = () => {
+      setShowLoginModal(false);
+    };
+
+    const handleRegisterClick = () => {
+      setShowRegisterModal(true);
+    };
+
+    const closeRegisterModal = () => {
+      setShowRegisterModal(false);
+    };
 
     const handleScroll = () => {
       if (chatContainerRef.current) {
@@ -192,7 +214,13 @@ export const Chat: FC<Props> = memo(
                   openai.com
                 </a>
               </div>
+              <AuthButtons
+                onLoginClick={handleLoginClick}
+                onRegisterClick={handleRegisterClick}
+              />
             </div>
+            <LoginModal onClose={closeLoginModal} show={showLoginModal} />
+            <RegisterModal onClose={closeRegisterModal} show={showRegisterModal} />
           </div>
         ) : modelError ? (
           <ErrorMessageDiv error={modelError} />
