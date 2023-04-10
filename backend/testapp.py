@@ -22,9 +22,9 @@ def testnot():
 
 def testupload():
     url = "http://localhost:5006/upload"
-    with open('backend/testarticles/articleIsrael.txt', 'rb') as f:
+    with open('backend/testarticles/article15_2.txt', 'rb') as f:
         file_data = {'document': f}
-        response = requests.postt(url, files=file_data)
+        response = requests.post(url, files=file_data)
         assert response.status_code == 200
 
 
@@ -78,18 +78,11 @@ def testquestion(question=None):
         print(f'Request failed with status code {response.status_code}')
 
 
+bad_email = 'guigui.jarry@gmail.com'
+good_email = 'guigui.jarry@etu.minesparis.psl.eu'
+good_password = 'guigui'
+bad_password = 'broken_bitch'
+
 if __name__ == "__main__":
-    bad_email = 'guigui.jarry@gmail.com'
 
-    good_email = 'guigui.jarry@etu.minesparis.psl.eu'
-    good_password = 'guigui'
 
-    bad_password = 'broken_bitch'
-    test_register(good_email, good_password)
-    test_register(bad_email, bad_password)
-
-    test_login(good_email, good_password)
-    test_login(good_email, bad_password)
-    test_login(bad_email, good_password)
-
-    testquestion()
