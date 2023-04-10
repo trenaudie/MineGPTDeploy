@@ -15,6 +15,7 @@ black==23.3.0
 blinker==1.6
 brotlipy @ file:///Users/runner/miniforge3/conda-bld/brotlipy_1666764759924/work
 bs4==0.0.1
+cachelib==0.10.2
 cachetools @ file:///home/conda/feedstock_root/build_artifacts/cachetools_1674482203741/work
 certifi==2022.12.7
 cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1671179893800/work
@@ -26,9 +27,12 @@ comm @ file:///home/conda/feedstock_root/build_artifacts/comm_1679481329611/work
 commonmark==0.9.1
 cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography-split_1679811336455/work
 dataclasses-json==0.5.7
+datasets==2.11.0
 debugpy @ file:///Users/runner/miniforge3/conda-bld/debugpy_1674522452033/work
 decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1641555617451/work
 Deprecated==1.2.13
+dill==0.3.6
+dnspython==2.3.0
 duckdb==0.7.1
 entrypoints==0.4
 et-xmlfile==1.1.0
@@ -40,7 +44,10 @@ ffmpeg-python==0.2.0
 filelock==3.10.7
 Flask==2.2.3
 Flask-Cors==3.0.10
+Flask-Session==0.4.0
+Flask-SQLAlchemy==3.0.3
 frozenlist @ file:///Users/runner/miniforge3/conda-bld/frozenlist_1667935502123/work
+fsspec==2023.4.0
 future==0.18.3
 gitdb==4.0.10
 GitPython==3.1.31
@@ -70,10 +77,11 @@ joblib==1.2.0
 jsonschema==4.17.3
 jupyter_client @ file:///home/conda/feedstock_root/build_artifacts/jupyter_client_1679365123476/work
 jupyter_core @ file:///Users/runner/miniforge3/conda-bld/jupyter_core_1678994238709/work
-langchain==0.0.131
+langchain==0.0.135
 libmagic==1.0
 llama-cpp-python==0.1.25
 llvmlite==0.39.1
+loguru==0.6.0
 lxml==4.9.2
 lz4==4.3.2
 Markdown==3.4.3
@@ -86,6 +94,7 @@ more-itertools==9.1.0
 mpmath==1.3.0
 msg-parser==1.2.0
 multidict @ file:///Users/runner/miniforge3/conda-bld/multidict_1672339514000/work
+multiprocess==0.70.14
 mypy-extensions==1.0.0
 nest-asyncio @ file:///home/conda/feedstock_root/build_artifacts/nest-asyncio_1664684991461/work
 networkx==3.0
@@ -96,6 +105,7 @@ oauthlib==3.2.2
 olefile==0.46
 openai==0.27.4
 openai-whisper==20230314
+openapi-schema-pydantic==1.2.4
 openpyxl==3.1.2
 packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1673482170163/work
 pandas==1.5.3
@@ -104,6 +114,7 @@ pathspec==0.11.1
 pexpect @ file:///home/conda/feedstock_root/build_artifacts/pexpect_1667297516076/work
 pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1602536217715/work
 Pillow==9.5.0
+pinecone-client==2.2.1
 platformdirs @ file:///home/conda/feedstock_root/build_artifacts/platformdirs_1679871349196/work
 pluggy==1.0.0
 posthog==2.4.2
@@ -142,6 +153,7 @@ pyzmq @ file:///Users/runner/miniforge3/conda-bld/pyzmq_1679317135273/work
 regex==2023.3.23
 requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1680286922386/work
 requests-oauthlib==1.3.1
+responses==0.18.0
 rfc3986==1.5.0
 rich==13.0.1
 rsa @ file:///home/conda/feedstock_root/build_artifacts/rsa_1658328885051/work
@@ -188,6 +200,7 @@ websockets==11.0
 Werkzeug==2.2.3
 wrapt==1.14.1
 XlsxWriter==3.0.9
+xxhash==3.2.0
 yarl @ file:///Users/runner/miniforge3/conda-bld/yarl_1672341093658/work
 youtube-transcript-api==0.5.0
 zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1677313463193/work
