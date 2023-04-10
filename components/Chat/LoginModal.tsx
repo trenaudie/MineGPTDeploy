@@ -6,10 +6,11 @@ import {
 interface LoginModalProps {
     onClose: () => void;
     show: boolean;
+    setAuthenticated: (Authenticated: boolean) => void;
 }
 
 
-const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ onClose, show, setAuthenticated }) => {
     // ... rest of the LoginModal component code ...
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
@@ -36,6 +37,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
 
             if (response.ok && data.status === 'authenticated') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
+                setAuthenticated(true);
                 onClose(); // Close the LoginModal
             } else if (data.status === 'incorrect authentification') {
                 // Handle incorrect login

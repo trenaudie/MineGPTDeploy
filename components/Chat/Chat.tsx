@@ -73,6 +73,7 @@ export const Chat: FC<Props> = memo(
     const [showScrollDownButton, setShowScrollDownButton] =
       useState<boolean>(false);
 
+    const [Authenticated, setAuthenticated] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -176,7 +177,7 @@ export const Chat: FC<Props> = memo(
 
     return (
       <div className="relative flex-1 overflow-hidden bg-white dark:bg-[#343541]">
-        {!(apiKey || serverSideApiKeyIsSet) ? (
+        {!(!Authenticated) ? (
           <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
             <div className="text-center text-4xl font-bold text-black dark:text-white">
               Welcome to Chatbot UI
@@ -219,8 +220,8 @@ export const Chat: FC<Props> = memo(
                 onRegisterClick={handleRegisterClick}
               />
             </div>
-            <LoginModal onClose={closeLoginModal} show={showLoginModal} />
-            <RegisterModal onClose={closeRegisterModal} show={showRegisterModal} />
+            <LoginModal setAuthenticated={setAuthenticated} onClose={closeLoginModal} show={showLoginModal} />
+            <RegisterModal setAuthenticated={setAuthenticated} onClose={closeRegisterModal} show={showRegisterModal} />
           </div>
         ) : modelError ? (
           <ErrorMessageDiv error={modelError} />

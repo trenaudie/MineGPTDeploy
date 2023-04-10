@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 interface RegisterModalProps {
     onClose: () => void;
     show: boolean;
+    setAuthenticated: (Authenticated: boolean) => void;
 }
 
-const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
+const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, setAuthenticated }) => {
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -31,6 +32,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
 
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
+                setAuthenticated(true);
                 onClose(); // Close the LoginModal
             } else if (data.status === 'failed registration') {
                 // Handle incorrect login

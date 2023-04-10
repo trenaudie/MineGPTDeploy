@@ -823,7 +823,6 @@ const Home: React.FC<HomeProps> = ({
     saveDocsources(updatedDocsources);
   };
 
-
   // EFFECTS  --------------------------------------------
 
   useEffect(() => {
