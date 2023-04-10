@@ -1,29 +1,32 @@
-from getchain import get_chain
-from flask import Flask, request, render_template, jsonify, redirect, session, url_for
-from werkzeug.utils import secure_filename
-import os
-import traceback
+import os, json, traceback
+
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
-import json
+from langchain.vectorstores import Pinecone
+import pinecone
+
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
+
+from flask import Flask, request, render_template, jsonify, redirect, session, url_for
 from flask_sqlalchemy import SQLAlchemy
-from config import Config
 from flask_cors import CORS
 
 from utils.logger import logger
 from utils.ingest import save_file_to_database
-from flask_session import Session
-
 
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
-print(os.environ['OPENAI_API_KEY'])
-os.environ['HUGGINGFACEHUB_API_TOKEN'] = Config.huggingface_hub_api_key
+os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
 
-
-def getattributes(obj): return [attr for attr in dir(
-    obj) if attr.startswith('__') is False]
+pinecone.init(
+    api_key=os.environ.get('PINECONE_API_KEY'),  
+    environment="us-east4-gcp",
+)
+index_name = 'extractive-qa2'
+index = pinecone.Index(index_name)
+vectorstore = Pinecone.from_existing_index(index_name, embedding=OpenAIEmbeddings())
 
 
 app = Flask(__name__)
@@ -55,10 +58,7 @@ PROMPT = PromptTemplate(
 
 chat_history = []
 list_of_files = ['file1', 'file2', 'file3', 'file4']
-vectordb = Chroma(persist_directory='dbdir',
-                  embedding_function=OpenAIEmbeddings())
-chain = get_chain(vectordb, PROMPT)
-print(vectordb._collection.metadata)
+chain = createchain(vectorstore, PROMPT)
 
 
 @app.route('/')
@@ -122,21 +122,18 @@ def upload_file():
     if uploaded_file:
         # Save the file temporarily
         filename = secure_filename(uploaded_file.filename)
-
-        # Create a folder named after the user if it doesn't exist
-        user_folder = os.path.join('user_files', session['username'])
-        os.makedirs(user_folder, exist_ok=True)
-
-        # Save the file to the user's folder
-        filepath = os.path.join(user_folder, filename)
+        list_of_files.append(filename)
+        # save the file to a database:
+        filepath = os.path.join('temp', filename)
         uploaded_file.save(filepath)
 
-        # Embed the vectors in a database, e.g., Pinecone
+        # embed the vectors in a database eg Pinecone
         save_file_to_database(vectordb, filepath)
         logger.info(
             f"number of documents in db: {vectordb._collection._client._count('langchain')}")
-
-        return f'File uploaded and saved to the user folder.', 200
+        # Remove the temporary file
+        os.remove(filepath)
+        return 'File uploaded and saved to the database.', 200
     else:
         return 'No file was uploaded.', 400
 
@@ -153,28 +150,22 @@ def answerQuestion():
     try:
         question = request.form['searchTerm']
         # only add chat_history if conversationalRetriever
-        answer = chain({'question': question, 'chat_history': chat_history})
-        chat_history.append((question, answer['answer']))
+        # answer = chain({'question': question, 'chat_history': chat_history})
+        # chat_history.append((question, answer['answer']))
 
         # for k in chat_history:
         #     logger.info(k)
+        result = ask_question(question, vectorstore, chat_history, chain)
         logger.info(
-            f"(question, answer['answer']) = {question, answer['answer']}")
+            f"(question, answer['answer']) = {question, result['answer']}")
         logger.info('sources')
-        for sourceDoc in answer['source_documents']:
-            logger.info(sourceDoc.page_content[:10])
-        logger.info('-----------------')
-        source_contents = [
-            sourceDoc.page_content for sourceDoc in answer['source_documents']]
-
+        for source in result['sources']:
+            logger.info(source['filename'])
+            logger.info(source['text'])
         # Convert the list of page contents to a JSON object
 
         # Combine the `processed_text` and `page_content` JSON objects into a single dictionary
-        response_data = {
-            'answer': answer['answer'],
-            'source_documents': source_contents
-        }
-        return jsonify(response_data)
+        return jsonify(result)
 
     except Exception as e:
         # Log the full traceback of the exception
