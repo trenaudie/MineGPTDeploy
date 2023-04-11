@@ -40,16 +40,22 @@ vectorstore = Pinecone.from_existing_index(
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+<<<<<<< HEAD
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600*3 #expired sessions are deleted after 3 hr
+=======
+app.config['SECRET_KEY'] = 'your_secret_key'
+# Use 'redis' or 'memcached' for production
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
+    3  # expired sessions are deleted after 3 hr
+>>>>>>> refs/remotes/origin/main
 
 db = SQLAlchemy(app)
 Session(app)
 CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
-
-
 
 
 class DocSource(db.Model):
@@ -59,6 +65,7 @@ class DocSource(db.Model):
     filename = db.Column(db.String(100), nullable=False)
     session_id = db.Column(db.String(100), nullable=False)
 
+<<<<<<< HEAD
     def to_dict(self):
         return {
             'id': self.id,
@@ -67,6 +74,9 @@ class DocSource(db.Model):
             'filename': self.filename,
             'session_id': self.session_id
         }
+=======
+
+>>>>>>> refs/remotes/origin/main
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -76,6 +86,7 @@ class User(db.Model):
 
 chat_history = []
 chain = createchain(vectorstore)
+
 
 @app.route('/')
 def index():
@@ -113,7 +124,6 @@ def login():
         session['user_id'] = user.id
         return jsonify(status='authenticated'), 200
     return jsonify(status='incorrect authentification'), 400
-
 
 
 @app.route('/logout', methods=['POST'])

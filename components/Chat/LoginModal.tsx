@@ -2,17 +2,18 @@ import React from 'react';
 import {
     useState,
 } from 'react';
+import { useAuth } from '../Global/AuthContext';
 
 interface LoginModalProps {
     onClose: () => void;
     show: boolean;
-    setAuthenticated: (Authenticated: boolean) => void;
 }
 
 
-const LoginModal: React.FC<LoginModalProps> = ({ onClose, show, setAuthenticated }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
     // ... rest of the LoginModal component code ...
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const { authenticated, handleLogout, handleLogin } = useAuth();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -37,7 +38,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show, setAuthenticated
 
             if (response.ok && data.status === 'authenticated') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
-                setAuthenticated(true);
+                handleLogin()
                 onClose(); // Close the LoginModal
             } else if (data.status === 'incorrect authentification') {
                 // Handle incorrect login

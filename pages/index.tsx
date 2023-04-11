@@ -7,6 +7,8 @@ import { KeyValuePair } from '@/types/data';
 import { ErrorMessage } from '@/types/error';
 import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
+import { useAuth } from '@/components/Global/AuthContext';
+import { Key } from '@/components/Settings/Key'
 import {
   OpenAIModel,
   OpenAIModelID,
@@ -37,6 +39,8 @@ import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
+
 
 //add docsource bar
 import { Docsourcebar } from '@/components/Docsourcebar/Docsourcebar';
@@ -44,6 +48,7 @@ import { Docsource } from '@/types/docsource';
 import { saveDocsources } from '@/utils/app/docsources';
 import { ChangeEvent } from 'react';
 import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import ReactDOM from 'react-dom';
 
 interface HomeProps {
   serverSideApiKeyIsSet: boolean;

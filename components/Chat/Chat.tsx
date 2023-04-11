@@ -10,6 +10,7 @@ import { IconArrowDown, IconClearAll, IconSettings } from '@tabler/icons-react';
 import LoginModal from './LoginModal'; // Add this import
 import RegisterModal from './RegisterModal';
 import { useTranslation } from 'next-i18next';
+import { useAuth } from '../Global/AuthContext';
 import {
   FC,
   MutableRefObject,
@@ -50,6 +51,7 @@ interface Props {
   stopConversationRef: MutableRefObject<boolean>;
 }
 
+
 export const Chat: FC<Props> = memo(
   ({
     conversation,
@@ -79,6 +81,8 @@ export const Chat: FC<Props> = memo(
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const { authenticated, handleLogout } = useAuth();
+
 
     const scrollToBottom = useCallback(() => {
       if (autoScrollEnabled) {
@@ -92,6 +96,7 @@ export const Chat: FC<Props> = memo(
       // Add your login functionality here
     };
 
+
     const closeLoginModal = () => {
       setShowLoginModal(false);
     };
@@ -103,6 +108,7 @@ export const Chat: FC<Props> = memo(
     const closeRegisterModal = () => {
       setShowRegisterModal(false);
     };
+
 
     const handleScroll = () => {
       if (chatContainerRef.current) {
@@ -177,7 +183,7 @@ export const Chat: FC<Props> = memo(
 
     return (
       <div className="relative flex-1 overflow-hidden bg-white dark:bg-[#343541]">
-        {!(!Authenticated) ? (
+        {!(!authenticated) ? (
           <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
             <div className="text-center text-4xl font-bold text-black dark:text-white">
               Welcome to Chatbot UI
@@ -220,8 +226,8 @@ export const Chat: FC<Props> = memo(
                 onRegisterClick={handleRegisterClick}
               />
             </div>
-            <LoginModal setAuthenticated={setAuthenticated} onClose={closeLoginModal} show={showLoginModal} />
-            <RegisterModal setAuthenticated={setAuthenticated} onClose={closeRegisterModal} show={showRegisterModal} />
+            <LoginModal onClose={closeLoginModal} show={showLoginModal} />
+            <RegisterModal onClose={closeRegisterModal} show={showRegisterModal} />
           </div>
         ) : modelError ? (
           <ErrorMessageDiv error={modelError} />
