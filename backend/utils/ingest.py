@@ -85,5 +85,38 @@ def save_file_to_Pinecone(filepath:str, vectorstore:Pinecone):
     logger.info(f"added to vectorstore {len(source_chunks)} chunks from {filepath}")
     logger.info(f"vectorstore stats: {vectorstore._index.describe_index_stats()}")
 
+def save_file_to_Pinecone_metadata(filepath:str, file_id:str,  sid : str, vectorstore:Pinecone):
+    """Reads one file from the temp directory (pdf and .txt files supported) then splits and saves to Pinecone"""
+
+    filename, file_extension = os.path.splitext(filepath)
+    filename.replace("\\temp", "")
+    if file_extension.lower() == '.pdf':
+        pdf_reader = PyPDF2.PdfReader(filepath)
+        content = ""
+
+        for page in pdf_reader.pages:
+            content += page.extract_text()
+
+    elif file_extension.lower() == '.txt':
+        with open(filepath, 'r') as file:
+            content = file.read()
+    else:
+        raise ValueError(f"Invalid file type: {filepath}. Only PDF and text files are supported.")
+
+    #write from filepath, content to Pinecone
+    chunksize = 512 #important parameter
+    document_whole = {"page_content":content, "metadata":{'source':str(filepath), 'sid':str(sid), 'file_id':str(file_id)}}
+    source_chunks = []
+
+    splitter = CharacterTextSplitter(separator=" ", chunk_size=chunksize, chunk_overlap=0)
+    for i,chunk in enumerate(splitter.split_text(document_whole.get("page_content"))):
+        chunkid = file_id + "_" + str(i)
+        embedded_chunk = vectorstore._embedding_function(chunk)
+        newdoc = (chunkid, embedded_chunk, document_whole.get('metadata').copy() ) #(i,emb, metadata)
+        source_chunks.append(newdoc)
 
 
+    indexes = vectorstore._index.upsert(vectors = source_chunks, namespace='')
+
+    logger.info(f"added to vectorstore {len(source_chunks)} chunks from {filepath}")
+    logger.info(f"vectorstore stats: {vectorstore._index.describe_index_stats()}")

@@ -11,3 +11,14 @@
 - Tests that interact with Flask sessions need to include the requests.session object to simulate a client session.
 - When a user closes their browser and reopens it, the browser automatically sends the session ID cookie back to the server, allowing the user to resume their session.
 - The sid parameter in the session ID cookie is used to track the user's session and ensure that they are reconnected to the correct session.
+
+
+### Pinecone Metadata 
+- Idea 1 : Creating one namespace per sid, then deleting the whole namespace sid at the end of the session
+  - problem: pinecone prevents you from querying multiple namespaces 
+- Idea 2: Storing vectors with sid as key, then deleting all vectors for the sid at the end of the session
+    - creating a unique vector_id = file_id + chunk_number
+    - must make sure that file_id is actually unique for every user, so that removing all vectors for a given file_id will remove all chunks of that file for that specific user. 
+      - maybe encode the username into the file_id
+    - create a default sid for the pniecone preinstalled docs, so we can query from sid_base + sid_user 
+    - 
