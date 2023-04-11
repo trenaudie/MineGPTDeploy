@@ -7,11 +7,10 @@ import { useAuth } from '../Global/AuthContext';
 interface Props {
   apiKey: string;
   onApiKeyChange: (apiKey: string) => void;
-  onLogout: () => void; // Add this line
 }
 
 
-export const Key: FC<Props> = ({ apiKey, onApiKeyChange, onLogout }) => {
+export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
   const { t } = useTranslation('sidebar');
   const [isChanging, setIsChanging] = useState(false);
   const [newKey, setNewKey] = useState(apiKey);
