@@ -42,3 +42,7 @@ next-env.d.ts
 backend/config.py
 backend/session_files
 frontend/session_files
+
+#compiled Python files
+*.pyc
+backend/session_files/2029240f6d1128be89ddc32729463129
