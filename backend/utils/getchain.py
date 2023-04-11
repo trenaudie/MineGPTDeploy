@@ -100,18 +100,9 @@ def createchain_with_filter(vectorstore):
     doc_chain = load_qa_with_sources_chain(llm, chain_type="map_reduce")
     doc_chain.return_intermediate_steps = True
 
-
-<< << << < HEAD
-chain = ConversationalRetrievalChain(
-    retriever=vectorstore.as_retriever(),
-    question_generator=question_generator,
-    combine_docs_chain=doc_chain, return_source_documents=True)
-== == == =
-chain = CustomConversationalRetrievalChain(
-    retriever=vectorstore.as_retriever(),
-    question_generator=question_generator,
-    combine_docs_chain=doc_chain,
-    return_source_documents=True
-)
->>>>>> > 62c1ec93492a0f450c34387e75e9165381010f32
-return chain
+    chain = CustomConversationalRetrievalChain(
+        retriever=vectorstore.as_retriever(),
+        question_generator=question_generator,
+        combine_docs_chain=doc_chain,
+        return_source_documents=True)
+    return chain
