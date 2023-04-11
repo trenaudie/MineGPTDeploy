@@ -621,3 +621,49 @@ SOURCES: temp/article15_2.txt
                 '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
  'total_vector_count': 34}
 2023-04-11 18:02:49,068 - INFO - question: Lisa Murkowsk is who? for user 1 with sid a3942ca8-5dc2-4f09-ba79-b2f0af86cc37 
+2023-04-11 18:28:29,666 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 18:28:29,671 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid 9b8639e7-61d1-47a7-ade0-168ec80c44c6 
+2023-04-11 18:29:24,181 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 18:29:24,185 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid 3f537258-6142-424a-9ebd-0e47a9e7ae93 
+2023-04-11 18:29:28,836 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 18:29:28,926 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 23},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 34}
+2023-04-11 18:29:28,934 - INFO - question: Lisa Murkowsk is who? for user 1 with sid 3f537258-6142-424a-9ebd-0e47a9e7ae93 
+2023-04-11 18:30:06,910 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 18:30:06,915 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid 20fff1e7-e9f3-4e1f-9ce6-0165b3698f8f 
+2023-04-11 18:30:11,135 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 18:30:11,223 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 23},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 34}
+2023-04-11 18:30:11,231 - INFO - question: Lisa Murkowsk is who? for user 1 with sid 20fff1e7-e9f3-4e1f-9ce6-0165b3698f8f 
+2023-04-11 18:33:06,814 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 18:33:06,819 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid 067041f2-3120-46c2-b6ea-ae6e2486868a 
+2023-04-11 18:33:11,061 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 18:33:11,155 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 23},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 34}
+2023-04-11 18:33:11,177 - INFO - question: Lisa Murkowsk is who? for user 1 with sid 067041f2-3120-46c2-b6ea-ae6e2486868a 
+2023-04-11 18:33:27,131 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 18:33:27,134 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid 0b59d330-e9d0-409b-9f4d-bf782c5e0015 
+2023-04-11 18:33:31,867 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 18:33:31,960 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 23},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 34}
+2023-04-11 18:33:31,978 - INFO - question: Lisa Murkowsk is who? for user 1 with sid 0b59d330-e9d0-409b-9f4d-bf782c5e0015 
+2023-04-11 18:33:31,978 - INFO - calling conversational retrieval chain
+2023-04-11 18:33:31,978 - INFO - question
+2023-04-11 18:33:31,978 - INFO - Lisa Murkowsk is who?
+2023-04-11 18:33:31,978 - INFO - chat_history_str
+2023-04-11 18:33:31,978 - INFO - []
+2023-04-11 18:33:37,497 - INFO - answer
+2023-04-11 18:33:37,498 - INFO - Lisa Murkowski is a Republican.
+SOURCES: temp/article15_2.txt

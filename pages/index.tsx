@@ -7,6 +7,7 @@ import { KeyValuePair } from '@/types/data';
 import { ErrorMessage } from '@/types/error';
 import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
+import { Key } from '@/components/Settings/Key'
 import {
   OpenAIModel,
   OpenAIModelID,
@@ -47,6 +48,8 @@ import { saveDocsources } from '@/utils/app/docsources';
 import { ChangeEvent } from 'react';
 import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ReactDOM from 'react-dom';
+import { AuthContext } from '@/components/Global/AuthContext';
+
 
 interface HomeProps {
   serverSideApiKeyIsSet: boolean;
@@ -88,6 +91,7 @@ const Home: React.FC<HomeProps> = ({
 
   const [docsources, setDocsources] = useState<Docsource[]>([]);
   const [showDocsourcebar, setShowDocsourcebar] = useState<boolean>(true);
+  const [authenticated, setAuthenticated] = useState(false);
 
   // REFS ----------------------------------------------
 
@@ -927,6 +931,20 @@ const Home: React.FC<HomeProps> = ({
     }
   }, [serverSideApiKeyIsSet]);
 
+
+  const handleLogout = () => {
+    console.log('handleLogout called');
+    setAuthenticated(false);
+    // Perform the logout actions here
+  };
+
+  const handleLogin = () => {
+    console.log('handleLogin called');
+    setAuthenticated(true);
+  };
+
+
+
   return (
     <>
       <Head>
@@ -938,154 +956,162 @@ const Home: React.FC<HomeProps> = ({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {selectedConversation && (
-        <main
-          className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode}`}
-        >
-          <div className="fixed top-0 w-full sm:hidden">
-            <Navbar
+      <AuthContext.Provider
+        value={{
+          authenticated,
+          handleLogout,
+          handleLogin,
+        }}>
+        {selectedConversation && (
+          <main
+            className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode}`}
+          >
+            <div className="fixed top-0 w-full sm:hidden">
+              <Navbar
 
-              selectedConversation={selectedConversation}
-              onNewConversation={handleNewConversation}
-            />
-          </div>
-
-          <div className="flex h-full w-full pt-[48px] sm:pt-0">
-            {showSidebar ? (
-              <div>
-                <Chatbar
-                  loading={messageIsStreaming}
-                  conversations={conversations}
-                  lightMode={lightMode}
-                  selectedConversation={selectedConversation}
-                  apiKey={apiKey}
-                  serverSideApiKeyIsSet={serverSideApiKeyIsSet}
-                  pluginKeys={pluginKeys}
-                  serverSidePluginKeysSet={serverSidePluginKeysSet}
-                  folders={folders.filter((folder) => folder.type === 'chat')}
-                  onToggleLightMode={handleLightMode}
-                  onCreateFolder={(name) => handleCreateFolder(name, 'chat')}
-                  onDeleteFolder={handleDeleteFolder}
-                  onUpdateFolder={handleUpdateFolder}
-                  onNewConversation={handleNewConversation}
-                  onSelectConversation={handleSelectConversation}
-                  onDeleteConversation={handleDeleteConversation}
-                  onUpdateConversation={handleUpdateConversation}
-                  onApiKeyChange={handleApiKeyChange}
-                  onClearConversations={handleClearConversations}
-                  onExportConversations={handleExportData}
-                  onImportConversations={handleImportConversations}
-                  onPluginKeyChange={handlePluginKeyChange}
-                  onClearPluginKey={handleClearPluginKey}
-                />
-
-                <button
-                  className="fixed top-5 left-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:left-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
-                  onClick={handleToggleChatbar}
-                >
-                  <IconArrowBarLeft />
-                </button>
-                <div
-                  onClick={handleToggleChatbar}
-                  className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
-                ></div>
-              </div>
-            ) : (
-              <button
-                className="fixed top-2.5 left-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:left-4 sm:h-8 sm:w-8 sm:text-neutral-700"
-                onClick={handleToggleChatbar}
-              >
-                <IconArrowBarRight />
-              </button>
-            )}
-
-            <div className="flex flex-1">
-              <Chat
-                conversation={selectedConversation}
-                messageIsStreaming={messageIsStreaming}
-                apiKey={apiKey}
-                serverSideApiKeyIsSet={serverSideApiKeyIsSet}
-                defaultModelId={defaultModelId}
-                modelError={modelError}
-                models={models}
-                loading={loading}
-                prompts={prompts}
-                onSend={handleSend}
-                onUpdateConversation={handleUpdateConversation}
-                onEditMessage={handleEditMessage}
-                stopConversationRef={stopConversationRef}
-
+                selectedConversation={selectedConversation}
+                onNewConversation={handleNewConversation}
               />
             </div>
 
-            {showPromptbar ? (
-              <div>
-                <Promptbar
-                  prompts={prompts}
-                  folders={folders.filter((folder) => folder.type === 'prompt')}
-                  onCreatePrompt={handleCreatePrompt}
-                  onUpdatePrompt={handleUpdatePrompt}
-                  onDeletePrompt={handleDeletePrompt}
-                  onCreateFolder={(name) => handleCreateFolder(name, 'prompt')}
-                  onDeleteFolder={handleDeleteFolder}
-                  onUpdateFolder={handleUpdateFolder}
-                />
-                <button
-                  className="fixed top-5 right-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
-                  onClick={handleTogglePromptbar}
-                >
-                  <IconArrowBarRight />
-                </button>
-                <div
-                  onClick={handleTogglePromptbar}
-                  className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
-                ></div>
-              </div>
-            ) : (
-              <button
-                className="fixed top-2.5 right-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-4 sm:h-8 sm:w-8 sm:text-neutral-700"
-                onClick={handleTogglePromptbar}
-              >
-                <IconArrowBarLeft />
-              </button>
-            )}
-            {showDocsourcebar ? (
-              <div>
-                <Docsourcebar
-                  docsources={docsources}
-                  folders={folders.filter((folder) => folder.type === 'docsource')}
-                  onCreateDocsource={handleCreateDocsource}
-                  onUpdateDocsource={handleUpdateDocsource}
-                  onDeleteDocsource={handleDeleteDocsource}
-                  onCreateFolder={(name) => handleCreateFolder(name, 'docsource')}
-                  onDeleteFolder={handleDeleteFolder}
-                  onUpdateFolder={handleUpdateFolder}
-                />
-                <button
-                  className="fixed top-5 right-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
-                  onClick={handleToggleDocsourcebar}
-                >
-                  <IconArrowBarRight />
-                </button>
-                <div
-                  onClick={handleToggleDocsourcebar}
-                  className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
-                ></div>
-              </div>
-            ) : (
-              <button
-                className="fixed top-2.5 right-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-4 sm:h-8 sm:w-8 sm:text-neutral-700"
-                onClick={handleToggleDocsourcebar}
-              >
-                <IconArrowBarLeft />
-              </button>
-            )}
+            <div className="flex h-full w-full pt-[48px] sm:pt-0">
+              {showSidebar ? (
+                <div>
+                  <Chatbar
+                    loading={messageIsStreaming}
+                    conversations={conversations}
+                    lightMode={lightMode}
+                    selectedConversation={selectedConversation}
+                    apiKey={apiKey}
+                    serverSideApiKeyIsSet={serverSideApiKeyIsSet}
+                    pluginKeys={pluginKeys}
+                    serverSidePluginKeysSet={serverSidePluginKeysSet}
+                    folders={folders.filter((folder) => folder.type === 'chat')}
+                    onToggleLightMode={handleLightMode}
+                    onCreateFolder={(name) => handleCreateFolder(name, 'chat')}
+                    onDeleteFolder={handleDeleteFolder}
+                    onUpdateFolder={handleUpdateFolder}
+                    onNewConversation={handleNewConversation}
+                    onSelectConversation={handleSelectConversation}
+                    onDeleteConversation={handleDeleteConversation}
+                    onUpdateConversation={handleUpdateConversation}
+                    onApiKeyChange={handleApiKeyChange}
+                    onClearConversations={handleClearConversations}
+                    onExportConversations={handleExportData}
+                    onImportConversations={handleImportConversations}
+                    onPluginKeyChange={handlePluginKeyChange}
+                    onClearPluginKey={handleClearPluginKey}
+                  />
 
-          </div>
-        </main>
-      )}
+                  <button
+                    className="fixed top-5 left-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:left-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
+                    onClick={handleToggleChatbar}
+                  >
+                    <IconArrowBarLeft />
+                  </button>
+                  <div
+                    onClick={handleToggleChatbar}
+                    className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
+                  ></div>
+                </div>
+              ) : (
+                <button
+                  className="fixed top-2.5 left-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:left-4 sm:h-8 sm:w-8 sm:text-neutral-700"
+                  onClick={handleToggleChatbar}
+                >
+                  <IconArrowBarRight />
+                </button>
+              )}
+
+              <div className="flex flex-1">
+                <Chat
+                  conversation={selectedConversation}
+                  messageIsStreaming={messageIsStreaming}
+                  apiKey={apiKey}
+                  serverSideApiKeyIsSet={true} //hard coded true
+                  defaultModelId={defaultModelId}
+                  modelError={modelError}
+                  models={models}
+                  loading={loading}
+                  prompts={prompts}
+                  onSend={handleSend}
+                  onUpdateConversation={handleUpdateConversation}
+                  onEditMessage={handleEditMessage}
+                  stopConversationRef={stopConversationRef}
+
+                />
+              </div>
+
+              {showPromptbar ? (
+                <div>
+                  <Promptbar
+                    prompts={prompts}
+                    folders={folders.filter((folder) => folder.type === 'prompt')}
+                    onCreatePrompt={handleCreatePrompt}
+                    onUpdatePrompt={handleUpdatePrompt}
+                    onDeletePrompt={handleDeletePrompt}
+                    onCreateFolder={(name) => handleCreateFolder(name, 'prompt')}
+                    onDeleteFolder={handleDeleteFolder}
+                    onUpdateFolder={handleUpdateFolder}
+                  />
+                  <button
+                    className="fixed top-5 right-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
+                    onClick={handleTogglePromptbar}
+                  >
+                    <IconArrowBarRight />
+                  </button>
+                  <div
+                    onClick={handleTogglePromptbar}
+                    className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
+                  ></div>
+                </div>
+              ) : (
+                <button
+                  className="fixed top-2.5 right-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-4 sm:h-8 sm:w-8 sm:text-neutral-700"
+                  onClick={handleTogglePromptbar}
+                >
+                  <IconArrowBarLeft />
+                </button>
+              )}
+              {showDocsourcebar ? (
+                <div>
+                  <Docsourcebar
+                    docsources={docsources}
+                    folders={folders.filter((folder) => folder.type === 'docsource')}
+                    onCreateDocsource={handleCreateDocsource}
+                    onUpdateDocsource={handleUpdateDocsource}
+                    onDeleteDocsource={handleDeleteDocsource}
+                    onCreateFolder={(name) => handleCreateFolder(name, 'docsource')}
+                    onDeleteFolder={handleDeleteFolder}
+                    onUpdateFolder={handleUpdateFolder}
+                  />
+                  <button
+                    className="fixed top-5 right-[270px] z-50 h-7 w-7 hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-[270px] sm:h-8 sm:w-8 sm:text-neutral-700"
+                    onClick={handleToggleDocsourcebar}
+                  >
+                    <IconArrowBarRight />
+                  </button>
+                  <div
+                    onClick={handleToggleDocsourcebar}
+                    className="absolute top-0 left-0 z-10 h-full w-full bg-black opacity-70 sm:hidden"
+                  ></div>
+                </div>
+              ) : (
+                <button
+                  className="fixed top-2.5 right-4 z-50 h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:right-4 sm:h-8 sm:w-8 sm:text-neutral-700"
+                  onClick={handleToggleDocsourcebar}
+                >
+                  <IconArrowBarLeft />
+                </button>
+              )}
+
+            </div>
+          </main>
+        )}
+      </AuthContext.Provider>
     </>
   );
+
 };
 export default Home;
 
@@ -1109,7 +1135,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
   return {
     props: {
-      serverSideApiKeyIsSet: !!process.env.OPENAI_API_KEY,
+      //serverSideApiKeyIsSet: !!process.env.OPENAI_API_KEY,
+      serverSideApiKeyIsSet: true,
       defaultModelId,
       serverSidePluginKeysSet,
       ...(await serverSideTranslations(locale ?? 'en', [
