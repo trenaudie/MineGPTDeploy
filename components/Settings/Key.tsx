@@ -2,7 +2,7 @@ import { IconCheck, IconKey, IconX } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { LogoutButton } from './LogoutButton'; // Adjust the import path if necessary
-import { useAuth } from '../Global/AuthContext';
+import { useAuthContext } from '../Global/AuthContext';
 
 interface Props {
   apiKey: string;
@@ -16,6 +16,9 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
   const [newKey, setNewKey] = useState(apiKey);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { authenticated } = useAuthContext();
+  console.log('Chat component, authenticated:', authenticated);
+
 
   const handleEnterDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
@@ -24,7 +27,7 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
     }
   };
 
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
 
   const handleUpdateKey = (newKey: string) => {
     onApiKeyChange(newKey.trim());

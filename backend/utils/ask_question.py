@@ -3,6 +3,7 @@
 from langchain.vectorstores import Pinecone
 from langchain.chains import ConversationalRetrievalChain
 
+
 def ask_question(question: str, vectorstore: Pinecone, chain: ConversationalRetrievalChain, chat_history: list[dict] = None) -> dict:
     """
     Use a question and the chat history to return the answer and the source documents.
@@ -30,5 +31,6 @@ def ask_question(question: str, vectorstore: Pinecone, chain: ConversationalRetr
     sources = []
 
     for sourcedoc in result['source_documents']:
-        sources.append({'filename' : sourcedoc.metadata['source'], 'text': sourcedoc.page_content})
-    return {"answer": answer, "sources":sources}
+        sources.append(
+            {'filename': sourcedoc.metadata['source'], 'text': sourcedoc.page_content})
+    return {"answer": answer, "sources": sources}

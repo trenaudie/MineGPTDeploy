@@ -40,18 +40,11 @@ vectorstore = Pinecone.from_existing_index(
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-<<<<<<< HEAD
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
-app.config['PERMANENT_SESSION_LIFETIME'] = 3600*3 #expired sessions are deleted after 3 hr
-=======
-app.config['SECRET_KEY'] = 'your_secret_key'
-# Use 'redis' or 'memcached' for production
-app.config['SESSION_TYPE'] = 'filesystem'
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
     3  # expired sessions are deleted after 3 hr
->>>>>>> refs/remotes/origin/main
 
 db = SQLAlchemy(app)
 Session(app)
@@ -65,7 +58,6 @@ class DocSource(db.Model):
     filename = db.Column(db.String(100), nullable=False)
     session_id = db.Column(db.String(100), nullable=False)
 
-<<<<<<< HEAD
     def to_dict(self):
         return {
             'id': self.id,
@@ -74,9 +66,8 @@ class DocSource(db.Model):
             'filename': self.filename,
             'session_id': self.session_id
         }
-=======
 
->>>>>>> refs/remotes/origin/main
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -116,7 +107,7 @@ def login():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
-    
+
     user = User.query.filter_by(email=email).first()
     with redirect_stdout_to_logger(logger):
         printUsers(User)
@@ -138,30 +129,33 @@ def upload_file():
     uploaded_file = request.files['document']
     file_id = request.form['id']
     session_id = request.form.get('session_id', None)
-    logger.info(f"uploading file {uploaded_file.filename} with id {file_id} for user {session.get('user_id', None)} with sid {session_id} ")
+    logger.info(
+        f"uploading file {uploaded_file.filename} with id {file_id} for user {session.get('user_id', None)} with sid {session_id} ")
     if 'user_id' not in session:
         return 'User not logged in.', 400
 
     if uploaded_file:
-        #add file to Pinecone
+        # add file to Pinecone
         filename = secure_filename(uploaded_file.filename)
         save_file_to_temp(uploaded_file)
         filepath = os.path.join(Config.TEMP_FOLDER, filename)
         print(f"uploading filename {filename}, filepath {filepath}")
-        save_file_to_Pinecone_metadata(filepath,file_id, session_id, vectorstore) #must have a unique file_id, even if the file is the same per user
+        # must have a unique file_id, even if the file is the same per user
+        save_file_to_Pinecone_metadata(
+            filepath, file_id, session_id, vectorstore)
         os.remove(filepath)
 
-        #add file to docsource database
+        # add file to docsource database
         user_id = session.get('user_id', None)
-        description = 'File uploaded by user' #might need to change
-        docsource = DocSource(user_id=user_id, description=description, filename=filename,session_id=session_id)
+        description = 'File uploaded by user'  # might need to change
+        docsource = DocSource(user_id=user_id, description=description,
+                              filename=filename, session_id=session_id)
         db.session.add(docsource)
         db.session.commit()
 
         return 'File uploaded and saved to the database.', 200
     else:
         return 'No file was uploaded.', 400
-
 
 
 @app.route('/qa', methods=['POST'])

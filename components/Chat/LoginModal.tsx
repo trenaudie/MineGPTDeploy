@@ -1,8 +1,8 @@
 import React from 'react';
+import { useAuth, useAuthContext } from '../Global/AuthContext';
 import {
     useState,
 } from 'react';
-import { useAuth } from '../Global/AuthContext';
 
 interface LoginModalProps {
     onClose: () => void;
@@ -13,13 +13,14 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
     // ... rest of the LoginModal component code ...
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
-    const { authenticated, handleLogout, handleLogin } = useAuth();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
+
+        const { authenticated, handleLogout, handleLogin } = useAuthContext();
 
         // Send the data to the backend
         try {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../Global/AuthContext';
+import { useAuthContext } from '../Global/AuthContext';
 
 
 interface RegisterModalProps {
@@ -16,7 +16,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
 
-        const { authenticated, setAuthenticated } = useAuth();
+        const { authenticated, handleLogout, handleLogin } = useAuthContext();
 
         // Send the data to the backend
         try {
@@ -35,7 +35,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
 
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
-                setAuthenticated(true)
+                handleLogin()
                 onClose(); // Close the LoginModal
             } else if (data.status === 'failed registration') {
                 // Handle incorrect login

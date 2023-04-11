@@ -10,7 +10,7 @@ import { IconArrowDown, IconClearAll, IconSettings } from '@tabler/icons-react';
 import LoginModal from './LoginModal'; // Add this import
 import RegisterModal from './RegisterModal';
 import { useTranslation } from 'next-i18next';
-import { useAuth } from '../Global/AuthContext';
+import { useAuthContext } from '../Global/AuthContext';
 import {
   FC,
   MutableRefObject,
@@ -74,14 +74,12 @@ export const Chat: FC<Props> = memo(
     const [showSettings, setShowSettings] = useState<boolean>(false);
     const [showScrollDownButton, setShowScrollDownButton] =
       useState<boolean>(false);
-
-    const [Authenticated, setAuthenticated] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
-    const { authenticated, handleLogout } = useAuth();
+    const { authenticated } = useAuthContext();
 
 
     const scrollToBottom = useCallback(() => {
@@ -90,6 +88,8 @@ export const Chat: FC<Props> = memo(
         textareaRef.current?.focus();
       }
     }, [autoScrollEnabled]);
+
+    console.log('Chat component, authenticated:', authenticated);
 
     const handleLoginClick = () => {
       setShowLoginModal(true);
@@ -183,7 +183,7 @@ export const Chat: FC<Props> = memo(
 
     return (
       <div className="relative flex-1 overflow-hidden bg-white dark:bg-[#343541]">
-        {!(!authenticated) ? (
+        {!authenticated ? (
           <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
             <div className="text-center text-4xl font-bold text-black dark:text-white">
               Welcome to Chatbot UI
