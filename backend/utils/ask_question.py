@@ -27,7 +27,8 @@ def ask_question(question: str, vectorstore: Pinecone, chain: ConversationalRetr
 
     _filter = {"sid": session_id}
     result = chain(
-        {"question": question, "chat_history": chat_history}, filter=_filter)
+        {"question": question, "chat_history": chat_history}, 
+        filter=_filter)
     chat_history.append({"question": question, "answer": result["answer"]})
     answer = result['answer']
     sources = []

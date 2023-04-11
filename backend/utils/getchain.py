@@ -8,6 +8,7 @@ from langchain.chains import LLMChain
 from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
 from langchain.chat_models import ChatOpenAI
 import os
+import config
 
 
 class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
@@ -70,7 +71,9 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
         #  {
         #   "$or": [{ "genre": { "$eq": "drama" } }, { "year": { "$gte": 2020 } }]
         # }
-        filter_or = {"$or": [{'sid': config.Config.SID_DEFAULT}, {'sid': sid}]}
+    
+
+        filter_or = {"$or": [{'sid': config.Config.SID_DEFAULT}, {'sid': filter['sid']}]}
         inputs = self.prep_inputs(inputs)
         self.callback_manager.on_chain_start(
             {"name": self.__class__.__name__},

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useAuthContext } from '../Global/AuthContext';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../Global/AuthContext';
 
 
 interface RegisterModalProps {
@@ -9,15 +9,15 @@ interface RegisterModalProps {
 
 const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const { authenticated, handleLogout, handleLogin } = useContext(AuthContext);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
-
-        const { authenticated, handleLogout, handleLogin } = useAuthContext();
-
+        console.log(`before auth context`)
+        console.log(`authenticated = ${authenticated} before submission`)
         // Send the data to the backend
         try {
             const response = await fetch('http://localhost:5000/register', {

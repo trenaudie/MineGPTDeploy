@@ -1,8 +1,7 @@
 import React from 'react';
-import { useAuth, useAuthContext } from '../Global/AuthContext';
-import {
-    useState,
-} from 'react';
+import { AuthContext } from '../Global/AuthContext';
+import { useContext } from 'react';
+import {useState} from 'react';
 
 interface LoginModalProps {
     onClose: () => void;
@@ -20,7 +19,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
 
-        const { authenticated, handleLogout, handleLogin } = useAuthContext();
+        const { authenticated, handleLogout, handleLogin } = useContext(AuthContext);
 
         // Send the data to the backend
         try {

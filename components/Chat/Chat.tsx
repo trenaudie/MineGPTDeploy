@@ -10,7 +10,7 @@ import { IconArrowDown, IconClearAll, IconSettings } from '@tabler/icons-react';
 import LoginModal from './LoginModal'; // Add this import
 import RegisterModal from './RegisterModal';
 import { useTranslation } from 'next-i18next';
-import { useAuthContext } from '../Global/AuthContext';
+import { AuthContext } from '../Global/AuthContext';
 import {
   FC,
   MutableRefObject,
@@ -27,6 +27,8 @@ import { ChatMessage } from './ChatMessage';
 import { ErrorMessageDiv } from './ErrorMessageDiv';
 import { ModelSelect } from './ModelSelect';
 import { SystemPrompt } from './SystemPrompt';
+//import useContext 
+import { useContext } from 'react';
 
 interface Props {
   conversation: Conversation;
@@ -79,7 +81,7 @@ export const Chat: FC<Props> = memo(
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
-    const { authenticated } = useAuthContext();
+    const { authenticated } = useContext(AuthContext);
 
 
     const scrollToBottom = useCallback(() => {

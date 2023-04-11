@@ -7,7 +7,6 @@ import { KeyValuePair } from '@/types/data';
 import { ErrorMessage } from '@/types/error';
 import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
-import { useAuth } from '@/components/Global/AuthContext';
 import { Key } from '@/components/Settings/Key'
 import {
   OpenAIModel,
@@ -49,6 +48,8 @@ import { saveDocsources } from '@/utils/app/docsources';
 import { ChangeEvent } from 'react';
 import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ReactDOM from 'react-dom';
+import { AuthContext } from '@/components/Global/AuthContext';
+
 
 interface HomeProps {
   serverSideApiKeyIsSet: boolean;
@@ -90,6 +91,7 @@ const Home: React.FC<HomeProps> = ({
 
   const [docsources, setDocsources] = useState<Docsource[]>([]);
   const [showDocsourcebar, setShowDocsourcebar] = useState<boolean>(true);
+  const [authenticated, setAuthenticated] = useState(false);
 
   // REFS ----------------------------------------------
 
@@ -929,6 +931,20 @@ const Home: React.FC<HomeProps> = ({
     }
   }, [serverSideApiKeyIsSet]);
 
+
+    const handleLogout = () => {
+      console.log('handleLogout called');
+      setAuthenticated(false);
+      // Perform the logout actions here
+    };
+    
+    const handleLogin = () => {
+      console.log('handleLogin called');
+      setAuthenticated(true);
+    };
+    
+
+
   return (
     <>
       <Head>
@@ -940,6 +956,12 @@ const Home: React.FC<HomeProps> = ({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <AuthContext.Provider
+      value={{
+        authenticated,
+        handleLogout,
+        handleLogin,
+      }}>
       {selectedConversation && (
         <main
           className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode}`}
@@ -1006,7 +1028,7 @@ const Home: React.FC<HomeProps> = ({
                 conversation={selectedConversation}
                 messageIsStreaming={messageIsStreaming}
                 apiKey={apiKey}
-                serverSideApiKeyIsSet={serverSideApiKeyIsSet}
+                serverSideApiKeyIsSet={true} //hard coded true
                 defaultModelId={defaultModelId}
                 modelError={modelError}
                 models={models}
@@ -1086,8 +1108,10 @@ const Home: React.FC<HomeProps> = ({
           </div>
         </main>
       )}
+      </AuthContext.Provider>
     </>
   );
+ 
 };
 export default Home;
 
@@ -1111,7 +1135,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
   return {
     props: {
-      serverSideApiKeyIsSet: !!process.env.OPENAI_API_KEY,
+      //serverSideApiKeyIsSet: !!process.env.OPENAI_API_KEY,
+      serverSideApiKeyIsSet: true,
       defaultModelId,
       serverSidePluginKeysSet,
       ...(await serverSideTranslations(locale ?? 'en', [
