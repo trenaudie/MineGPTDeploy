@@ -7,8 +7,6 @@ import { KeyValuePair } from '@/types/data';
 import { ErrorMessage } from '@/types/error';
 import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
-import { useAuth } from '@/components/Global/AuthContext';
-import { Key } from '@/components/Settings/Key'
 import {
   OpenAIModel,
   OpenAIModelID,

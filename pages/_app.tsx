@@ -10,10 +10,8 @@ const inter = Inter({ subsets: ['latin'] });
 function App({ Component, pageProps }: AppProps<{}>) {
   return (
     <div className={inter.className}>
-      <AuthProvider>
-        <Toaster />
-        <Component {...pageProps} />
-      </AuthProvider>
+      <Toaster />
+      <Component {...pageProps} />
     </div>
   );
 }
