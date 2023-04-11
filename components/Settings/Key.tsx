@@ -1,18 +1,22 @@
 import { IconCheck, IconKey, IconX } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
-import { SidebarButton } from '../Sidebar/SidebarButton';
+import { LogoutButton } from './LogoutButton'; // Adjust the import path if necessary
+import { useAuth } from '../Global/AuthContext';
 
 interface Props {
   apiKey: string;
   onApiKeyChange: (apiKey: string) => void;
+  onLogout: () => void; // Add this line
 }
 
-export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
+
+export const Key: FC<Props> = ({ apiKey, onApiKeyChange, onLogout }) => {
   const { t } = useTranslation('sidebar');
   const [isChanging, setIsChanging] = useState(false);
   const [newKey, setNewKey] = useState(apiKey);
   const inputRef = useRef<HTMLInputElement>(null);
+
 
   const handleEnterDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
@@ -21,11 +25,13 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
     }
   };
 
+  const { handleLogout } = useAuth();
+
   const handleUpdateKey = (newKey: string) => {
     onApiKeyChange(newKey.trim());
     setIsChanging(false);
   };
-  
+
   useEffect(() => {
     if (isChanging) {
       inputRef.current?.focus();
@@ -68,10 +74,10 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
       </div>
     </div>
   ) : (
-    <SidebarButton
-      text={t('OpenAI API Key')}
+    <LogoutButton
+      text={t('Log out')}
       icon={<IconKey size={18} />}
-      onClick={() => setIsChanging(true)}
+      onClick={handleLogout}
     />
   );
 };

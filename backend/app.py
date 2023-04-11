@@ -150,11 +150,22 @@ def upload_file():
 
 #     return jsonify({'lines': list_of_files})
 
+@app.route('/logout')
+def logout():
+    # Remove user data from the session
+    try: 
+        session.pop('user_id', None)
+        session.pop('username', None)
+        return jsonify('logged out'), 200
+    except: 
+        return jsonify('logged out'), 400
+
 
 @app.route('/qa', methods=['POST'])
 def answerQuestion():
     try:
-        question = request.form['searchTerm']
+        data = request.get_json()
+        question = data.get('content')
         result = ask_question(question, vectorstore, chat_history, chain)
 
         logger.info(

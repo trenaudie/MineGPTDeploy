@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useAuth } from '../Global/AuthContext';
+
 
 interface RegisterModalProps {
     onClose: () => void;
     show: boolean;
-    setAuthenticated: (Authenticated: boolean) => void;
 }
 
-const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, setAuthenticated }) => {
+const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -14,6 +15,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, setAuthent
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
+
+        const { authenticated, setAuthenticated } = useAuth();
 
         // Send the data to the backend
         try {
@@ -32,7 +35,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, setAuthent
 
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
-                setAuthenticated(true);
+                setAuthenticated(true)
                 onClose(); // Close the LoginModal
             } else if (data.status === 'failed registration') {
                 // Handle incorrect login
