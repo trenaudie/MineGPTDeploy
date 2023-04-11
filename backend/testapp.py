@@ -20,15 +20,18 @@ def testnot():
     checkrequest('GET', '/not', 404, None)
 
 
-def testupload():
-    url = "http://localhost:5006/upload"
+def testupload(session: requests.Session):
+    url = "http://localhost:5000/upload"
     with open('backend/testarticles/article15_2.txt', 'rb') as f:
-        file_data = {'document': f}
-        response = requests.post(url, files=file_data)
+        files = {
+            "document":  f,
+        }
+        data = {'id': 12345 }
+        response = session.post(url, data=data, files=files)
         assert response.status_code == 200
 
 
-def test_register(email: str, password: str):
+def register_for_tests(email: str, password: str):
     url = "http://localhost:5000/register"
     headers = {'Content-type': 'application/json'}
     data = {'email': email,
@@ -42,47 +45,73 @@ def test_register(email: str, password: str):
     print(f"Response: {response.text}")
 
 
-def test_login(email: str, password: str):
+def login_for_tests(email: str, password: str):
     url = "http://localhost:5000/login"
     headers = {'Content-type': 'application/json'}
     data = {'email': email,
             'password': password}
 
-    response = requests.post(url, headers=headers, data=json.dumps(data))
+    session = requests.Session()
+    response = session.post(url, headers=headers, data=json.dumps(data))
     print("-------------")
     print("Login test")
     print("-------------")
     print(f"Status Code: {response.status_code}")
     print(f"Response: {response.text}")
+    return session
+
+def logout_for_tests(session_id: str):
+    url = "http://localhost:5000/logout"
+    headers = {
+        'Content-type': 'application/json',
+    }
+
+    response = requests.post(url, headers=headers)
+    print("-------------")
+    print("Logout test")
+    print("-------------")
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
 
 
-def testquestion(question=None):
-    headers = {'Content-type': 'application/json'}
+
+
+def testquestion(session, question=None):
+
+    headers = {'Content-type': 'application/x-www-form-urlencoded'}
     if not question:
-        question = 'What is the capital of France?'
-    data = {'text': question}
+        question = 'Lisa Murkowsk is who?'
+    print('--------------')
+    print('Question test', question)
+    print('--------------')
+    data = {'question': question}
     url = 'http://localhost:5000/qa'
+    response = session.post(url, headers=headers, data=data)
 
-    print('--------------')
-    print('Question test')
-    print('--------------')
 
-    response = requests.post(url, headers=headers, data=json.dumps(data))
     if response.ok:
         response_data = json.loads(response.content)
-        processed_text = response_data['content']
-        sources = response_data['source']
+        processed_text:str = response_data['answer']
+        sources:list = response_data['sources']
         print(processed_text)
-        print(sources + '\n')
+        print('---------')
+        for source in sources:
+            print(source['filename'])
+            print(source['text'])
+            print('---------')
+
     else:
         print(f'Request failed with status code {response.status_code}')
 
 
-bad_email = 'guigui.jarry@gmail.com'
-good_email = 'guigui.jarry@etu.minesparis.psl.eu'
-good_password = 'guigui'
-bad_password = 'broken_bitch'
+
+
+
+bad_email,good_email,good_password,bad_password = 'guigui.jarry@gmail.com','guigui.jarry@etu.minesparis.psl.eu','guigui', 'broken_bitch'
 
 if __name__ == "__main__":
-
+    # register_for_tests(good_email,good_password)
+    logout_for_tests('10')
+    session = login_for_tests(good_email,good_password)
+    testquestion(session)
 

@@ -17,8 +17,10 @@ from flask_session import Session
 
 
 from utils.logger import logger
-from utils.ingest import save_file_to_Pinecone
+from utils.ingest import save_file_to_Pinecone, save_file_to_temp
+from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
+from utils.printUsers import printUsers
 from config import Config
 from utils.getchain import createchain
 
@@ -37,6 +39,9 @@ vectorstore = Pinecone.from_existing_index(index_name, embedding=OpenAIEmbedding
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SESSION_TYPE'] = 'filesystem'  # Use 'redis' or 'memcached' for production
+app.config['PERMANENT_SESSION_LIFETIME'] = 3600*3 #expired sessions are deleted after 3 hr
+
 db = SQLAlchemy(app)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_FILE_DIR'] = 'session_files'
@@ -44,25 +49,23 @@ Session(app)
 CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 
 
+
+
+class DocSource(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    filename = db.Column(db.String(100), nullable=False)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
+    docsources = db.relationship('DocSource', backref='user', lazy=True)
 
-
-prompt_template = """Use the context below to write a 100 word blog post about the topic below:
-    Context: {context}
-    Topic: {topic}
-    Blog post:"""
-
-PROMPT = PromptTemplate(
-    template=prompt_template, input_variables=["context", "topic"]
-)
 
 chat_history = []
-list_of_files = ['file1', 'file2', 'file3', 'file4']
 chain = createchain(vectorstore)
-
 
 @app.route('/')
 def index():
@@ -84,7 +87,7 @@ def register():
         except:
             return jsonify(status='you can only register once'), 400
     else:
-        return jsonify('failed registration'), 400
+        return jsonify('failed registration. You must have a @etu.minesparis.psl.eu address'), 400
 
 
 @app.route('/login', methods=['POST'])
@@ -93,48 +96,36 @@ def login():
     email = data.get('email')
     password = data.get('password')
     user = User.query.filter_by(email=email).first()
+    with redirect_stdout_to_logger(logger):
+        printUsers(User)
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
         return jsonify(status='authenticated'), 200
-
     return jsonify(status='incorrect authentification'), 400
 
 
-@app.route('/dashboard')
-def dashboard():
-    if 'user_id' in session:
-        return render_template('dashboard.html')
-    return redirect(url_for('login'))
 
-
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout():
     session.pop('user_id', None)
-    return redirect(url_for('login'))
+    session.clear()
+    return jsonify(status='logged out'), 200
 
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    print("received upload request")
     uploaded_file = request.files['document']
     file_id = request.form['id']
 
-    if 'username' not in session:
-        return 'User not logged in.', 403
+    if 'user_id' not in session:
+        return 'User not logged in.', 400
 
     if uploaded_file:
-        # Save the file temporarily
         filename = secure_filename(uploaded_file.filename)
-        list_of_files.append(filename)
-        # save the file to a database:
-        filepath = os.path.join('temp', filename)
-        uploaded_file.save(filepath)
-
-        # embed the vectors in a database eg Pinecone
-        save_file_to_Pinecone(vectorstore, filepath)
-        logger.info(
-            f"number of documents in db: {vectorstore._collection._client._count('langchain')}")
-        # Remove the temporary file
+        save_file_to_temp(uploaded_file)
+        filepath = os.path.join(Config.TEMP_FOLDER, filename)
+        print(f"uploading filename {filename}, filepath {filepath}")
+        save_file_to_Pinecone(filepath, vectorstore)
         os.remove(filepath)
         return 'File uploaded and saved to the database.', 200
     else:
@@ -150,9 +141,21 @@ def upload_file():
 
 @app.route('/qa', methods=['POST'])
 def answerQuestion():
+    """Question answering endpoint
+    Returns:
+    dict with keys "answer", "sources"
+    - answer: str
+    - sources: list of dicts
+        - filename: str
+        - text: str
+        - page: str (not yet implemented)
+        - etc.
+    """
     try:
-        question = request.form['searchTerm']
-        result = ask_question(question, vectorstore, chat_history, chain)
+        question = request.form['question']
+
+        with redirect_stdout_to_logger(logger):
+            result = ask_question(question, vectorstore, chain, chat_history)
 
         logger.info(
             f"(question, answer['answer']) = {question, result['answer']}")
@@ -173,4 +176,5 @@ def answerQuestion():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+
     app.run(debug=True, port=5000)

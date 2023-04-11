@@ -73,7 +73,7 @@ def save_file_to_Pinecone(filepath:str, vectorstore:Pinecone):
 
     #write from filepath, content to Pinecone
     chunksize = 512 #important parameter
-    source = {"page_content":content, "metadata":{source:filepath}}
+    source = {"page_content":content, "metadata":{'source':filepath}}
     source_chunks = []
     splitter = CharacterTextSplitter(separator=" ", chunk_size=chunksize, chunk_overlap=0)
     for chunk in (splitter.split_text(source.get("page_content"))):
