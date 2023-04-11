@@ -32,6 +32,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
             });
 
             const data = await response.json();
+            console.log(data);
 
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
