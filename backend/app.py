@@ -19,7 +19,7 @@ from flask_session import Session
 
 
 from utils.logger import logger
-from utils.ingest import save_file_to_Pinecone, save_file_to_temp
+from utils.ingest import save_file_to_Pinecone, save_file_to_temp, save_file_to_Pinecone_metadata
 from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
 from utils.printUsers import printUsers
@@ -38,16 +38,14 @@ index = pinecone.Index(index_name)
 vectorstore = Pinecone.from_existing_index(
     index_name, embedding=OpenAIEmbeddings())
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SESSION_TYPE'] = 'filesystem'  # Use 'redis' or 'memcached' for production
+app.config['SESSION_FILE_DIR'] = 'session_files'
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SECRET_KEY'] = 'guiguisecretkey'
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600*3 #expired sessions are deleted after 3 hr
 
 db = SQLAlchemy(app)
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_FILE_DIR'] = 'session_files'
 Session(app)
 CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 
@@ -59,7 +57,16 @@ class DocSource(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     filename = db.Column(db.String(100), nullable=False)
+    session_id = db.Column(db.String(100), nullable=False)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'description': self.description,
+            'filename': self.filename,
+            'session_id': self.session_id
+        }
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -98,6 +105,7 @@ def login():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
+    
     user = User.query.filter_by(email=email).first()
     with redirect_stdout_to_logger(logger):
         printUsers(User)
@@ -119,27 +127,31 @@ def logout():
 def upload_file():
     uploaded_file = request.files['document']
     file_id = request.form['id']
-
+    session_id = request.form.get('session_id', None)
+    logger.info(f"uploading file {uploaded_file.filename} with id {file_id} for user {session.get('user_id', None)} with sid {session_id} ")
     if 'user_id' not in session:
         return 'User not logged in.', 400
 
     if uploaded_file:
+        #add file to Pinecone
         filename = secure_filename(uploaded_file.filename)
         save_file_to_temp(uploaded_file)
         filepath = os.path.join(Config.TEMP_FOLDER, filename)
         print(f"uploading filename {filename}, filepath {filepath}")
-        save_file_to_Pinecone(filepath, vectorstore)
+        save_file_to_Pinecone_metadata(filepath,file_id, session_id, vectorstore) #must have a unique file_id, even if the file is the same per user
         os.remove(filepath)
+
+        #add file to docsource database
+        user_id = session.get('user_id', None)
+        description = 'File uploaded by user' #might need to change
+        docsource = DocSource(user_id=user_id, description=description, filename=filename,session_id=session_id)
+        db.session.add(docsource)
+        db.session.commit()
+
         return 'File uploaded and saved to the database.', 200
     else:
         return 'No file was uploaded.', 400
 
-
-# @app.route('/update_file_list')
-# def update_file_list():
-#     list_of_files = read_file_list()
-
-#     return jsonify({'lines': list_of_files})
 
 
 @app.route('/qa', methods=['POST'])
@@ -159,13 +171,6 @@ def answerQuestion():
 
         with redirect_stdout_to_logger(logger):
             result = ask_question(question, vectorstore, chain, chat_history)
-
-        logger.info(
-            f"(question, answer['answer']) = {question, result['answer']}")
-        logger.info('sources')
-        for source in result['sources']:
-            logger.info(source['filename'])
-            logger.info(source['text'])
 
         # Combine the `processed_text` and `page_content` JSON objects into a single dictionary
         return jsonify(result)

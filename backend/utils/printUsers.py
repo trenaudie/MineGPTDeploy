@@ -9,7 +9,6 @@ def printUsers(User:DefaultMeta):
             'id': user.id,
             'email': user.email,
             'password': user.password,
-            'docsources': [docsource.to_dict() for docsource in user.docsources]
         }
         user_list.append(user_data)
     print(user_list)

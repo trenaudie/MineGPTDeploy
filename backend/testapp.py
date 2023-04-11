@@ -21,12 +21,14 @@ def testnot():
 
 
 def testupload(session: requests.Session):
+
     url = "http://localhost:5000/upload"
     with open('backend/testarticles/article15_2.txt', 'rb') as f:
         files = {
             "document":  f,
         }
-        data = {'id': 12345 }
+        data = {'id': 12345, 'session_id': session.cookies.get('session', None) }
+        print('inside testupload, session id: ', session.cookies.get('session', None))
         response = session.post(url, data=data, files=files)
         assert response.status_code == 200
 
@@ -60,7 +62,7 @@ def login_for_tests(email: str, password: str):
     print(f"Response: {response.text}")
     return session
 
-def logout_for_tests(session_id: str):
+def logout_for_tests():
     url = "http://localhost:5000/logout"
     headers = {
         'Content-type': 'application/json',
@@ -111,7 +113,13 @@ bad_email,good_email,good_password,bad_password = 'guigui.jarry@gmail.com','guig
 
 if __name__ == "__main__":
     # register_for_tests(good_email,good_password)
-    logout_for_tests('10')
+    logout_for_tests()
     session = login_for_tests(good_email,good_password)
-    testquestion(session)
+
+    sid = session.cookies.get('session')
+    print("sid", sid, id(sid))
+    testupload(session=session)
+
+
+    # testquestion(session)
 

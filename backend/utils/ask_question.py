@@ -24,7 +24,6 @@ def ask_question(question: str, vectorstore: Pinecone, chain: ConversationalRetr
     :return: A dictionary containing the answer and the source documents.
     """
 
-    print(type(chain))
     result = chain({"question": question, "chat_history": chat_history})
     chat_history.append({"question": question, "answer": result["answer"]})
     answer = result['answer']
