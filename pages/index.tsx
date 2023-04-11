@@ -845,11 +845,11 @@ const Home: React.FC<HomeProps> = ({
     }
   }, [selectedConversation]);
 
-  useEffect(() => {
-    if (apiKey) {
-      fetchModels(apiKey);
-    }
-  }, [apiKey]);
+  // useEffect(() => {
+  //   if (apiKey) {
+  //     fetchModels(apiKey);
+  //   }
+  // }, [apiKey]);
 
   // ON LOAD --------------------------------------------
 
@@ -860,14 +860,14 @@ const Home: React.FC<HomeProps> = ({
     }
 
     const apiKey = localStorage.getItem('apiKey');
-    if (serverSideApiKeyIsSet) {
-      fetchModels('');
-      setApiKey('');
-      localStorage.removeItem('apiKey');
-    } else if (apiKey) {
-      setApiKey(apiKey);
-      fetchModels(apiKey);
-    }
+    // if (serverSideApiKeyIsSet) {
+    //   fetchModels('');
+    //   setApiKey('');
+    //   localStorage.removeItem('apiKey');
+    // } else if (apiKey) {
+    //   setApiKey(apiKey);
+    //   fetchModels(apiKey);
+    // }
 
     const pluginKeys = localStorage.getItem('pluginKeys');
     if (serverSidePluginKeysSet) {
