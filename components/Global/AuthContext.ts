@@ -14,7 +14,7 @@ const initialState: AuthState = {
 
 export const AuthContext = createContext<AuthState>(initialState);
 
-
+console.log('');
 
 
 // export const useAuthContext = () => {
