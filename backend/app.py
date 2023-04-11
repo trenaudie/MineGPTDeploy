@@ -24,7 +24,7 @@ from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
 from utils.printUsers import printUsers
 from config import Config
-from utils.getchain import createchain
+from utils.getchain import createchain_with_filter
 
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
@@ -76,7 +76,7 @@ class User(db.Model):
 
 
 chat_history = []
-chain = createchain(vectorstore)
+chain = createchain_with_filter(vectorstore)
 
 
 @app.route('/')
@@ -139,7 +139,6 @@ def upload_file():
         filename = secure_filename(uploaded_file.filename)
         save_file_to_temp(uploaded_file)
         filepath = os.path.join(Config.TEMP_FOLDER, filename)
-        print(f"uploading filename {filename}, filepath {filepath}")
         # must have a unique file_id, even if the file is the same per user
         save_file_to_Pinecone_metadata(
             filepath, file_id, session_id, vectorstore)
@@ -172,9 +171,12 @@ def answerQuestion():
     """
     try:
         question = request.form['question']
-
+        session_id = request.form.get('session_id', None)
+        logger.info(
+            f"question: {question} for user {session.get('user_id', None)} with sid {session_id} ")
         with redirect_stdout_to_logger(logger):
-            result = ask_question(question, vectorstore, chain, chat_history)
+            result = ask_question(question, vectorstore,
+                                  chain, chat_history, session_id)
 
         # Combine the `processed_text` and `page_content` JSON objects into a single dictionary
         return jsonify(result)
