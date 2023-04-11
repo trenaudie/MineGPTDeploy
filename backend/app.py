@@ -1,4 +1,6 @@
-import os, json, traceback
+import os
+import json
+import traceback
 
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
@@ -28,12 +30,13 @@ os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
 
 pinecone.init(
-    api_key=os.environ.get('PINECONE_API_KEY'),  
+    api_key=os.environ.get('PINECONE_API_KEY'),
     environment="us-east4-gcp",
 )
 index_name = 'extractive-qa2'
 index = pinecone.Index(index_name)
-vectorstore = Pinecone.from_existing_index(index_name, embedding=OpenAIEmbeddings())
+vectorstore = Pinecone.from_existing_index(
+    index_name, embedding=OpenAIEmbeddings())
 
 
 app = Flask(__name__)
