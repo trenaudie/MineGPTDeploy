@@ -39,4 +39,6 @@ next-env.d.ts
 .idea
 
 
-/backend/config.pybackend/config.py
+backend/config.py
+backend/session_files
+frontend/session_files
