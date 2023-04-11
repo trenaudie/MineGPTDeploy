@@ -12,6 +12,7 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
     // ... rest of the LoginModal component code ...
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const { authenticated, handleLogout, handleLogin } = useContext(AuthContext);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -19,7 +20,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
 
-        const { authenticated, handleLogout, handleLogin } = useContext(AuthContext);
 
         // Send the data to the backend
         try {
