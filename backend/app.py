@@ -24,7 +24,7 @@ from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
 from utils.printUsers import printUsers
 from config import Config
-from utils.getchain import createchain
+from utils.getchain import createchain_with_filter
 
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
@@ -40,18 +40,10 @@ vectorstore = Pinecone.from_existing_index(
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-<<<<<<< HEAD
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600*3 #expired sessions are deleted after 3 hr
-=======
-app.config['SECRET_KEY'] = 'your_secret_key'
-# Use 'redis' or 'memcached' for production
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
-    3  # expired sessions are deleted after 3 hr
->>>>>>> refs/remotes/origin/main
 
 db = SQLAlchemy(app)
 Session(app)
@@ -65,7 +57,6 @@ class DocSource(db.Model):
     filename = db.Column(db.String(100), nullable=False)
     session_id = db.Column(db.String(100), nullable=False)
 
-<<<<<<< HEAD
     def to_dict(self):
         return {
             'id': self.id,
@@ -74,9 +65,8 @@ class DocSource(db.Model):
             'filename': self.filename,
             'session_id': self.session_id
         }
-=======
-
->>>>>>> refs/remotes/origin/main
+    
+    
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -85,7 +75,7 @@ class User(db.Model):
 
 
 chat_history = []
-chain = createchain(vectorstore)
+chain = createchain_with_filter(vectorstore)
 
 
 @app.route('/')
@@ -147,7 +137,6 @@ def upload_file():
         filename = secure_filename(uploaded_file.filename)
         save_file_to_temp(uploaded_file)
         filepath = os.path.join(Config.TEMP_FOLDER, filename)
-        print(f"uploading filename {filename}, filepath {filepath}")
         save_file_to_Pinecone_metadata(filepath,file_id, session_id, vectorstore) #must have a unique file_id, even if the file is the same per user
         os.remove(filepath)
 
@@ -178,9 +167,10 @@ def answerQuestion():
     """
     try:
         question = request.form['question']
-
+        session_id = request.form.get('session_id', None)
+        logger.info(f"question: {question} for user {session.get('user_id', None)} with sid {session_id} ")
         with redirect_stdout_to_logger(logger):
-            result = ask_question(question, vectorstore, chain, chat_history)
+            result = ask_question(question, vectorstore, chain, chat_history, session_id)
 
         # Combine the `processed_text` and `page_content` JSON objects into a single dictionary
         return jsonify(result)
@@ -191,8 +181,12 @@ def answerQuestion():
         return jsonify({'error': str(e)}), 500
 
 
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+    
 
+    
     app.run(debug=True, port=5000)

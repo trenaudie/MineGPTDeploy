@@ -482,3 +482,142 @@ drwxr-xr-x  12 tanguyrenaudie  staff     384 Apr 11 11:18 utils
  'namespaces': {'': {'vector_count': 176},
                 '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
  'total_vector_count': 187}
+2023-04-11 15:32:39,704 - INFO - added to vectorstore 11 chunks from ./temp/sample.txt
+2023-04-11 15:32:39,796 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 176},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 187}
+2023-04-11 15:33:14,222 - INFO - added to vectorstore 11 chunks from ./temp/sample.txt
+2023-04-11 15:33:14,523 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 187},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 198}
+2023-04-11 15:39:11,929 - INFO - added to vectorstore 11 chunks from ./temp/sample.txt
+2023-04-11 15:39:12,235 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 187},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 198}
+2023-04-11 16:38:56,092 - INFO - added to vectorstore 11 chunks from ./temp/sample.txt
+2023-04-11 16:38:56,183 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 187},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 198}
+2023-04-11 16:41:16,418 - INFO - added to vectorstore 11 chunks from ./temp/sample.txt
+2023-04-11 16:41:16,509 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 11},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 22}
+2023-04-11 17:08:40,877 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 17:08:40,886 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid ad6f38cc-8d58-4116-a0f2-c9ede4fbb043 
+2023-04-11 17:09:01,425 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 17:09:01,434 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid 4546f976-ca96-4536-8b8d-d7b36813dcf7 
+2023-04-11 17:09:05,090 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 17:09:05,179 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 22},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 33}
+2023-04-11 17:10:28,623 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 17:10:28,629 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid d73a3750-ced8-4867-86c1-e3170fa89dcd 
+2023-04-11 17:10:33,371 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 17:10:33,462 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 22},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 33}
+2023-04-11 17:10:33,483 - INFO - question: Lisa Murkowsk is who? for user 1 with sid d73a3750-ced8-4867-86c1-e3170fa89dcd 
+2023-04-11 17:10:33,484 - INFO - calling conversational retrieval chain
+2023-04-11 17:10:33,484 - INFO - question
+2023-04-11 17:10:33,484 - INFO - Lisa Murkowsk is who?
+2023-04-11 17:10:33,484 - INFO - chat_history_str
+2023-04-11 17:10:33,484 - INFO - []
+2023-04-11 17:10:33,484 - INFO - new_question
+2023-04-11 17:10:33,484 - INFO - Lisa Murkowsk is who?
+2023-04-11 17:10:33,786 - INFO - docs
+2023-04-11 17:10:33,786 - INFO - [Document(page_content='Lisa Murkowski and Dan Sullivan, both Republicans, issued statements calling on the\nBiden administration to approve the project without additional restrictions beyond those outlined in\nalternative selected by the Bureau of Land Management.\n“Thousands of good union jobs, and immense benefits that will be felt across Alaska and the nation, will\nhang in the balance until a positive final decision has been issued,” Ms. Murkowski said.\nThe option is the smallest footprint possible for the Willow project with a', metadata={'file_id': '12345', 'sid': 'd73a3750-ced8-4867-86c1-e3170fa89dcd', 'source': 'temp/article15_2.txt'}), Document(page_content='said the alternative\nselected by the Bureau of Land Management provided “a viable path forward” for the Willow project.\n“We believe Willow will benefit local communities and enhance American energy security while\nproducing oil in an environmentally and socially responsible manner,” Erec S. Isaacson, president of\nConocoPhillips Alaska, said in a statement. He said the project had undergone five years of regulatory\nreview and called on the administration to approve the plan “without delay.”\nAlaska’s senators,', metadata={'file_id': '12345', 'sid': 'd73a3750-ced8-4867-86c1-e3170fa89dcd', 'source': 'temp/article15_2.txt'}), Document(page_content='proceed.', metadata={'file_id': '12345', 'sid': 'd73a3750-ced8-4867-86c1-e3170fa89dcd', 'source': 'temp/article15_2.txt'}), Document(page_content='dire threat to the climate.\nThe Bureau of Land Management issued an environmental analysis that says the government prefers a\nscaled-back version of the project, which is known as Willow. The assessment calls for curtailing the\nproject to three drill sites from five, as well as reducing the proposed length of both gravel and ice roads,\npipelines and the length of airstrips to support the drilling.\nThe analysis is the last regulatory hurdle before the federal government makes a final ruling on whether', metadata={'file_id': '12345', 'sid': 'd73a3750-ced8-4867-86c1-e3170fa89dcd', 'source': 'temp/article15_2.txt'})]
+2023-04-11 17:10:39,330 - INFO - answer
+2023-04-11 17:10:39,331 - INFO - Lisa Murkowski is a Republican who issued a statement calling on the Biden administration to approve a project without additional restrictions.
+SOURCES: temp/article15_2.txt
+2023-04-11 17:15:33,033 - INFO - <pinecone.index.Index object at 0x103526f50>
+2023-04-11 17:15:35,514 - INFO - <pinecone.index.Index object at 0x10522efb0>
+2023-04-11 17:18:15,233 - INFO - IndexDescription(name='extractive-qa2', metric='cosine', replicas=1, dimension=1536.0, shards=1, pods=1, pod_type='p1.x1', status={'ready': True, 'state': 'Ready'}, metadata_config=None, source_collection='')
+2023-04-11 17:18:18,145 - INFO - IndexDescription(name='extractive-qa2', metric='cosine', replicas=1, dimension=1536.0, shards=1, pods=1, pod_type='p1.x1', status={'ready': True, 'state': 'Ready'}, metadata_config=None, source_collection='')
+2023-04-11 17:22:16,981 - INFO - added to vectorstore 12 chunks from ./temp/sample2.txt
+2023-04-11 17:22:17,070 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 23},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 34}
+2023-04-11 17:23:27,809 - INFO - added to vectorstore 22 chunks from ./temp/sample3.txt
+2023-04-11 17:23:28,115 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 33},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 44}
+2023-04-11 17:25:49,711 - INFO - added to vectorstore 22 chunks from ./temp/sample3.txt
+2023-04-11 17:25:49,804 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 55},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 66}
+2023-04-11 17:31:13,280 - INFO - added to vectorstore 22 chunks from ./temp/sample3.txt
+2023-04-11 17:31:13,580 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 55},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 66}
+2023-04-11 17:31:37,416 - INFO - added to vectorstore 26 chunks from ./temp/sample4.txt
+2023-04-11 17:31:37,506 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 81},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 92}
+2023-04-11 17:33:29,566 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 17:33:29,574 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid 91a474fc-3a85-4e95-822c-499bd26463f7 
+2023-04-11 17:33:33,089 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 17:33:33,182 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 81},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 92}
+2023-04-11 17:33:33,201 - INFO - question: Lisa Murkowsk is who? for user 1 with sid 91a474fc-3a85-4e95-822c-499bd26463f7 
+2023-04-11 17:33:33,201 - INFO - calling conversational retrieval chain
+2023-04-11 17:33:33,201 - INFO - question
+2023-04-11 17:33:33,201 - INFO - Lisa Murkowsk is who?
+2023-04-11 17:33:33,201 - INFO - chat_history_str
+2023-04-11 17:33:33,202 - INFO - []
+2023-04-11 17:33:33,202 - INFO - new_question
+2023-04-11 17:33:33,202 - INFO - Lisa Murkowsk is who?
+2023-04-11 17:33:33,503 - INFO - docs
+2023-04-11 17:33:33,503 - INFO - [Document(page_content='Lisa Murkowski and Dan Sullivan, both Republicans, issued statements calling on the\nBiden administration to approve the project without additional restrictions beyond those outlined in\nalternative selected by the Bureau of Land Management.\n“Thousands of good union jobs, and immense benefits that will be felt across Alaska and the nation, will\nhang in the balance until a positive final decision has been issued,” Ms. Murkowski said.\nThe option is the smallest footprint possible for the Willow project with a', metadata={'file_id': '12345', 'sid': '91a474fc-3a85-4e95-822c-499bd26463f7', 'source': 'temp/article15_2.txt'}), Document(page_content='said the alternative\nselected by the Bureau of Land Management provided “a viable path forward” for the Willow project.\n“We believe Willow will benefit local communities and enhance American energy security while\nproducing oil in an environmentally and socially responsible manner,” Erec S. Isaacson, president of\nConocoPhillips Alaska, said in a statement. He said the project had undergone five years of regulatory\nreview and called on the administration to approve the plan “without delay.”\nAlaska’s senators,', metadata={'file_id': '12345', 'sid': '91a474fc-3a85-4e95-822c-499bd26463f7', 'source': 'temp/article15_2.txt'}), Document(page_content='proceed.', metadata={'file_id': '12345', 'sid': '91a474fc-3a85-4e95-822c-499bd26463f7', 'source': 'temp/article15_2.txt'}), Document(page_content='dire threat to the climate.\nThe Bureau of Land Management issued an environmental analysis that says the government prefers a\nscaled-back version of the project, which is known as Willow. The assessment calls for curtailing the\nproject to three drill sites from five, as well as reducing the proposed length of both gravel and ice roads,\npipelines and the length of airstrips to support the drilling.\nThe analysis is the last regulatory hurdle before the federal government makes a final ruling on whether', metadata={'file_id': '12345', 'sid': '91a474fc-3a85-4e95-822c-499bd26463f7', 'source': 'temp/article15_2.txt'})]
+2023-04-11 17:33:38,207 - INFO - answer
+2023-04-11 17:33:38,208 - INFO - Lisa Murkowski is a Republican who issued a statement calling on the Biden administration to approve a project without additional restrictions. 
+SOURCES: temp/article15_2.txt
+2023-04-11 17:40:01,029 - INFO - IndexDescription(name='extractive-qa2', metric='cosine', replicas=1, dimension=1536.0, shards=1, pods=1, pod_type='p1.x1', status={'ready': True, 'state': 'Ready'}, metadata_config=None, source_collection='')
+2023-04-11 17:41:13,896 - INFO - added to vectorstore 12 chunks from ./temp/sample5.txt
+2023-04-11 17:41:13,989 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 12},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 23}
+2023-04-11 17:56:37,336 - INFO - added to vectorstore 12 chunks from ./temp/sample5.txt
+2023-04-11 17:56:37,428 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 12},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 23}
+2023-04-11 18:02:22,624 - INFO - IndexDescription(name='extractive-qa2', metric='cosine', replicas=1, dimension=1536.0, shards=1, pods=1, pod_type='p1.x1', status={'ready': True, 'state': 'Ready'}, metadata_config=None, source_collection='')
+2023-04-11 18:02:45,266 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}]
+2023-04-11 18:02:45,273 - INFO - uploading file article15_2.txt with id 12345 for user 1 with sid a3942ca8-5dc2-4f09-ba79-b2f0af86cc37 
+2023-04-11 18:02:48,961 - INFO - added to vectorstore 11 chunks from temp/article15_2.txt
+2023-04-11 18:02:49,051 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 23},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 34}
+2023-04-11 18:02:49,068 - INFO - question: Lisa Murkowsk is who? for user 1 with sid a3942ca8-5dc2-4f09-ba79-b2f0af86cc37 

@@ -86,7 +86,7 @@ def testquestion(session, question=None):
     print('--------------')
     print('Question test', question)
     print('--------------')
-    data = {'question': question}
+    data = {'question': question, 'session_id': session.cookies.get('session', None)}
     url = 'http://localhost:5000/qa'
     response = session.post(url, headers=headers, data=data)
 
@@ -109,6 +109,8 @@ def testquestion(session, question=None):
 
 
 
+
+
 bad_email,good_email,good_password,bad_password = 'guigui.jarry@gmail.com','guigui.jarry@etu.minesparis.psl.eu','guigui', 'broken_bitch'
 
 if __name__ == "__main__":
@@ -119,7 +121,5 @@ if __name__ == "__main__":
     sid = session.cookies.get('session')
     print("sid", sid, id(sid))
     testupload(session=session)
-
-
-    # testquestion(session)
+    testquestion(session)
 
