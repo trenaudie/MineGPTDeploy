@@ -180,7 +180,7 @@ def answerQuestion():
         data = request.get_json()
         question = data.get('prompt')
 
-        session_id = request.form.get('session_id', None)
+        session_id = request.headers.get('Authorization')
         logger.info(
             f"question: {question} for user {session.get('user_id', None)} with sid {session_id} ")
         with redirect_stdout_to_logger(logger):

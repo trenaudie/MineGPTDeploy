@@ -93,3 +93,9 @@ utils
 2023-04-12 08:35:59,817 - INFO - hello
 2023-04-12 08:35:59,817 - INFO - chat_history_str
 2023-04-12 08:35:59,817 - INFO - []
+2023-04-12 08:40:41,911 - INFO - question: hello, who's joe rogan  for user None with sid Bearer ${sessionId} 
+2023-04-12 08:40:41,911 - INFO - calling conversational retrieval chain
+2023-04-12 08:40:41,917 - INFO - question
+2023-04-12 08:40:41,917 - INFO - hello, who's joe rogan
+2023-04-12 08:40:41,917 - INFO - chat_history_str
+2023-04-12 08:40:41,917 - INFO - []
