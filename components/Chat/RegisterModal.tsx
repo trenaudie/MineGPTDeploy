@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Global/AuthContext';
-
+import { setSecureCookie } from '../../utils/app/cookieTool'
 
 interface RegisterModalProps {
     onClose: () => void;
@@ -10,6 +10,7 @@ interface RegisterModalProps {
 const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const { authenticated, handleLogout, handleLogin } = useContext(AuthContext);
+
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -36,6 +37,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
 
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
+                setSecureCookie("sessionId", data.get("sessionId"))
                 handleLogin()
                 onClose(); // Close the LoginModal
             } else if (data.status === 'failed registration') {
@@ -88,7 +90,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
                             required
                         />
                         <button
-                            className="w-full py-2 px-3 rounded bg-black text-white font-bold"
+                            className="flex items-center justify-center w-full h-10 px-4 py-2 text-white bg-#17181B border-2 border-white hover:bg-#0f1012 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded transition duration-150 ease-in-out"
+                            style={{ backgroundColor: '#17181B' }}
                             type="submit"
                         >
                             Register

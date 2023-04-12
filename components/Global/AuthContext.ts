@@ -8,8 +8,8 @@ interface AuthState {
 
 const initialState: AuthState = {
   authenticated: false,
-  handleLogout: () => {},
-  handleLogin: () => {}
+  handleLogout: () => { },
+  handleLogin: () => { }
 };
 
 export const AuthContext = createContext<AuthState>(initialState);

@@ -113,7 +113,8 @@ def login():
         printUsers(User)
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
-        return jsonify(status='authenticated'), 200
+        # Session handling here
+        return jsonify(status='authenticated', sessionId=session['user_id']), 200
     return jsonify(status='incorrect authentification'), 400
 
 
@@ -128,7 +129,13 @@ def logout():
 def upload_file():
     uploaded_file = request.files['document']
     file_id = request.form['id']
-    session_id = request.form.get('session_id', None)
+    auth_header = request.headers.get('Authorization')
+    if auth_header and auth_header.startswith('Bearer '):
+        session_id = auth_header[7:]
+    else:
+        # Handle the case when the session ID is missing or incorrect
+        return 'Session ID is missing or incorrect.', 400
+
     logger.info(
         f"uploading file {uploaded_file.filename} with id {file_id} for user {session.get('user_id', None)} with sid {session_id} ")
     if 'user_id' not in session:
@@ -170,7 +177,9 @@ def answerQuestion():
         - etc.
     """
     try:
-        question = request.form['question']
+        data = request.get_json()
+        question = data.get('prompt')
+
         session_id = request.form.get('session_id', None)
         logger.info(
             f"question: {question} for user {session.get('user_id', None)} with sid {session_id} ")

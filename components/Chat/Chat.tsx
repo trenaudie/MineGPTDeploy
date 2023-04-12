@@ -82,6 +82,7 @@ export const Chat: FC<Props> = memo(
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const { authenticated } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     const scrollToBottom = useCallback(() => {
@@ -101,6 +102,10 @@ export const Chat: FC<Props> = memo(
 
     const closeLoginModal = () => {
       setShowLoginModal(false);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000); // Display the spinner for 1 second (1000 ms)
     };
 
     const handleRegisterClick = () => {
@@ -109,6 +114,10 @@ export const Chat: FC<Props> = memo(
 
     const closeRegisterModal = () => {
       setShowRegisterModal(false);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000); // Display the spinner for 1 second (1000 ms)
     };
 
 
@@ -153,6 +162,16 @@ export const Chat: FC<Props> = memo(
     const throttledScrollDown = throttle(scrollDown, 250);
 
     useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000); // Display the spinner for 1 second (1000 ms)
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }, []);
+
+    useEffect(() => {
       throttledScrollDown();
       setCurrentMessage(
         conversation.messages[conversation.messages.length - 2],
@@ -188,40 +207,31 @@ export const Chat: FC<Props> = memo(
         {!authenticated ? (
           <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
             <div className="text-center text-4xl font-bold text-black dark:text-white">
-              Welcome to Chatbot UI
+              Bienvenue sur MineGPT
             </div>
             <div className="text-center text-lg text-black dark:text-white">
               <div className="mb-8">{`Chatbot UI is an open source clone of OpenAI's ChatGPT UI.`}</div>
               <div className="mb-2 font-bold">
-                Important: Chatbot UI is 100% unaffiliated with OpenAI.
+                Posez vos questions par rapport aux cours des Mines et recevez une réponse sourcée !
               </div>
             </div>
             <div className="text-center text-gray-500 dark:text-gray-400">
               <div className="mb-2">
-                Chatbot UI allows you to plug in your API key to use this UI
-                with their API.
+                Vous pouvez même uploader vos propres documents et leur poser des questions !
               </div>
               <div className="mb-2">
-                It is <span className="italic">only</span> used to communicate
-                with their API.
+                Veillez à n'uploader que des fichiers opensource pour des questions de confdentialité.
               </div>
               <div className="mb-2">
                 {t(
-                  'Please set your OpenAI API key in the bottom left of the sidebar.',
+                  'Idéal pour trouver les informations dont on a besoin',
                 )}
               </div>
               <div>
                 {t(
-                  "If you don't have an OpenAI API key, you can get one here: ",
+                  "sans passer des heures à les chercher dans ses cours ",
                 )}
-                <a
-                  href="https://platform.openai.com/account/api-keys"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  openai.com
-                </a>
+
               </div>
               <AuthButtons
                 onLoginClick={handleLoginClick}
@@ -244,41 +254,14 @@ export const Chat: FC<Props> = memo(
                 <>
                   <div className="mx-auto flex w-[350px] flex-col space-y-10 pt-12 sm:w-[600px]">
                     <div className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
-                      {models.length === 0 ? (
+                      {isLoading ? (
                         <div>
                           <Spinner size="16px" className="mx-auto" />
                         </div>
                       ) : (
-                        'Chatbot UI'
+                        'MineGPT'
                       )}
                     </div>
-
-                    {models.length > 0 && (
-                      <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600">
-                        <ModelSelect
-                          model={conversation.model}
-                          models={models}
-                          defaultModelId={defaultModelId}
-                          onModelChange={(model) =>
-                            onUpdateConversation(conversation, {
-                              key: 'model',
-                              value: model,
-                            })
-                          }
-                        />
-
-                        <SystemPrompt
-                          conversation={conversation}
-                          prompts={prompts}
-                          onChangePrompt={(prompt) =>
-                            onUpdateConversation(conversation, {
-                              key: 'prompt',
-                              value: prompt,
-                            })
-                          }
-                        />
-                      </div>
-                    )}
                   </div>
                 </>
               ) : (

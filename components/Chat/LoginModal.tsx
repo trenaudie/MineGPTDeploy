@@ -1,7 +1,9 @@
 import React from 'react';
 import { AuthContext } from '../Global/AuthContext';
+import { setSecureCookie } from '../../utils/app/cookieTool'
+
 import { useContext } from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 
 interface LoginModalProps {
     onClose: () => void;
@@ -39,6 +41,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
             if (response.ok && data.status === 'authenticated') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
                 handleLogin()
+                setSecureCookie("sessionId", data.get("sessionId"))
                 onClose(); // Close the LoginModal
             } else if (data.status === 'incorrect authentification') {
                 // Handle incorrect login
@@ -83,7 +86,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                             required
                         />
                         <button
-                            className="w-full py-2 px-3 rounded bg-black text-white font-bold"
+                            className="flex items-center justify-center w-full h-10 px-4 py-2 text-white bg-#17181B border-2 border-white hover:bg-#0f1012 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded transition duration-150 ease-in-out"
+                            style={{ backgroundColor: '#17181B' }}
                             type="submit"
                         >
                             Login

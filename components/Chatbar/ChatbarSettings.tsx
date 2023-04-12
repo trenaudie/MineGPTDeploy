@@ -8,6 +8,8 @@ import { Key } from '../Settings/Key';
 import { SidebarButton } from '../Sidebar/SidebarButton';
 import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
+import { AuthContext } from '../Global/AuthContext';
+import { useContext } from 'react';
 
 interface Props {
   lightMode: 'light' | 'dark';
@@ -41,6 +43,8 @@ export const ChatbarSettings: FC<Props> = ({
   onClearPluginKey,
 }) => {
   const { t } = useTranslation('sidebar');
+  const { authenticated } = useContext(AuthContext)
+
 
   return (
     <div className="flex flex-col items-center space-y-1 border-t border-white/20 pt-1 text-sm">
@@ -66,17 +70,17 @@ export const ChatbarSettings: FC<Props> = ({
         }
       />
 
-      {!(serverSideApiKeyIsSet) ? (
+      {authenticated ? (
         <Key apiKey={apiKey} onApiKeyChange={onApiKeyChange} />
       ) : null}
 
-      {!(serverSidePluginKeysSet) ? (
+      {/* {!(serverSidePluginKeysSet) ? (
         <PluginKeys
           pluginKeys={pluginKeys}
           onPluginKeyChange={onPluginKeyChange}
           onClearPluginKey={onClearPluginKey}
         />
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
