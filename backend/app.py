@@ -195,6 +195,7 @@ def answerQuestion():
         with redirect_stdout_to_logger(logger):
             result = ask_question(question, vectorstore,
                                   chain, chat_history, session_id)
+            print("qa result is", result)
 
         # Combine the `processed_text` and `page_content` JSON objects into a single dictionary
         return jsonify(result)
@@ -203,6 +204,13 @@ def answerQuestion():
         # Log the full traceback of the exception
         print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
+
+@app.route('/delete_vector', methods=['POST'])
+def delete_vector():
+    print(f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
+    
+    # delete vector from Pinecone database 
+    # vectorstore._index.delete(filter = {'sid': request.headers.get('Authorization')})
 
 
 if __name__ == '__main__':
