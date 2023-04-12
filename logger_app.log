@@ -22,3 +22,80 @@ testingPinecone.ipynb
 testingTanguy.ipynb
 utils
 2023-04-11 15:41:27,672 - INFO - uploading file logistique-urbaine-modelisation-et-simulation-du-fret-urbain.pdf with id b6e49dcf-d881-46ec-8591-b1ee9e32e4c9 for user None with sid None 
+2023-04-11 21:55:18,108 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 21:57:14,075 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 22:03:03,770 - INFO - question: None for user None with sid None 
+2023-04-11 22:03:03,777 - INFO - calling conversational retrieval chain
+2023-04-11 22:03:03,777 - INFO - question
+2023-04-11 22:03:03,777 - INFO - None
+2023-04-11 22:03:03,777 - INFO - chat_history_str
+2023-04-11 22:03:03,777 - INFO - []
+2023-04-11 22:06:16,961 - INFO - question: None for user None with sid None 
+2023-04-11 22:06:16,961 - INFO - calling conversational retrieval chain
+2023-04-11 22:06:16,962 - INFO - question
+2023-04-11 22:06:16,962 - INFO - None
+2023-04-11 22:06:16,962 - INFO - chat_history_str
+2023-04-11 22:06:16,962 - INFO - []
+2023-04-11 22:06:53,549 - INFO - question: bloop for user None with sid None 
+2023-04-11 22:06:53,549 - INFO - calling conversational retrieval chain
+2023-04-11 22:06:53,549 - INFO - question
+2023-04-11 22:06:53,549 - INFO - bloop
+2023-04-11 22:06:53,549 - INFO - chat_history_str
+2023-04-11 22:06:53,549 - INFO - []
+2023-04-11 22:07:29,208 - INFO - question: bloop for user None with sid None 
+2023-04-11 22:07:29,208 - INFO - calling conversational retrieval chain
+2023-04-11 22:07:29,208 - INFO - question
+2023-04-11 22:07:29,209 - INFO - bloop
+2023-04-11 22:07:29,209 - INFO - chat_history_str
+2023-04-11 22:07:29,209 - INFO - []
+2023-04-11 22:08:38,814 - INFO - question: blooop for user None with sid None 
+2023-04-11 22:08:38,815 - INFO - calling conversational retrieval chain
+2023-04-11 22:08:38,816 - INFO - question
+2023-04-11 22:08:38,816 - INFO - blooop
+2023-04-11 22:08:38,817 - INFO - chat_history_str
+2023-04-11 22:08:38,817 - INFO - []
+2023-04-11 22:10:08,345 - INFO - question: Who is Joe Rogan for user None with sid None 
+2023-04-11 22:10:08,345 - INFO - calling conversational retrieval chain
+2023-04-11 22:10:08,345 - INFO - question
+2023-04-11 22:10:08,345 - INFO - Who is Joe Rogan
+2023-04-11 22:10:08,345 - INFO - chat_history_str
+2023-04-11 22:10:08,345 - INFO - []
+2023-04-11 22:28:22,863 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 22:30:45,645 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 22:33:47,028 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 22:44:06,403 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 22:44:13,902 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 22:49:52,812 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 22:56:41,271 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:03:06,068 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:29:24,519 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:29:33,094 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:32:34,731 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:38:37,936 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:43:21,133 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:44:56,758 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:57:55,227 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-11 23:59:56,269 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 00:00:35,200 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 00:05:23,813 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 00:05:37,388 - INFO - uploading file High_Performance_Convolutional_Neural_Networks_for.pdf with id 2aedab32-3dc1-4af3-8f9f-25e7cb0218da for user None with sid None 
+2023-04-12 00:06:14,524 - INFO - question: who is joe rogan ?  for user None with sid None 
+2023-04-12 00:06:14,524 - INFO - calling conversational retrieval chain
+2023-04-12 00:06:14,525 - INFO - question
+2023-04-12 00:06:14,525 - INFO - who is joe rogan ?
+2023-04-12 00:06:14,525 - INFO - chat_history_str
+2023-04-12 00:06:14,525 - INFO - []
+2023-04-12 08:34:34,011 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 08:35:54,636 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 08:35:59,738 - INFO - question: hello for user None with sid None 
+2023-04-12 08:35:59,738 - INFO - calling conversational retrieval chain
+2023-04-12 08:35:59,817 - INFO - question
+2023-04-12 08:35:59,817 - INFO - hello
+2023-04-12 08:35:59,817 - INFO - chat_history_str
+2023-04-12 08:35:59,817 - INFO - []
+2023-04-12 08:40:41,911 - INFO - question: hello, who's joe rogan  for user None with sid Bearer ${sessionId} 
+2023-04-12 08:40:41,911 - INFO - calling conversational retrieval chain
+2023-04-12 08:40:41,917 - INFO - question
+2023-04-12 08:40:41,917 - INFO - hello, who's joe rogan
+2023-04-12 08:40:41,917 - INFO - chat_history_str
+2023-04-12 08:40:41,917 - INFO - []

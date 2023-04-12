@@ -49,6 +49,8 @@ import { ChangeEvent } from 'react';
 import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ReactDOM from 'react-dom';
 import { AuthContext } from '@/components/Global/AuthContext';
+import { Session } from 'inspector';
+import { getSecureCookie } from '@/utils/app/cookieTool';
 
 
 interface HomeProps {
@@ -91,6 +93,8 @@ const Home: React.FC<HomeProps> = ({
 
   const [docsources, setDocsources] = useState<Docsource[]>([]);
   const [showDocsourcebar, setShowDocsourcebar] = useState<boolean>(true);
+
+  // GLOBAL CONTEXT VARIABLE ----------------------------------
   const [authenticated, setAuthenticated] = useState(false);
 
   // REFS ----------------------------------------------
@@ -134,13 +138,17 @@ const Home: React.FC<HomeProps> = ({
       const endpoint = getEndpoint(plugin);
       const body = JSON.stringify({
         prompt: message.content,
+        // Replace with the actual session_id value
       });
+
+      const sessionId = getSecureCookie("sessionId")
 
       const controller = new AbortController();
       const response = await fetch('http://localhost:5000/qa', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${sessionId}'
         },
         signal: controller.signal,
         credentials: "include",

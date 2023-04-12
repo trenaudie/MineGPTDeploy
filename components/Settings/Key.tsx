@@ -1,9 +1,10 @@
 import { IconCheck, IconKey, IconX } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
-import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { FC, KeyboardEvent, useEffect, useRef, useState, useContext } from 'react';
 import { LogoutButton } from './LogoutButton'; // Adjust the import path if necessary
 import { AuthContext } from '../Global/AuthContext';
-import { useContext } from 'react';
+
+
 interface Props {
   apiKey: string;
   onApiKeyChange: (apiKey: string) => void;
@@ -16,8 +17,6 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
   const [newKey, setNewKey] = useState(apiKey);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { authenticated, handleLogin, handleLogout} = useContext(AuthContext);
-  console.log('Chat component, authenticated:', authenticated);
 
 
   const handleEnterDown = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -27,7 +26,8 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
     }
   };
 
-
+  const { authenticated, handleLogout } = useContext(AuthContext);
+  console.log("Authenticated", authenticated)
 
   const handleUpdateKey = (newKey: string) => {
     onApiKeyChange(newKey.trim());
@@ -40,7 +40,12 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
     }
   }, [isChanging]);
 
-  return isChanging ? (
+  return authenticated ? (<LogoutButton
+    text={t('Log out')}
+    icon={<IconKey size={18} />}
+    onClick={handleLogout}
+  />
+  ) : (
     <div className="duration:200 flex w-full cursor-pointer items-center rounded-md py-3 px-3 transition-colors hover:bg-gray-500/10">
       <IconKey size={18} />
 
@@ -75,11 +80,5 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
         />
       </div>
     </div>
-  ) : (
-    <LogoutButton
-      text={t('Log out')}
-      icon={<IconKey size={18} />}
-      onClick={handleLogout}
-    />
   );
 };
