@@ -669,3 +669,65 @@ SOURCES: temp/article15_2.txt
 SOURCES: temp/article15_2.txt
 2023-04-11 21:43:34,363 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
 2023-04-11 21:55:21,718 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 21:56:41,722 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id 60cf2832-05ad-4784-b193-3a144ee2cc92 for user None with sid None 
+2023-04-11 21:59:54,881 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 21:59:58,889 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id 3307c2a2-55f4-4131-b008-358484e20f4a for user None with sid None 
+2023-04-11 22:03:21,781 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 22:03:21,782 - INFO - user logged in
+2023-04-11 22:03:21,782 - INFO - 3
+2023-04-11 22:03:51,353 - INFO - uploading file FGDR_0102816439_20230209.pdf with id a8841091-a403-49dd-a4e0-8b0910b9f5b4 for user None with sid None 
+2023-04-11 22:13:02,682 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 22:13:02,682 - INFO - user logged in
+2023-04-11 22:13:02,682 - INFO - 3
+2023-04-11 22:18:19,140 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 22:18:19,140 - INFO - user logged in
+2023-04-11 22:18:19,140 - INFO - 3
+2023-04-11 22:20:44,590 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 22:20:44,590 - INFO - user logged in
+2023-04-11 22:20:44,591 - INFO - 3
+2023-04-11 22:24:35,273 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 22:24:35,274 - INFO - user logged in
+2023-04-11 22:24:35,275 - INFO - 3
+2023-04-11 22:24:41,108 - INFO - uploading file INFO_PREALABLE_0102816439_20230403.pdf with id 89402963-8106-4d02-b019-a87ff4eaaf2d for user None with sid 52ed062d-5130-47cb-8d5a-df38380a739e 
+2023-04-11 22:26:23,793 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 22:26:23,793 - INFO - user logged in
+2023-04-11 22:26:23,793 - INFO - 3
+2023-04-11 22:26:23,793 - INFO - inside login, session user_id:
+2023-04-11 22:26:23,793 - INFO - 3
+2023-04-11 22:28:08,820 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-11 22:28:08,820 - INFO - user logged in
+2023-04-11 22:28:08,820 - INFO - 3
+2023-04-11 22:28:08,820 - INFO - inside login, session user_id:
+2023-04-11 22:28:08,821 - INFO - 3
+2023-04-11 22:28:12,808 - INFO - uploading file INFO_PREALABLE_0102816439_20230403.pdf with id 665f19b3-bd3d-4e80-808f-678962e8e252 for user None with sid 52ed062d-5130-47cb-8d5a-df38380a739e 
+2023-04-12 07:08:37,977 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-12 07:08:37,977 - INFO - user logged in
+2023-04-12 07:08:37,977 - INFO - 3
+2023-04-12 07:08:37,977 - INFO - inside login, session user_id:
+2023-04-12 07:08:37,977 - INFO - 3
+2023-04-12 07:08:42,316 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id ddbfa467-42fa-4af8-aabd-08ea78b1163e for user None with sid 377290bd-8b73-4052-8fc2-60945208ea50 
+2023-04-12 07:12:14,693 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-12 07:12:14,693 - INFO - user logged in
+2023-04-12 07:12:14,693 - INFO - 3
+2023-04-12 07:12:14,693 - INFO - inside login, session user_id:
+2023-04-12 07:12:14,693 - INFO - 3
+2023-04-12 07:12:19,679 - INFO - uploading file Improving the performance of deep learning language models.pdf with id bd025e5c-c5cb-40c7-99e2-07449134a047 for user None with sid 377290bd-8b73-4052-8fc2-60945208ea50 
+2023-04-12 07:14:56,803 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-12 07:14:56,804 - INFO - user logged in
+2023-04-12 07:14:56,804 - INFO - 3
+2023-04-12 07:14:56,804 - INFO - inside login, session user_id:
+2023-04-12 07:14:56,804 - INFO - 3
+2023-04-12 07:15:00,932 - INFO - uploading file INFO_PREALABLE_0102816439_20230403.pdf with id 1db3fae1-30dc-4d2b-bc2e-27664c314704 for user None with sid 377290bd-8b73-4052-8fc2-60945208ea50 
+2023-04-12 07:17:13,270 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-12 07:17:13,270 - INFO - user logged in
+2023-04-12 07:17:13,270 - INFO - 3
+2023-04-12 07:17:13,271 - INFO - inside login, session user_id:
+2023-04-12 07:17:13,271 - INFO - 3
+2023-04-12 07:17:16,024 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id b1360eac-7c12-437b-83f0-960c8e4ec823 for user None with sid 377290bd-8b73-4052-8fc2-60945208ea50 
+2023-04-12 07:20:48,749 - INFO - [{'id': 1, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$zt2YVMYkI5chNbVj$ab3fa08016dd822e9f5573d4ec656b902451719210b0b665d67952dcfba50155'}, {'id': 2, 'email': 'tan@etu.minesparis.psl.eu', 'password': 'sha256$tNHcDSrhZVd6r8rB$542ae488a85cfa11e95d6a56b6a6315f2e3cbb10bb337616dfbd80ffaf47a2bd'}, {'id': 3, 'email': 'tan2@etu.minesparis.psl.eu', 'password': 'sha256$AZaRcRa32yk2fCVe$d39c372f223caf93cca6705712ecc754f09350d03f65b9c791a9e9a8f8f7e970'}]
+2023-04-12 07:20:48,749 - INFO - user logged in
+2023-04-12 07:20:48,749 - INFO - 3
+2023-04-12 07:20:48,749 - INFO - inside login, session user_id:
+2023-04-12 07:20:48,750 - INFO - 3
+2023-04-12 07:20:50,982 - INFO - uploading file INFO_PREALABLE_0102816439_20230403.pdf with id eea7f5de-87fc-402d-80ec-cae6dec6cf05 for user None with sid 377290bd-8b73-4052-8fc2-60945208ea50 
+2023-04-12 07:21:05,845 - INFO - uploading file FGDR_0102816439_20230209.pdf with id 3492380a-1b15-4d6a-bad1-e7a43bf34a16 for user None with sid 377290bd-8b73-4052-8fc2-60945208ea50 

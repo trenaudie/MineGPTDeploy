@@ -43,12 +43,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
+app.secret_key = app.config['SECRET_KEY']
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
     3  # expired sessions are deleted after 3 hr
 
 db = SQLAlchemy(app)
 Session(app)
-CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
+# CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={
+    r"/*": {
+        "origins": "http://localhost:3000",  # You can specify the allowed origins here
+    }
+}, supports_credentials= True)
 
 
 class DocSource(db.Model):
@@ -95,6 +101,7 @@ def register():
             new_user = User(email=email, password=password)
             db.session.add(new_user)
             db.session.commit()
+            session['user_id'] = new_user.id
             return jsonify(status='registration successful!'), 200
         except:
             return jsonify(status='you can only register once'), 400
@@ -109,8 +116,7 @@ def login():
     password = data.get('password')
 
     user = User.query.filter_by(email=email).first()
-    with redirect_stdout_to_logger(logger):
-        printUsers(User)
+   
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
         # Session handling here
@@ -132,34 +138,37 @@ def upload_file():
     auth_header = request.headers.get('Authorization')
     if auth_header and auth_header.startswith('Bearer '):
         session_id = auth_header[7:]
+        #printUSers
     else:
         # Handle the case when the session ID is missing or incorrect
         return 'Session ID is missing or incorrect.', 400
 
     logger.info(
         f"uploading file {uploaded_file.filename} with id {file_id} for user {session.get('user_id', None)} with sid {session_id} ")
+    
     if 'user_id' not in session:
-        return 'User not logged in.', 400
+        # return 'User not logged in.', 401
+        pass
 
     if uploaded_file:
-        # add file to Pinecone
-        filename = secure_filename(uploaded_file.filename)
-        save_file_to_temp(uploaded_file)
-        filepath = os.path.join(Config.TEMP_FOLDER, filename)
-        # must have a unique file_id, even if the file is the same per user
-        save_file_to_Pinecone_metadata(
-            filepath, file_id, session_id, vectorstore)
-        os.remove(filepath)
+        # # add file to Pinecone
+        # filename = secure_filename(uploaded_file.filename)
+        # save_file_to_temp(uploaded_file)
+        # filepath = os.path.join(Config.TEMP_FOLDER, filename)
+        # # must have a unique file_id, even if the file is the same per user
+        # save_file_to_Pinecone_metadata(
+        #     filepath, file_id, session_id, vectorstore)
+        # os.remove(filepath)
 
-        # add file to docsource database
-        user_id = session.get('user_id', None)
-        description = 'File uploaded by user'  # might need to change
-        docsource = DocSource(user_id=user_id, description=description,
-                              filename=filename, session_id=session_id)
-        db.session.add(docsource)
-        db.session.commit()
+        # # add file to docsource database
+        # user_id = session.get('user_id', None)
+        # description = 'File uploaded by user'  # might need to change
+        # docsource = DocSource(user_id=user_id, description=description,
+        #                       filename=filename, session_id=session_id)
+        # db.session.add(docsource)
+        # db.session.commit()
 
-        return 'File uploaded and saved to the database.', 200
+        return jsonify('File uploaded and saved to the database.', 200)
     else:
         return 'No file was uploaded.', 400
 
