@@ -143,6 +143,7 @@ const Home: React.FC<HomeProps> = ({
           'Content-Type': 'application/json',
         },
         signal: controller.signal,
+        credentials: "include",
         body,
       });
 
@@ -782,6 +783,7 @@ const Home: React.FC<HomeProps> = ({
       const response = await fetch("http://localhost:5000/upload", {
         method: "POST",
         body: formData,
+        credentials: "include",
       });
 
       if (!response.ok) {
