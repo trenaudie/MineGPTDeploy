@@ -8,8 +8,9 @@ interface FileDownloadProps {
 
 const FileDownload: FC<FileDownloadProps> = ({ fileName, displayText }) => {
     const handleDownload = async () => {
-        console.log(`${fileName}`)
-        const response = await fetch(`http://localhost:5000/download/${fileName}`);
+        const fileNameWithoutPath = fileName.replace("./temp/", "");
+        console.log(`${fileNameWithoutPath}`)
+        const response = await fetch(`http://localhost:5000/download/${fileNameWithoutPath}`);
         console.log("document request sent")
         if (response.ok) {
             console.log("document request accepted")
