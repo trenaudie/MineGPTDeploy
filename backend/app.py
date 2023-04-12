@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
-from flask import Flask, request, render_template, jsonify, redirect, session, url_for
+from flask import Flask, request, render_template, jsonify, redirect, session, url_for, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_session import Session
@@ -54,7 +54,7 @@ CORS(app, resources={
     r"/*": {
         "origins": "http://localhost:3000",  # You can specify the allowed origins here
     }
-}, supports_credentials= True)
+}, supports_credentials=True)
 
 
 class DocSource(db.Model):
@@ -116,7 +116,7 @@ def login():
     password = data.get('password')
 
     user = User.query.filter_by(email=email).first()
-   
+
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
         # Session handling here
@@ -138,39 +138,48 @@ def upload_file():
     auth_header = request.headers.get('Authorization')
     if auth_header and auth_header.startswith('Bearer '):
         session_id = auth_header[7:]
-        #printUSers
+        # printUSers
     else:
         # Handle the case when the session ID is missing or incorrect
         return 'Session ID is missing or incorrect.', 400
 
     logger.info(
         f"uploading file {uploaded_file.filename} with id {file_id} for user {session.get('user_id', None)} with sid {session_id} ")
-    
+
     if 'user_id' not in session:
         # return 'User not logged in.', 401
         pass
 
     if uploaded_file:
-        # # add file to Pinecone
-        # filename = secure_filename(uploaded_file.filename)
-        # save_file_to_temp(uploaded_file)
-        # filepath = os.path.join(Config.TEMP_FOLDER, filename)
-        # # must have a unique file_id, even if the file is the same per user
-        # save_file_to_Pinecone_metadata(
-        #     filepath, file_id, session_id, vectorstore)
-        # os.remove(filepath)
+        # add file to Pinecone
+        filename = secure_filename(uploaded_file.filename)
+        save_file_to_temp(uploaded_file)
+        filepath = os.path.join(Config.TEMP_FOLDER, filename)
+        # must have a unique file_id, even if the file is the same per user
+        save_file_to_Pinecone_metadata(
+            filepath, file_id, session_id, vectorstore)
+        os.remove(filepath)
 
-        # # add file to docsource database
-        # user_id = session.get('user_id', None)
-        # description = 'File uploaded by user'  # might need to change
-        # docsource = DocSource(user_id=user_id, description=description,
-        #                       filename=filename, session_id=session_id)
-        # db.session.add(docsource)
-        # db.session.commit()
+        # add file to docsource database
+        user_id = session.get('user_id', None)
+        description = 'File uploaded by user'  # might need to change
+        docsource = DocSource(user_id=user_id, description=description,
+                              filename=filename, session_id=session_id)
+        db.session.add(docsource)
+        db.session.commit()
 
         return jsonify('File uploaded and saved to the database.', 200)
     else:
         return 'No file was uploaded.', 400
+
+
+@app.route('/download/<filename>', methods=['GET'])
+def download_file(filename):
+    print(filename)
+    try:
+        return send_from_directory(directory='./temp', filename=filename, as_attachment=True)
+    except FileNotFoundError:
+        return jsonify({'error': 'File not found'}), 404
 
 
 @app.route('/qa', methods=['POST'])

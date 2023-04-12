@@ -144,3 +144,54 @@ SOURCES: ./temp/sample5.txt
 2023-04-12 09:58:28,658 - INFO - answer
 2023-04-12 09:58:28,659 - INFO - Joe Rogan is a television host and podcast host known for his work on The Man Show and his own podcast, The Joe Rogan Experience, which is widely popular and listened to by over 11 million people monthly in 2015, and in 2021, his podcast is the most listened to on Spotify. He is also a specialist in martial arts, an actor, writer, and radio host. He has also appeared in a few TV series and movies. 
 SOURCES: ./temp/sample5.txt
+2023-04-12 11:04:04,197 - INFO - question: Who's joe rogan ?  for user None with sid ${sessionId} 
+2023-04-12 11:04:04,197 - INFO - calling conversational retrieval chain
+2023-04-12 11:04:04,197 - INFO - question
+2023-04-12 11:04:04,197 - INFO - Who's joe rogan ?
+2023-04-12 11:04:04,197 - INFO - chat_history_str
+2023-04-12 11:04:04,197 - INFO - []
+2023-04-12 11:08:23,655 - INFO - question: Who's joe rogan ?  for user None with sid ${sessionId} 
+2023-04-12 11:08:23,655 - INFO - calling conversational retrieval chain
+2023-04-12 11:08:23,655 - INFO - question
+2023-04-12 11:08:23,655 - INFO - Who's joe rogan ?
+2023-04-12 11:08:23,655 - INFO - chat_history_str
+2023-04-12 11:08:23,655 - INFO - []
+2023-04-12 11:09:28,543 - INFO - question: who's joe rogan ?  for user None with sid ${sessionId} 
+2023-04-12 11:09:28,543 - INFO - calling conversational retrieval chain
+2023-04-12 11:09:28,543 - INFO - question
+2023-04-12 11:09:28,543 - INFO - who's joe rogan ?
+2023-04-12 11:09:28,543 - INFO - chat_history_str
+2023-04-12 11:09:28,543 - INFO - []
+2023-04-12 11:13:35,880 - INFO - answer
+2023-04-12 11:13:35,881 - INFO - Joe Rogan is a television presenter, podcast host, comedian, and UFC commentator from the United States.
+SOURCES: ./temp/sample5.txt
+2023-04-12 11:15:52,870 - INFO - question: who's joe rogan ?  for user None with sid ${sessionId} 
+2023-04-12 11:15:52,870 - INFO - calling conversational retrieval chain
+2023-04-12 11:15:52,870 - INFO - question
+2023-04-12 11:15:52,870 - INFO - who's joe rogan ?
+2023-04-12 11:15:52,870 - INFO - chat_history_str
+2023-04-12 11:15:52,870 - INFO - [{'question': "who's joe rogan ? ", 'answer': 'Joe Rogan is a television presenter, podcast host, comedian, and UFC commentator from the United States.\nSOURCES: ./temp/sample5.txt'}]
+2023-04-12 11:24:12,774 - INFO - question: who's joe rogan ? for user None with sid ${sessionId} 
+2023-04-12 11:24:12,775 - INFO - calling conversational retrieval chain
+2023-04-12 11:24:12,776 - INFO - question
+2023-04-12 11:24:12,776 - INFO - who's joe rogan ?
+2023-04-12 11:24:12,776 - INFO - chat_history_str
+2023-04-12 11:24:12,776 - INFO - []
+2023-04-12 11:28:18,650 - INFO - answer
+2023-04-12 11:28:18,650 - INFO - Joe Rogan is a specialist of arts martiaux, actor, writer, and radio host who commentates for the UFC and hosts The Joe Rogan Experience, a talk-show. He is also a comedian and performs regularly. He has played in movies and TV shows such as Zookeeper and NewsRadio where he played Joe Garrelli. 
+SOURCES: ./temp/sample5.txt
+2023-04-12 13:40:53,379 - INFO - question: who's joe rogan ?  for user None with sid ${sessionId} 
+2023-04-12 13:40:53,379 - INFO - calling conversational retrieval chain
+2023-04-12 13:40:53,379 - INFO - question
+2023-04-12 13:40:53,379 - INFO - who's joe rogan ?
+2023-04-12 13:40:53,379 - INFO - chat_history_str
+2023-04-12 13:40:53,381 - INFO - []
+2023-04-12 13:41:48,140 - INFO - question: Who's joe rogan ?  for user None with sid ${sessionId} 
+2023-04-12 13:41:48,140 - INFO - calling conversational retrieval chain
+2023-04-12 13:41:48,141 - INFO - question
+2023-04-12 13:41:48,141 - INFO - Who's joe rogan ?
+2023-04-12 13:41:48,141 - INFO - chat_history_str
+2023-04-12 13:41:48,141 - INFO - []
+2023-04-12 13:44:40,104 - INFO - answer
+2023-04-12 13:44:40,104 - INFO - Joe Rogan is a specialist in martial arts, actor, writer, radio host, comedian, and podcast host known for his commentating work with the Ultimate Fighting Championship (UFC), and for his talk show The Joe Rogan Experience. He has also worked as a TV host, and has acted in films such as Zookeeper and Here Comes the Boom. 
+SOURCES: ./temp/sample5.txt

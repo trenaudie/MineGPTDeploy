@@ -164,7 +164,10 @@ const Home: React.FC<HomeProps> = ({
       }
       console.log('Backend correct')
 
-      const data = response.body;
+      const data = await response.json();
+
+      const sources = data.sources
+      const answer = data.answer
 
       if (!data) {
         setLoading(false);
@@ -173,15 +176,19 @@ const Home: React.FC<HomeProps> = ({
         return;
       }
 
-      const { content, source } = await response.json();
-
       const updatedMessages: Message[] = [
         ...updatedConversation.messages,
-        { role: 'assistant', content: content, source: false },
+        { role: 'assistant', content: answer, title: 'answer', source: false },
       ];
 
-      if (source) {
-        updatedMessages.push({ role: 'assistant', content: source, source: true });
+      if (sources) {
+        for (const item of sources) {
+          const filename = item.filename
+          const text = item.text
+          // We added a title to the message to include the filename
+          console.log("added source")
+          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true });
+        }
       }
 
 
