@@ -1,4 +1,4 @@
-from utils.redirect_stdout import redirect_stdout_to_logger
+from redirect_stdout import redirect_stdout_to_logger
 from config import Config
 import boto3
 from botocore.exceptions import ClientError
@@ -38,6 +38,13 @@ def upload_file(file_name, bucket, session: boto3.Session, object_name=None):
         logger.error(e)
         return False
     return True
+
+
+def upload_Admin(folder, bucket_name, session):
+    for filename in os.listdir(folder):
+        item_path = os.path.join(folder, filename)
+        if os.path.isfile(item_path):
+            upload_file(folder + '/' + filename, bucket_name, session)
 
 
 if __name__ == "__main__":
@@ -84,4 +91,4 @@ if __name__ == "__main__":
         )
         print("group policies ", response)
 
-        upload_file('backend/temp/Probabilite1.pdf', bucket_name, session)
+        upload_Admin('backend/database', bucket_name, session)
