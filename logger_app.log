@@ -135,3 +135,12 @@ utils
 2023-04-12 09:08:22,013 - INFO - answer
 2023-04-12 09:08:22,013 - INFO - Joe Rogan is a specialist of martial arts, actor, writer and radio host who is famous for his commentary of Ultimate Fighting Championship (UFC) and his talk-show The Joe Rogan Experience. He is also a stand-up comedian and still performs regularly. His podcast, The Joe Rogan Experience, is the most listened to on Spotify and is listened to by over 11 million people each month. He has appeared in films and TV shows such as Zookeeper and NewsRadio. 
 SOURCES: ./temp/sample5.txt
+2023-04-12 09:55:31,838 - INFO - question: hello who's joe rogan ?  for user None with sid ${sessionId} 
+2023-04-12 09:55:31,838 - INFO - calling conversational retrieval chain
+2023-04-12 09:55:31,838 - INFO - question
+2023-04-12 09:55:31,838 - INFO - hello who's joe rogan ?
+2023-04-12 09:55:31,838 - INFO - chat_history_str
+2023-04-12 09:55:31,838 - INFO - []
+2023-04-12 09:58:28,658 - INFO - answer
+2023-04-12 09:58:28,659 - INFO - Joe Rogan is a television host and podcast host known for his work on The Man Show and his own podcast, The Joe Rogan Experience, which is widely popular and listened to by over 11 million people monthly in 2015, and in 2021, his podcast is the most listened to on Spotify. He is also a specialist in martial arts, an actor, writer, and radio host. He has also appeared in a few TV series and movies. 
+SOURCES: ./temp/sample5.txt
