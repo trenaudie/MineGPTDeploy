@@ -1,11 +1,11 @@
+from utils.redirect_stdout import redirect_stdout_to_logger
+from config import Config
 import boto3
 from botocore.exceptions import ClientError
 import os
 from logger import logger
 import sys
 sys.path.append('/Users/tanguyrenaudie/Documents/TanguyML/MineGPT/backend')
-from config import Config
-from utils.redirect_stdout import redirect_stdout_to_logger
 
 
 # Create a new session using the access key and secret access key of the new user
@@ -14,7 +14,8 @@ session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID,
                         )
 bucket_name = 'minefiles'
 
-def upload_file(file_name, bucket, session:boto3.Session, object_name=None):
+
+def upload_file(file_name, bucket, session: boto3.Session, object_name=None):
     """Upload a file to an S3 bucket
 
     :param file_name: File to upload
@@ -30,7 +31,7 @@ def upload_file(file_name, bucket, session:boto3.Session, object_name=None):
     # Upload the file
     s3_client = session.client('s3')
     try:
-        #print working directory
+        # print working directory
         print(os.getcwd())
         response = s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
@@ -52,12 +53,13 @@ if __name__ == "__main__":
 
         print('current region ', session.region_name)
 
-
         # Get the policies attached to the user
-        attached_policies = iam.list_attached_user_policies(UserName=user['User']['UserName'])
+        attached_policies = iam.list_attached_user_policies(
+            UserName=user['User']['UserName'])
 
         # Get the inline policies attached to the user
-        inline_policies = iam.list_user_policies(UserName=user['User']['UserName'])
+        inline_policies = iam.list_user_policies(
+            UserName=user['User']['UserName'])
 
         all_policies = iam
         # Print the policy ARNs
@@ -65,7 +67,8 @@ if __name__ == "__main__":
             print(policy['PolicyArn'])
 
         for policy in inline_policies['PolicyNames']:
-            policy_document = iam.get_user_policy(UserName=user['User']['UserName'], PolicyName=policy)
+            policy_document = iam.get_user_policy(
+                UserName=user['User']['UserName'], PolicyName=policy)
             print(policy_document['PolicyArn'])
         # upload_file('backend/temp/Probabilite1.pdf', bucket_name)
 
@@ -75,11 +78,10 @@ if __name__ == "__main__":
         # Print the group names
         for group in groups['Groups']:
             print(group['GroupName'])
-        
+
         response = iam.list_attached_group_policies(
             GroupName='mineGPTgroup',
         )
         print("group policies ", response)
-
 
         upload_file('backend/temp/Probabilite1.pdf', bucket_name, session)

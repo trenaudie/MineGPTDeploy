@@ -118,9 +118,10 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if user and check_password_hash(user.password, password):
-        session['user_id'] = user.id 
+        session['user_id'] = user.id
         # Session handling here
-        return jsonify(status='authenticated', sessionId=session['user_id']), 200 #session id is fixed to user_id, must change later 
+        # session id is fixed to user_id, must change later
+        return jsonify(status='authenticated', sessionId=session['user_id']), 200
     return jsonify(status='incorrect authentification'), 400
 
 
@@ -175,12 +176,14 @@ def upload_file():
         return 'No file was uploaded.', 400
 
 
-@app.route('/download/<filename>', methods=['GET'])
+@app.route('/download/<path:filename>', methods=['GET'])
 def download_file(filename):
+    print('lol')
     print(filename)
     try:
-        return send_from_directory(directory='./temp', filename=filename, as_attachment=True)
+        return send_from_directory(directory='/temp', path='', filename=filename, as_attachment=True)
     except FileNotFoundError:
+        print(FileNotFoundError)
         return jsonify({'error': 'File not found'}), 404
 
 
@@ -212,7 +215,6 @@ def answerQuestion():
 
         # Combine the `processed_text
         # ` and `page_content` JSON objects into a single dictionary
-        print(result)
         return jsonify(result)
 
     except Exception as e:
@@ -220,11 +222,13 @@ def answerQuestion():
         print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
 
+
 @app.route('/delete_vector', methods=['POST'])
 def delete_vector():
-    print(f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
+    print(
+        f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
 
-    # delete vector from Pinecone database 
+    # delete vector from Pinecone database
     # vectorstore._index.delete(filter = {'sid': request.headers.get('Authorization')})
 
 
