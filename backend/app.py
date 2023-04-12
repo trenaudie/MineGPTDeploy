@@ -180,14 +180,18 @@ def answerQuestion():
         data = request.get_json()
         question = data.get('prompt')
 
-        session_id = request.headers.get('Authorization')
+        auth_header = request.headers.get('Authorization')
+        if auth_header and auth_header.startswith('Bearer '):
+            session_id = auth_header[7:]
         logger.info(
             f"question: {question} for user {session.get('user_id', None)} with sid {session_id} ")
         with redirect_stdout_to_logger(logger):
             result = ask_question(question, vectorstore,
                                   chain, chat_history, session_id)
 
-        # Combine the `processed_text` and `page_content` JSON objects into a single dictionary
+        # Combine the `processed_text
+        # ` and `page_content` JSON objects into a single dictionary
+        print(result)
         return jsonify(result)
 
     except Exception as e:

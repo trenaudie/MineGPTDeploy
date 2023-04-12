@@ -99,3 +99,39 @@ utils
 2023-04-12 08:40:41,917 - INFO - hello, who's joe rogan
 2023-04-12 08:40:41,917 - INFO - chat_history_str
 2023-04-12 08:40:41,917 - INFO - []
+2023-04-12 08:51:19,183 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 08:51:27,538 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 08:51:35,141 - INFO - question: hello, who's joe rogan  for user None with sid Bearer ${sessionId} 
+2023-04-12 08:51:35,143 - INFO - calling conversational retrieval chain
+2023-04-12 08:51:35,143 - INFO - question
+2023-04-12 08:51:35,144 - INFO - hello, who's joe rogan
+2023-04-12 08:51:35,144 - INFO - chat_history_str
+2023-04-12 08:51:35,144 - INFO - []
+2023-04-12 08:52:31,050 - INFO - [{'id': 1, 'email': 'your_email@etu.minesparis.psl.eu', 'password': 'sha256$o4BdfxIFfoofoxUw$5230db26ecd0f999734a41d5d7d9f2e57ef2c9094cd682f709f53949b64e5085'}, {'id': 2, 'email': 'guigui.jarry@etu.minesparis.psl.eu', 'password': 'sha256$XU381E7h0wDWyp9e$0e5749e892ea5fc954868e16a5879586af0a3558160a97aabebc0e82c0fb89d3'}, {'id': 3, 'email': 'guillaume.jarry@etu.minesparis.psl.eu', 'password': 'sha256$7ycoQ8WQ2bHnrM4J$af946b0065d2950c90cba84373cd989c8cf38b9a40c57498813f8848e17a2273'}]
+2023-04-12 08:52:44,744 - INFO - question: hello, who's joe rogan?  for user None with sid Bearer ${sessionId} 
+2023-04-12 08:52:44,744 - INFO - calling conversational retrieval chain
+2023-04-12 08:52:44,744 - INFO - question
+2023-04-12 08:52:44,746 - INFO - hello, who's joe rogan?
+2023-04-12 08:52:44,746 - INFO - chat_history_str
+2023-04-12 08:52:44,746 - INFO - []
+2023-04-12 08:54:01,509 - INFO - question: hello who's joe rogan ?  for user None with sid Bearer ${sessionId} 
+2023-04-12 08:54:01,509 - INFO - calling conversational retrieval chain
+2023-04-12 08:54:01,509 - INFO - question
+2023-04-12 08:54:01,509 - INFO - hello who's joe rogan ?
+2023-04-12 08:54:01,509 - INFO - chat_history_str
+2023-04-12 08:54:01,509 - INFO - []
+2023-04-12 09:02:48,814 - INFO - question: hello who's joe rogan ?  for user None with sid Bearer ${sessionId} 
+2023-04-12 09:02:48,814 - INFO - calling conversational retrieval chain
+2023-04-12 09:02:48,814 - INFO - question
+2023-04-12 09:02:48,816 - INFO - hello who's joe rogan ?
+2023-04-12 09:02:48,816 - INFO - chat_history_str
+2023-04-12 09:02:48,816 - INFO - []
+2023-04-12 09:05:30,378 - INFO - question: hello who's joe rogan ?  for user None with sid Bearer ${sessionId} 
+2023-04-12 09:05:30,378 - INFO - calling conversational retrieval chain
+2023-04-12 09:05:30,378 - INFO - question
+2023-04-12 09:05:30,378 - INFO - hello who's joe rogan ?
+2023-04-12 09:05:30,378 - INFO - chat_history_str
+2023-04-12 09:05:30,378 - INFO - []
+2023-04-12 09:08:22,013 - INFO - answer
+2023-04-12 09:08:22,013 - INFO - Joe Rogan is a specialist of martial arts, actor, writer and radio host who is famous for his commentary of Ultimate Fighting Championship (UFC) and his talk-show The Joe Rogan Experience. He is also a stand-up comedian and still performs regularly. His podcast, The Joe Rogan Experience, is the most listened to on Spotify and is listened to by over 11 million people each month. He has appeared in films and TV shows such as Zookeeper and NewsRadio. 
+SOURCES: ./temp/sample5.txt
