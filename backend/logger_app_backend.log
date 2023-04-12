@@ -69,3 +69,78 @@
 2023-04-12 16:02:26,060 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': '406dac26-1269-4069-acca-915f945f0814', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '406dac26-1269-4069-acca-915f945f0814', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Wed, 12 Apr 2023 14:02:25 GMT'}, 'RetryAttempts': 0}}
 2023-04-12 16:02:26,187 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
 2023-04-12 16:02:34,290 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:45,461 - INFO - Current user:
+2023-04-12 17:41:45,461 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-12 17:41:45,461 - INFO - current region
+2023-04-12 17:41:45,461 - INFO - None
+2023-04-12 17:41:45,788 - INFO - mineGPTgroup
+2023-04-12 17:41:45,884 - INFO - group policies
+2023-04-12 17:41:45,884 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': '3c5e8533-1456-4d40-978f-a08d78489349', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '3c5e8533-1456-4d40-978f-a08d78489349', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Wed, 12 Apr 2023 15:41:44 GMT'}, 'RetryAttempts': 0}}
+2023-04-12 17:41:45,978 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:47,200 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:48,236 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:48,760 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:49,179 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:49,866 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:51,056 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:51,799 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:52,654 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:55,093 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:56,195 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:41:59,706 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:00,356 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:39,468 - INFO - Current user:
+2023-04-12 17:42:39,468 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-12 17:42:39,468 - INFO - current region
+2023-04-12 17:42:39,468 - INFO - None
+2023-04-12 17:42:39,778 - INFO - mineGPTgroup
+2023-04-12 17:42:39,909 - INFO - group policies
+2023-04-12 17:42:39,909 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': '6dd26524-51d7-47d6-a5ee-fab2a09c24e1', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '6dd26524-51d7-47d6-a5ee-fab2a09c24e1', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Wed, 12 Apr 2023 15:42:39 GMT'}, 'RetryAttempts': 0}}
+2023-04-12 17:42:40,015 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:41,267 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:42,383 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:43,027 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:43,464 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:44,116 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:45,186 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:45,918 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:46,752 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:49,180 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:50,163 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:53,856 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:54,539 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 17:42:55,390 - INFO - Deleted file backend/database/Probabilité II.pdf from bucket minefiles
+2023-04-12 17:43:56,734 - INFO - Current user:
+2023-04-12 17:43:56,734 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-12 17:43:56,734 - INFO - current region
+2023-04-12 17:43:56,734 - INFO - None
+2023-04-12 17:43:57,068 - INFO - mineGPTgroup
+2023-04-12 17:43:57,196 - INFO - group policies
+2023-04-12 17:43:57,196 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': 'a9f3d8e3-4f3f-4cee-881c-193208cfd412', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': 'a9f3d8e3-4f3f-4cee-881c-193208cfd412', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Wed, 12 Apr 2023 15:43:57 GMT'}, 'RetryAttempts': 0}}
+2023-04-12 17:43:57,680 - INFO - Deleted file Probabilité II.pdf from bucket minefiles
+2023-04-12 17:49:44,474 - INFO - uploading file chapter2.pdf with id 75119ff2-4c02-4b54-b8df-ad75c1f54733 for user None with sid 3 
+2023-04-12 18:16:18,042 - INFO - Current user:
+2023-04-12 18:16:18,043 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
+2023-04-12 18:16:18,043 - INFO - current region
+2023-04-12 18:16:18,043 - INFO - None
+2023-04-12 18:16:18,418 - INFO - mineGPTgroup
+2023-04-12 18:16:18,533 - INFO - group policies
+2023-04-12 18:16:18,533 - INFO - {'AttachedPolicies': [{'PolicyName': 'upload,download,list', 'PolicyArn': 'arn:aws:iam::532457283379:policy/upload,download,list'}, {'PolicyName': 'IAMFullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/IAMFullAccess'}, {'PolicyName': 'AdministratorAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AdministratorAccess'}, {'PolicyName': 'AmazonS3FullAccess', 'PolicyArn': 'arn:aws:iam::aws:policy/AmazonS3FullAccess'}], 'IsTruncated': False, 'ResponseMetadata': {'RequestId': '76337090-0230-49ca-8968-eec59ff6df72', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': '76337090-0230-49ca-8968-eec59ff6df72', 'content-type': 'text/xml', 'content-length': '1020', 'date': 'Wed, 12 Apr 2023 16:16:18 GMT'}, 'RetryAttempts': 0}}
+2023-04-12 18:16:18,634 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:19,223 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:19,736 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:20,080 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:20,361 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:20,787 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:21,448 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:21,922 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:22,376 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:23,532 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:24,001 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:26,117 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:26,512 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:26,871 - INFO - c:\Users\guill\OneDrive\Documents\MineGPT
+2023-04-12 18:16:27,202 - INFO - Deleted file Probabilité II.pdf from bucket minefiles
+2023-04-12 20:39:35,224 - INFO - uploading file chapter1.pdf with id d55a6912-f8fe-417d-96c9-2a53ce209900 for user None with sid 3 
+2023-04-12 20:40:18,422 - INFO - uploading file chapter4.pdf with id 3ee2b334-ee84-4189-b7b4-3c4ecea4f168 for user None with sid 3 
+2023-04-12 20:44:26,916 - INFO - uploading file chapter3.pdf with id bbd655e7-fc83-4f17-8e02-71eb0b6e5e62 for user None with sid 3 

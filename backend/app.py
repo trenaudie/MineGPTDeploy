@@ -1,6 +1,8 @@
 import os
 import json
 import traceback
+import boto3
+import io
 
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
@@ -12,7 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
-from flask import Flask, request, render_template, jsonify, redirect, session, url_for, send_from_directory
+from flask import Flask, request, render_template, jsonify, redirect, session, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_session import Session
@@ -47,6 +49,17 @@ app.secret_key = app.config['SECRET_KEY']
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
     3  # expired sessions are deleted after 3 hr
 
+
+# AWS CONFIG
+# ----------------------------------------------------------------------------
+aws_session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID,
+                            aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY,
+                            )
+bucket_name = 'minefiles'
+# ----------------------------------------------------------------------------
+
+# SQL Config
+# ----------------------------------------------------------------------------
 db = SQLAlchemy(app)
 Session(app)
 # CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
@@ -79,6 +92,7 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     docsources = db.relationship('DocSource', backref='user', lazy=True)
+# ----------------------------------------------------------------------------
 
 
 chat_history = []
@@ -154,22 +168,22 @@ def upload_file():
         pass
 
     if uploaded_file:
-        # add file to Pinecone
-        filename = secure_filename(uploaded_file.filename)
-        save_file_to_temp(uploaded_file)
-        filepath = os.path.join(Config.TEMP_FOLDER, filename)
-        # must have a unique file_id, even if the file is the same per user
-        save_file_to_Pinecone_metadata(
-            filepath, file_id, session_id, vectorstore)
-        os.remove(filepath)
+        # # add file to Pinecone
+        # filename = secure_filename(uploaded_file.filename)
+        # save_file_to_temp(uploaded_file)
+        # filepath = os.path.join(Config.TEMP_FOLDER, filename)
+        # # must have a unique file_id, even if the file is the same per user
+        # save_file_to_Pinecone_metadata(
+        #     filepath, file_id, session_id, vectorstore)
+        # os.remove(filepath)
 
-        # add file to docsource database
-        user_id = session.get('user_id', None)
-        description = 'File uploaded by user'  # might need to change
-        docsource = DocSource(user_id=user_id, description=description,
-                              filename=filename, session_id=session_id)
-        db.session.add(docsource)
-        db.session.commit()
+        # # add file to docsource database
+        # user_id = session.get('user_id', None)
+        # description = 'File uploaded by user'  # might need to change
+        # docsource = DocSource(user_id=user_id, description=description,
+        #                       filename=filename, session_id=session_id)
+        # db.session.add(docsource)
+        # db.session.commit()
 
         return jsonify('File uploaded and saved to the database.', 200)
     else:
@@ -180,10 +194,17 @@ def upload_file():
 def download_file(filename):
     print('lol')
     print(filename)
+    s3 = aws_session.client('s3')
+
     try:
-        return send_from_directory(directory='/temp', path='', filename=filename, as_attachment=True)
-    except FileNotFoundError:
-        print(FileNotFoundError)
+        # Get the file from S3
+        s3_object = s3.get_object(Bucket=bucket_name, Key=filename)
+        file_stream = io.BytesIO(s3_object['Body'].read())
+
+        # Send the file as a response
+        return send_file(file_stream, download_name=filename, as_attachment=True)
+    except s3.exceptions.NoSuchKey:
+        print('File not found')
         return jsonify({'error': 'File not found'}), 404
 
 

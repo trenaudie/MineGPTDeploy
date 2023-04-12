@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Global/AuthContext';
 import { setSecureCookie } from '../../utils/app/cookieTool'
+import { SERVER_ADDRESS } from '../Global/Constants';
 
 interface RegisterModalProps {
     onClose: () => void;
@@ -21,7 +22,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
         console.log(`authenticated = ${authenticated} before submission`)
         // Send the data to the backend
         try {
-            const response = await fetch('http://localhost:5000/register', {
+            const response = await fetch(`${SERVER_ADDRESS}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

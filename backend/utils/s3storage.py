@@ -15,6 +15,20 @@ session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID,
 bucket_name = 'minefiles'
 
 
+def delete_file_from_s3(file_key, bucket_name, session):
+    # Create an S3 client
+    s3_client = session.client('s3')
+
+    # Delete the file from the S3 bucket
+    try:
+        s3_client.delete_object(Bucket=bucket_name, Key=file_key)
+        print(f"Deleted file {file_key} from bucket {bucket_name}")
+    except ClientError as e:
+        print(f"Error deleting file {file_key} from bucket {bucket_name}: {e}")
+        return False
+    return True
+
+
 def upload_file(file_name, bucket, session: boto3.Session, object_name=None):
     """Upload a file to an S3 bucket
 
@@ -92,3 +106,4 @@ if __name__ == "__main__":
         print("group policies ", response)
 
         upload_Admin('backend/database', bucket_name, session)
+        delete_file_from_s3('Probabilité II.pdf', bucket_name, session)

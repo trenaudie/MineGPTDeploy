@@ -8,6 +8,7 @@ import { ErrorMessage } from '@/types/error';
 import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
 import { Key } from '@/components/Settings/Key'
+import { SERVER_ADDRESS } from '@/components/Global/Constants';
 import {
   OpenAIModel,
   OpenAIModelID,
@@ -144,7 +145,7 @@ const Home: React.FC<HomeProps> = ({
       const sessionId = getSecureCookie("sessionId")
 
       const controller = new AbortController();
-      const response = await fetch('http://localhost:5000/qa', {
+      const response = await fetch(`${SERVER_ADDRESS}/qa`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -796,8 +797,10 @@ const Home: React.FC<HomeProps> = ({
     const id = uuidv4();
     formData.append("id", id);
 
+    console.log("handleCreateSource called")
+
     try {
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch(`${SERVER_ADDRESS}/upload`, {
         method: "POST",
         body: formData,
         headers: {

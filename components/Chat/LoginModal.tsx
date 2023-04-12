@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthContext } from '../Global/AuthContext';
 import { setSecureCookie } from '../../utils/app/cookieTool'
+import { SERVER_ADDRESS } from "../Global/Constants";
 
 import { useContext } from 'react';
 import { useState } from 'react';
@@ -24,7 +25,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
 
 
         // Send the data to the backend
-        fetch('http://localhost:5000/login', {
+        fetch(`${SERVER_ADDRESS}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,35 +34,35 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                 email: email,
                 password: password,
             }),
-            
+
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('An error occurred, please try again');
-            }
-        })
-        .then(data => {
-            if (data.status === 'authenticated') {
-                // Handle successful login (e.g., set user state, redirect, etc.)
-                handleLogin();
-                setSecureCookie("sessionId", data.sessionId);
-                console.log(`inside login modal: sessionId is set to ${data.sessionId}`);
-                onClose(); // Close the LoginModal
-            } else if (data.status === 'incorrect authentification') {
-                // Handle incorrect login
-                setErrorMessage('Incorrect password or Username');
-            } else {
-                // Handle other errors (e.g., show a generic error message)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('An error occurred, please try again');
+                }
+            })
+            .then(data => {
+                if (data.status === 'authenticated') {
+                    // Handle successful login (e.g., set user state, redirect, etc.)
+                    handleLogin();
+                    setSecureCookie("sessionId", data.sessionId);
+                    console.log(`inside login modal: sessionId is set to ${data.sessionId}`);
+                    onClose(); // Close the LoginModal
+                } else if (data.status === 'incorrect authentification') {
+                    // Handle incorrect login
+                    setErrorMessage('Incorrect password or Username');
+                } else {
+                    // Handle other errors (e.g., show a generic error message)
+                    setErrorMessage('An error occurred, please try again');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
                 setErrorMessage('An error occurred, please try again');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            setErrorMessage('An error occurred, please try again');
-        });
-        
+            });
+
     };
 
     return (
