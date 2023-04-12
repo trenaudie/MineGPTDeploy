@@ -52,7 +52,7 @@ Session(app)
 # CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 CORS(app, resources={
     r"/*": {
-        "origins": "http://localhost:3000",  # You can specify the allowed origins here
+        "origins": "*",  # You can specify the allowed origins here
     }
 }, supports_credentials=True)
 
@@ -102,7 +102,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             session['user_id'] = new_user.id
-            return jsonify(status='registration successful!'), 200
+            return jsonify(status='registration successful!', sessionId=session['user_id']), 200
         except:
             return jsonify(status='you can only register once'), 400
     else:
@@ -118,9 +118,9 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if user and check_password_hash(user.password, password):
-        session['user_id'] = user.id
+        session['user_id'] = user.id 
         # Session handling here
-        return jsonify(status='authenticated', sessionId=session['user_id']), 200
+        return jsonify(status='authenticated', sessionId=session['user_id']), 200 #session id is fixed to user_id, must change later 
     return jsonify(status='incorrect authentification'), 400
 
 
@@ -133,9 +133,11 @@ def logout():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+    print(f"inside upload_file received request {request}")
     uploaded_file = request.files['document']
     file_id = request.form['id']
     auth_header = request.headers.get('Authorization')
+    print(f"inside upload_file with auth_header {auth_header}")
     if auth_header and auth_header.startswith('Bearer '):
         session_id = auth_header[7:]
         # printUSers
@@ -206,6 +208,7 @@ def answerQuestion():
         with redirect_stdout_to_logger(logger):
             result = ask_question(question, vectorstore,
                                   chain, chat_history, session_id)
+            print("qa result is", result)
 
         # Combine the `processed_text
         # ` and `page_content` JSON objects into a single dictionary
@@ -216,6 +219,13 @@ def answerQuestion():
         # Log the full traceback of the exception
         print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
+
+@app.route('/delete_vector', methods=['POST'])
+def delete_vector():
+    print(f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
+
+    # delete vector from Pinecone database 
+    # vectorstore._index.delete(filter = {'sid': request.headers.get('Authorization')})
 
 
 if __name__ == '__main__':

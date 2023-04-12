@@ -24,24 +24,30 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
 
 
         // Send the data to the backend
-        try {
-            const response = await fetch('http://localhost:5000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                }),
-            });
-
-            const data = await response.json();
-
-            if (response.ok && data.status === 'authenticated') {
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+            
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('An error occurred, please try again');
+            }
+        })
+        .then(data => {
+            if (data.status === 'authenticated') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
-                handleLogin()
-                setSecureCookie("sessionId", data.get("sessionId"))
+                handleLogin();
+                setSecureCookie("sessionId", data.sessionId);
+                console.log(`inside login modal: sessionId is set to ${data.sessionId}`);
                 onClose(); // Close the LoginModal
             } else if (data.status === 'incorrect authentification') {
                 // Handle incorrect login
@@ -50,10 +56,12 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                 // Handle other errors (e.g., show a generic error message)
                 setErrorMessage('An error occurred, please try again');
             }
-        } catch (error) {
-            console.error('Fetch error:', error);
+        })
+        .catch(error => {
+            console.error('Error:', error);
             setErrorMessage('An error occurred, please try again');
-        }
+        });
+        
     };
 
     return (
