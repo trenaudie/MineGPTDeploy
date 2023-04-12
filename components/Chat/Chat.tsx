@@ -92,7 +92,6 @@ export const Chat: FC<Props> = memo(
       }
     }, [autoScrollEnabled]);
 
-    console.log('Chat component, authenticated:', authenticated);
 
     const handleLoginClick = () => {
       setShowLoginModal(true);

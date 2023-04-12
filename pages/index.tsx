@@ -776,6 +776,7 @@ const Home: React.FC<HomeProps> = ({
   const handleCreateDocsource = async (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event)
     const file = event.target.files && event.target.files[0];
+    const sessionId = getSecureCookie("sessionId");
 
     if (!file) {
       console.error("No file selected");
@@ -792,6 +793,10 @@ const Home: React.FC<HomeProps> = ({
       const response = await fetch("http://localhost:5000/upload", {
         method: "POST",
         body: formData,
+        headers: {
+          'Authorization': `Bearer ${sessionId}`
+        },
+        credentials: 'include',
       });
 
       if (!response.ok) {
