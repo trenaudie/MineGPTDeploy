@@ -47,12 +47,19 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
         new_inputs = inputs.copy()
         new_inputs["question"] = new_question
         new_inputs["chat_history"] = chat_history_str
-        answer, _ = self.combine_docs_chain.combine_docs(docs, **new_inputs)
+        self.combine_docs_chain.return_intermediate_steps = True
+        answer, extradict = self.combine_docs_chain.combine_docs(docs, **new_inputs)
         print("answer", answer)
-        if self.return_source_documents:
+        print('extradict intermediate steps: ', extradict['intermediate_steps'])
+        NotRelevantAnswer =  all("no relevant text" in text.lower() for text in extradict['intermediate_steps'])
+        if NotRelevantAnswer:
+            print('setting return source documents to false')
+            self.return_source_documents = False
+            docs= []
+        try: 
             return {self.output_key: answer, "source_documents": docs}
-        else:
-            return {self.output_key: answer}
+        except ValueError:
+            return {self.output_key: answer, "source_documents": docs}
 
     def __call__(
         self, inputs: dict, filter: dict = None, return_only_outputs: bool = False
@@ -86,7 +93,10 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
             self.callback_manager.on_chain_error(e, verbose=self.verbose)
             raise e
         self.callback_manager.on_chain_end(outputs, verbose=self.verbose)
-        return self.prep_outputs(inputs, outputs, return_only_outputs)
+        try:
+            return self.prep_outputs(inputs, outputs, return_only_outputs)
+        except ValueError:
+            return outputs
 
 
 def createchain_with_filter(vectorstore):
