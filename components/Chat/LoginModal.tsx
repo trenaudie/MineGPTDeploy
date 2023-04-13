@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthContext } from '../Global/AuthContext';
 import { setSecureCookie } from '../../utils/app/cookieTool'
+import { SERVER_ADDRESS } from "../Global/Constants";
 
 import { useContext } from 'react';
 import { useState } from 'react';
@@ -24,7 +25,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
 
 
         // Send the data to the backend
-        fetch('http://localhost:5000/login', {
+        fetch(`${SERVER_ADDRESS}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,13 +56,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
             } else {
                 // Handle other errors (e.g., show a generic error message)
                 setErrorMessage('An error occurred, please try again');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            setErrorMessage('An error occurred, please try again');
-        });
-        
+    }});
+
     };
 
     return (

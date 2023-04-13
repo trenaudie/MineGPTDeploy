@@ -6,6 +6,7 @@ import {
   IconUser,
   IconRobot,
 } from '@tabler/icons-react';
+import FileDownload from '../Global/FileDownload';
 import { useTranslation } from 'next-i18next';
 import { FC, memo, useEffect, useRef, useState } from 'react';
 import rehypeMathjax from 'rehype-mathjax';
@@ -225,9 +226,12 @@ export const ChatMessage: FC<Props> = memo(
                 </MemoizedReactMarkdown>
 
                 {message.role === 'assistant' && message.source && (
-                  <div className="mt-2 text-sm text-gray-500 italic">
-                    Source: {message.content}
-                  </div>
+                  <>
+                    <div className="mt-2 text-sm text-gray-500 italic">
+                      Source:
+                    </div>
+                    <FileDownload fileName={message.title} displayText={message.title} />
+                  </>
                 )}
               </>
             )}

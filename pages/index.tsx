@@ -8,6 +8,7 @@ import { ErrorMessage } from '@/types/error';
 import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
 import { Key } from '@/components/Settings/Key'
+import { SERVER_ADDRESS } from '@/components/Global/Constants';
 import {
   OpenAIModel,
   OpenAIModelID,
@@ -143,7 +144,7 @@ const Home: React.FC<HomeProps> = ({
 
 
       const controller = new AbortController();
-      const response = await fetch('http://localhost:5000/qa', {
+      const response = await fetch(`${SERVER_ADDRESS}/qa`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -163,7 +164,10 @@ const Home: React.FC<HomeProps> = ({
       }
       console.log('Backend correct')
 
-      const data = response.body;
+      const data = await response.json();
+
+      const sources = data.sources
+      const answer = data.answer
 
       if (!data) {
         setLoading(false);
@@ -172,15 +176,19 @@ const Home: React.FC<HomeProps> = ({
         return;
       }
 
-      const { content, source } = await response.json();
-
       const updatedMessages: Message[] = [
         ...updatedConversation.messages,
-        { role: 'assistant', content: content, source: false },
+        { role: 'assistant', content: answer, title: 'answer', source: false },
       ];
 
-      if (source) {
-        updatedMessages.push({ role: 'assistant', content: source, source: true });
+      if (sources) {
+        for (const item of sources) {
+          const filename = item.filename
+          const text = item.text
+          // We added a title to the message to include the filename
+          console.log("added source")
+          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true });
+        }
       }
 
 
@@ -792,7 +800,7 @@ const Home: React.FC<HomeProps> = ({
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch(`${SERVER_ADDRESS}/upload`, {
         method: "POST",
         body: formData,
         headers: {

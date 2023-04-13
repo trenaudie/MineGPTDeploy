@@ -9,12 +9,12 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
 import pinecone
-
+import boto3
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
-from flask import Flask, request, render_template, jsonify, redirect, session, url_for
+from flask import Flask, request, render_template, jsonify, redirect, session, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_session import Session
@@ -59,6 +59,17 @@ app.secret_key = app.config['SECRET_KEY']
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
     3  # expired sessions are deleted after 3 hr
 
+
+# AWS CONFIG
+# ----------------------------------------------------------------------------
+aws_session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID,
+                            aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY,
+                            )
+bucket_name = 'minefiles'
+# ----------------------------------------------------------------------------
+
+# SQL Config
+# ----------------------------------------------------------------------------
 db = SQLAlchemy(app)
 Session(app)
 # CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
@@ -90,6 +101,7 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     docsources = db.relationship('DocSource', backref='user', lazy=True)
+# ----------------------------------------------------------------------------
 
 
 chat_history = []
@@ -128,7 +140,7 @@ def login():
     password = data.get('password')
 
     user = User.query.filter_by(email=email).first()
-   
+
     if user and check_password_hash(user.password, password):
         expires_delta = timedelta(hours=3)  # Change this to your desired duration
         access_token = create_access_token(identity=user.id,expires_delta=expires_delta)
@@ -190,6 +202,24 @@ def upload_file():
         return 'No file was uploaded.', 400
 
 
+@app.route('/download/<path:filename>', methods=['GET'])
+def download_file(filename):
+    print('lol')
+    print(filename)
+    s3 = aws_session.client('s3')
+
+    try:
+        # Get the file from S3
+        s3_object = s3.get_object(Bucket=bucket_name, Key=filename)
+        file_stream = io.BytesIO(s3_object['Body'].read())
+
+        # Send the file as a response
+        return send_file(file_stream, download_name=filename, as_attachment=True)
+    except s3.exceptions.NoSuchKey:
+        print('File not found')
+        return jsonify({'error': 'File not found'}), 404
+
+
 @app.route('/qa', methods=['POST'])
 @jwt_required()
 def answerQuestion():
@@ -219,7 +249,6 @@ def answerQuestion():
 
         # Combine the `processed_text
         # ` and `page_content` JSON objects into a single dictionary
-        print(result)
         return jsonify(result)
 
     except Exception as e:
@@ -227,11 +256,13 @@ def answerQuestion():
         print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
 
+
 @app.route('/delete_vector', methods=['POST'])
 def delete_vector():
-    print(f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
+    print(
+        f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
 
-    # delete vector from Pinecone database 
+    # delete vector from Pinecone database
     # vectorstore._index.delete(filter = {'sid': request.headers.get('Authorization')})
 
 
