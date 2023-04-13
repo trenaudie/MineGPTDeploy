@@ -204,6 +204,7 @@ def upload_file():
 
 
 @app.route('/download/<path:filename>', methods=['GET'])
+@jwt_required()
 def download_file(filename):
     print('lol')
     print(filename)
@@ -261,6 +262,7 @@ def answerQuestion():
 
 
 @app.route('/delete_vector', methods=['POST'])
+@jwt_required()
 def delete_vector():
     print(
         f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
