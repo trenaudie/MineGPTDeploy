@@ -35,8 +35,6 @@ from config import Config
 from utils.getchain import createchain_with_filter
 
 
-
-
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
 
@@ -54,7 +52,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
-app.config['JWT_SECRET_KEY'] = 'guiguisecretkey' 
+app.config['JWT_SECRET_KEY'] = 'guiguisecretkey'
 app.secret_key = app.config['SECRET_KEY']
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * 3  # expired sessions are deleted after 3 hr
 app.config['JWT_TOKEN_LOCATION'] = ['headers'] #disables jwt caching
@@ -77,7 +75,7 @@ CORS(app, resources={
     r"/*": {
         "origins": "*",  # You can specify the allowed origins here
     }
-}, supports_credentials= True)
+}, supports_credentials=True)
 jwt = JWTManager(app)
 
 
@@ -124,8 +122,10 @@ def register():
             new_user = User(email=email, password=password)
             db.session.add(new_user)
             db.session.commit()
-            expires_delta = timedelta(hours=3)  # Change this to your desired duration
-            access_token = create_access_token(identity=new_user.id, expires_delta=expires_delta)
+            # Change this to your desired duration
+            expires_delta = timedelta(hours=3)
+            access_token = create_access_token(
+                identity=new_user.id, expires_delta=expires_delta)
             return jsonify(status='registration successful!', access_token=access_token), 200
         except:
             return jsonify(status='you can only register once'), 400
@@ -142,11 +142,14 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if user and check_password_hash(user.password, password):
-        expires_delta = timedelta(hours=3)  # Change this to your desired duration
-        access_token = create_access_token(identity=user.id,expires_delta=expires_delta)
+        # Change this to your desired duration
+        expires_delta = timedelta(hours=3)
+        access_token = create_access_token(
+            identity=user.id, expires_delta=expires_delta)
         # Session handling here
 
-        return jsonify(status='authenticated', access_token=access_token), 200 #session id is fixed to user_id, must change later 
+        # session id is fixed to user_id, must change later
+        return jsonify(status='authenticated', access_token=access_token), 200
     return jsonify(status='incorrect authentification'), 400
 
 
@@ -164,18 +167,16 @@ def upload_file():
     print(f"inside upload_file received request {request}")
     uploaded_file = request.files['document']
     file_id = request.form['file_id']
-    user_id = get_jwt_identity() #resolves the JWT token to get the user_id
+    user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
     print(f"inside upload_file with user_id {user_id}")
-
 
     if not user_id:
         raise ValueError('user id is missing')
         return 'Session ID is missing or incorrect.', 400
 
- 
     logger.info(
         f"uploading file {uploaded_file.filename} with id {file_id} for user {user_id} ")
-    
+
     if uploaded_file:
         with redirect_stdout_to_logger(logger):
             # add file to Pinecone
@@ -185,7 +186,7 @@ def upload_file():
 
             logger.info(
                 f"uploading file_name_only {filename_only} with id {file_id} for user jwt= {user_id} ")
-            
+
             save_file_to_Pinecone_metadata(
                 filepath, file_id, user_id, vectorstore)
             os.remove(filepath)
@@ -193,7 +194,7 @@ def upload_file():
             # add file to docsource database
             description = 'File uploaded by user'  # might need to change
             docsource = DocSource(user_id=user_id, description=description,
-                                filename=filename_only)
+                                  filename=filename_only)
             db.session.add(docsource)
             db.session.commit()
 
