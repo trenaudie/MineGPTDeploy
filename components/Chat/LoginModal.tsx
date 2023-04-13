@@ -33,7 +33,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                 email: email,
                 password: password,
             }),
-            
+
         })
         .then(response => {
             if (response.ok) {
@@ -46,8 +46,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
             if (data.status === 'authenticated') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
                 handleLogin();
-                setSecureCookie("sessionId", data.sessionId);
-                console.log(`inside login modal: sessionId is set to ${data.sessionId}`);
+                setSecureCookie("access_token", data.access_token);
+                console.log(`inside login modal: access_token is set to ${data.access_token}`);
                 onClose(); // Close the LoginModal
             } else if (data.status === 'incorrect authentification') {
                 // Handle incorrect login

@@ -27,7 +27,6 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
   };
 
   const { authenticated, handleLogout } = useContext(AuthContext);
-  console.log("Authenticated", authenticated)
 
   const handleUpdateKey = (newKey: string) => {
     onApiKeyChange(newKey.trim());

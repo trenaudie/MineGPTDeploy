@@ -47,9 +47,14 @@ def saveChunksToStore(search_index, contentdict):
 def save_file_to_temp(uploaded_file: FileStorage):
     """Prototype function that simply saves one file to the temp directory
     Returns: filepath : str eg. 'temp/abc.pdf"""
+    cwd = os.getcwd()
     filename = secure_filename(uploaded_file.filename)
-    filepath = os.path.join('temp', filename)
+    if os.path.exists(os.path.join(cwd, 'backend/temp')):
+        filepath = os.path.join('backend/temp', filename)
+    elif os.path.exists(os.path.join(cwd, 'temp')):
+        filepath = os.path.join('temp', filename)
     uploaded_file.save(filepath)
+    return filepath
 
 
 
@@ -86,7 +91,7 @@ def save_file_to_Pinecone(filepath:str, vectorstore:Pinecone):
 
 
     
-def save_file_to_Pinecone_metadata(filepath:str, file_id:str,  sid : str, vectorstore:Pinecone):
+def save_file_to_Pinecone_metadata(filepath:str, file_id:str,  user_id : str, vectorstore:Pinecone):
     """Reads one file from the temp directory (pdf and .txt files supported) then splits and saves to Pinecone"""
 
     filename, file_extension = os.path.splitext(filepath)
@@ -106,7 +111,8 @@ def save_file_to_Pinecone_metadata(filepath:str, file_id:str,  sid : str, vector
 
     #write from filepath, content to Pinecone
     chunksize = 512 #important parameter
-    document_whole = {"page_content":content, "metadata":{'source':filepath, 'sid':sid, 'file_id':file_id}}
+    metadata = {'source':filename, 'user_id':user_id, 'file_id':file_id}
+    document_whole = {"page_content":content, "metadata":metadata}
     source_chunks = []
 
     splitter = CharacterTextSplitter(separator=" ", chunk_size=chunksize, chunk_overlap=0)
@@ -114,12 +120,12 @@ def save_file_to_Pinecone_metadata(filepath:str, file_id:str,  sid : str, vector
         chunkid = file_id + "_" + str(i)
         embedded_chunk = vectorstore._embedding_function(chunk)
         metadata_chunk =  document_whole.get('metadata').copy() 
-        metadata_chunk['text'] = chunk
+        metadata_chunk['text'] = chunk #adding text to metadata
         newdoc = (chunkid, embedded_chunk, metadata_chunk) #(i,emb, metadata)
         source_chunks.append(newdoc)
 
 
     indexes = vectorstore._index.upsert(vectors = source_chunks, namespace='')
 
-    logger.info(f"added to vectorstore {len(source_chunks)} chunks from {filepath}")
-    logger.info(f"vectorstore stats: {vectorstore._index.describe_index_stats()}")
+    print(f"added to vectorstore {len(source_chunks)} chunks from {filepath} with metadata ex. {metadata_chunk}")
+    print(f"vectorstore stats: {vectorstore._index.describe_index_stats()}")
