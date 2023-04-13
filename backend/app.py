@@ -24,6 +24,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+from jwt.exceptions import InvalidTokenError
 
 
 from utils.logger import logger
@@ -148,19 +149,25 @@ def register():
     else:
         return jsonify('failed registration. You must have a @etu.minesparis.psl.eu address'), 400
 
-# Endpoint to check if a valid JWT is present in the request cookies
 @app.route('/auto-login', methods=['POST'])
+@jwt_required()
 def auto_login():
-    access_token = request.cookies.get('access_token')
-    if access_token:
-        try:
-            current_user = get_jwt_identity()
-            uploaded_documents = DocSource.query.filter_by(user_id=current_user).all()
-            filenames = [doc.to_dict() for doc in uploaded_documents]
-            return jsonify(status='authenticated', uploaded_docs=filenames), 200
-        except:
-            pass
-    return jsonify(status='not authenticated'), 401
+    # not really useful
+    # authorization_header = request.headers.get('Authorization', None)
+    # if authorization_header:
+    #     parts = authorization_header.split()
+    #     if parts[0].lower() == 'bearer' and len(parts) == 2:
+    #         access_token = parts[1]
+    try:
+        user_id = get_jwt_identity()
+        uploaded_documents = DocSource.query.filter_by(user_id=user_id).all()
+        filenames = [doc.to_dict() for doc in uploaded_documents]
+        return jsonify(status='authenticated', uploaded_docs=filenames), 200
+    except InvalidTokenError:
+        return jsonify(status='not authenticated'), 201
+    except Exception as e:
+        raise(f"inside auto-login, error: {e}")
+        return jsonify(status='internal server error'), 500
 
 
 @app.route('/login', methods=['POST'])
@@ -211,7 +218,7 @@ def upload_file():
         return 'Session ID is missing or incorrect.', 400
 
     logger.info(
-        f"uploading file {uploaded_file.filename} with id {file_id} for user {user_id} ")
+        f"uploading file {uploaded_file.filename} with   id {file_id} for user {user_id} ")
 
     if uploaded_file:
         with redirect_stdout_to_logger(logger):

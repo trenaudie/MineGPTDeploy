@@ -988,41 +988,44 @@ const Home: React.FC<HomeProps> = ({
   }
 
   const handleLogin = (data: LoginData) => {
+    //this function handles user login and auto-login
     console.log('handleLogin called');
     setAuthenticated(true);
-    setSecureCookie("access_token", data.access_token);
-    console.log(`inside login modal: access_token is set to ${data.access_token}`);
+    console.log(`inside handle login: access_token is set to, docs unpacked are ${data.uploaded_docs}, authenticated is set to ${authenticated}`);
     unpackFiles(data.uploaded_docs)
   };
 
-  // Check for existing JWT token on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    fetch('/auto-login', {
-      method: 'POST',
-      credentials: 'include'  // Required to send cookies with the request
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Network response was not ok');
-      }
-    })
-    .then(data => {
-      if (data.status === 'authenticated') {
-        // JWT token is valid - display user's uploaded documents
-        console.log(data.uploaded_docs);
-        setAuthenticated(true);
-        
-      } else {
-        // JWT token is invalid or not present - redirect to login page
-        window.location.replace('/login');
-      }
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  });
+  // useEffect(() => {
+  //   const access_token = getSecureCookie("access_token");
+  //   if(access_token && access_token!= "undefined"){
+  //     fetch(`${SERVER_ADDRESS}/auto-login`, {
+  //       method: 'POST',
+  //       headers:{
+  //         'Authorization': `Bearer ${access_token}`
+  //       }
+  //     })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //     })
+  //     .then(data => {
+  //       if (data.status === 'authenticated') {
+  //         // JWT token is valid - display user's uploaded documents
+  //         handleLogin(data);
+  //       } else {
+  //         throw new Error('User is not authenticated');
+  //         window.location.replace('/login');
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  //   }
+    
+  // }, [])
 
 
 
