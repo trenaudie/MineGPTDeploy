@@ -377,3 +377,40 @@ SOURCES: ./temp/sample5.txt
 =======
 >>>>>>> refs/remotes/origin/main
 >>>>>>> 6c4cc7c499fc64bd46618a6bd9409438264b9632
+2023-04-13 15:56:40,004 - INFO - question: tanguy t'es nul  for user with user_id 2 
+2023-04-13 15:56:40,004 - INFO - calling conversational retrieval chain
+2023-04-13 15:56:40,005 - INFO - question
+2023-04-13 15:56:40,005 - INFO - tanguy t'es nul
+2023-04-13 15:56:40,005 - INFO - chat_history_str
+2023-04-13 15:56:40,005 - INFO - []
+2023-04-13 15:57:42,406 - INFO - answer
+2023-04-13 15:57:42,406 - INFO - I don't know. 
+SOURCES: N/A
+2023-04-13 15:57:42,406 - INFO - extradict intermediate steps:
+2023-04-13 15:57:42,407 - INFO - ['There is no relevant text to answer this question.', 'No relevant text.', 'N/A - This is not a relevant question.', 'There is no relevant text to answer this question.']
+2023-04-13 15:57:42,407 - INFO - qa result is
+2023-04-13 15:57:42,407 - INFO - {'answer': "I don't know. \nSOURCES: N/A", 'sources': [{'filename': './temp/sample5.txt', 'text': "il incarne Joe Garrelli, un électricien complotiste à WNYX, une station de radio à New York10. En 2002, il fait une apparition dans l'épisode Une tête bien faite de Voilà ! en tant que Chris, le petit ami de Maya Gallo11. En 2011, Rogan joue dans le film Zookeeper. Il joue son propre rôle dans Prof poids lourd, un autre film d'action et comédie avec Kevin James sorti en 201212.\n\nCommentateur\n\nRogan pendant la diffusion de l'Ultimate Fight Night 7.\nRogan commence à travailler pour UFC en 1997, tout d'abord"}, {'filename': './temp/sample5.txt', 'text': "Il commence le judo à 20 ans et reçoit une ceinture bleue après un an d'entraînement4. En 1996, il apprend le Jiu-jitsu brésilien avec Carlson Gracie à Hollywood (Californie)3. Il a une ceinture noire en « 10th Planet Jiu-Jitsu » de Eddie Bravo, un style de jiu-jitsu brésilien sans kimono5, et est ceinture noire en Jiu-jitsu brésilien avec kimono sous Jean Jacques Machado6. Il est aussi un kickboxer, détenant un palmarès amateur de deux victoires et une défaite3.\n\nStand-up\nRogan commence le stand-up en 1989"}, {'filename': './temp/sample5.txt', 'text': "et enregistre plusieurs spectacles, dont Shiny Happy Jihad, Joe Rogan: Talking Monkeys in Space, and Joe Rogan Live from the Tabernacle7.\n\nEn 2007, Rogan confronte le comédien Carlos Mencia sur scène, l'accusant de voler les blagues d'autres comédiens8.\n\nActeur\nEn 1994, Rogan partage la vedette de la série Harball produit par Fox. Il joue le rôle de Frank Valente, jeune star égocentrique d'une équipe professionnelle fictive de baseball9. De 1995 à 1999, il partage l'affiche de la série comique Infos FM où"}, {'filename': './temp/sample5.txt', 'text': "décision de Neil Young. Peu après, la chanteuse canadienne Joni Mitchell décide à son tour de quitter Spotify pour la même raison23.\n\nEn février 2022, Conspiracy Watch note que, sur le podcast, les attaques chimiques commises par le régime de Bachar el-Assad en Syrie ont été qualifiées de « gros mensonge » sur la base de fausses informations à propos de l’Organisation pour l'interdiction des armes chimiques (OIAC) diffusées par WikiLeaks et The Grayzone24.\n\nVie privée\nEn 2007, Rogan et sa petite amie ont"}]}
+2023-04-13 15:59:56,657 - INFO - uploading file chapter4.pdf with id c33d7f68-937e-403a-bb12-22f1ed055d68 for user 3 
+2023-04-13 15:59:56,714 - INFO - uploading file_name_only chapter4.pdf with id c33d7f68-937e-403a-bb12-22f1ed055d68 for user jwt= 3 
+2023-04-13 16:00:09,015 - INFO - added to vectorstore 30 chunks from backend/temp\chapter4.pdf with metadata ex. {'source': 'backend/temp\\chapter4', 'user_id': 3, 'file_id': 'c33d7f68-937e-403a-bb12-22f1ed055d68', 'text': 'voxels in the 2D or 3D image.U-Net for CT reconstruction\nU-Net is also used as one of the default architectures in CT reconstruction\n44\n K. H. Jin, M. T. McCann, E. Froustey , and M. Unser, Deep convolutional neural network for inverse problems in imaging, IEEE TIP , 2017.'}
+2023-04-13 16:00:09,421 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 220},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 231}
+2023-04-13 16:15:28,817 - INFO - uploading file chapterA.pdf with id 48d8d226-62fe-41cf-bd1d-556b2a8426e9 for user 3 
+2023-04-13 16:15:28,833 - INFO - uploading file_name_only chapterA.pdf with id 48d8d226-62fe-41cf-bd1d-556b2a8426e9 for user jwt= 3 
+2023-04-13 16:15:33,333 - INFO - added to vectorstore 11 chunks from backend/temp\chapterA.pdf with metadata ex. {'source': 'backend/temp\\chapterA', 'user_id': 3, 'file_id': '48d8d226-62fe-41cf-bd1d-556b2a8426e9', 'text': 'reparameterization trick (RT) or the pathwise derivative (PD) relies on the key insight.\nGradient computation:\nRT is less general than log -derivative trick, but it usually produces stochastic gradients with \nlower variance.\n16\nReparameterization trick example\nConsider the same example as before\nGradient computation:\nThese stochastic gradients have smaller variance and thus SGD is faster.\n17\nReparameterization trick example\n18'}
+2023-04-13 16:15:33,427 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 231},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 242}
+2023-04-13 16:16:03,241 - INFO - uploading file chapter5.pdf with id 89a2cdba-c59c-4d48-acb8-c63a5df6e1dd for user 3 
+2023-04-13 16:16:03,365 - INFO - uploading file_name_only chapter5.pdf with id 89a2cdba-c59c-4d48-acb8-c63a5df6e1dd for user jwt= 3 
+2023-04-13 16:16:28,555 - INFO - added to vectorstore 79 chunks from backend/temp\chapter5.pdf with metadata ex. {'source': 'backend/temp\\chapter5', 'user_id': 3, 'file_id': '89a2cdba-c59c-4d48-acb8-c63a5df6e1dd', 'text': 'learning techniques:\n•Autoencoders\n•Flow models\n•Variational autoencoders\n•GANs\nUnsupervised learning techniques, particularly generative models, tend to utilize more math \nin their formulations. This chapter provided a brief and gentle introduction to the \nmathematical foundations of these formulations.\n140'}
+2023-04-13 16:16:28,836 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 310},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 321}
