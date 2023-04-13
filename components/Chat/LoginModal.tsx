@@ -23,18 +23,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
     }
 
 
-    const unpackFiles = (files: []) => {
-        const fetchedFiles: Docsource[] = []
-
-        for (const file of files) {
-            fetchedFiles.push(file as Docsource)
-            console.log(file)
-        }
-
-        uploadDocs(fetchedFiles)
-
-    }
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
@@ -69,9 +57,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                 if (data.status === 'authenticated') {
                     // Handle successful login (e.g., set user state, redirect, etc.)
                     handleLogin();
-                    setSecureCookie("access_token", data.access_token);
-                    console.log(`inside login modal: access_token is set to ${data.access_token}`);
-                    unpackFiles(data.uploaded_docs)
                     onClose(); // Close the LoginModal
                 } else if (data.status === 'incorrect authentification') {
                     // Handle incorrect login

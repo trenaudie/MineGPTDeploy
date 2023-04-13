@@ -9,6 +9,7 @@ import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
 import { Key } from '@/components/Settings/Key'
 import { SERVER_ADDRESS } from '@/components/Global/Constants';
+import { setSecureCookie } from '../utils/app/cookieTool'
 import {
   OpenAIModel,
   OpenAIModelID,
@@ -52,6 +53,7 @@ import ReactDOM from 'react-dom';
 import { AuthContext } from '@/components/Global/AuthContext';
 import { Session } from 'inspector';
 import { getSecureCookie } from '@/utils/app/cookieTool';
+import { LoginData } from '@/types/loginData';
 
 
 interface HomeProps {
@@ -170,10 +172,10 @@ const Home: React.FC<HomeProps> = ({
 
       const sources = data.sources
       let answer = data.answer;
-      if (sources.length == 0){
+      if (sources.length == 0) {
         answer = answer.replace(/SOURCES\s*:.*$/, '');
       }
-      
+
       //parse answer 
 
       if (!data) {
@@ -964,6 +966,17 @@ const Home: React.FC<HomeProps> = ({
   }, [serverSideApiKeyIsSet]);
 
 
+  const unpackFiles = (files: []) => {
+    const fetchedFiles: Docsource[] = []
+
+    for (const file of files) {
+      fetchedFiles.push(file as Docsource)
+      console.log(file)
+    }
+
+    uploadDocs(fetchedFiles)
+
+  }
   const handleLogout = () => {
     console.log('handleLogout called');
     setAuthenticated(false);
@@ -974,9 +987,12 @@ const Home: React.FC<HomeProps> = ({
     setDocs(docs)
   }
 
-  const handleLogin = () => {
+  const handleLogin = (data: LoginData) => {
     console.log('handleLogin called');
     setAuthenticated(true);
+    setSecureCookie("access_token", data.access_token);
+    console.log(`inside login modal: access_token is set to ${data.access_token}`);
+    unpackFiles(data.uploaded_docs)
   };
 
   // Check for existing JWT token on page load
@@ -1140,7 +1156,7 @@ const Home: React.FC<HomeProps> = ({
                   <IconArrowBarLeft />
                 </button>
               )}
-              {showDocsourcebar ? (
+              {showDocsourcebar && authenticated ? (
                 <div>
                   <Docsourcebar
                     folders={folders.filter((folder) => folder.type === 'docsource')}
