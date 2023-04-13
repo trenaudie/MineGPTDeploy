@@ -108,6 +108,7 @@ const Home: React.FC<HomeProps> = ({
     deleteCount = 0,
     plugin: Plugin | null = null,
   ) => {
+    const access_token = getSecureCookie("access_token");
     if (selectedConversation) {
       let updatedConversation: Conversation;
 
@@ -148,7 +149,7 @@ const Home: React.FC<HomeProps> = ({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${sessionId}'
+          'Authorization': `Bearer ${access_token}`
         },
         signal: controller.signal,
         credentials: "include",
@@ -167,7 +168,12 @@ const Home: React.FC<HomeProps> = ({
       const data = await response.json();
 
       const sources = data.sources
-      const answer = data.answer
+      let answer = data.answer;
+      if (sources.length == 0){
+        answer = answer.replace(/SOURCES\s*:.*$/, '');
+      }
+      
+      //parse answer 
 
       if (!data) {
         setLoading(false);

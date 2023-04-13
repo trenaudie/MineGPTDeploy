@@ -56,8 +56,8 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
 app.config['JWT_SECRET_KEY'] = 'guiguisecretkey' 
 app.secret_key = app.config['SECRET_KEY']
-app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
-    3  # expired sessions are deleted after 3 hr
+app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * 3  # expired sessions are deleted after 3 hr
+app.config['JWT_TOKEN_LOCATION'] = ['headers'] #disables jwt caching
 
 
 # AWS CONFIG
@@ -239,12 +239,14 @@ def answerQuestion():
 
         auth_header = request.headers.get('Authorization')
         if auth_header and auth_header.startswith('Bearer '):
-            session_id = auth_header[7:]
+            user_id = get_jwt_identity()
+            print(auth_header)
+        
         logger.info(
-            f"question: {question} for user {session.get('user_id', None)} with sid {session_id} ")
+            f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
             result = ask_question(question, vectorstore,
-                                  chain, chat_history, session_id)
+                                  chain, chat_history, user_id)
             print("qa result is", result)
 
         # Combine the `processed_text
