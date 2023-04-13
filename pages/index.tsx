@@ -99,7 +99,6 @@ const Home: React.FC<HomeProps> = ({
 
   // GLOBAL CONTEXT VARIABLE ----------------------------------
   const [authenticated, setAuthenticated] = useState(false);
-  const [docs, setDocs] = useState<Docsource[]>([])
 
   // REFS ----------------------------------------------
 
@@ -979,12 +978,13 @@ const Home: React.FC<HomeProps> = ({
   }
   const handleLogout = () => {
     console.log('handleLogout called');
-    setAuthenticated(false);
+    handleClearConversations(),
+      setAuthenticated(false);
     // Perform the logout actions here
   };
 
   const uploadDocs = (docs: Docsource[]) => {
-    setDocs(docs)
+    setDocsources(docs)
   }
 
   const handleLogin = (data: LoginData) => {
@@ -995,6 +995,27 @@ const Home: React.FC<HomeProps> = ({
     unpackFiles(data.uploaded_docs)
   };
 
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      handleLogout();
+      // Cancel the event as stated by the standard.
+      event.preventDefault();
+
+      // Send an asynchronous request to the server using the Fetch API
+      navigator.sendBeacon(`${SERVER_ADDRESS}/logout`);
+
+      // Chrome requires returnValue to be set.
+      event.returnValue = '';
+    };
+
+    // Attach the event listener
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // Detach the event listener on component unmount
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [handleLogout]);
 
 
   return (
@@ -1011,7 +1032,7 @@ const Home: React.FC<HomeProps> = ({
       <AuthContext.Provider
         value={{
           authenticated,
-          docs,
+          docsources,
           handleLogout,
           handleLogin,
           uploadDocs,

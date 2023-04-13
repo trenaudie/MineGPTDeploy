@@ -43,13 +43,12 @@ export const Docsourcebar: FC<Props> = ({
   const [filteredDocsources, setFilteredDocsources] = useState<Docsource[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { docs } = useContext(AuthContext);
+  const { docsources } = useContext(AuthContext);
 
   const handleUpdateDocsource = (docsource: Docsource) => {
     onUpdateDocsource(docsource);
     setSearchTerm('');
   };
-
 
 
   const handleDeleteDocsource = (docsource: Docsource) => {
@@ -60,7 +59,7 @@ export const Docsourcebar: FC<Props> = ({
   useEffect(() => {
     if (searchTerm) {
       setFilteredDocsources(
-        docs.filter((docsource) => {
+        docsources.filter((docsource) => {
           const searchable =
             docsource.name.toLowerCase() +
             ' ' +
@@ -69,9 +68,9 @@ export const Docsourcebar: FC<Props> = ({
         }),
       );
     } else {
-      setFilteredDocsources(docs);
+      setFilteredDocsources(docsources);
     }
-  }, [searchTerm, docs]);
+  }, [searchTerm, docsources]);
 
 
   return (
@@ -109,7 +108,7 @@ export const Docsourcebar: FC<Props> = ({
         </button>
       </div>
 
-      {docs.length > 1 && (
+      {docsources.length > 1 && (
         <Search
           placeholder={t('Search docsources...') || ''}
           searchTerm={searchTerm}
@@ -119,7 +118,7 @@ export const Docsourcebar: FC<Props> = ({
 
       <div className="flex-grow overflow-auto">
 
-        {docs.length > 0 ? (
+        {docsources.length > 0 ? (
           <div className="pt-2">
             <Docsources
               docsources={filteredDocsources.filter((docsource) => !docsource.folderId)}

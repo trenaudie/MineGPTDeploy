@@ -54,8 +54,9 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
 app.config['JWT_SECRET_KEY'] = 'guiguisecretkey'
 app.secret_key = app.config['SECRET_KEY']
-app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * 3  # expired sessions are deleted after 3 hr
-app.config['JWT_TOKEN_LOCATION'] = ['headers'] #disables jwt caching
+app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
+    3  # expired sessions are deleted after 3 hr
+app.config['JWT_TOKEN_LOCATION'] = ['headers']  # disables jwt caching
 
 
 # AWS CONFIG
@@ -154,7 +155,7 @@ def login():
         uploaded_documents = DocSource.query.filter_by(user_id=user.id).all()
         filenames = [doc.to_dict() for doc in uploaded_documents]
 
-        print(filenames)
+        print(access_token)
         # session id is fixed to user_id, must change later
         return jsonify(status='authenticated', access_token=access_token, uploaded_docs=filenames), 200
     return jsonify(status='incorrect authentification')
@@ -178,8 +179,8 @@ def upload_file():
     print(f"inside upload_file with user_id {user_id}")
 
     if not user_id:
-        raise ValueError('user id is missing')
         return 'Session ID is missing or incorrect.', 400
+        raise ValueError('user id is missing')
 
     logger.info(
         f"uploading file {uploaded_file.filename} with id {file_id} for user {user_id} ")
@@ -213,17 +214,21 @@ def upload_file():
 @app.route('/download/<path:filename>', methods=['GET'])
 @jwt_required()
 def download_file(filename):
-    print('lol')
-    print(filename)
-    s3 = aws_session.client('s3')
+    auth_header = request.headers.get('Authorization')
+    if auth_header and auth_header.startswith('Bearer '):
+        user_id = get_jwt_identity()
+    print(auth_header)
+    if not user_id:
+        return 'Session ID is missing or incorrect.', 400
 
     try:
         # Get the file from S3
         s3_object = s3.get_object(Bucket=bucket_name, Key=filename)
         file_stream = io.BytesIO(s3_object['Body'].read())
-
+        s3 = aws_session.client('s3')
         # Send the file as a response
         return send_file(file_stream, download_name=filename, as_attachment=True)
+
     except s3.exceptions.NoSuchKey:
         print('File not found')
         return jsonify({'error': 'File not found'}), 404
@@ -250,7 +255,7 @@ def answerQuestion():
         if auth_header and auth_header.startswith('Bearer '):
             user_id = get_jwt_identity()
             print(auth_header)
-        
+
         logger.info(
             f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
