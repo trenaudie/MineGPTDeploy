@@ -144,3 +144,7 @@
 2023-04-12 20:39:35,224 - INFO - uploading file chapter1.pdf with id d55a6912-f8fe-417d-96c9-2a53ce209900 for user None with sid 3 
 2023-04-12 20:40:18,422 - INFO - uploading file chapter4.pdf with id 3ee2b334-ee84-4189-b7b4-3c4ecea4f168 for user None with sid 3 
 2023-04-12 20:44:26,916 - INFO - uploading file chapter3.pdf with id bbd655e7-fc83-4f17-8e02-71eb0b6e5e62 for user None with sid 3 
+2023-04-13 12:46:40,892 - INFO - uploading file chapter1.pdf with id 1e733399-b92a-47e0-8136-6493cbe9dd18 for user None with sid 3 
+2023-04-13 12:46:54,142 - INFO - uploading file chapter3.pdf with id 61a4dada-b891-462f-96df-378f1b02aef4 for user None with sid 3 
+2023-04-13 12:47:00,564 - INFO - uploading file chapter2.pdf with id 260be34d-114f-4bf3-8e87-d45642c913f9 for user None with sid 3 
+2023-04-13 12:57:50,954 - INFO - uploading file chapter3.pdf with id a6f20926-5e7e-4dfc-bc8a-cfecd1293e6f for user None with sid 3 

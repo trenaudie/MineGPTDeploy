@@ -157,6 +157,7 @@ def upload_file():
         session_id = auth_header[7:]
         # printUSers
     else:
+
         # Handle the case when the session ID is missing or incorrect
         return 'Session ID is missing or incorrect.', 400
 
