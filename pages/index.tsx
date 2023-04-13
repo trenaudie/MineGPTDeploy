@@ -97,6 +97,7 @@ const Home: React.FC<HomeProps> = ({
 
   // GLOBAL CONTEXT VARIABLE ----------------------------------
   const [authenticated, setAuthenticated] = useState(false);
+  const [docs, setDocs] = useState<Docsource[]>([])
 
   // REFS ----------------------------------------------
 
@@ -963,6 +964,10 @@ const Home: React.FC<HomeProps> = ({
     // Perform the logout actions here
   };
 
+  const uploadDocs = (docs: Docsource[]) => {
+    setDocs(docs)
+  }
+
   const handleLogin = () => {
     console.log('handleLogin called');
     setAuthenticated(true);
@@ -984,8 +989,10 @@ const Home: React.FC<HomeProps> = ({
       <AuthContext.Provider
         value={{
           authenticated,
+          docs,
           handleLogout,
           handleLogin,
+          uploadDocs,
         }}>
         {selectedConversation && (
           <main
@@ -1101,7 +1108,6 @@ const Home: React.FC<HomeProps> = ({
               {showDocsourcebar ? (
                 <div>
                   <Docsourcebar
-                    docsources={docsources}
                     folders={folders.filter((folder) => folder.type === 'docsource')}
                     onCreateDocsource={handleCreateDocsource}
                     onUpdateDocsource={handleUpdateDocsource}

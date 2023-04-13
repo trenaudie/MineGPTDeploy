@@ -11,12 +11,12 @@ import { PromptFolders } from '../Folders/Prompt/PromptFolders';
 import { Search } from '../Sidebar/Search';
 import { DocsourcebarSettings } from './DocsourcebarSettings';
 import { Docsources } from './Docsources';
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { ChangeEvent } from 'react';
+import { AuthContext } from '../Global/AuthContext';
 
 
 interface Props {
-  docsources: Docsource[];
   folders: Folder[]; //might remove
   onCreateFolder: (name: string) => void;
   onDeleteFolder: (folderId: string) => void;
@@ -30,7 +30,6 @@ interface Props {
 
 export const Docsourcebar: FC<Props> = ({
   folders,
-  docsources,
   onCreateFolder,
   onDeleteFolder,
   onUpdateFolder,
@@ -41,8 +40,10 @@ export const Docsourcebar: FC<Props> = ({
   //add translation
   const { t } = useTranslation('docsourcebar');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [filteredDocsources, setFilteredDocsources] = useState<Docsource[]>(docsources);
+  const [filteredDocsources, setFilteredDocsources] = useState<Docsource[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const { docs } = useContext(AuthContext);
 
   const handleUpdateDocsource = (docsource: Docsource) => {
     onUpdateDocsource(docsource);
@@ -59,7 +60,7 @@ export const Docsourcebar: FC<Props> = ({
   useEffect(() => {
     if (searchTerm) {
       setFilteredDocsources(
-        docsources.filter((docsource) => {
+        docs.filter((docsource) => {
           const searchable =
             docsource.name.toLowerCase() +
             ' ' +
@@ -68,9 +69,9 @@ export const Docsourcebar: FC<Props> = ({
         }),
       );
     } else {
-      setFilteredDocsources(docsources);
+      setFilteredDocsources(docs);
     }
-  }, [searchTerm, docsources]);
+  }, [searchTerm, docs]);
 
 
   return (
@@ -108,7 +109,7 @@ export const Docsourcebar: FC<Props> = ({
         </button>
       </div>
 
-      {docsources.length > 1 && (
+      {docs.length > 1 && (
         <Search
           placeholder={t('Search docsources...') || ''}
           searchTerm={searchTerm}
@@ -118,7 +119,7 @@ export const Docsourcebar: FC<Props> = ({
 
       <div className="flex-grow overflow-auto">
 
-        {docsources.length > 0 ? (
+        {docs.length > 0 ? (
           <div className="pt-2">
             <Docsources
               docsources={filteredDocsources.filter((docsource) => !docsource.folderId)}

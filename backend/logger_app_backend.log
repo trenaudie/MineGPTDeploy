@@ -252,3 +252,13 @@
                 '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
  'total_vector_count': 66}
 >>>>>>> 0c40bc92172baf9f0ee11d0b57a34bcfb6819248
+2023-04-13 15:41:53,255 - INFO - uploading file chapter1.pdf with id 9d903852-d838-496a-9c6c-e8bdb67d5f63 for user 3 
+2023-04-13 15:41:53,255 - INFO - uploading file_name_only chapter1.pdf with id 9d903852-d838-496a-9c6c-e8bdb67d5f63 for user jwt= 3 
+2023-04-13 15:42:47,722 - INFO - uploading file chapter3.pdf with id 9b02936c-ce81-4a19-8941-8901ea721510 for user 3 
+2023-04-13 15:42:47,862 - INFO - uploading file_name_only chapter3.pdf with id 9b02936c-ce81-4a19-8941-8901ea721510 for user jwt= 3 
+2023-04-13 15:43:52,036 - INFO - added to vectorstore 119 chunks from backend/temp\chapter3.pdf with metadata ex. {'source': 'backend/temp\\chapter3', 'user_id': 3, 'file_id': '9b02936c-ce81-4a19-8941-8901ea721510', 'text': 'vision shifted from “feature \nengineering” to “network engineering”. Loosely speaking, the transition was from what to \nlearn to learn to how to learn.\nA natural progression may be to continue studying the more recent neural network \narchitectures, beyond the 2017 SENet . However, we will stop here to move on to learning\nabout other machine learning tasks.\n136'}
+2023-04-13 15:43:52,130 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 190},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 201}

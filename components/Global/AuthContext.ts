@@ -1,16 +1,21 @@
 import React, { createContext, useContext, useState } from 'react';
+import { Docsource } from '@/types/docsource';
 
 interface AuthState {
+  docs: Docsource[],
   authenticated: boolean;
   handleLogout: () => void;
   handleLogin: () => void;
+  uploadDocs: (docs: Docsource[]) => void;
 }
 
 const initialState: AuthState = {
   authenticated: false,
+  docs: [],
   handleLogout: () => { },
-  handleLogin: () => { }
-};
+  handleLogin: () => { },
+  uploadDocs: (docs: Docsource[]) => { },
+}
 
 export const AuthContext = createContext<AuthState>(initialState);
 

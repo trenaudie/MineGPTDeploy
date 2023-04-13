@@ -2,7 +2,7 @@ import React from 'react';
 import { AuthContext } from '../Global/AuthContext';
 import { setSecureCookie } from '../../utils/app/cookieTool'
 import { SERVER_ADDRESS } from "../Global/Constants";
-
+import { Docsource } from '@/types/docsource';
 import { useContext } from 'react';
 import { useState } from 'react';
 
@@ -15,7 +15,25 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
     // ... rest of the LoginModal component code ...
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
-    const { authenticated, handleLogout, handleLogin } = useContext(AuthContext);
+    const [authError, setAuthError] = useState<string>('');
+    const { authenticated, handleLogout, handleLogin, uploadDocs } = useContext(AuthContext);
+
+    const onFailedAuthentification = () => {
+        setAuthError('Password or Email address incorrect');
+    }
+
+
+    const unpackFiles = (files: []) => {
+        const fetchedFiles: Docsource[] = []
+
+        for (const file of files) {
+            fetchedFiles.push(file as Docsource)
+            console.log(file)
+        }
+
+        uploadDocs(fetchedFiles)
+
+    }
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -23,6 +41,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
 
+        console.log("Sending data:", { email, password });
 
         // Send the data to the backend
         fetch(`${SERVER_ADDRESS}/login`, {
@@ -36,27 +55,32 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
             }),
 
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('An error occurred, please try again');
-            }
-        })
-        .then(data => {
-            if (data.status === 'authenticated') {
-                // Handle successful login (e.g., set user state, redirect, etc.)
-                handleLogin();
-                setSecureCookie("access_token", data.access_token);
-                console.log(`inside login modal: access_token is set to ${data.access_token}`);
-                onClose(); // Close the LoginModal
-            } else if (data.status === 'incorrect authentification') {
-                // Handle incorrect login
-                setErrorMessage('Incorrect password or Username');
-            } else {
-                // Handle other errors (e.g., show a generic error message)
-                setErrorMessage('An error occurred, please try again');
-    }});
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    onFailedAuthentification()
+                    throw new Error('An error occurred, please try again');
+                }
+            })
+            .then(data => {
+                console.log("Received data:", data);
+
+                if (data.status === 'authenticated') {
+                    // Handle successful login (e.g., set user state, redirect, etc.)
+                    handleLogin();
+                    setSecureCookie("access_token", data.access_token);
+                    console.log(`inside login modal: access_token is set to ${data.access_token}`);
+                    unpackFiles(data.uploaded_docs)
+                    onClose(); // Close the LoginModal
+                } else if (data.status === 'incorrect authentification') {
+                    // Handle incorrect login
+                    setErrorMessage('Incorrect password or Username');
+                } else {
+                    // Handle other errors (e.g., show a generic error message)
+                    setErrorMessage('An error occurred, please try again');
+                }
+            });
 
     };
 
@@ -74,6 +98,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                                 {errorMessage}
                             </div>
+                        )}
+                        {authError && (
+                            <p className="text-red-500 text-sm mt-2 mb-4">{authError}</p>
                         )}
                         <input
                             className="border w-full py-2 px-3 mb-4 rounded text-black"

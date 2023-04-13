@@ -2,7 +2,7 @@ import os
 import json
 import traceback
 from datetime import timedelta
-
+import io
 
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
@@ -88,9 +88,10 @@ class DocSource(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
             'description': self.description,
-            'filename': self.filename,
+            'name': self.filename,
+            'source': '',
+            'folderId': None,
         }
 
 
@@ -136,21 +137,27 @@ def register():
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
+    print("Received data:", data)
     email = data.get('email')
     password = data.get('password')
 
     user = User.query.filter_by(email=email).first()
+    print("User:", user)  # Add this line
 
     if user and check_password_hash(user.password, password):
+        print("Password check passed")  # Add this line
         # Change this to your desired duration
         expires_delta = timedelta(hours=3)
         access_token = create_access_token(
             identity=user.id, expires_delta=expires_delta)
         # Session handling here
+        uploaded_documents = DocSource.query.filter_by(user_id=user.id).all()
+        filenames = [doc.to_dict() for doc in uploaded_documents]
 
+        print(filenames)
         # session id is fixed to user_id, must change later
-        return jsonify(status='authenticated', access_token=access_token), 200
-    return jsonify(status='incorrect authentification'), 400
+        return jsonify(status='authenticated', access_token=access_token, uploaded_docs=filenames), 200
+    return jsonify(status='incorrect authentification')
 
 
 @app.route('/logout', methods=['POST'])
