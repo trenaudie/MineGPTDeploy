@@ -39,7 +39,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
                 setSecureCookie("access_token", data.access_token);
-                handleLogin()
+                handleLogin(data);
                 onClose(); // Close the LoginModal
             } else if (data.status === 'failed registration') {
                 // Handle incorrect login
