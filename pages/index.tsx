@@ -988,10 +988,10 @@ const Home: React.FC<HomeProps> = ({
   }
 
   const handleLogin = (data: LoginData) => {
+    //this function handles user login and auto-login
     console.log('handleLogin called');
     setAuthenticated(true);
-    setSecureCookie("access_token", data.access_token);
-    console.log(`inside login modal: access_token is set to ${data.access_token}`);
+    console.log(`inside handle login: access_token is set to, docs unpacked are ${data.uploaded_docs}, authenticated is set to ${authenticated}`);
     unpackFiles(data.uploaded_docs)
   };
 

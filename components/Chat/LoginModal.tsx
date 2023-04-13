@@ -57,6 +57,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                 if (data.status === 'authenticated') {
                     // Handle successful login (e.g., set user state, redirect, etc.)
                     handleLogin(data);
+                    setSecureCookie("access_token", data.access_token);
                     onClose(); // Close the LoginModal
                 } else if (data.status === 'incorrect authentification') {
                     // Handle incorrect login

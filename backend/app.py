@@ -24,6 +24,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+from jwt.exceptions import InvalidTokenError
 
 
 from utils.logger import logger
@@ -107,6 +108,21 @@ class User(db.Model):
 chat_history = []
 chain = createchain_with_filter(vectorstore)
 
+# Set up a store for revoked tokens
+revoked_token_store = set()
+
+# Add a callback function to check if a token has been revoked
+# @jwt.token_in_blacklist_loader
+# def check_if_token_is_revoked(decoded_token):
+#     jti = decoded_token['jti']
+#     return jti in revoked_token_store
+##then inside logout 
+#     jti = get_raw_jwt()['jti']
+    # revoked_token_store.add(jti)
+    # unset_jwt_cookies()
+
+
+
 
 @app.route('/')
 def index():
@@ -134,13 +150,33 @@ def register():
     else:
         return jsonify('failed registration. You must have a @etu.minesparis.psl.eu address'), 400
 
+@app.route('/auto-login', methods=['POST'])
+@jwt_required()
+def auto_login():
+    # not really useful
+    # authorization_header = request.headers.get('Authorization', None)
+    # if authorization_header:
+    #     parts = authorization_header.split()
+    #     if parts[0].lower() == 'bearer' and len(parts) == 2:
+    #         access_token = parts[1]
+    try:
+        user_id = get_jwt_identity()
+        uploaded_documents = DocSource.query.filter_by(user_id=user_id).all()
+        filenames = [doc.to_dict() for doc in uploaded_documents]
+        return jsonify(status='authenticated', uploaded_docs=filenames), 200
+    except InvalidTokenError:
+        return jsonify(status='not authenticated'), 201
+    except Exception as e:
+        raise(f"inside auto-login, error: {e}")
+        return jsonify(status='internal server error'), 500
+
 
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
     print("Received data:", data)
-    email = data.get('email')
-    password = data.get('password')
+    email = data.get('email', None)
+    password = data.get('password', None)
 
     user = User.query.filter_by(email=email).first()
     print("User:", user)  # Add this line
@@ -183,7 +219,7 @@ def upload_file():
         raise ValueError('user id is missing')
 
     logger.info(
-        f"uploading file {uploaded_file.filename} with id {file_id} for user {user_id} ")
+        f"uploading file {uploaded_file.filename} with   id {file_id} for user {user_id} ")
 
     if uploaded_file:
         with redirect_stdout_to_logger(logger):

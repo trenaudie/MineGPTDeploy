@@ -29,6 +29,9 @@ import { ModelSelect } from './ModelSelect';
 import { SystemPrompt } from './SystemPrompt';
 //import useContext 
 import { useContext } from 'react';
+import { getSecureCookie } from '@/utils/app/cookieTool';
+import { SERVER_ADDRESS } from '../Global/Constants';
+
 
 interface Props {
   conversation: Conversation;
@@ -81,7 +84,7 @@ export const Chat: FC<Props> = memo(
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
-    const { authenticated } = useContext(AuthContext);
+    const { authenticated, handleLogin,handleLogout } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
 
 
@@ -94,9 +97,41 @@ export const Chat: FC<Props> = memo(
 
 
     const handleLoginClick = () => {
+      const access_token = getSecureCookie('access_token');
+      console.log(`inside handleLoginClick`)
+      if (access_token) {
+        //send fetch request for auto-login
+        //if successful, set authenticated to true
+        //if not, show login modal
+        fetch(`${SERVER_ADDRESS}/auto-login`, {
+          method: 'POST',
+          headers:{
+            'Authorization': `Bearer ${access_token}`
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .then(data => {
+          if (data.status === 'authenticated') {
+            // JWT token is valid - display user's uploaded documents
+            handleLogin(data);
+          } else {
+            throw new Error('User is not authenticated');
+            window.location.replace('/login');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      
       setShowLoginModal(true);
       // Add your login functionality here
-    };
+    };}
 
 
     const closeLoginModal = () => {
