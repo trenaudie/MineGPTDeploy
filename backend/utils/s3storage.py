@@ -9,9 +9,7 @@ sys.path.append('/Users/tanguyrenaudie/Documents/TanguyML/MineGPT/backend')
 
 
 # Create a new session using the access key and secret access key of the new user
-session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID,
-                        aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY,
-                        )
+session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID, aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY)
 bucket_name = 'minefiles'
 
 
@@ -71,7 +69,6 @@ if __name__ == "__main__":
 
         # Print the user's username
         print('Current user:', user['User'])
-
         print('current region ', session.region_name)
 
         # Get the policies attached to the user

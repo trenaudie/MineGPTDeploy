@@ -29,6 +29,7 @@
  'sources': [{'filename': './temp/sample5.txt', 'text': "Joseph James Rogan, dit Joe Rogan, né le 11 août 1967 à Newark (New Jersey), est un spécialiste d'arts martiaux, acteur, écrivain et animateur de radio américain.\n\nCélèbre commentateur de l'Ultimate Fighting Championship (UFC) depuis 1997, il anime parallèlement The Joe Rogan Experience, un talk-show dans lequel il échange avec des invités provenant de milieux différents. Il est également humoriste depuis 1989 et se produit toujours en tournées régulières à ce jour. Rogan fait partie de la distribution de"}, {'filename': './temp/sample5.txt', 'text': "Stanhope remplacent Jimmy Kimmel et Adam Carolla en tant que co-présentateurs de The Man Show15. Son dernier travail d'animateur est pour sa propre série intitulée Joe Rogan Questions Everything, dont six épisodes sont diffusés en 2013.\n\nPodcast\nEn 2015, le podcast The Joe Rogan Experience est écouté par plus de 11 millions de personnes chaque mois16.\n\nEn 2021 son podcast est le plus écouté sur la plateforme Spotify devant les conférences TED quotidiennes17,18. Selon le quotidien The New York Times, son"},
   {'filename': './temp/sample5.txt', 'text': "il incarne Joe Garrelli, un électricien complotiste à WNYX, une station de radio à New York10. En 2002, il fait une apparition dans l'épisode Une tête bien faite de Voilà ! en tant que Chris, le petit ami de Maya Gallo11. En 2011, Rogan joue dans le film Zookeeper. Il joue son propre rôle dans Prof poids lourd, un autre film d'action et comédie avec Kevin James sorti en 201212.\n\nCommentateur\n\nRogan pendant la diffusion de l'Ultimate Fight Night 7.\nRogan commence à travailler pour UFC en 1997, tout d'abord"}, {'filename': './temp/sample5.txt', 'text': "et enregistre plusieurs spectacles, dont Shiny Happy Jihad, Joe Rogan: Talking Monkeys in Space, and Joe Rogan Live from the Tabernacle7.\n\nEn 2007, Rogan confronte le comédien Carlos Mencia sur scène, l'accusant de voler les blagues d'autres comédiens8.\n\nActeur\nEn 1994, Rogan partage la vedette de la série Harball produit par Fox. Il joue le rôle de Frank Valente, jeune star égocentrique d'une équipe professionnelle fictive de baseball9. De 1995 à 1999, il partage l'affiche de la série comique Infos FM où"}]}
 2023-04-12 14:28:53,207 - INFO - uploading file Improving the performance of deep learning language models.pdf with id 80199211-9a27-4224-9c36-fcf5bc115c58 for user None with sid undefined 
+<<<<<<< HEAD
 2023-04-12 16:00:15,734 - INFO - Current user:
 2023-04-12 16:00:15,734 - INFO - {'Path': '/', 'UserName': 'mineGPT', 'UserId': 'AIDAXX6HNL4Z4BEFHIV7E', 'Arn': 'arn:aws:iam::532457283379:user/mineGPT', 'CreateDate': datetime.datetime(2023, 4, 12, 5, 39, 37, tzinfo=tzutc()), 'Tags': [{'Key': 'AKIAXX6HNL4ZSGVN6A4C', 'Value': 'access key for minegpt app'}]}
 2023-04-12 16:00:15,734 - INFO - current region
@@ -148,3 +149,106 @@
 2023-04-13 12:46:54,142 - INFO - uploading file chapter3.pdf with id 61a4dada-b891-462f-96df-378f1b02aef4 for user None with sid 3 
 2023-04-13 12:47:00,564 - INFO - uploading file chapter2.pdf with id 260be34d-114f-4bf3-8e87-d45642c913f9 for user None with sid 3 
 2023-04-13 12:57:50,954 - INFO - uploading file chapter3.pdf with id a6f20926-5e7e-4dfc-bc8a-cfecd1293e6f for user None with sid 3 
+=======
+2023-04-12 14:30:27,417 - INFO - uploading file FGDR_0102816439_20230209.pdf with id f0099d15-825d-4189-a80f-d803f97b7399 for user None with sid undefined 
+2023-04-12 14:31:03,982 - INFO - uploading file Improving the performance of deep learning language models.pdf with id da93dd61-a5f0-47d4-94cf-3bfd8970aff3 for user None with sid undefined 
+2023-04-12 14:46:38,720 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id e84b3e22-876f-47b9-b623-e1d3fc23990e for user None with sid undefined 
+2023-04-12 14:46:38,729 - INFO - uploading file_name_only 1622591267-Mandat_SEPA.pdf with id e84b3e22-876f-47b9-b623-e1d3fc23990e for user None with sid undefined 
+2023-04-12 14:47:41,749 - INFO - uploading file INFO_PREALABLE_0102816439_20230403.pdf with id d4061739-dfba-4fb5-a844-5b233b46e5a0 for user None with sid undefined 
+2023-04-12 14:47:41,751 - INFO - uploading file_name_only INFO_PREALABLE_0102816439_20230403.pdf with id d4061739-dfba-4fb5-a844-5b233b46e5a0 for user None with sid undefined 
+2023-04-12 14:47:45,579 - INFO - added to vectorstore 5 chunks from backend/temp/INFO_PREALABLE_0102816439_20230403.pdf
+2023-04-12 14:47:45,670 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 28},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 39}
+2023-04-12 14:51:03,563 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id 9593fff0-371c-4c6a-aa71-531f2887b292 for user None with sid undefined 
+2023-04-12 14:51:03,565 - INFO - uploading file_name_only 1622591267-Mandat_SEPA.pdf with id 9593fff0-371c-4c6a-aa71-531f2887b292 for user None with sid undefined 
+2023-04-12 14:51:06,146 - INFO - added to vectorstore 4 chunks from backend/temp/1622591267-Mandat_SEPA.pdf
+2023-04-12 14:51:06,236 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 32},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 43}
+2023-04-12 14:55:59,713 - INFO - uploading file Improving the performance of deep learning language models.pdf with id 67743348-865c-4292-af43-74fa5ed16d7c for user None with sid undefined 
+2023-04-12 14:55:59,717 - INFO - uploading file_name_only Improving_the_performance_of_deep_learning_language_models.pdf with id 67743348-865c-4292-af43-74fa5ed16d7c for user None with sid undefined 
+2023-04-12 14:56:03,485 - INFO - added to vectorstore 8 chunks from backend/temp/Improving_the_performance_of_deep_learning_language_models.pdf
+2023-04-12 14:56:03,574 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 40},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 51}
+2023-04-12 15:10:51,868 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id b032673e-fbcd-4673-b736-4170be3828e4 for user None with sid 1 
+2023-04-12 15:10:51,871 - INFO - uploading file_name_only 1622591267-Mandat_SEPA.pdf with id b032673e-fbcd-4673-b736-4170be3828e4 for user None with sid 1 
+2023-04-12 15:10:56,828 - INFO - added to vectorstore 4 chunks from backend/temp/1622591267-Mandat_SEPA.pdf
+2023-04-12 15:10:57,199 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 44},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 55}
+2023-04-12 15:46:14,464 - INFO - uploading file FGDR_0102816439_20230209.pdf with id f38fb907-887e-4dde-b6ae-b4f43ef36526 for user None with sid 1 
+2023-04-13 08:55:55,834 - INFO - uploading file article15_2.txt with id 12345 for user 2 
+2023-04-13 08:55:55,835 - INFO - uploading file_name_only article15_2.txt with id 12345 for user jwt= 2 
+2023-04-13 08:56:00,008 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt
+2023-04-13 08:56:00,103 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 44},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 55}
+2023-04-13 09:07:07,822 - INFO - uploading file article15_2.txt with id 12345 for user 2 
+2023-04-13 09:07:07,823 - INFO - uploading file_name_only article15_2.txt with id 12345 for user jwt= 2 
+2023-04-13 09:07:18,540 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt
+2023-04-13 09:07:18,860 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 44},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 55}
+2023-04-13 09:22:01,321 - INFO - uploading file article15_2.txt with id 12345 for user 2 
+2023-04-13 09:22:01,322 - INFO - uploading file_name_only article15_2.txt with id 12345 for user jwt= 2 
+2023-04-13 09:22:05,440 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt
+2023-04-13 09:22:05,718 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 44},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 55}
+2023-04-13 09:22:17,395 - INFO - uploading file article15_2.txt with id 12345 for user 2 
+2023-04-13 09:22:17,396 - INFO - uploading file_name_only article15_2.txt with id 12345 for user jwt= 2 
+2023-04-13 09:22:21,210 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt
+2023-04-13 09:22:21,299 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 44},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 55}
+2023-04-13 09:25:42,887 - INFO - uploading file article15_2.txt with id 12345 for user 1 
+2023-04-13 09:25:42,888 - INFO - uploading file_name_only article15_2.txt with id 12345 for user jwt= 1 
+2023-04-13 09:25:47,090 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt
+2023-04-13 09:25:47,175 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 44},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 55}
+2023-04-13 09:29:42,148 - INFO - uploading file article15_2.txt with id 123456 for user 1 
+2023-04-13 09:29:42,149 - INFO - uploading file_name_only article15_2.txt with id 123456 for user jwt= 1 
+2023-04-13 09:29:45,888 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt
+2023-04-13 09:29:45,972 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 55},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 66}
+2023-04-13 09:33:26,668 - INFO - uploading file article15_2.txt with id 123456 for user 1 
+2023-04-13 09:33:26,669 - INFO - uploading file_name_only article15_2.txt with id 123456 for user jwt= 1 
+2023-04-13 09:33:29,638 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt with metadata ex. {'source': 'backend/temp/article15_2', 'user_id': 1, 'file_id': '123456', 'text': 'proceed.'}
+2023-04-13 09:33:29,726 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 55},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 66}
+2023-04-13 09:50:19,021 - INFO - uploading file article15_2.txt with id 123456 for user 1 
+2023-04-13 09:50:19,022 - INFO - uploading file_name_only article15_2.txt with id 123456 for user jwt= 1 
+2023-04-13 09:50:23,536 - INFO - added to vectorstore 11 chunks from backend/temp/article15_2.txt with metadata ex. {'source': 'backend/temp/article15_2', 'user_id': 1, 'file_id': '123456', 'text': 'proceed.'}
+2023-04-13 09:50:23,621 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 55},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 66}
+>>>>>>> 0c40bc92172baf9f0ee11d0b57a34bcfb6819248

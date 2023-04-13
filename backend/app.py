@@ -1,15 +1,15 @@
 import os
 import json
 import traceback
-import boto3
-import io
+from datetime import timedelta
+
 
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
 import pinecone
-
+import boto3
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
@@ -20,6 +20,12 @@ from flask_cors import CORS
 from flask_session import Session
 
 
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
+
+
 from utils.logger import logger
 from utils.ingest import save_file_to_Pinecone, save_file_to_temp, save_file_to_Pinecone_metadata
 from utils.redirect_stdout import redirect_stdout_to_logger
@@ -27,6 +33,7 @@ from utils.ask_question import ask_question
 from utils.printUsers import printUsers
 from config import Config
 from utils.getchain import createchain_with_filter
+
 
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
@@ -45,6 +52,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
+app.config['JWT_SECRET_KEY'] = 'guiguisecretkey'
 app.secret_key = app.config['SECRET_KEY']
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
     3  # expired sessions are deleted after 3 hr
@@ -68,6 +76,7 @@ CORS(app, resources={
         "origins": "*",  # You can specify the allowed origins here
     }
 }, supports_credentials=True)
+jwt = JWTManager(app)
 
 
 class DocSource(db.Model):
@@ -75,7 +84,6 @@ class DocSource(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     filename = db.Column(db.String(100), nullable=False)
-    session_id = db.Column(db.String(100), nullable=False)
 
     def to_dict(self):
         return {
@@ -83,7 +91,6 @@ class DocSource(db.Model):
             'user_id': self.user_id,
             'description': self.description,
             'filename': self.filename,
-            'session_id': self.session_id
         }
 
 
@@ -115,8 +122,11 @@ def register():
             new_user = User(email=email, password=password)
             db.session.add(new_user)
             db.session.commit()
-            session['user_id'] = new_user.id
-            return jsonify(status='registration successful!', sessionId=session['user_id']), 200
+            # Change this to your desired duration
+            expires_delta = timedelta(hours=3)
+            access_token = create_access_token(
+                identity=new_user.id, expires_delta=expires_delta)
+            return jsonify(status='registration successful!', access_token=access_token), 200
         except:
             return jsonify(status='you can only register once'), 400
     else:
@@ -132,61 +142,63 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if user and check_password_hash(user.password, password):
-        session['user_id'] = user.id
+        # Change this to your desired duration
+        expires_delta = timedelta(hours=3)
+        access_token = create_access_token(
+            identity=user.id, expires_delta=expires_delta)
         # Session handling here
+
         # session id is fixed to user_id, must change later
-        return jsonify(status='authenticated', sessionId=session['user_id']), 200
+        return jsonify(status='authenticated', access_token=access_token), 200
     return jsonify(status='incorrect authentification'), 400
 
 
 @app.route('/logout', methods=['POST'])
+@jwt_required()
 def logout():
-    session.pop('user_id', None)
+    user_id = get_jwt_identity()
     session.clear()
     return jsonify(status='logged out'), 200
 
 
 @app.route('/upload', methods=['POST'])
+@jwt_required()
 def upload_file():
     print(f"inside upload_file received request {request}")
     uploaded_file = request.files['document']
-    file_id = request.form['id']
-    auth_header = request.headers.get('Authorization')
-    print(f"inside upload_file with auth_header {auth_header}")
-    if auth_header and auth_header.startswith('Bearer '):
-        session_id = auth_header[7:]
-        # printUSers
-    else:
+    file_id = request.form['file_id']
+    user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
+    print(f"inside upload_file with user_id {user_id}")
 
-        # Handle the case when the session ID is missing or incorrect
+    if not user_id:
+        raise ValueError('user id is missing')
         return 'Session ID is missing or incorrect.', 400
 
     logger.info(
-        f"uploading file {uploaded_file.filename} with id {file_id} for user {session.get('user_id', None)} with sid {session_id} ")
-
-    if 'user_id' not in session:
-        # return 'User not logged in.', 401
-        pass
+        f"uploading file {uploaded_file.filename} with id {file_id} for user {user_id} ")
 
     if uploaded_file:
-        # # add file to Pinecone
-        # filename = secure_filename(uploaded_file.filename)
-        # save_file_to_temp(uploaded_file)
-        # filepath = os.path.join(Config.TEMP_FOLDER, filename)
-        # # must have a unique file_id, even if the file is the same per user
-        # save_file_to_Pinecone_metadata(
-        #     filepath, file_id, session_id, vectorstore)
-        # os.remove(filepath)
+        with redirect_stdout_to_logger(logger):
+            # add file to Pinecone
+            filepath = save_file_to_temp(uploaded_file)
+            filename_only = os.path.basename(filepath)
+            # must have a unique file_id, even if the file is the same per user
 
-        # # add file to docsource database
-        # user_id = session.get('user_id', None)
-        # description = 'File uploaded by user'  # might need to change
-        # docsource = DocSource(user_id=user_id, description=description,
-        #                       filename=filename, session_id=session_id)
-        # db.session.add(docsource)
-        # db.session.commit()
+            logger.info(
+                f"uploading file_name_only {filename_only} with id {file_id} for user jwt= {user_id} ")
 
-        return jsonify('File uploaded and saved to the database.', 200)
+            save_file_to_Pinecone_metadata(
+                filepath, file_id, user_id, vectorstore)
+            os.remove(filepath)
+
+            # add file to docsource database
+            description = 'File uploaded by user'  # might need to change
+            docsource = DocSource(user_id=user_id, description=description,
+                                  filename=filename_only)
+            db.session.add(docsource)
+            db.session.commit()
+
+            return jsonify('File uploaded and saved to the database.', 200)
     else:
         return 'No file was uploaded.', 400
 
@@ -210,6 +222,7 @@ def download_file(filename):
 
 
 @app.route('/qa', methods=['POST'])
+@jwt_required()
 def answerQuestion():
     """Question answering endpoint
     Returns:

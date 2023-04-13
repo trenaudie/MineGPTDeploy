@@ -20,16 +20,20 @@ def testnot():
     checkrequest('GET', '/not', 404, None)
 
 
-def testupload(session: requests.Session):
+def testupload(session: requests.Session, access_token :str):
 
     url = "http://localhost:5000/upload"
     with open('backend/testarticles/article15_2.txt', 'rb') as f:
         files = {
             "document":  f,
         }
-        data = {'id': 12345, 'session_id': session.cookies.get('session', None) }
-        print('inside testupload, session id: ', session.cookies.get('session', None))
-        response = session.post(url, data=data, files=files)
+        #session_id =  session.cookies.get('session', None) not useful with jwt
+        data = {'file_id': 123456}
+        headers = {
+            'Authorization': f'Bearer {access_token}'
+        }
+        print(f"inside testupload, access_token: {access_token}")
+        response = session.post(url, data=data, files=files, headers=headers)
         assert response.status_code == 200
 
 
@@ -38,13 +42,22 @@ def register_for_tests(email: str, password: str):
     headers = {'Content-type': 'application/json'}
     data = {'email': email,
             'password': password}
+    session = requests.Session()
+    response = session.post(url, headers=headers, data=json.dumps(data))
 
-    response = requests.post(url, headers=headers, data=json.dumps(data))
     print("-------------")
     print("Register test")
     print("-------------")
     print(f"Status Code: {response.status_code}")
     print(f"Response: {response.text}")
+
+    response_json = response.json()
+    status = response_json['status']
+    if not status == 'registration successful!':
+        raise Exception('Register failed')
+
+    access_token = response_json['access_token']
+    return session, access_token
 
 
 def login_for_tests(email: str, password: str):
@@ -55,12 +68,20 @@ def login_for_tests(email: str, password: str):
 
     session = requests.Session()
     response = session.post(url, headers=headers, data=json.dumps(data))
+
     print("-------------")
     print("Login test")
     print("-------------")
     print(f"Status Code: {response.status_code}")
     print(f"Response: {response.text}")
-    return session
+    response_json = response.json()
+    status = response_json['status']
+    if not status == 'authenticated':
+        raise Exception('Login failed')
+
+    access_token = response_json['access_token']
+
+    return session, access_token
 
 def logout_for_tests():
     url = "http://localhost:5000/logout"
@@ -114,12 +135,14 @@ def testquestion(session, question=None):
 bad_email,good_email,good_password,bad_password = 'guigui.jarry@gmail.com','guigui.jarry@etu.minesparis.psl.eu','guigui', 'broken_bitch'
 
 if __name__ == "__main__":
-    # register_for_tests(good_email,good_password)
-    logout_for_tests()
-    session = login_for_tests(good_email,good_password)
+    # session, access_token = register_for_tests(good_email,good_password)
+    session, access_token = login_for_tests(good_email,good_password)
 
-    sid = session.cookies.get('session')
-    print("sid", sid, id(sid))
-    testupload(session=session)
-    testquestion(session)
+    #sid is now useless
+    # sid = session.cookies.get('session')
+    # print("sid", sid, id(sid))
+
+
+    testupload(session, access_token)
+    # testquestion(session)
 

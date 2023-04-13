@@ -142,7 +142,6 @@ const Home: React.FC<HomeProps> = ({
         // Replace with the actual session_id value
       });
 
-      const sessionId = getSecureCookie("sessionId")
 
       const controller = new AbortController();
       const response = await fetch(`${SERVER_ADDRESS}/qa`, {
@@ -784,27 +783,28 @@ const Home: React.FC<HomeProps> = ({
   const handleCreateDocsource = async (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event)
     const file = event.target.files && event.target.files[0];
-    const sessionId = getSecureCookie("sessionId");
-
     if (!file) {
       console.error("No file selected");
       return;
     }
 
+    const user_id = getSecureCookie("access_token");
     const fileName = file.name;
     const formData = new FormData();
     formData.append("document", file);
-    const id = uuidv4();
-    formData.append("id", id);
-
-    console.log("handleCreateSource called")
-
+    const file_id = uuidv4();
+    formData.append("file_id", file_id);
+    console.log(`inside handleCreateDocsource with file id : ${file_id} and user_id: ${user_id}`)
+    if (!user_id) {
+      console.error("No user_id found");
+      return;
+    }
     try {
       const response = await fetch(`${SERVER_ADDRESS}/upload`, {
         method: "POST",
         body: formData,
         headers: {
-          'Authorization': `Bearer ${sessionId}`
+          'Authorization': `Bearer ${user_id}`
         },
         credentials: 'include',
       });
@@ -817,7 +817,7 @@ const Home: React.FC<HomeProps> = ({
       console.log("File upload successful");
 
       const newDocsource: Docsource = {
-        id: id, //useful for a common index between docsources
+        id: file_id, //useful for a common index between docsources
         name: `${fileName}`,
         description: '', //useful for filtering docsources
         source: '', //useful for displaying where the docsource came from
