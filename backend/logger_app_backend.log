@@ -377,3 +377,23 @@ SOURCES: ./temp/sample5.txt
 =======
 >>>>>>> refs/remotes/origin/main
 >>>>>>> 6c4cc7c499fc64bd46618a6bd9409438264b9632
+2023-04-13 16:04:46,074 - INFO - question: guigui is the best?  for user with user_id 4 
+2023-04-13 16:04:46,075 - INFO - calling conversational retrieval chain
+2023-04-13 16:04:46,076 - INFO - question
+2023-04-13 16:04:46,076 - INFO - guigui is the best?
+2023-04-13 16:04:46,076 - INFO - chat_history_str
+2023-04-13 16:04:46,076 - INFO - []
+2023-04-13 16:08:39,058 - INFO - question: hello there baby whats the weather is somalia for user with user_id 4 
+2023-04-13 16:08:39,060 - INFO - calling conversational retrieval chain
+2023-04-13 16:08:39,060 - INFO - question
+2023-04-13 16:08:39,060 - INFO - hello there baby whats the weather is somalia
+2023-04-13 16:08:39,060 - INFO - chat_history_str
+2023-04-13 16:08:39,060 - INFO - []
+2023-04-13 16:08:47,281 - INFO - answer
+2023-04-13 16:08:47,282 - INFO - I'm sorry, there is no relevant text to answer this question.
+SOURCES: ./temp/sample5.txt
+2023-04-13 16:08:47,282 - INFO - extradict intermediate steps:
+2023-04-13 16:08:47,282 - INFO - ['There is no relevant text to answer this question.', 'There is no relevant text to answer this question.', 'There is no relevant text to answer this question.', 'There is no relevant text to answer this question.']
+2023-04-13 16:08:47,282 - INFO - setting return source documents to false
+2023-04-13 16:08:47,283 - INFO - qa result is
+2023-04-13 16:08:47,283 - INFO - {'answer': "I'm sorry, there is no relevant text to answer this question.\nSOURCES: ./temp/sample5.txt", 'sources': []}

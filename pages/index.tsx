@@ -979,6 +979,35 @@ const Home: React.FC<HomeProps> = ({
     setAuthenticated(true);
   };
 
+  // Check for existing JWT token on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('/auto-login', {
+      method: 'POST',
+      credentials: 'include'  // Required to send cookies with the request
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    })
+    .then(data => {
+      if (data.status === 'authenticated') {
+        // JWT token is valid - display user's uploaded documents
+        console.log(data.uploaded_docs);
+        setAuthenticated(true);
+        
+      } else {
+        // JWT token is invalid or not present - redirect to login page
+        window.location.replace('/login');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  });
+
 
 
   return (
