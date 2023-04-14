@@ -51,7 +51,7 @@ vectorstore = Pinecone.from_existing_index(
     index_name, embedding=OpenAIEmbeddings())
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/tanguyrenaudie/Documents/TanguyML/MineGPTDeploy/users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = Config.PATH_ACCESS_SQL
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
@@ -199,56 +199,59 @@ def for_now():
     data = request.get_json()
     if not data or 'email' not in data:
         return jsonify(status='error', message='Invalid data'), 400
-    email = data.get('email')
-    confirmation_numbers[email] = 666666
-    print(666666)
-    print('email to dic', email)
+    email = str(data.get('email'))
+    print(email)
+    password = str(data.get('password'))
+    print('password', password)
+    confirmation_numbers[email] = {
+        'confirmation': 666666, 'password': password}
     return jsonify(status='email sent'), 200
 
 
-@app.route('/ask_confirmation_code', methods=['POST'])
-def first_step():
-    data = request.get_json()
-    email = data.get('email')
-    if email and email[-22:] == '@etu.minesparis.psl.eu':
-        try:
-            confirmation_number = np.random.randint(100000, 999999)
-            confirmation_numbers[email] = confirmation_number
-            msg = Message("Welcome to Our Service", recipients=[email])
-            body = f"Hello {email},\n\nThank you for registering with our service. Please confirm your email address by entering the following confirmation number in the app:\n\nConfirmation Number: {confirmation_number}\n\nBest regards,\nThe Our Service Team"
-            subject = "[AUTHENTIFICATION]"
-            send_email(subject, body)
-            return jsonify(status='email sent'), 200
-        except:
-            return jsonify(status='failure to send email'), 400
-    else:
-        return jsonify(status='failed registration')
+# @app.route('/ask_confirmation_code', methods=['POST'])
+# def first_step():
+#     data = request.get_json()
+#     email = data.get('email')
+#     if email and email[-22:] == '@etu.minesparis.psl.eu':
+#         try:
+#             confirmation_number = np.random.randint(100000, 999999)
+#             confirmation_numbers[email] = confirmation_number
+#             msg = Message("Welcome to Our Service", recipients=[email])
+#             body = f"Hello {email},\n\nThank you for registering with our service. Please confirm your email address by entering the following confirmation number in the app:\n\nConfirmation Number: {confirmation_number}\n\nBest regards,\nThe Our Service Team"
+#             subject = "[AUTHENTIFICATION]"
+#             send_email(subject, body)
+#             return jsonify(status='email sent'), 200
+#         except:
+#             return jsonify(status='failure to send email'), 400
+#     else:
+#         return jsonify(status='failed registration')
 
 
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    email = data.get('email')
+    email = str(data.get('email'))
     confirmation = int(data.get("confirmation_code"))
     print(confirmation)
     print(email)
-    print('confirmation value', confirmation_numbers[email])
-    print(data.get('password'))
-    if confirmation == confirmation_numbers[email]:
+    print('confirmation value', confirmation_numbers[email]['confirmation'])
+    print(confirmation_numbers[email]['password'])
+    # try:
+    if confirmation == confirmation_numbers[email]['confirmation']:
+        password = generate_password_hash(
+            confirmation_numbers[email]['password'], method='sha256')
+        new_user = User(email=email, password=password, docsources=[])
+        db.session.add(new_user)
+        db.session.commit()
+        # Change this to your desired duration
+        expires_delta = timedelta(hours=3)
+
+        access_token = create_access_token(
+            identity=new_user.id, expires_delta=expires_delta)
         confirmation_numbers.pop(email)
-        try:
-            password = generate_password_hash(
-                data.get('password'), method='sha256')
-            new_user = User(email=email, password=password)
-            db.session.add(new_user)
-            db.session.commit()
-            # Change this to your desired duration
-            expires_delta = timedelta(hours=3)
-            access_token = create_access_token(
-                identity=new_user.id, expires_delta=expires_delta)
-            return jsonify(status='registration successful!', access_token=access_token), 200
-        except:
-            return jsonify(status='you can only register once')
+        return jsonify(status='registration successful!', access_token=access_token), 200
+        # except:
+        #     return jsonify(status='you can only register once')
     else:
         print("failed registration")
         return jsonify(status='failed registration')
@@ -315,10 +318,10 @@ def upload_file():
     try:
         uploaded_file = request.files['document']
         file_id = request.form['file_id']
-        
-        #user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
-       
-        user_id = 0 # for testing purposes, with base user id 
+
+        # user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
+
+        user_id = 0  # for testing purposes, with base user id
         if not user_id:
             raise ValueError('Access token is missing or invalid')
 
@@ -344,7 +347,6 @@ def upload_file():
             # add file to docsource database
             description = 'File uploaded by user'  # might need to change
 
-            
             docsource = DocSource(user_id=user_id, description=description,
                                   filename=filename_only)
             db.session.add(docsource)
