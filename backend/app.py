@@ -315,10 +315,8 @@ def upload_file():
     try:
         uploaded_file = request.files['document']
         file_id = request.form['file_id']
-        
-        #user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
-       
-        user_id = 0 # for testing purposes, with base user id 
+               
+        user_id = 1 # for testing purposes, with base user id 
         if not user_id:
             raise ValueError('Access token is missing or invalid')
 
@@ -428,8 +426,7 @@ def answerQuestion():
 @app.route('/delete_vector', methods=['POST'])
 @jwt_required()
 def delete_vector():
-    print(
-        f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
+
 
     # user id
     # file id
