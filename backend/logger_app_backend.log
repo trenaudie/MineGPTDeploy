@@ -436,7 +436,44 @@ SOURCES: N/A
  'namespaces': {'': {'vector_count': 310},
                 '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
  'total_vector_count': 321}
+<<<<<<< HEAD
+2023-04-13 17:15:00,780 - INFO - uploading file chapter2.pdf with id e7b97253-e1fa-4186-b5e5-fc1e7f236590 for user 3 
+2023-04-13 17:15:00,830 - INFO - uploading file_name_only chapter2.pdf with id e7b97253-e1fa-4186-b5e5-fc1e7f236590 for user jwt= 3 
+2023-04-13 17:15:17,995 - INFO - added to vectorstore 48 chunks from backend/temp\chapter2.pdf with metadata ex. {'source': 'backend/temp\\chapter2', 'user_id': 3, 'file_id': 'e7b97253-e1fa-4186-b5e5-fc1e7f236590', 'text': 'network can be loaded on CPU and prediction can be done on CPU.PyTorchdemo62'}
+2023-04-13 17:15:18,095 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 358},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 369}
+2023-04-13 17:17:57,048 - INFO - question: Who's joe rogan ?  for user with user_id 3 
+2023-04-13 17:17:57,048 - INFO - calling conversational retrieval chain
+2023-04-13 17:17:57,048 - INFO - question
+2023-04-13 17:17:57,048 - INFO - Who's joe rogan ?
+2023-04-13 17:17:57,048 - INFO - chat_history_str
+2023-04-13 17:17:57,048 - INFO - []
+2023-04-13 17:19:23,998 - INFO - answer
+2023-04-13 17:19:23,998 - INFO - Joe Rogan is an American comedian, podcast host, television host, and a renowned commentator for Ultimate Fighting Championship (UFC). He hosts The Joe Rogan Experience, a podcast that is the most listened to on the platform Spotify, with over 11 million listeners each month. Rogan has also appeared in various TV shows and movies like The Man Show, Zookeeper, and Prof poids lourd. 
+SOURCES: ./temp/sample5.txt
+2023-04-13 17:19:23,998 - INFO - extradict intermediate steps:
+2023-04-13 17:19:23,998 - INFO - ["Joseph James Rogan, dit Joe Rogan, né le 11 août 1967 à Newark (New Jersey), est un spécialiste d'arts martiaux, acteur, écrivain et animateur de radio américain. Célèbre commentateur de l'Ultimate Fighting Championship (UFC) depuis 1997, il anime parallèlement The Joe Rogan Experience.", 'Joe Rogan is an American comedian, podcast host, and television host. He is known for his work as co-host of The Man Show and for hosting his own podcast, The Joe Rogan Experience, which is listened to by over 11 million people each month. As of 2021, his podcast is the most listened to on the platform Spotify, ahead of daily TED talks.', 'Joe Rogan is a person mentioned throughout the text.', "Rogan incarne Joe Garrelli, un électricien complotiste à WNYX, une station de radio à New York. En 2002, il fait une apparition dans l'épisode Une tête bien faite de Voilà ! en tant que Chris, le petit ami de Maya Gallo. En 2011, Rogan joue dans le film Zookeeper. Il joue son propre rôle dans Prof poids lourd, un autre film d'action et comédie avec Kevin James sorti en 2012. Rogan commence à travailler pour UFC en 1997."]
+2023-04-13 17:19:23,998 - INFO - qa result is
+2023-04-13 17:19:23,998 - INFO - {'answer': 'Joe Rogan is an American comedian, podcast host, television host, and a renowned commentator for Ultimate Fighting Championship (UFC). He hosts The Joe Rogan Experience, a podcast that is the most listened to on the platform Spotify, with over 11 million listeners each month. Rogan has also appeared in various TV shows and movies like The Man Show, Zookeeper, and Prof poids lourd. \nSOURCES: ./temp/sample5.txt', 'sources': [{'filename': './temp/sample5.txt', 'text': "Joseph James Rogan, dit Joe Rogan, né le 11 août 1967 à Newark (New Jersey), est un spécialiste d'arts martiaux, acteur, écrivain et animateur de radio américain.\n\nCélèbre commentateur de l'Ultimate Fighting Championship (UFC) depuis 1997, il anime parallèlement The Joe Rogan Experience, un talk-show dans lequel il échange avec des invités provenant de milieux différents. Il est également humoriste depuis 1989 et se produit toujours en tournées régulières à ce jour. Rogan fait partie de la distribution de"}, {'filename': './temp/sample5.txt', 'text': "Stanhope remplacent Jimmy Kimmel et Adam Carolla en tant que co-présentateurs de The Man Show15. Son dernier travail d'animateur est pour sa propre série intitulée Joe Rogan Questions Everything, dont six épisodes sont diffusés en 2013.\n\nPodcast\nEn 2015, le podcast The Joe Rogan Experience est écouté par plus de 11 millions de personnes chaque mois16.\n\nEn 2021 son podcast est le plus écouté sur la plateforme Spotify devant les conférences TED quotidiennes17,18. Selon le quotidien The New York Times, son"}, {'filename': './temp/sample5.txt', 'text': "primaire du Parti démocrate, et vote pour Jo Jorgensen, candidate du parti libertarien, lors de l'élection30.\n\nEn 2010, Rogan est le présentateur du documentaire DMT: The Spirit Molecule31.\n\nRogan est un chasseur et fait partie du mouvement « Eat What You Kill » (« [Mangez ce que vous tuez] »)32.\n\nJoe Rogan est très critique de l'Église catholique et, jugeant par son expérience personnelle, pense qu'il s'agit d'une religion d'oppression28."}, {'filename': './temp/sample5.txt', 'text': "il incarne Joe Garrelli, un électricien complotiste à WNYX, une station de radio à New York10. En 2002, il fait une apparition dans l'épisode Une tête bien faite de Voilà ! en tant que Chris, le petit ami de Maya Gallo11. En 2011, Rogan joue dans le film Zookeeper. Il joue son propre rôle dans Prof poids lourd, un autre film d'action et comédie avec Kevin James sorti en 201212.\n\nCommentateur\n\nRogan pendant la diffusion de l'Ultimate Fight Night 7.\nRogan commence à travailler pour UFC en 1997, tout d'abord"}]}
+2023-04-13 17:36:38,312 - INFO - question: What movie does joe appear in ?  for user with user_id 3 
+2023-04-13 17:36:38,312 - INFO - calling conversational retrieval chain
+2023-04-13 17:36:38,312 - INFO - question
+2023-04-13 17:36:38,313 - INFO - What movie does joe appear in ?
+2023-04-13 17:36:38,313 - INFO - chat_history_str
+2023-04-13 17:36:38,313 - INFO - []
+2023-04-13 17:38:02,576 - INFO - answer
+2023-04-13 17:38:02,576 - INFO - Joe does not appear in a movie mentioned in the given text.
+SOURCES: ./temp/sample5.txt
+2023-04-13 17:38:02,576 - INFO - extradict intermediate steps:
+2023-04-13 17:38:02,576 - INFO - ["In 2011, Rogan joue dans le film Zookeeper. Il joue son propre rôle dans Prof poids lourd, un autre film d'action et comédie avec Kevin James sorti en 2012.", 'There is no mention of Joe appearing in a movie. The text only mentions TV shows and stand-up comedy specials that he has recorded.', 'There is no relevant text to the question provided in the given portion of the document.', 'No relevant text found.']
+2023-04-13 17:38:02,576 - INFO - qa result is
+2023-04-13 17:38:02,576 - INFO - {'answer': 'Joe does not appear in a movie mentioned in the given text.\nSOURCES: ./temp/sample5.txt', 'sources': [{'filename': './temp/sample5.txt', 'text': "il incarne Joe Garrelli, un électricien complotiste à WNYX, une station de radio à New York10. En 2002, il fait une apparition dans l'épisode Une tête bien faite de Voilà ! en tant que Chris, le petit ami de Maya Gallo11. En 2011, Rogan joue dans le film Zookeeper. Il joue son propre rôle dans Prof poids lourd, un autre film d'action et comédie avec Kevin James sorti en 201212.\n\nCommentateur\n\nRogan pendant la diffusion de l'Ultimate Fight Night 7.\nRogan commence à travailler pour UFC en 1997, tout d'abord"}, {'filename': './temp/sample5.txt', 'text': "et enregistre plusieurs spectacles, dont Shiny Happy Jihad, Joe Rogan: Talking Monkeys in Space, and Joe Rogan Live from the Tabernacle7.\n\nEn 2007, Rogan confronte le comédien Carlos Mencia sur scène, l'accusant de voler les blagues d'autres comédiens8.\n\nActeur\nEn 1994, Rogan partage la vedette de la série Harball produit par Fox. Il joue le rôle de Frank Valente, jeune star égocentrique d'une équipe professionnelle fictive de baseball9. De 1995 à 1999, il partage l'affiche de la série comique Infos FM où"}, {'filename': './temp/sample5.txt', 'text': "Joseph James Rogan, dit Joe Rogan, né le 11 août 1967 à Newark (New Jersey), est un spécialiste d'arts martiaux, acteur, écrivain et animateur de radio américain.\n\nCélèbre commentateur de l'Ultimate Fighting Championship (UFC) depuis 1997, il anime parallèlement The Joe Rogan Experience, un talk-show dans lequel il échange avec des invités provenant de milieux différents. Il est également humoriste depuis 1989 et se produit toujours en tournées régulières à ce jour. Rogan fait partie de la distribution de"}, {'filename': './temp/sample5.txt', 'text': "Stanhope remplacent Jimmy Kimmel et Adam Carolla en tant que co-présentateurs de The Man Show15. Son dernier travail d'animateur est pour sa propre série intitulée Joe Rogan Questions Everything, dont six épisodes sont diffusés en 2013.\n\nPodcast\nEn 2015, le podcast The Joe Rogan Experience est écouté par plus de 11 millions de personnes chaque mois16.\n\nEn 2021 son podcast est le plus écouté sur la plateforme Spotify devant les conférences TED quotidiennes17,18. Selon le quotidien The New York Times, son"}]}
+=======
 >>>>>>> refs/remotes/origin/main
+<<<<<<< HEAD
 2023-04-13 18:33:50,867 - INFO - question: who is joe rogan for user with user_id 2 
 2023-04-13 18:33:50,868 - INFO - calling conversational retrieval chain
 2023-04-13 18:33:50,868 - INFO - question
@@ -513,3 +550,6 @@ SOURCES: ./temp/sample5.txt
 2023-04-13 19:26:04,779 - INFO - setting return source documents to false
 2023-04-13 19:26:04,779 - INFO - qa result is
 2023-04-13 19:26:04,779 - INFO - {'answer': "I don't know. \nSOURCES: ./temp/sample5.txt", 'sources': []}
+=======
+>>>>>>> 9044dadddf0abe6d901bf1426a7fd6bf0b5ca843
+>>>>>>> refs/remotes/origin/main

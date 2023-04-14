@@ -2,18 +2,17 @@ import React, { createContext, useContext, useState } from 'react';
 import { Docsource } from '@/types/docsource';
 import { LoginData } from '@/types/loginData';
 
-
 interface AuthState {
-  docs: Docsource[],
+  docsources: Docsource[],
   authenticated: boolean;
   handleLogout: () => void;
-  handleLogin: (data:LoginData) => void;
+  handleLogin: (data: LoginData) => void;
   uploadDocs: (docs: Docsource[]) => void;
 }
 
 const initialState: AuthState = {
   authenticated: false,
-  docs: [],
+  docsources: [],
   handleLogout: () => { },
   handleLogin: () => { },
   uploadDocs: (docs: Docsource[]) => { },
