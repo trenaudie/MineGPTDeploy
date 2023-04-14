@@ -1,6 +1,7 @@
 // FileDownload.tsx
 import React, { FC } from 'react';
 import { SERVER_ADDRESS } from "./Constants";
+import { getSecureCookie } from '@/utils/app/cookieTool';
 
 interface FileDownloadProps {
     fileName: string;
@@ -8,11 +9,17 @@ interface FileDownloadProps {
 }
 
 const FileDownload: FC<FileDownloadProps> = ({ fileName, displayText }) => {
+    const access_token = getSecureCookie("access_token");
     const handleDownload = async () => {
         const fileNameWithoutPath = fileName.replace("./temp/", "");
         console.log(`${fileNameWithoutPath}`)
-        const response = await fetch(`${SERVER_ADDRESS}/download/${fileNameWithoutPath}`);
-        console.log("document request sent")
+        const response = await fetch(`${SERVER_ADDRESS}/download/${fileNameWithoutPath}`,
+        {
+            method: 'GET',
+            headers:{
+              'Authorization': `Bearer ${access_token}`
+            }
+          });
         if (response.ok) {
             console.log("document request accepted")
             const blob = await response.blob();

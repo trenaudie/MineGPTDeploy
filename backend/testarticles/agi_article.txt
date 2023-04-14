@@ -1,0 +1,102 @@
+An artificial general intelligence (AGI) is a hypothetical intelligent agent which can understand or learn any intellectual task that human beings or other animals can.[1][2] AGI has also been defined alternatively as an autonomous system that surpasses human capabilities at the majority of economically valuable work.[3] Developing AGI is a primary goal of some artificial intelligence research and for several AI companies such as OpenAI,[3] DeepMind,[4] and Anthropic, as well as a common topic in science fiction and futures studies.
+
+The timeline for AGI development remains a subject of ongoing debate among researchers and experts, with some arguing it may be possible in the coming years or decades, others maintaining it might take up to a century or longer, and a minority believing it may never be achieved at all.[5] Additionally, there is debate regarding whether modern deep learning systems, such as GPT-4, are an early yet incomplete form of AGI[6] or if new approaches are required.[7]
+
+Contention exists over the potential for AGI to pose a threat to humanity; for example, OpenAI treats it as an existential risk, while others find the development of AGI to be too remote to present a risk.[8][5][7]
+
+A 2020 survey identified 72 active AGI R&D projects spread across 37 countries.[9]
+
+Terminology
+AGI is also called strong AI,[10][11][12] full AI,[13] or general intelligent action,[14] although some academic sources reserve the term "strong AI" for computer programs that experience sentience or consciousness.[a] Strong AI contrasts with weak AI (or narrow AI),[15][11] which is not intended to have general cognitive abilities but is designed to solve exactly one problem. (Some academic sources use "weak AI" to refer more broadly to any programs that do not experience consciousness or do not have a mind in the same sense people do.)[a]
+
+Related concepts include human-level AI, transformative AI,[5] and superintelligence.
+
+Characteristics
+Main article: Artificial intelligence
+Various criteria for intelligence have been proposed (most famously the Turing test) but no definition satisfies everyone.[b]
+
+Intelligence traits
+However, there is wide agreement among artificial intelligence researchers that intelligence is required to do the following:[17]
+
+reason, use strategy, solve puzzles, and make judgments under uncertainty;
+represent knowledge, including common sense knowledge;
+plan;
+learn;
+communicate in natural language;
+and integrate all these skills towards common[ambiguous] goals. Other important capabilities include:
+
+input as the ability to sense (e.g. see, hear, etc.), and
+output as the ability to act (e.g. move and manipulate objects, change location to explore, etc.)
+in this world where intelligent behaviour is to be observed.[18] This includes the ability to detect and respond to hazard.[19] Many interdisciplinary approaches to intelligence (e.g. cognitive science, computational intelligence, and decision making) consider additional traits such as imagination (taken as the ability to form mental images and concepts that were not programmed in)[20] and autonomy.[21]
+
+Computer based systems that exhibit many of these capabilities do exist (e.g. see computational creativity, automated reasoning, decision support system, robot, evolutionary computation, intelligent agent), but no one has created an integrated system that excels at all these areas.
+
+Mathematical formalisms
+A mathematically precise specification of AGI was proposed by Marcus Hutter in 2000. Named AIXI, the proposed AGI agent maximises “the ability to satisfy goals in a wide range of environments”.[22] This type of AGI, characterized by the ability to maximise a mathematical definition of intelligence rather than exhibit human-like behaviour,[23] is also called universal artificial intelligence.[24]
+
+In 2015 Jan Lieke and Marcus Hutter showed that "Legg-Hutter intelligence[definition needed] is measured with respect to a fixed Universal Turing Machine (UTM). AIXI is the most intelligent policy if it uses the same UTM", a result which "undermines all existing optimality properties for AIXI".[25] This problem stems from AIXI's use of compression as a proxy for intelligence, which is only valid if cognition takes place in isolation from the environment in which goals are pursued. This formalises a philosophical position known as Mind–body dualism.[26] Some find enactivism more plausible—the notion that cognition takes place within the same environment in which goals are pursued.[27] Subsequently, Michael Timothy Bennett formalised enactive cognition and identified an alternative proxy for intelligence called "weakness".[26] The accompanying experiments (comparing weakness and compression) and mathematical proofs showed that maximising weakness results in the optimal "ability to complete a wide range of tasks"[28] or equivalently "ability to generalise"[29] (thus maximising intelligence by either definition). If enactivism holds and Mind–body dualism does not, then compression is not necessary or sufficient for intelligence, calling into question widely held views on intelligence (see also Hutter Prize).
+
+Whether an AGI that satisfies one of these formalizations exhibits human-like behaviour (such as the use of natural language) would depend on many factors,[30] for example the manner in which the agent is embodied,[28] or whether it has a reward function that closely approximates human primitives of cognition like hunger, pain, and so forth.[31]
+
+Tests for testing human-level AGI
+Several tests meant to confirm human-level AGI have been considered, including:[32][33]
+
+The Turing Test (Turing)
+A machine and a human both converse unseen with a second human, who must evaluate which of the two is the machine, which passes the test if it can fool the evaluator a significant fraction of the time. Note: Turing does not prescribe what should qualify as intelligence, only that knowing that it is a machine should disqualify it.
+The Coffee Test (Wozniak)
+A machine is required to enter an average American home and figure out how to make coffee: find the coffee machine, find the coffee, add water, find a mug, and brew the coffee by pushing the proper buttons.
+The Robot College Student Test (Goertzel)
+A machine enrolls in a university, taking and passing the same classes that humans would, and obtaining a degree.
+The Employment Test (Nilsson)
+A machine performs an economically important job at least as well as humans in the same job.
+AI-complete problems
+Main article: AI-complete
+There are many problems that may require general intelligence, if machines are to solve the problems as well as people do. For example, even specific straightforward tasks, like machine translation, require that a machine read and write in both languages (NLP), follow the author's argument (reason), know what is being talked about (knowledge), and faithfully reproduce the author's original intent (social intelligence). All of these problems need to be solved simultaneously in order to reach human-level machine performance.
+
+A problem is informally called "AI-complete" or "AI-hard" if it is believed that to solve it one would need to implement strong AI, because the solution is beyond the capabilities of a purpose-specific algorithm.[34]
+
+AI-complete problems are hypothesised to include general computer vision, natural language understanding, and dealing with unexpected circumstances while solving any real-world problem.[35]
+
+AI-complete problems cannot be solved with current[may be outdated as of April 2023] computer technology alone, and require human computation. This limitation could be useful to test for the presence of humans, as CAPTCHAs aim to do; and for computer security to repel brute-force attacks.[36][37]
+
+History
+Classical AI
+Main articles: History of artificial intelligence and Symbolic artificial intelligence
+Modern AI research began in the mid-1950s.[38] The first generation of AI researchers were convinced that artificial general intelligence was possible and that it would exist in just a few decades.[39] AI pioneer Herbert A. Simon wrote in 1965: "machines will be capable, within twenty years, of doing any work a man can do."[40]
+
+Their predictions were the inspiration for Stanley Kubrick and Arthur C. Clarke's character HAL 9000, who embodied what AI researchers believed they could create by the year 2001. AI pioneer Marvin Minsky was a consultant[41] on the project of making HAL 9000 as realistic as possible according to the consensus predictions of the time. He said in 1967, "Within a generation... the problem of creating 'artificial intelligence' will substantially be solved".[42]
+
+Several classical AI projects, such as Doug Lenat's Cyc project (that began in 1984), and Allen Newell's Soar project, were directed at AGI.
+
+However, in the early 1970s, it became obvious that researchers had grossly underestimated the difficulty of the project. Funding agencies became skeptical of AGI and put researchers under increasing pressure to produce useful "applied AI".[c] In the early 1980s, Japan's Fifth Generation Computer Project revived interest in AGI, setting out a ten-year timeline that included AGI goals like "carry on a casual conversation".[46] In response to this and the success of expert systems, both industry and government pumped money back into the field.[44][47] However, confidence in AI spectacularly collapsed in the late 1980s, and the goals of the Fifth Generation Computer Project were never fulfilled.[48] For the second time in 20 years, AI researchers who predicted the imminent achievement of AGI had been mistaken. By the 1990s, AI researchers had a reputation for making vain promises. They became reluctant to make predictions at all[d] and avoided mention of "human level" artificial intelligence for fear of being labeled "wild-eyed dreamer[s]".[50]
+
+Narrow AI research
+Main article: Artificial intelligence
+In the 1990s and early 21st century, mainstream AI achieved commercial success and academic respectability by focusing on specific sub-problems where AI can produce verifiable results and commercial applications, such as artificial neural networks and statistical machine learning.[51] These "applied AI" systems are now used extensively throughout the technology industry, and research in this vein is heavily funded in both academia and industry. As of 2018 development on this field was considered an emerging trend, and a mature stage was expected to happen in more than 10 years.[52]
+
+Most mainstream AI researchers[citation needed] hope that strong AI can be developed by combining programs that solve various sub-problems. Hans Moravec wrote in 1988:
+
+I am confident that this bottom-up route to artificial intelligence will one day meet the traditional top-down route more than half way, ready to provide the real world competence and the commonsense knowledge that has been so frustratingly elusive in reasoning programs. Fully intelligent machines will result when the metaphorical golden spike is driven uniting the two efforts.[53]
+
+However, this is disputed. For example, Stevan Harnad of Princeton University concluded his 1990 paper on the Symbol Grounding Hypothesis by stating:
+
+The expectation has often been voiced that "top-down" (symbolic) approaches to modeling cognition will somehow meet "bottom-up" (sensory) approaches somewhere in between. If the grounding considerations in this paper are valid, then this expectation is hopelessly modular and there is really only one viable route from sense to symbols: from the ground up. A free-floating symbolic level like the software level of a computer will never be reached by this route (or vice versa) – nor is it clear why we should even try to reach such a level, since it looks as if getting there would just amount to uprooting our symbols from their intrinsic meanings (thereby merely reducing ourselves to the functional equivalent of a programmable computer).[54]
+
+Modern artificial general intelligence research
+The term "artificial general intelligence" was used as early as 1997, by Mark Gubrud[55] in a discussion of the implications of fully automated military production and operations. The term was re-introduced and popularized by Shane Legg and Ben Goertzel around 2002.[56] AGI research activity in 2006 was described by Pei Wang and Ben Goertzel[57] as "producing publications and preliminary results". The first summer school in AGI was organized in Xiamen, China in 2009[58] by the Xiamen university's Artificial Brain Laboratory and OpenCog. The first university course was given in 2010[59] and 2011[60] at Plovdiv University, Bulgaria by Todor Arnaudov. MIT presented a course in AGI in 2018, organized by Lex Fridman and featuring a number of guest lecturers.
+
+As of 2023, most AI researchers devote little attention to AGI, with some claiming that intelligence is too complex to be completely replicated in the near term. However, a small number of computer scientists are active in AGI research, and many contribute to a series of AGI conferences.
+
+Timescales
+In the introduction to his 2006 book,[61] Goertzel says that estimates of the time needed before a truly flexible AGI is built vary from 10 years to over a century. As of 2007 the consensus in the AGI research community seemed to be that the timeline discussed by Ray Kurzweil in The Singularity is Near[62] (i.e. between 2015 and 2045) was plausible.[63] Mainstream AI researchers have given a wide range of opinions on whether progress will be this rapid. A 2012 meta-analysis of 95 such opinions found a bias towards predicting that the onset of AGI would occur within 16–26 years for modern and historical predictions alike. That paper has been criticized for how it categorized opinions as expert or non-expert.[64]
+
+In 2017, researchers Feng Liu, Yong Shi, and Ying Liu conducted intelligence tests on publicly available and freely accessible weak AI such as Google AI, Apple's Siri, and others. At the maximum, these AI reached an IQ value of about 47, which corresponds approximately to a six-year-old child in first grade. An adult comes to about 100 on average. Similar tests were carried out in 2014, with the IQ score reaching a maximum value of 27.[65][66]
+
+In 2020, OpenAI developed GPT-3, a language model capable of performing many diverse tasks without specific training. According to Gary Grossman in a VentureBeat article, while there is consensus that GPT-3 is not an example of AGI, it is considered by some to be too advanced to classify as a narrow AI system.[67]
+
+In the same year Jason Rohrer used his GPT-3 account to develop a chatbot, and provided a chatbot-developing platform called "Project December". OpenAI asked for changes to the chatbot to comply with their safety guidelines; Rohrer disconnected Project December from the GPT-3 API.[68]
+
+In 2022, DeepMind developed Gato, a "general-purpose" system capable of performing more than 600 different tasks.[69]
+
+In 2023, Microsoft Research published a study on an early version of OpenAI's GPT-4, contending that it exhibited more general intelligence than previous AI models and demonstrated human-level performance in tasks spanning multiple domains, such as mathematics, coding, and law. This research sparked a debate on whether GPT-4 could be considered an early, incomplete version of artificial general intelligence, emphasizing the need for further exploration and evaluation of such systems.[70]
+

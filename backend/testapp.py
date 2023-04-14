@@ -128,7 +128,19 @@ def testquestion(session, question=None):
 
 
 
+def test_download(filename_base:str,session, access_token:str):
+    url = f"http://localhost:5000/download/{filename_base}"
+    headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+    response = session.get(url, headers=headers)
+    print("-------------")
+    print("Download test")
+    print("-------------")
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
 
+    print(response)
 
 
 
@@ -143,6 +155,7 @@ if __name__ == "__main__":
     # print("sid", sid, id(sid))
 
 
-    testupload(session, access_token)
+    # test_download('Probabilite1.pdf', session, access_token)
     # testquestion(session)
 
+    testupload(session, access_token)

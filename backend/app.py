@@ -302,6 +302,8 @@ def upload_file():
 @app.route('/download/<path:filename>', methods=['GET'])
 @jwt_required()
 def download_file(filename):
+    print(filename)
+    s3 = aws_session.client('s3')
     auth_header = request.headers.get('Authorization')
     if auth_header and auth_header.startswith('Bearer '):
         user_id = get_jwt_identity()
@@ -367,9 +369,8 @@ def delete_vector():
     print(
         f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
 
-    # delete vector from Pinecone database
-    # vectorstore._index.delete(filter = {'sid': request.headers.get('Authorization')})
-
+    #user id 
+    #file id 
 
 if __name__ == '__main__':
     with app.app_context():
