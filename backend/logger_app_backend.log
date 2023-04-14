@@ -634,6 +634,6 @@ SOURCES: ./temp/sample5.txt
  'total_vector_count': 31}
 2023-04-14 13:18:53,737 - INFO - before create all
 2023-04-14 13:18:53,737 - INFO - app.py SQLALCHEMY_DATABASE_URI: sqlite:////Users/tanguyrenaudie/Documents/TanguyML/MineGPT
-=======
->>>>>>> 2b01e7f18e2b36f8d389dc4947eb9a5cd162707b
->>>>>>> refs/remotes/origin/main
+2023-04-14 14:23:16,098 - INFO - uploading file
+2023-04-14 14:23:35,327 - INFO - uploading file
+2023-04-14 14:25:17,961 - INFO - uploading file

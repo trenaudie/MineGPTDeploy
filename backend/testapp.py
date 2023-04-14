@@ -22,7 +22,7 @@ def testnot():
 
 def testupload(session: requests.Session, access_token :str):
 
-    url = "http://localhost:5000/upload2"
+    url = "http://localhost:5000/upload"
     with open('backend/testarticles/agi_article.txt', 'rb') as f:
         files = {
             "document":  f,
@@ -148,7 +148,7 @@ bad_email,good_email,good_password,bad_password = 'guigui.jarry@gmail.com','guig
 
 if __name__ == "__main__":
     # session, access_token = register_for_tests(good_email,good_password)
-    session, access_token = login_for_tests(good_email,good_password)
+    # session, access_token = login_for_tests(good_email,good_password)
 
     #sid is now useless
     # sid = session.cookies.get('session')
@@ -158,4 +158,5 @@ if __name__ == "__main__":
     # test_download('Probabilite1.pdf', session, access_token)
     # testquestion(session)
 
-    testupload(session, access_token)
+    session = requests.Session()
+    testupload(session, "")

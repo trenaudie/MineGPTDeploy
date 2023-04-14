@@ -34,7 +34,7 @@ from utils.ingest import save_file_to_Pinecone, save_file_to_temp, save_file_to_
 from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
 from utils.printUsers import printUsers
-from backend.config import Config
+from config import Config
 from utils.getchain import createchain_with_filter
 
 
@@ -309,57 +309,16 @@ def logout():
 
 
 @app.route('/upload', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def upload_file():
-    # metadata = {'source':filename, 'user_id':user_id, 'file_id':file_id}
-
-    print(f"inside upload_file received request {request}")
-    uploaded_file = request.files['document']
-    file_id = request.form['file_id']
-    user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
-    print(f"inside upload_file with user_id {user_id}")
-
-    if not user_id:
-        return 'Session ID is missing or incorrect.', 400
-        raise ValueError('user id is missing')
-
-    logger.info(
-        f"uploading file {uploaded_file.filename} with   id {file_id} for user {user_id} ")
-
-    if uploaded_file:
-        with redirect_stdout_to_logger(logger):
-            # add file to Pinecone
-            filepath = save_file_to_temp(uploaded_file)
-            filename_only = os.path.basename(filepath)
-            # must have a unique file_id, even if the file is the same per user
-
-            logger.info(
-                f"uploading file_name_only {filename_only} with id {file_id} for user jwt= {user_id} ")
-
-            save_file_to_Pinecone_metadata(
-                filepath, file_id, user_id, vectorstore)
-            os.remove(filepath)
-
-            # add file to docsource database
-            description = 'File uploaded by user'  # might need to change
-            docsource = DocSource(user_id=user_id, description=description,
-                                  filename=filename_only)
-            db.session.add(docsource)
-            db.session.commit()
-
-            return jsonify('File uploaded and saved to the database.', 200)
-    else:
-        return 'No file was uploaded.', 400
-
-
-@app.route('/upload2', methods=['POST'])
-@jwt_required()
-def upload_file2():
+    logger.info("uploading file")
     try:
         uploaded_file = request.files['document']
         file_id = request.form['file_id']
-        user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
-
+        
+        #user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
+       
+        user_id = 0 # for testing purposes, with base user id 
         if not user_id:
             raise ValueError('Access token is missing or invalid')
 
@@ -384,6 +343,8 @@ def upload_file2():
 
             # add file to docsource database
             description = 'File uploaded by user'  # might need to change
+
+            
             docsource = DocSource(user_id=user_id, description=description,
                                   filename=filename_only)
             db.session.add(docsource)
@@ -476,18 +437,17 @@ def delete_vector():
 
 with app.app_context():
     db.create_all()
-    print(f"app.py cwd {os.getcwd()}")
-    app_module_dir = os.path.dirname(os.path.abspath(__file__))
-    print(f"app.py module directory: {app_module_dir}")
-    print("app.py resolved database path:", db.engine.url.database)
-    print("inside app py, os.get_cwd()", os.getcwd())
+#     # print(f"app.py cwd {os.getcwd()}")
+#     app_module_dir = os.path.dirname(os.path.abspath(__file__))
+#     # print(f"app.py module directory: {app_module_dir}")
+#     # print("app.py resolved database path:", db.engine.url.database)
+#     # print("inside app py, os.get_cwd()", os.getcwd())
 
 if __name__ == '__main__':
-
     with app.app_context():
         print("app.py SQLALCHEMY_DATABASE_URI:",
               app.config['SQLALCHEMY_DATABASE_URI'])
-        print(User.query.all())
+        print("all users : ", User.query.all())
 
     app.run(debug=True, port=5000)
 

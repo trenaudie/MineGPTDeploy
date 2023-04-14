@@ -83,8 +83,7 @@ git clone https://github.com/mckaywrigley/chatbot-ui.git
 **2. Install Dependencies**
 
 ```bash
-npm i
-```
+npm run d```
 
 **3. Provide OpenAI API Key**
 
