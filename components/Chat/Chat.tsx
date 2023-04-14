@@ -100,7 +100,8 @@ export const Chat: FC<Props> = memo(
     const handleLoginClick = () => {
       const access_token = getSecureCookie('access_token');
       console.log(`inside handleLoginClick`)
-      if (access_token) {
+      const useAutoLogin = false; //we are not using autoLogin yet 
+      if (access_token && useAutoLogin) {
         //send fetch request for auto-login
         //if successful, set authenticated to true
         //if not, show login modal
@@ -129,10 +130,9 @@ export const Chat: FC<Props> = memo(
           .catch(error => {
             console.error(error);
           });
-
-        setShowLoginModal(true);
         // Add your login functionality here
       };
+      setShowLoginModal(true);
     }
 
 
