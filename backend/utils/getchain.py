@@ -38,6 +38,7 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
             )
         else:
             new_question = question
+        print("filter", _filter)
         docs = self._get_docs(new_question, filter=_filter)
         if not docs:
             # this happens when the filtering is too strong
@@ -47,7 +48,7 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
         new_inputs = inputs.copy()
         new_inputs["question"] = new_question
         new_inputs["chat_history"] = chat_history_str
-        self.combine_docs_chain.return_intermediate_steps = True
+        self.combine_docs_chain.return_intermediate_steps = False
         answer, extradict = self.combine_docs_chain.combine_docs(
             docs, **new_inputs)
         print("answer", answer)
@@ -83,7 +84,7 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
         # }
 
         filter_or = {
-            "$or": [{'sid': config.Config.SID_DEFAULT}, {'sid': filter['sid']}]}
+            "$or": [{'user_id': config.Config.USER_ID_DEFAULT}, {'user_id': filter['user_id']}]}
         inputs = self.prep_inputs(inputs)
         self.callback_manager.on_chain_start(
             {"name": self.__class__.__name__},

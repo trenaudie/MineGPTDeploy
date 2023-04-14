@@ -426,8 +426,8 @@ def answerQuestion():
 @app.route('/delete_vector', methods=['POST'])
 @jwt_required()
 def delete_vector():
-
-
+    
+    return
     # user id
     # file id
 
