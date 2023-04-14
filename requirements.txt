@@ -1,271 +1,214 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: osx-arm64
-aiohttp=3.8.4=py310h8e9501a_0
-aiosignal=1.3.1=pyhd8ed1ab_0
-altair=4.2.2=pypi_0
-anyio=3.6.2=pypi_0
-aom=3.5.0=h7ea286d_0
-appnope=0.1.3=pyhd8ed1ab_0
-argilla=1.5.1=pypi_0
-asttokens=2.2.1=pyhd8ed1ab_0
-async-timeout=4.0.2=pyhd8ed1ab_0
-attrs=22.2.0=pyh71513ae_0
-backcall=0.2.0=pyh9f0ad1d_0
-backoff=2.2.1=pypi_0
-backports=1.0=pyhd8ed1ab_3
-backports.functools_lru_cache=1.6.4=pyhd8ed1ab_0
-beautifulsoup4=4.12.1=pypi_0
-black=23.3.0=pypi_0
-blinker=1.6=pypi_0
-boto3=1.26.111=pypi_0
-botocore=1.29.111=pypi_0
-brotlipy=0.7.0=py310h8e9501a_1005
-bs4=0.0.1=pypi_0
-bzip2=1.0.8=h3422bc3_4
-ca-certificates=2022.12.7=h4653dfc_0
-cachelib=0.10.2=pypi_0
-cachetools=5.3.0=pyhd8ed1ab_0
-certifi=2022.12.7=pyhd8ed1ab_0
-cffi=1.15.1=py310h2399d43_3
-charset-normalizer=2.1.1=pyhd8ed1ab_0
-chromadb=0.3.21=pypi_0
-click=8.1.3=pypi_0
-clickhouse-connect=0.5.18=pypi_0
-comm=0.1.3=pyhd8ed1ab_0
-commonmark=0.9.1=pypi_0
-cryptography=40.0.1=py310hfc83b78_0
-dataclasses-json=0.5.7=pypi_0
-datasets=2.11.0=pypi_0
-debugpy=1.6.6=py310h0f1eb42_0
-decorator=5.1.1=pyhd8ed1ab_0
-deprecated=1.2.13=pypi_0
-dill=0.3.6=pypi_0
-dnspython=2.3.0=pypi_0
-duckdb=0.7.1=pypi_0
-entrypoints=0.4=pypi_0
-et-xmlfile=1.1.0=pypi_0
-exceptiongroup=1.1.1=pypi_0
-executing=1.2.0=pyhd8ed1ab_0
-expat=2.5.0=hb7217d7_1
-faiss-cpu=1.7.3=pypi_0
-fastapi=0.95.0=pypi_0
-ffmpeg=5.1.2=gpl_hf318d42_106
-ffmpeg-python=0.2.0=pypi_0
-filelock=3.10.7=pypi_0
-flask=2.2.3=pypi_0
-flask-cors=3.0.10=pypi_0
-flask-jwt-extended=4.4.4=pypi_0
-flask-mail=0.9.1=pypi_0
-flask-session=0.4.0=pypi_0
-flask-sqlalchemy=3.0.3=pypi_0
-font-ttf-dejavu-sans-mono=2.37=hab24e00_0
-font-ttf-inconsolata=3.000=h77eed37_0
-font-ttf-source-code-pro=2.038=h77eed37_0
-font-ttf-ubuntu=0.83=hab24e00_0
-fontconfig=2.14.2=h82840c6_0
-fonts-conda-ecosystem=1=0
-fonts-conda-forge=1=0
-freetype=2.12.1=hd633e50_1
-frozenlist=1.3.3=py310h8e9501a_0
-fsspec=2023.4.0=pypi_0
-future=0.18.3=pypi_0
-gettext=0.21.1=h0186832_0
-gitdb=4.0.10=pypi_0
-gitpython=3.1.31=pypi_0
-gmp=6.2.1=h9f76cd9_0
-gnutls=3.7.8=h9f1a10d_0
-google-api-core=2.11.0=pyhd8ed1ab_0
-google-api-python-client=2.83.0=pyhd8ed1ab_0
-google-auth=2.17.1=pyh1a96a4e_0
-google-auth-httplib2=0.1.0=pyhd8ed1ab_1
-google-auth-oauthlib=1.0.0=pypi_0
-googleapis-common-protos=1.57.1=pyhd8ed1ab_0
-h11=0.14.0=pypi_0
-hnswlib=0.7.0=pypi_0
-httpcore=0.16.3=pypi_0
-httplib2=0.22.0=pyhd8ed1ab_0
-httptools=0.5.0=pypi_0
-httpx=0.23.3=pypi_0
-huggingface-hub=0.13.3=pypi_0
-icu=72.1=he12128b_0
-idna=3.4=pyhd8ed1ab_0
-importlib-metadata=6.1.0=pyha770c72_0
-importlib_metadata=6.1.0=hd8ed1ab_0
-iniconfig=2.0.0=pypi_0
-ipykernel=6.22.0=pyh736e0ef_0
-ipython=8.12.0=pyhd1c38e8_0
-isort=5.12.0=pypi_0
-itsdangerous=2.1.2=pypi_0
-jedi=0.18.2=pyhd8ed1ab_0
-jinja2=3.1.2=pypi_0
-jmespath=1.0.1=pypi_0
-joblib=1.2.0=pypi_0
-jsonschema=4.17.3=pypi_0
-jupyter_client=8.1.0=pyhd8ed1ab_0
-jupyter_core=5.3.0=py310hbe9552e_0
-lame=3.100=h1a8c8d9_1003
-langchain=0.0.135=pypi_0
-libcxx=16.0.0=h75e25f2_0
-libexpat=2.5.0=hb7217d7_1
-libffi=3.4.2=h3422bc3_5
-libiconv=1.17=he4db4b2_0
-libidn2=2.3.4=h1a8c8d9_0
-libmagic=1.0=pypi_0
-libopus=1.3.1=h27ca646_1
-libpng=1.6.39=h76d750c_0
-libprotobuf=3.21.12=hb5ab8b9_0
-libsodium=1.0.18=h27ca646_1
-libsqlite=3.40.0=h76d750c_0
-libtasn1=4.19.0=h1a8c8d9_0
-libunistring=0.9.10=h3422bc3_0
-libvpx=1.11.0=hc470f4d_3
-libxml2=2.10.3=h2aff0a6_6
-libzlib=1.2.13=h03a7124_4
-llama-cpp-python=0.1.25=pypi_0
-llvmlite=0.39.1=pypi_0
-loguru=0.6.0=pypi_0
-lxml=4.9.2=pypi_0
-lz4=4.3.2=pypi_0
-markdown=3.4.3=pypi_0
-markupsafe=2.1.2=pypi_0
-marshmallow=3.19.0=pypi_0
-marshmallow-enum=1.5.1=pypi_0
-matplotlib-inline=0.1.6=pyhd8ed1ab_0
-monotonic=1.6=pypi_0
-more-itertools=9.1.0=pypi_0
-mpmath=1.3.0=pypi_0
-msg-parser=1.2.0=pypi_0
-multidict=6.0.4=py310h8e9501a_0
-multiprocess=0.70.14=pypi_0
-mypy-extensions=1.0.0=pypi_0
-ncurses=6.3=h07bb92c_1
-nest-asyncio=1.5.6=pyhd8ed1ab_0
-nettle=3.8.1=h63371fa_1
-networkx=3.0=pypi_0
-nltk=3.8.1=pypi_0
-numba=0.56.4=pypi_0
-numpy=1.23.5=pypi_0
-oauthlib=3.2.2=pypi_0
-olefile=0.46=pypi_0
-openai=0.27.4=pypi_0
-openai-whisper=20230314=pypi_0
-openapi-schema-pydantic=1.2.4=pypi_0
-openh264=2.3.1=hb7217d7_2
-openpyxl=3.1.2=pypi_0
-openssl=3.1.0=h03a7124_0
-p11-kit=0.24.1=h29577a5_0
-packaging=23.0=pyhd8ed1ab_0
-pandas=1.5.3=pypi_0
-parso=0.8.3=pyhd8ed1ab_0
-pathspec=0.11.1=pypi_0
-pexpect=4.8.0=pyh1a96a4e_2
-pickleshare=0.7.5=py_1003
-pillow=9.5.0=pypi_0
-pinecone-client=2.2.1=pypi_0
-pip=23.0.1=pyhd8ed1ab_0
-platformdirs=3.2.0=pyhd8ed1ab_0
-pluggy=1.0.0=pypi_0
-posthog=2.4.2=pypi_0
-prompt-toolkit=3.0.38=pyha770c72_0
-prompt_toolkit=3.0.38=hd8ed1ab_0
-protobuf=3.20.3=pypi_0
-psutil=5.9.4=py310h8e9501a_0
-ptyprocess=0.7.0=pyhd3deb0d_0
-pure_eval=0.2.2=pyhd8ed1ab_0
-pyarrow=11.0.0=pypi_0
-pyasn1=0.4.8=py_0
-pyasn1-modules=0.2.7=py_0
-pycparser=2.21=pyhd8ed1ab_0
-pydantic=1.10.7=pypi_0
-pydeck=0.8.0=pypi_0
-pygments=2.14.0=pyhd8ed1ab_0
-pyjwt=2.6.0=pypi_0
-pyllamacpp=1.0.6=pypi_0
-pympler=1.0.1=pypi_0
-pyopenssl=23.1.1=pyhd8ed1ab_0
-pypandoc=1.11=pypi_0
-pyparsing=3.0.9=pyhd8ed1ab_0
-pypdf2=3.0.1=pypi_0
-pyrsistent=0.19.3=pypi_0
-pysocks=1.7.1=pyha2e5f31_6
-pytest=7.2.2=pypi_0
-python=3.10.10=h3ba56d0_0_cpython
-python-dateutil=2.8.2=pyhd8ed1ab_0
-python-docx=0.8.11=pypi_0
-python-dotenv=1.0.0=pypi_0
-python-magic=0.4.27=pypi_0
-python-pptx=0.6.21=pypi_0
-python_abi=3.10=3_cp310
-pytube=12.1.3=pyhd8ed1ab_0
-pytz=2023.3=pypi_0
-pytz-deprecation-shim=0.1.0.post0=pypi_0
-pyu2f=0.1.5=pyhd8ed1ab_0
-pyyaml=6.0=pypi_0
-pyzmq=25.0.2=py310hc407298_0
-readline=8.2=h92ec313_1
-regex=2023.3.23=pypi_0
-requests=2.28.2=pyhd8ed1ab_1
-requests-oauthlib=1.3.1=pypi_0
-responses=0.18.0=pypi_0
-rfc3986=1.5.0=pypi_0
-rich=13.0.1=pypi_0
-rsa=4.9=pyhd8ed1ab_0
-s3transfer=0.6.0=pypi_0
-scikit-learn=1.2.2=pypi_0
-scipy=1.10.1=pypi_0
-sentence-transformers=2.2.2=pypi_0
-sentencepiece=0.1.97=pypi_0
-setuptools=67.6.1=pyhd8ed1ab_0
-six=1.16.0=pyh6c4a22f_0
-smmap=5.0.0=pypi_0
-sniffio=1.3.0=pypi_0
-soupsieve=2.4=pypi_0
-sqlalchemy=1.4.47=pypi_0
-stack_data=0.6.2=pyhd8ed1ab_0
-starlette=0.26.1=pypi_0
-streamlit=1.21.0=pypi_0
-streamlit-ace=0.1.1=pypi_0
-svt-av1=1.4.1=h7ea286d_0
-sympy=1.11.1=pypi_0
-tenacity=8.2.2=pypi_0
-threadpoolctl=3.1.0=pypi_0
-tiktoken=0.3.1=pypi_0
-tk=8.6.12=he1e0b03_0
-tokenizers=0.13.3=pypi_0
-toml=0.10.2=pypi_0
-tomli=2.0.1=pypi_0
-toolz=0.12.0=pypi_0
-torch=2.0.0=pypi_0
-torchvision=0.15.1=pypi_0
-tornado=6.2=py310h8e9501a_1
-tqdm=4.65.0=pypi_0
-traitlets=5.9.0=pyhd8ed1ab_0
-transformers=4.27.4=pypi_0
-typing-extensions=4.5.0=hd8ed1ab_0
-typing-inspect=0.8.0=pypi_0
-typing_extensions=4.5.0=pyha770c72_0
-tzdata=2023.3=pypi_0
-tzlocal=4.3=pypi_0
-unstructured=0.5.11=pypi_0
-uritemplate=4.1.1=pyhd8ed1ab_0
-urllib3=1.26.15=pyhd8ed1ab_0
-uvicorn=0.21.1=pypi_0
-uvloop=0.17.0=pypi_0
-validators=0.20.0=pypi_0
-watchfiles=0.19.0=pypi_0
-wcwidth=0.2.6=pyhd8ed1ab_0
-websockets=11.0=pypi_0
-werkzeug=2.2.3=pypi_0
-wheel=0.40.0=pyhd8ed1ab_0
-wrapt=1.14.1=pypi_0
-x264=1!164.3095=h57fd34a_2
-x265=3.5=hbc6ce65_3
-xlsxwriter=3.0.9=pypi_0
-xxhash=3.2.0=pypi_0
-xz=5.2.6=h57fd34a_0
-yarl=1.8.2=py310h8e9501a_0
-youtube-transcript-api=0.5.0=pypi_0
-zeromq=4.3.4=hbdafb3b_1
-zipp=3.15.0=pyhd8ed1ab_0
-zstandard=0.20.0=pypi_0
+aiohttp @ file:///Users/runner/miniforge3/conda-bld/aiohttp_1676292777256/work
+aiosignal @ file:///home/conda/feedstock_root/build_artifacts/aiosignal_1667935791922/work
+altair==4.2.2
+anyio==3.6.2
+appnope @ file:///home/conda/feedstock_root/build_artifacts/appnope_1649077682618/work
+argilla==1.5.1
+asttokens @ file:///home/conda/feedstock_root/build_artifacts/asttokens_1670263926556/work
+async-timeout @ file:///home/conda/feedstock_root/build_artifacts/async-timeout_1640026696943/work
+attrs @ file:///home/conda/feedstock_root/build_artifacts/attrs_1671632566681/work
+backcall @ file:///home/conda/feedstock_root/build_artifacts/backcall_1592338393461/work
+backoff==2.2.1
+backports.functools-lru-cache @ file:///home/conda/feedstock_root/build_artifacts/backports.functools_lru_cache_1618230623929/work
+beautifulsoup4==4.12.1
+black==23.3.0
+blinker==1.6
+boto3==1.26.111
+botocore==1.29.111
+brotlipy @ file:///Users/runner/miniforge3/conda-bld/brotlipy_1666764759924/work
+bs4==0.0.1
+cachelib==0.10.2
+cachetools @ file:///home/conda/feedstock_root/build_artifacts/cachetools_1674482203741/work
+certifi==2022.12.7
+cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1671179893800/work
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1661170624537/work
+chromadb==0.3.21
+click==8.1.3
+clickhouse-connect==0.5.18
+comm @ file:///home/conda/feedstock_root/build_artifacts/comm_1679481329611/work
+commonmark==0.9.1
+cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography-split_1679811336455/work
+dataclasses-json==0.5.7
+datasets==2.11.0
+debugpy @ file:///Users/runner/miniforge3/conda-bld/debugpy_1674522452033/work
+decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1641555617451/work
+Deprecated==1.2.13
+dill==0.3.6
+dnspython==2.3.0
+duckdb==0.7.1
+entrypoints==0.4
+et-xmlfile==1.1.0
+exceptiongroup==1.1.1
+executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1667317341051/work
+faiss-cpu==1.7.3
+fastapi==0.95.0
+ffmpeg-python==0.2.0
+filelock==3.10.7
+Flask==2.2.3
+Flask-Cors==3.0.10
+Flask-JWT-Extended==4.4.4
+Flask-Mail==0.9.1
+Flask-Session==0.4.0
+Flask-SQLAlchemy==3.0.3
+frozenlist @ file:///Users/runner/miniforge3/conda-bld/frozenlist_1667935502123/work
+fsspec==2023.4.0
+future==0.18.3
+gitdb==4.0.10
+GitPython==3.1.31
+google-api-core @ file:///home/conda/feedstock_root/build_artifacts/google-api-core-split_1670580271439/work
+google-api-python-client @ file:///home/conda/feedstock_root/build_artifacts/google-api-python-client_1680020254947/work
+google-auth @ file:///home/conda/feedstock_root/build_artifacts/google-auth_1680245350002/work
+google-auth-httplib2 @ file:///home/conda/feedstock_root/build_artifacts/google-auth-httplib2_1654134467987/work
+google-auth-oauthlib==1.0.0
+googleapis-common-protos @ file:///home/conda/feedstock_root/build_artifacts/googleapis-common-protos-feedstock_1672913962683/work
+h11==0.14.0
+hnswlib==0.7.0
+httpcore==0.16.3
+httplib2 @ file:///home/conda/feedstock_root/build_artifacts/httplib2_1679483503307/work
+httptools==0.5.0
+httpx==0.23.3
+huggingface-hub==0.13.3
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
+importlib-metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1679167925176/work
+iniconfig==2.0.0
+ipykernel @ file:///Users/runner/miniforge3/conda-bld/ipykernel_1679336661730/work
+ipython @ file:///Users/runner/miniforge3/conda-bld/ipython_1680185563420/work
+isort==5.12.0
+itsdangerous==2.1.2
+jedi @ file:///home/conda/feedstock_root/build_artifacts/jedi_1669134318875/work
+Jinja2==3.1.2
+jmespath==1.0.1
+joblib==1.2.0
+jsonschema==4.17.3
+jupyter_client @ file:///home/conda/feedstock_root/build_artifacts/jupyter_client_1679365123476/work
+jupyter_core @ file:///Users/runner/miniforge3/conda-bld/jupyter_core_1678994238709/work
+langchain==0.0.135
+libmagic==1.0
+llama-cpp-python==0.1.25
+llvmlite==0.39.1
+loguru==0.6.0
+lxml==4.9.2
+lz4==4.3.2
+Markdown==3.4.3
+MarkupSafe==2.1.2
+marshmallow==3.19.0
+marshmallow-enum==1.5.1
+matplotlib-inline @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-inline_1660814786464/work
+monotonic==1.6
+more-itertools==9.1.0
+mpmath==1.3.0
+msg-parser==1.2.0
+multidict @ file:///Users/runner/miniforge3/conda-bld/multidict_1672339514000/work
+multiprocess==0.70.14
+mypy-extensions==1.0.0
+nest-asyncio @ file:///home/conda/feedstock_root/build_artifacts/nest-asyncio_1664684991461/work
+networkx==3.0
+nltk==3.8.1
+numba==0.56.4
+numpy==1.23.5
+oauthlib==3.2.2
+olefile==0.46
+openai==0.27.4
+openai-whisper==20230314
+openapi-schema-pydantic==1.2.4
+openpyxl==3.1.2
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1673482170163/work
+pandas==1.5.3
+parso @ file:///home/conda/feedstock_root/build_artifacts/parso_1638334955874/work
+pathspec==0.11.1
+pexpect @ file:///home/conda/feedstock_root/build_artifacts/pexpect_1667297516076/work
+pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1602536217715/work
+Pillow==9.5.0
+pinecone-client==2.2.1
+platformdirs @ file:///home/conda/feedstock_root/build_artifacts/platformdirs_1679871349196/work
+pluggy==1.0.0
+posthog==2.4.2
+prompt-toolkit @ file:///home/conda/feedstock_root/build_artifacts/prompt-toolkit_1677600924538/work
+protobuf==3.20.3
+psutil @ file:///Users/runner/miniforge3/conda-bld/psutil_1667886128069/work
+ptyprocess @ file:///home/conda/feedstock_root/build_artifacts/ptyprocess_1609419310487/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
+pure-eval @ file:///home/conda/feedstock_root/build_artifacts/pure_eval_1642875951954/work
+pyarrow==11.0.0
+pyasn1==0.4.8
+pyasn1-modules==0.2.7
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
+pydantic==1.10.7
+pydeck==0.8.0
+Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1672682006896/work
+PyJWT==2.6.0
+pyllamacpp==1.0.6
+Pympler==1.0.1
+pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1680037383858/work
+pypandoc==1.11
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1652235407899/work
+PyPDF2==3.0.1
+pyrsistent==0.19.3
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1661604839144/work
+pytest==7.2.2
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+python-docx==0.8.11
+python-dotenv==1.0.0
+python-magic==0.4.27
+python-pptx==0.6.21
+pytube @ file:///home/conda/feedstock_root/build_artifacts/pytube_1679952998541/work
+pytz==2023.3
+pytz-deprecation-shim==0.1.0.post0
+pyu2f @ file:///home/conda/feedstock_root/build_artifacts/pyu2f_1604248910016/work
+PyYAML==6.0
+pyzmq @ file:///Users/runner/miniforge3/conda-bld/pyzmq_1679317135273/work
+regex==2023.3.23
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1680286922386/work
+requests-oauthlib==1.3.1
+responses==0.18.0
+rfc3986==1.5.0
+rich==13.0.1
+rsa @ file:///home/conda/feedstock_root/build_artifacts/rsa_1658328885051/work
+s3transfer==0.6.0
+scikit-learn==1.2.2
+scipy==1.10.1
+sentence-transformers==2.2.2
+sentencepiece==0.1.97
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+smmap==5.0.0
+sniffio==1.3.0
+soupsieve==2.4
+SQLAlchemy==1.4.47
+stack-data @ file:///home/conda/feedstock_root/build_artifacts/stack_data_1669632077133/work
+starlette==0.26.1
+streamlit==1.21.0
+streamlit-ace==0.1.1
+sympy==1.11.1
+tenacity==8.2.2
+threadpoolctl==3.1.0
+tiktoken==0.3.1
+tokenizers==0.13.3
+toml==0.10.2
+tomli==2.0.1
+toolz==0.12.0
+torch==2.0.0
+torchvision==0.15.1
+tornado @ file:///Users/runner/miniforge3/conda-bld/tornado_1666788685513/work
+tqdm==4.65.0
+traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1675110562325/work
+transformers==4.27.4
+typing-inspect==0.8.0
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1678559861143/work
+tzdata==2023.3
+tzlocal==4.3
+unstructured==0.5.11
+uritemplate @ file:///home/conda/feedstock_root/build_artifacts/uritemplate_1634152692041/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1678635778344/work
+uvicorn==0.21.1
+uvloop==0.17.0
+validators==0.20.0
+watchfiles==0.19.0
+wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1673864653149/work
+websockets==11.0
+Werkzeug==2.2.3
+wrapt==1.14.1
+XlsxWriter==3.0.9
+xxhash==3.2.0
+yarl @ file:///Users/runner/miniforge3/conda-bld/yarl_1672341093658/work
+youtube-transcript-api==0.5.0
+zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1677313463193/work
+zstandard==0.20.0
