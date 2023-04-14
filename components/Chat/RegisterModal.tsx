@@ -23,12 +23,12 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
 
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get('email') as string;
-        const password1 = formData.get('password1') as string;
-        const password2 = formData.get('password2') as string;
+        const password = formData.get('password') as string;
 
-        if (password1 === password2) {
+
+        if (password) {
             setEmail(email);
-            setPassword(password1)
+            setPassword(password)
 
             try {
                 const response = await fetch(`${SERVER_ADDRESS}/ask_confirmation_code`, {
@@ -62,7 +62,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
 
-        const confirmation_code = formData.get("confirmation_code");
+        const confirmation = formData.get("confirmation_code");
         console.log(`before auth context`)
         console.log(`authenticated = ${authenticated} before submission`)
         // Send the data to the backend
@@ -75,7 +75,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
                 body: JSON.stringify({
                     email: email,
                     password: password,
-                    confirmation_code: confirmation_code,
+                    confirmation_code: confirmation,
                 }),
             });
 

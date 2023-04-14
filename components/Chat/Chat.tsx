@@ -123,8 +123,7 @@ export const Chat: FC<Props> = memo(
               // JWT token is valid - display user's uploaded documents
               handleLogin(data);
             } else {
-              throw new Error('User is not authenticated');
-              window.location.replace('/login');
+              handleLogin2()
             }
           })
           .catch(error => {
@@ -133,6 +132,10 @@ export const Chat: FC<Props> = memo(
         // Add your login functionality here
       };
       setShowLoginModal(true);
+    }
+
+    const handleLogin2 = () => {
+      setShowLoginModal(true)
     }
 
 
