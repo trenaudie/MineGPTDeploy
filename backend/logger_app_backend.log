@@ -553,3 +553,40 @@ SOURCES: ./temp/sample5.txt
 =======
 >>>>>>> 9044dadddf0abe6d901bf1426a7fd6bf0b5ca843
 >>>>>>> refs/remotes/origin/main
+2023-04-14 08:50:08,421 - INFO - uploading file agi_article.txt with   id 123456 for user 1 
+2023-04-14 08:50:08,421 - INFO - uploading file_name_only agi_article.txt with id 123456 for user jwt= 1 
+2023-04-14 08:50:20,021 - INFO - added to vectorstore 31 chunks from backend/temp/agi_article.txt with metadata ex. {'source': 'backend/temp/agi_article', 'user_id': 1, 'file_id': '123456', 'text': 'research sparked a debate on whether GPT-4 could be considered an early, incomplete version of artificial general intelligence, emphasizing the need for further exploration and evaluation of such systems.[70]'}
+2023-04-14 08:50:20,118 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 547},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 558}
+2023-04-14 09:03:57,311 - INFO - uploading file agi_article.txt with id 123456 for user 1 
+2023-04-14 09:07:48,254 - INFO - uploading file agi_article.txt with id 123456 for user 1 
+2023-04-14 09:09:42,347 - INFO - uploading file agi_article.txt with id 123456 for user 1 
+2023-04-14 09:09:42,348 - INFO - before save_file_to_temp with uploaded_file <FileStorage: 'agi_article.txt' (None)>
+2023-04-14 09:09:42,348 - INFO - before save_file_to_Pinecone_metadata with filepath backend/temp/agi_article.txt and metadata {'source': 'agi_article.txt', 'user_id': 1, 'file_id': '123456'}
+2023-04-14 09:10:45,415 - INFO - uploading file agi_article.txt with id 123456 for user 1 
+2023-04-14 09:10:45,416 - INFO - Saving file agi_article.txt to Pinecone with metadata {'source': 'agi_article.txt', 'user_id': 1, 'file_id': '123456'}
+2023-04-14 09:11:26,223 - INFO - uploading file agi_article.txt with id 123456 for user 1 
+2023-04-14 09:12:38,814 - INFO - uploading file agi_article.txt with id 123456 for user 1 
+2023-04-14 09:12:59,819 - INFO - added to vectorstore 31 chunks from backend/temp/agi_article.txt with metadata ex. {'source': 'agi_article.txt', 'user_id': 1, 'file_id': '123456', 'text': 'research sparked a debate on whether GPT-4 could be considered an early, incomplete version of artificial general intelligence, emphasizing the need for further exploration and evaluation of such systems.[70]'}
+2023-04-14 09:13:00,206 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 547},
+                '0c2369f0-740c-4c77-a7c7-4427b5503405': {'vector_count': 11}},
+ 'total_vector_count': 558}
+2023-04-14 09:41:02,758 - INFO - uploading file agi_article.txt with id agi_article_id0 for user 1 
+2023-04-14 09:41:12,926 - INFO - added to vectorstore 31 chunks from backend/temp/agi_article.txt with metadata ex. {'source': 'agi_article.txt', 'user_id': 1, 'file_id': 'agi_article_id0', 'text': 'research sparked a debate on whether GPT-4 could be considered an early, incomplete version of artificial general intelligence, emphasizing the need for further exploration and evaluation of such systems.[70]'}
+2023-04-14 09:41:13,020 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 31}},
+ 'total_vector_count': 31}
+2023-04-14 10:10:40,486 - INFO - uploading file agi_article.txt with id agi_article_id0 for user 1 
+2023-04-14 10:10:51,621 - INFO - added to vectorstore 31 chunks from backend/temp/agi_article.txt with metadata ex. {'source': 'agi_article.txt', 'user_id': 1, 'file_id': 'agi_article_id0', 'text': 'research sparked a debate on whether GPT-4 could be considered an early, incomplete version of artificial general intelligence, emphasizing the need for further exploration and evaluation of such systems.[70]'}
+2023-04-14 10:10:51,718 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 31}},
+ 'total_vector_count': 31}
+2023-04-14 13:18:53,737 - INFO - before create all
+2023-04-14 13:18:53,737 - INFO - app.py SQLALCHEMY_DATABASE_URI: sqlite:////Users/tanguyrenaudie/Documents/TanguyML/MineGPT
