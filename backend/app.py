@@ -50,7 +50,7 @@ vectorstore = Pinecone.from_existing_index(
     index_name, embedding=OpenAIEmbeddings())
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/tanguyrenaudie/Documents/TanguyML/MineGPTDeploy/users.db'
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
