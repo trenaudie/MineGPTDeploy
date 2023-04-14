@@ -8,7 +8,7 @@ from langchain.chains import LLMChain
 from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
 from langchain.chat_models import ChatOpenAI
 import os
-import config
+import backend.config as config
 
 
 class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
@@ -48,15 +48,18 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
         new_inputs["question"] = new_question
         new_inputs["chat_history"] = chat_history_str
         self.combine_docs_chain.return_intermediate_steps = True
-        answer, extradict = self.combine_docs_chain.combine_docs(docs, **new_inputs)
+        answer, extradict = self.combine_docs_chain.combine_docs(
+            docs, **new_inputs)
         print("answer", answer)
-        print('extradict intermediate steps: ', extradict['intermediate_steps'])
-        NotRelevantAnswer =  all("no relevant text" in text.lower() for text in extradict['intermediate_steps'])
+        print('extradict intermediate steps: ',
+              extradict['intermediate_steps'])
+        NotRelevantAnswer = all("no relevant text" in text.lower()
+                                for text in extradict['intermediate_steps'])
         if NotRelevantAnswer:
             print('setting return source documents to false')
             self.return_source_documents = False
-            docs= []
-        try: 
+            docs = []
+        try:
             return {self.output_key: answer, "source_documents": docs}
         except ValueError:
             return {self.output_key: answer, "source_documents": docs}
@@ -78,9 +81,9 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
         #  {
         #   "$or": [{ "genre": { "$eq": "drama" } }, { "year": { "$gte": 2020 } }]
         # }
-    
 
-        filter_or = {"$or": [{'sid': config.Config.SID_DEFAULT}, {'sid': filter['sid']}]}
+        filter_or = {
+            "$or": [{'sid': config.Config.SID_DEFAULT}, {'sid': filter['sid']}]}
         inputs = self.prep_inputs(inputs)
         self.callback_manager.on_chain_start(
             {"name": self.__class__.__name__},

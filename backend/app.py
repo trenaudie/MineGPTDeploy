@@ -33,7 +33,7 @@ from utils.ingest import save_file_to_Pinecone, save_file_to_temp, save_file_to_
 from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
 from utils.printUsers import printUsers
-from config import Config
+from backend.config import Config
 from utils.getchain import createchain_with_filter
 
 
@@ -284,7 +284,6 @@ def upload_file():
             logger.info(
                 f"uploading file_name_only {filename_only} with id {file_id} for user jwt= {user_id} ")
 
-
             save_file_to_Pinecone_metadata(
                 filepath, file_id, user_id, vectorstore)
             os.remove(filepath)
@@ -308,10 +307,10 @@ def upload_file2():
         uploaded_file = request.files['document']
         file_id = request.form['file_id']
         user_id = get_jwt_identity()  # resolves the JWT token to get the user_id
-        
+
         if not user_id:
             raise ValueError('Access token is missing or invalid')
-        
+
         if not uploaded_file:
             raise ValueError('No file was uploaded')
 
@@ -324,7 +323,8 @@ def upload_file2():
             filename_only = os.path.basename(filepath)
 
             # Construct metadata dictionary
-            metadata = {'source': filename_only, 'user_id': user_id, 'file_id': file_id}
+            metadata = {'source': filename_only,
+                        'user_id': user_id, 'file_id': file_id}
 
             # Save file to Pinecone with metadata
             save_file_to_Pinecone_metadata(filepath, metadata, vectorstore)
@@ -347,7 +347,6 @@ def upload_file2():
         else:
             raise(str(e))
             return jsonify({'message': 'An unknown error occurred'}), 500
-
 
 
 @app.route('/download/<path:filename>', methods=['GET'])
@@ -419,8 +418,9 @@ def delete_vector():
     print(
         f"deleting vector for user {session.get('user_id', None)} with sid {request.headers.get('Authorization')}")
 
-    #user id 
-    #file id 
+    # user id
+    # file id
+
 
 with app.app_context():
     db.create_all()
@@ -433,13 +433,11 @@ with app.app_context():
 if __name__ == '__main__':
 
     with app.app_context():
-        print("app.py SQLALCHEMY_DATABASE_URI:", app.config['SQLALCHEMY_DATABASE_URI'])
+        print("app.py SQLALCHEMY_DATABASE_URI:",
+              app.config['SQLALCHEMY_DATABASE_URI'])
         print(User.query.all())
 
     app.run(debug=True, port=5000)
 
 
-
-
-
-#does changing user name 
+# does changing user name
