@@ -95,7 +95,7 @@ def save_file_to_Pinecone_metadata(filepath:str, metadata:str, vectorstore:Pinec
     """Reads one file from the temp directory (pdf and .txt files supported) then splits and saves to Pinecone"""
 
 
-    if not all(key in metadata for key in ['user_id', 'file_id', 'source']):
+    if not all(key in metadata for key in ['user_id', 'file_id', 'filename_only']):
         raise ValueError(f"Invalid metadata: {metadata}. Must contain user_id, file_id, source")
 
     user_id = metadata.get('user_id')
@@ -123,7 +123,7 @@ def save_file_to_Pinecone_metadata(filepath:str, metadata:str, vectorstore:Pinec
 
     splitter = CharacterTextSplitter(separator=" ", chunk_size=chunksize, chunk_overlap=0)
     for i,chunk in enumerate(splitter.split_text(content)):
-        chunkid = file_id + "_" + str(i)
+        chunkid = f"{user_id}_{file_id}_{i}"
         embedded_chunk = vectorstore._embedding_function(chunk)
         metadata_chunk = metadata.copy() 
         metadata_chunk['text'] = chunk #adding text to metadata

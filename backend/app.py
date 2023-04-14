@@ -50,7 +50,7 @@ vectorstore = Pinecone.from_existing_index(
     index_name, embedding=OpenAIEmbeddings())
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/tanguyrenaudie/Documents/TanguyML/MineGPTDeploy/users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = Config.PATH_ACCESS_SQL
 app.config['SESSION_FILE_DIR'] = 'session_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'guiguisecretkey'
@@ -292,7 +292,7 @@ def upload_file():
             # add file to docsource database
             description = 'File uploaded by user'  # might need to change
 
-            
+
             docsource = DocSource(user_id=user_id, description=description,
                                   filename=filename_only)
             db.session.add(docsource)

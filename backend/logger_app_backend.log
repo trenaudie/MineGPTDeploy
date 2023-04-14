@@ -637,3 +637,55 @@ SOURCES: ./temp/sample5.txt
 2023-04-14 14:23:16,098 - INFO - uploading file
 2023-04-14 14:23:35,327 - INFO - uploading file
 2023-04-14 14:25:17,961 - INFO - uploading file
+2023-04-14 15:18:17,151 - INFO - uploading file /var/folders/nf/ybg3xwmd1nn_x978qb5nl2c00000gn/T/tmp5wsibs31 with id 1 for user 1 
+2023-04-14 15:18:42,503 - INFO - uploading file /var/folders/nf/ybg3xwmd1nn_x978qb5nl2c00000gn/T/tmpqe53z409 with id 1 for user 1 
+2023-04-14 15:19:46,434 - INFO - uploading file /var/folders/nf/ybg3xwmd1nn_x978qb5nl2c00000gn/T/tmpl2a36ksj with id 1 for user 1 
+2023-04-14 15:22:11,604 - INFO - uploading file temp/GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf with id 1 for user 1 
+2023-04-14 15:23:17,865 - INFO - uploading file temp/GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf with id 1 for user 1 
+2023-04-14 15:23:30,826 - INFO - added to vectorstore 34 chunks from temp/GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf with metadata ex. {'user_id': 1, 'file_id': 1, 'filename_only': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': "températures T1 etT2sont proches\nT0= 𝜆𝜆1+𝜆𝜆2\n2\n𝑇𝑇14−𝑇𝑇24#4�𝑇𝑇03𝑇𝑇1−𝑇𝑇2( )4\n24\n1 1 112\nnet T T S −⋅σ⋅ε⋅= Φ\nhr= 4 εσT03\ncomparé à\nhcen convection naturelle05101520253035\n0 200 400 600 800\ntempérature de paroi ( °C)Coefficients d'échange \nconvectif et radiatifhcW/m2.KhrW/m2.K\n(ε = 0,5)Vers un environnement à 20 °C"}
+2023-04-14 15:23:30,920 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 34}},
+ 'total_vector_count': 34}
+2023-04-14 15:27:12,539 - INFO - uploading file temp/Math_S1_CalDiff.pdf with id 1 for user 1 
+2023-04-14 15:28:01,678 - INFO - added to vectorstore 151 chunks from temp/Math_S1_CalDiff.pdf with metadata ex. {'user_id': 1, 'file_id': 1, 'filename_only': 'Math_S1_CalDiff.pdf', 'text': 'unitaire(cosθ,sinθ).M o n t r e rq u elimε→01\nε21\n2π/integraldisplay2π0(f(x+εeθ)−f(x))dθ=1\n4∆f(x).'}
+2023-04-14 15:28:01,773 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 151}},
+ 'total_vector_count': 151}
+2023-04-14 15:28:33,127 - INFO - uploading file temp/GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf with id 1 for user 1 
+2023-04-14 15:28:45,757 - INFO - added to vectorstore 34 chunks from temp/GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf with metadata ex. {'user_id': 1, 'file_id': 1, 'filename_only': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': "températures T1 etT2sont proches\nT0= 𝜆𝜆1+𝜆𝜆2\n2\n𝑇𝑇14−𝑇𝑇24#4�𝑇𝑇03𝑇𝑇1−𝑇𝑇2( )4\n24\n1 1 112\nnet T T S −⋅σ⋅ε⋅= Φ\nhr= 4 εσT03\ncomparé à\nhcen convection naturelle05101520253035\n0 200 400 600 800\ntempérature de paroi ( °C)Coefficients d'échange \nconvectif et radiatifhcW/m2.KhrW/m2.K\n(ε = 0,5)Vers un environnement à 20 °C"}
+2023-04-14 15:28:45,850 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 34}},
+ 'total_vector_count': 34}
+2023-04-14 15:28:46,431 - INFO - uploading file temp/Math_S1_CalDiff.pdf with id 2 for user 1 
+2023-04-14 15:29:37,936 - INFO - added to vectorstore 151 chunks from temp/Math_S1_CalDiff.pdf with metadata ex. {'user_id': 1, 'file_id': 2, 'filename_only': 'Math_S1_CalDiff.pdf', 'text': 'unitaire(cosθ,sinθ).M o n t r e rq u elimε→01\nε21\n2π/integraldisplay2π0(f(x+εeθ)−f(x))dθ=1\n4∆f(x).'}
+2023-04-14 15:29:38,235 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 185}},
+ 'total_vector_count': 185}
+2023-04-14 15:29:38,754 - INFO - uploading file temp/MicroEco_microeconomie-3.pdf with id 3 for user 1 
+2023-04-14 15:29:49,979 - INFO - added to vectorstore 30 chunks from temp/MicroEco_microeconomie-3.pdf with metadata ex. {'user_id': 1, 'file_id': 3, 'filename_only': 'MicroEco_microeconomie-3.pdf', 'text': 'prix de la licence) est récupérable en sortant\n–La concurrence sur le marché de la licence conduit à un prix qui annule les \nbénéfices que l’on peut faire en entrant.\n›Remarques: \n–Le prix des courses est régulé, mais c’est encore pour d’autres raisons\n–l’entrée des VTC a doublement touché ce marché: concurrence accrue qui le rend \nmoins profitable, et baisse en retour du prix de la licence (double peine pour les \nchauffeurs en place: baisse de 230k€ à 135k€ entre 2012 et 2020)'}
+2023-04-14 15:29:50,070 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 215}},
+ 'total_vector_count': 215}
+2023-04-14 15:30:11,674 - INFO - uploading file temp/PhyStat_cor_pcps1.pdf with id 3 for user 1 
+2023-04-14 15:30:16,535 - INFO - added to vectorstore 19 chunks from temp/PhyStat_cor_pcps1.pdf with metadata ex. {'user_id': 1, 'file_id': 3, 'filename_only': 'PhyStat_cor_pcps1.pdf', 'text': "atomes A comme les atomes B ont des chances \x13 egales d'^ etre sur l'un ou\nl'autre type de site. Que se passe-t-il si T > T c? Le d\x13 esordre concernant la place des\natomes ne peut ^ etre plus grand ! Donc le param\x12 etre reste nul. L'entropie (donc le d\x13 esordre)\naugmente certes, mais en jouant seulement sur l'agitation des atomes que nous avions\nn\x13 eglig\x13 ee dans l'exercice car ne jouant aucun r^ ole susceptible d'a\x0becter la valeur de ~P.\n5"}
+2023-04-14 15:30:16,626 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 215}},
+ 'total_vector_count': 215}
+2023-04-14 15:31:44,285 - INFO - uploading file temp/MicroEco_microeconomie-3.pdf with id 3 for user 1 
+2023-04-14 15:31:55,290 - INFO - added to vectorstore 30 chunks from temp/MicroEco_microeconomie-3.pdf with metadata ex. {'user_id': 1, 'file_id': 3, 'filename_only': 'MicroEco_microeconomie-3.pdf', 'text': 'prix de la licence) est récupérable en sortant\n–La concurrence sur le marché de la licence conduit à un prix qui annule les \nbénéfices que l’on peut faire en entrant.\n›Remarques: \n–Le prix des courses est régulé, mais c’est encore pour d’autres raisons\n–l’entrée des VTC a doublement touché ce marché: concurrence accrue qui le rend \nmoins profitable, et baisse en retour du prix de la licence (double peine pour les \nchauffeurs en place: baisse de 230k€ à 135k€ entre 2012 et 2020)'}
+2023-04-14 15:31:55,590 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 215}},
+ 'total_vector_count': 215}
+2023-04-14 15:31:56,030 - INFO - uploading file temp/PhyStat_cor_pcps1.pdf with id 4 for user 1 
+2023-04-14 15:32:07,108 - INFO - added to vectorstore 19 chunks from temp/PhyStat_cor_pcps1.pdf with metadata ex. {'user_id': 1, 'file_id': 4, 'filename_only': 'PhyStat_cor_pcps1.pdf', 'text': "atomes A comme les atomes B ont des chances \x13 egales d'^ etre sur l'un ou\nl'autre type de site. Que se passe-t-il si T > T c? Le d\x13 esordre concernant la place des\natomes ne peut ^ etre plus grand ! Donc le param\x12 etre reste nul. L'entropie (donc le d\x13 esordre)\naugmente certes, mais en jouant seulement sur l'agitation des atomes que nous avions\nn\x13 eglig\x13 ee dans l'exercice car ne jouant aucun r^ ole susceptible d'a\x0becter la valeur de ~P.\n5"}
+2023-04-14 15:32:07,205 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 234}},
+ 'total_vector_count': 234}
