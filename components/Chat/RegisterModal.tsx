@@ -1,23 +1,68 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../Global/AuthContext';
 import { setSecureCookie } from '../../utils/app/cookieTool'
 import { SERVER_ADDRESS } from '../Global/Constants';
 
 interface RegisterModalProps {
     onClose: () => void;
+    setShowCode: React.Dispatch<React.SetStateAction<boolean>>;
     show: boolean;
+    showCode: boolean
 }
 
-const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
+const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, setShowCode }) => {
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const [authError, setAuthError] = useState<string>('');
     const { authenticated, handleLogout, handleLogin } = useContext(AuthContext);
+    const [email, setEmail] = useState<string | undefined>(undefined);
+    const [password, setPassword] = useState<string | undefined>(undefined);
 
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get('email') as string;
-        const password = formData.get('password') as string;
+        const password1 = formData.get('password1') as string;
+        const password2 = formData.get('password2') as string;
+
+        if (password1 === password2) {
+            setEmail(email);
+            setPassword(password1)
+
+            try {
+                const response = await fetch(`${SERVER_ADDRESS}/ask_confirmation_code`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                });
+
+                const data = await response.json();
+                if (response.ok && data.status == 'email sent') {
+                    setShowCode(true)
+                } else {
+                    setAuthError("You can only register with your MinesParis student adress.");
+                }
+            } catch (error) {
+                setAuthError("Failure to send email. Please try again");
+            }
+        } else {
+            console.log("you fucked up the passwords")
+            setAuthError("The passwords do not match. Please try again")
+        }
+    }
+
+
+    const handleSubmitCode = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.target as HTMLFormElement);
+
+        const confirmation_code = formData.get("confirmation_code");
         console.log(`before auth context`)
         console.log(`authenticated = ${authenticated} before submission`)
         // Send the data to the backend
@@ -30,6 +75,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
                 body: JSON.stringify({
                     email: email,
                     password: password,
+                    confirmation_code: confirmation_code,
                 }),
             });
 
@@ -39,11 +85,14 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
                 setSecureCookie("access_token", data.access_token);
-                handleLogin(data);
                 onClose(); // Close the LoginModal
             } else if (data.status === 'failed registration') {
                 // Handle incorrect login
-                setErrorMessage('You are not allowed to access this Website');
+                console.log(data.status)
+                setAuthError('The confirmation code you provided is incorrect');
+            } else if (data.status === "you can only register once") {
+                console.log(data.status)
+                setAuthError(data.status)
             } else {
                 // Handle other errors (e.g., show a generic error message)
                 setErrorMessage('An error occurred, please try again');
@@ -54,6 +103,14 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
         }
     };
 
+    useEffect(() => {
+        if (!show) {
+            setShowCode(false);
+            setAuthError('')
+            onClose()
+        }
+    }, [show, setShowCode]);
+
     return (
         <div
             className={`fixed inset-0 z-50 flex items-center justify-center ${show ? 'block' : 'hidden'
@@ -63,41 +120,72 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show }) => {
             <div className="bg-white w-full max-w-md m-auto rounded shadow-lg z-50">
                 <div className="py-4 px-8 text-black">
                     <h1 className="text-xl font-bold mb-4">Register</h1>
-                    <form onSubmit={handleSubmit}>
-                        {errorMessage && (
-                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                                {errorMessage}
-                            </div>
-                        )}
-                        <input
-                            className="border w-full py-2 px-3 mb-4 rounded text-black"
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            required
-                        />
-                        <input
-                            className="border w-full py-2 px-3 mb-4 rounded text-black"
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            required
-                        />
-                        <input
-                            className="border w-full py-2 px-3 mb-4 rounded text-black"
-                            type="password"
-                            name="confirm_password"
-                            placeholder="Confirm Password"
-                            required
-                        />
-                        <button
-                            className="flex items-center justify-center w-full h-10 px-4 py-2 text-white bg-#17181B border-2 border-white hover:bg-#0f1012 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded transition duration-150 ease-in-out"
-                            style={{ backgroundColor: '#17181B' }}
-                            type="submit"
-                        >
-                            Register
-                        </button>
-                    </form>
+                    {!showCode && (
+                        <form onSubmit={handleSubmit}>
+                            {errorMessage && (
+                                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                                    {errorMessage}
+                                </div>
+                            )}
+                            {authError && (
+                                <p className="text-red-500 text-sm mt-2 mb-4">{authError}</p>
+                            )}
+                            <input
+                                className="border w-full py-2 px-3 mb-4 rounded text-black"
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                required
+                            />
+                            <input
+                                className="border w-full py-2 px-3 mb-4 rounded text-black"
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                required
+                            />
+                            <input
+                                className="border w-full py-2 px-3 mb-4 rounded text-black"
+                                type="password"
+                                name="confirm_password"
+                                placeholder="Confirm Password"
+                                required
+                            />
+                            <button
+                                className="flex items-center justify-center w-full h-10 px-4 py-2 text-white bg-#17181B border-2 border-white hover:bg-#0f1012 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded transition duration-150 ease-in-out"
+                                style={{ backgroundColor: '#17181B' }}
+                                type="submit"
+                            >
+                                Register
+                            </button>
+                        </form>
+                    )}
+                    {showCode && (
+                        <form onSubmit={handleSubmitCode}>
+                            {errorMessage && (
+                                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                                    {errorMessage}
+                                </div>
+                            )}
+                            {authError && (
+                                <p className="text-red-500 text-sm mt-2 mb-4">{authError}</p>
+                            )}
+                            <input
+                                className="border w-full py-2 px-3 mb-4 rounded text-black"
+                                type="text"
+                                name="confirmation_code"
+                                placeholder="Enter the 6-digit code"
+                                required
+                            />
+                            <button
+                                className="flex items-center justify-center w-full h-10 px-4 py-2 text-white bg-#17181B border-2 border-white hover:bg-#0f1012 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded transition duration-150 ease-in-out"
+                                style={{ backgroundColor: '#17181B' }}
+                                type="submit"
+                            >
+                                Submit Code
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </div>

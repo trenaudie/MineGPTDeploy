@@ -84,8 +84,9 @@ export const Chat: FC<Props> = memo(
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
-    const { authenticated, handleLogin,handleLogout } = useContext(AuthContext);
+    const { authenticated, handleLogin, handleLogout } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
+    const [showCode, setShowCode] = useState<boolean>(false)
 
 
     const scrollToBottom = useCallback(() => {
@@ -105,33 +106,34 @@ export const Chat: FC<Props> = memo(
         //if not, show login modal
         fetch(`${SERVER_ADDRESS}/auto-login`, {
           method: 'POST',
-          headers:{
+          headers: {
             'Authorization': `Bearer ${access_token}`
           }
         })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Network response was not ok');
-          }
-        })
-        .then(data => {
-          if (data.status === 'authenticated') {
-            // JWT token is valid - display user's uploaded documents
-            handleLogin(data);
-          } else {
-            throw new Error('User is not authenticated');
-            window.location.replace('/login');
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      
-      setShowLoginModal(true);
-      // Add your login functionality here
-    };}
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Network response was not ok');
+            }
+          })
+          .then(data => {
+            if (data.status === 'authenticated') {
+              // JWT token is valid - display user's uploaded documents
+              handleLogin(data);
+            } else {
+              throw new Error('User is not authenticated');
+              window.location.replace('/login');
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+
+        setShowLoginModal(true);
+        // Add your login functionality here
+      };
+    }
 
 
     const closeLoginModal = () => {
@@ -187,6 +189,7 @@ export const Chat: FC<Props> = memo(
         onUpdateConversation(conversation, { key: 'messages', value: [] });
       }
     };
+
 
     const scrollDown = () => {
       if (autoScrollEnabled) {
@@ -244,7 +247,7 @@ export const Chat: FC<Props> = memo(
               Bienvenue sur MineGPT
             </div>
             <div className="text-center text-lg text-black dark:text-white">
-              <div className="mb-8">{`Chatbot UI is an open source clone of OpenAI's ChatGPT UI.`}</div>
+              <div className="mb-8">{`Par 21Jarry et 21Renaudie`}</div>
               <div className="mb-2 font-bold">
                 Posez vos questions par rapport aux cours des Mines et recevez une réponse sourcée !
               </div>
@@ -257,14 +260,7 @@ export const Chat: FC<Props> = memo(
                 Veillez à n'uploader que des fichiers opensource pour des questions de confdentialité.
               </div>
               <div className="mb-2">
-                {t(
-                  'Idéal pour trouver les informations dont on a besoin',
-                )}
-              </div>
-              <div>
-                {t(
-                  "sans passer des heures à les chercher dans ses cours ",
-                )}
+
 
               </div>
               <AuthButtons
@@ -273,7 +269,12 @@ export const Chat: FC<Props> = memo(
               />
             </div>
             <LoginModal onClose={closeLoginModal} show={showLoginModal} />
-            <RegisterModal onClose={closeRegisterModal} show={showRegisterModal} />
+            <RegisterModal
+              onClose={closeRegisterModal}
+              show={showRegisterModal}
+              showCode={showCode}
+              setShowCode={setShowCode}
+            />
           </div>
         ) : modelError ? (
           <ErrorMessageDiv error={modelError} />

@@ -3,6 +3,7 @@ import json
 import traceback
 from datetime import timedelta
 import io
+import numpy as np
 
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
@@ -25,7 +26,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from jwt.exceptions import InvalidTokenError
-
+from flask_mail import Mail, Message
 
 from utils.logger import logger
 from utils.ingest import save_file_to_Pinecone, save_file_to_temp, save_file_to_Pinecone_metadata
@@ -58,6 +59,20 @@ app.secret_key = app.config['SECRET_KEY']
 app.config['PERMANENT_SESSION_LIFETIME'] = 3600 * \
     3  # expired sessions are deleted after 3 hr
 app.config['JWT_TOKEN_LOCATION'] = ['headers']  # disables jwt caching
+
+
+# MAIL CONFIG
+# ---------------------------------------------------------------------------
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'MineGPT@gmail.com'
+app.config['MAIL_PASSWORD'] = 'your_gmail_password'
+app.config['MAIL_DEFAULT_SENDER'] = 'MineGPT@gmail.com'
+
+mail = Mail(app)
+# ----------------------------------------------------------------------------
 
 
 # AWS CONFIG
@@ -107,7 +122,7 @@ class User(db.Model):
 
 chat_history = []
 chain = createchain_with_filter(vectorstore)
-
+confirmation_numbers = {}
 # Set up a store for revoked tokens
 revoked_token_store = set()
 
@@ -116,12 +131,10 @@ revoked_token_store = set()
 # def check_if_token_is_revoked(decoded_token):
 #     jti = decoded_token['jti']
 #     return jti in revoked_token_store
-##then inside logout 
+# then inside logout
 #     jti = get_raw_jwt()['jti']
-    # revoked_token_store.add(jti)
-    # unset_jwt_cookies()
-
-
+# revoked_token_store.add(jti)
+# unset_jwt_cookies()
 
 
 @app.route('/')
@@ -129,11 +142,48 @@ def index():
     return "hello world"
 
 
+@app.route('/ask_confirmation_code', methods=['POST'])
+def for_now():
+    data = request.get_json()
+    if not data or 'email' not in data:
+        return jsonify(status='error', message='Invalid data'), 400
+    email = data.get('email')
+    confirmation_numbers[email] = 666666
+    print(666666)
+    print('email to dic', email)
+    return jsonify(status='email sent'), 200
+
+
+# @app.route('/ask_confirmation_code', methods=['POST'])
+# def first_step():
+#     data = request.get_json()
+#     email = data.get('email')
+#     if email and email[-22:] == '@etu.minesparis.psl.eu':
+#         try:
+#             confirmation_number = np.random.randint(100000, 999999)
+#             confirmation_numbers[email] = confirmation_number
+#             msg = Message("Welcome to Our Service", recipients=[email])
+#             msg.body = f"Hello {email},\n\nThank you for registering with our service. Please confirm your email address by entering the following confirmation number in the app:\n\nConfirmation Number: {confirmation_number}\n\nBest regards,\nThe Our Service Team"
+
+#             mail.send(msg)
+#             return jsonify(status='email sent'), 200
+#         except:
+#             return jsonify(status='failure to send email'), 400
+#     else:
+#         return jsonify(status='failed registration')
+
+
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
     email = data.get('email')
-    if email and email[-22:] == '@etu.minesparis.psl.eu':
+    confirmation = int(data.get("confirmation_code"))
+    print(confirmation)
+    print(email)
+    print('confirmation value', confirmation_numbers[email])
+    print(data.get('password'))
+    if confirmation == confirmation_numbers[email]:
+        confirmation_numbers.pop(email)
         try:
             password = generate_password_hash(
                 data.get('password'), method='sha256')
@@ -146,9 +196,11 @@ def register():
                 identity=new_user.id, expires_delta=expires_delta)
             return jsonify(status='registration successful!', access_token=access_token), 200
         except:
-            return jsonify(status='you can only register once'), 400
+            return jsonify(status='you can only register once')
     else:
-        return jsonify('failed registration. You must have a @etu.minesparis.psl.eu address'), 400
+        print("failed registration")
+        return jsonify(status='failed registration')
+
 
 @app.route('/auto-login', methods=['POST'])
 @jwt_required()

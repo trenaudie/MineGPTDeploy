@@ -61,10 +61,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, show }) => {
                     onClose(); // Close the LoginModal
                 } else if (data.status === 'incorrect authentification') {
                     // Handle incorrect login
-                    setErrorMessage('Incorrect password or Username');
+                    setAuthError('Incorrect password or Username');
                 } else {
                     // Handle other errors (e.g., show a generic error message)
-                    setErrorMessage('An error occurred, please try again');
+                    setAuthError('An error occurred, please try again');
                 }
             });
 

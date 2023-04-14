@@ -95,6 +95,14 @@ export const ChatMessage: FC<Props> = memo(
           </div>
 
           <div className="prose mt-[-2px] w-full dark:prose-invert">
+            {message.role === 'assistant' && message.source && (
+              <>
+                <div className="mt-2 text-sm text-gray-500 italic">
+                  Source:
+                </div>
+                <FileDownload fileName={message.title} displayText={message.title} />
+              </>
+            )}
             {message.role === 'user' ? (
               <div className="flex w-full">
                 {isEditing ? (
@@ -224,15 +232,6 @@ export const ChatMessage: FC<Props> = memo(
                 >
                   {message.content}
                 </MemoizedReactMarkdown>
-
-                {message.role === 'assistant' && message.source && (
-                  <>
-                    <div className="mt-2 text-sm text-gray-500 italic">
-                      Source:
-                    </div>
-                    <FileDownload fileName={message.title} displayText={message.title} />
-                  </>
-                )}
               </>
             )}
           </div>
