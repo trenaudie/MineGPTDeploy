@@ -1,3 +1,4 @@
+from botocore.exceptions import ClientError
 import os
 import json
 import traceback
@@ -142,6 +143,57 @@ def index():
     return "hello world"
 
 
+# Replace with your AWS credentials
+aws_access_key_id = Config.AWS_ACCESS_KEY_ID
+aws_secret_access_key = Config.AWS_SECRET_ACCESS_KEY
+aws_region_name = Config.AWS_REGION_NAME  # Replace with the desired AWS region
+
+# Set up the Amazon SES client
+ses_client = boto3.client(
+    'ses',
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    region_name=aws_region_name
+)
+
+
+def send_email(to, subject, body):
+    # Replace with your verified sender email
+    sender_email = "21minegpt@gmail.com"
+    recipient_email = to
+    CHARSET = 'UTF-8'
+
+    try:
+        response = ses_client.send_email(
+            Destination={
+                'ToAddresses': [recipient_email]
+            },
+            Message={
+                'Body': {
+                    'Text': {
+                        'Charset': CHARSET,
+                        'Data': body,
+                    },
+                },
+                'Subject': {
+                    'Charset': CHARSET,
+                    'Data': subject,
+                },
+            },
+            Source=sender_email
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        print("Email sent! Message ID:"),
+        print(response['MessageId'])
+
+
+# Send an email using the Amazon SES client
+send_email('recipient@example.com',
+           'Subject of the email', 'Body of the email')
+
+
 @app.route('/ask_confirmation_code', methods=['POST'])
 def for_now():
     data = request.get_json()
@@ -154,23 +206,23 @@ def for_now():
     return jsonify(status='email sent'), 200
 
 
-# @app.route('/ask_confirmation_code', methods=['POST'])
-# def first_step():
-#     data = request.get_json()
-#     email = data.get('email')
-#     if email and email[-22:] == '@etu.minesparis.psl.eu':
-#         try:
-#             confirmation_number = np.random.randint(100000, 999999)
-#             confirmation_numbers[email] = confirmation_number
-#             msg = Message("Welcome to Our Service", recipients=[email])
-#             msg.body = f"Hello {email},\n\nThank you for registering with our service. Please confirm your email address by entering the following confirmation number in the app:\n\nConfirmation Number: {confirmation_number}\n\nBest regards,\nThe Our Service Team"
-
-#             mail.send(msg)
-#             return jsonify(status='email sent'), 200
-#         except:
-#             return jsonify(status='failure to send email'), 400
-#     else:
-#         return jsonify(status='failed registration')
+@app.route('/ask_confirmation_code', methods=['POST'])
+def first_step():
+    data = request.get_json()
+    email = data.get('email')
+    if email and email[-22:] == '@etu.minesparis.psl.eu':
+        try:
+            confirmation_number = np.random.randint(100000, 999999)
+            confirmation_numbers[email] = confirmation_number
+            msg = Message("Welcome to Our Service", recipients=[email])
+            body = f"Hello {email},\n\nThank you for registering with our service. Please confirm your email address by entering the following confirmation number in the app:\n\nConfirmation Number: {confirmation_number}\n\nBest regards,\nThe Our Service Team"
+            subject = "[AUTHENTIFICATION]"
+            send_email(subject, body)
+            return jsonify(status='email sent'), 200
+        except:
+            return jsonify(status='failure to send email'), 400
+    else:
+        return jsonify(status='failed registration')
 
 
 @app.route('/register', methods=['POST'])

@@ -49,3 +49,4 @@ backend/session_files/2029240f6d1128be89ddc32729463129
 backend/__pycache__
 backend/utils/__pycache__
 session_files
+backend/config.py
