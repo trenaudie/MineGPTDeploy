@@ -428,10 +428,10 @@ def answerQuestion():
 @app.route('/delete_vector', methods=['POST'])
 @jwt_required()
 def delete_vector():
+    pass
 
     # user id
     # file id
-
 
 with app.app_context():
     db.create_all()

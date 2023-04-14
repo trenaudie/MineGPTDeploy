@@ -694,3 +694,16 @@ SOURCES: ./temp/sample5.txt
  'namespaces': {'': {'vector_count': 234}},
  'total_vector_count': 234}
 >>>>>>> 6eee2bd6de76e6b5ca3c62e9dcb9e0ceefb30a28
+2023-04-14 16:07:06,611 - INFO - uploading file
+2023-04-14 16:07:06,611 - INFO - uploading file chapter1.pdf with id 78e75451-0d2c-4be6-887a-fd6713c76e57 for user 1 
+2023-04-14 16:07:23,496 - INFO - uploading file
+2023-04-14 16:07:23,652 - INFO - uploading file chapter3.pdf with id f80a1a4d-5d72-4b32-ac8d-7c1df8736c84 for user 1 
+2023-04-14 16:08:07,601 - INFO - uploading file
+2023-04-14 16:08:07,605 - INFO - uploading file chapter1.pdf with id 23e74dfc-08d6-49c5-9a90-efde47ae2380 for user 1 
+2023-04-14 16:10:10,359 - INFO - question: who's joe rogan ?  for user with user_id 2 
+2023-04-14 16:10:10,359 - INFO - calling conversational retrieval chain
+2023-04-14 16:10:10,359 - INFO - question
+2023-04-14 16:10:10,359 - INFO - who's joe rogan ?
+2023-04-14 16:10:10,359 - INFO - chat_history_str
+2023-04-14 16:10:10,359 - INFO - []
+2023-04-14 16:10:11,036 - INFO - no docs found
