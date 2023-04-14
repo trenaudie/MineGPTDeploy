@@ -8,7 +8,7 @@ from langchain.chains import LLMChain
 from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
 from langchain.chat_models import ChatOpenAI
 import os
-import backend.config as config
+import config
 
 
 class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
