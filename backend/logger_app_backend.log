@@ -707,3 +707,8 @@ SOURCES: ./temp/sample5.txt
 2023-04-14 16:10:10,359 - INFO - chat_history_str
 2023-04-14 16:10:10,359 - INFO - []
 2023-04-14 16:10:11,036 - INFO - no docs found
+2023-04-17 12:56:53,900 - INFO - uploading file
+2023-04-17 12:56:53,933 - INFO - uploading file General presentation.pdf with id b4e08b54-43fb-4c7e-8f5f-e12b48138c7f for user 1 
+2023-04-17 16:21:56,680 - INFO - question: hello for user with user_id 2 
+2023-04-17 16:25:16,860 - INFO - question: ok for user with user_id 2 
+2023-04-17 16:25:41,954 - INFO - question: ok for user with user_id 2 

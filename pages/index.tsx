@@ -140,8 +140,12 @@ const Home: React.FC<HomeProps> = ({
       };
 
       const endpoint = getEndpoint(plugin);
+      const chatHistory = localStorage.getItem('conversationHistory')
+      console.log("chathistory:", chatHistory)
+
       const body = JSON.stringify({
         prompt: message.content,
+        chathistory: chatHistory
         // Replace with the actual session_id value
       });
 
