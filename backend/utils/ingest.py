@@ -91,7 +91,7 @@ def save_file_to_Pinecone(filepath:str, vectorstore:Pinecone):
 
 
     
-def save_file_to_Pinecone_metadata(filepath:str, metadata:str, vectorstore:Pinecone):
+def save_file_to_Pinecone_metadata(filepath:str, metadata:dict, vectorstore:Pinecone):
     """Reads one file from the temp directory (pdf and .txt files supported) then splits and saves to Pinecone"""
 
 
@@ -135,3 +135,5 @@ def save_file_to_Pinecone_metadata(filepath:str, metadata:str, vectorstore:Pinec
 
     print(f"added to vectorstore {len(source_chunks)} chunks from {filepath} with metadata ex. {metadata_chunk}")
     print(f"vectorstore stats: {vectorstore._index.describe_index_stats()}")
+
+
