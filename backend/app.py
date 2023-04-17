@@ -312,14 +312,14 @@ def logout():
 
 
 @app.route('/upload', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def upload_file():
     logger.info("uploading file")
     try:
         uploaded_file = request.files['document']
         file_id = request.form['file_id']
 
-        user_id = 1  # for testing purposes, with base user id
+        user_id =  get_jwt_identity()# for testing purposes, with base user id
         if not user_id:
             raise ValueError('Access token is missing or invalid')
 
@@ -414,7 +414,7 @@ def answerQuestion():
             f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
             #(question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
-            
+
             result = ask_question(question, vectorstore, chat_history, user_id)
             print("qa result is", result)
 
