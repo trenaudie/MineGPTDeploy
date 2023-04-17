@@ -91,11 +91,11 @@ def save_file_to_Pinecone(filepath:str, vectorstore:Pinecone):
 
 
     
-def save_file_to_Pinecone_metadata(filepath:str, metadata:dict, vectorstore:Pinecone):
+def save_file_to_Pinecone_metadata(filepath:str, metadata:str, vectorstore:Pinecone):
     """Reads one file from the temp directory (pdf and .txt files supported) then splits and saves to Pinecone"""
 
 
-    if not all(key in metadata for key in ['user_id', 'file_id', 'source']):
+    if not all(key in metadata for key in ['user_id', 'file_id', 'filename_only']):
         raise ValueError(f"Invalid metadata: {metadata}. Must contain user_id, file_id, source")
 
     user_id = metadata.get('user_id')
@@ -140,5 +140,3 @@ def save_file_to_Pinecone_metadata(filepath:str, metadata:dict, vectorstore:Pine
 
     print(f"added to vectorstore {len(source_chunks)} chunks from {filepath} with metadata ex. {metadata_chunk}")
     print(f"vectorstore stats: {vectorstore._index.describe_index_stats()}")
-
-
