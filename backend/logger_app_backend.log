@@ -736,3 +736,69 @@ SOURCES: ./temp/sample5.txt
  'index_fullness': 0.0,
  'namespaces': {'': {'vector_count': 185}},
  'total_vector_count': 185}
+2023-04-17 16:48:17,513 - INFO - question: tell me about energy for user with user_id 3 
+2023-04-17 16:49:44,554 - INFO - question: tell me about energy for user with user_id 3 
+2023-04-17 16:54:26,297 - INFO - question: tell me about energy for user with user_id 3 
+2023-04-17 16:54:26,299 - INFO - asking question
+2023-04-17 16:54:26,299 - INFO - tell me about energy
+2023-04-17 16:54:26,299 - INFO - with user_id
+2023-04-17 16:54:26,299 - INFO - 3
+2023-04-17 16:54:26,299 - INFO - and filter
+2023-04-17 16:54:26,299 - INFO - {'$or': [{'user_id': 1}, {'user_id': 3}]}
+2023-04-17 16:54:27,484 - INFO - docs_metadata[0]
+2023-04-17 16:54:27,485 - INFO - {'id': '1_1_0',
+ 'metadata': {'file_id': 1.0,
+              'scientific': True,
+              'source': 'GE_COURS 5 Transferts thermiques - Rayonnement '
+                        'V2023.pdf',
+              'text': 'Introduction au Génie énergétique\n'
+                      'Cours 5 –Transferts thermiques : Rayonnement\n'
+                      'Pascal Stabat\n'
+                      'Vendredi 24 mars 2023\n'
+                      'Pascal Stabat Introduction au Génie énergétique 24 mars '
+                      '2023 2RAYONNEMENT\n'
+                      'Rayonnement thermique\n'
+                      'Tout corps émet continuellement del’énergie sous forme '
+                      'd’un rayonnement électromagnétique surune large\n'
+                      'gamme defréquences (ou longueurs d’ondes) '
+                      '.Lerayonnement thermique d’un corps setraduit par une\n'
+                      'diminution deson énergie interne (agitation '
+                      'desmolécules ettransition électronique). Plus uncorps',
+              'user_id': 1.0},
+ 'score': 0.793524444,
+ 'values': []}
+2023-04-17 16:54:27,486 - INFO - example docmeta
+2023-04-17 16:54:27,486 - INFO - {'id': '1_1_0',
+ 'metadata': {'file_id': 1.0,
+              'scientific': True,
+              'source': 'GE_COURS 5 Transferts thermiques - Rayonnement '
+                        'V2023.pdf',
+              'text': 'Introduction au Génie énergétique\n'
+                      'Cours 5 –Transferts thermiques : Rayonnement\n'
+                      'Pascal Stabat\n'
+                      'Vendredi 24 mars 2023\n'
+                      'Pascal Stabat Introduction au Génie énergétique 24 mars '
+                      '2023 2RAYONNEMENT\n'
+                      'Rayonnement thermique\n'
+                      'Tout corps émet continuellement del’énergie sous forme '
+                      'd’un rayonnement électromagnétique surune large\n'
+                      'gamme defréquences (ou longueurs d’ondes) '
+                      '.Lerayonnement thermique d’un corps setraduit par une\n'
+                      'diminution deson énergie interne (agitation '
+                      'desmolécules ettransition électronique). Plus uncorps',
+              'user_id': 1.0},
+ 'score': 0.793524444,
+ 'values': []}
+2023-04-17 16:54:27,486 - INFO - True
+2023-04-17 16:54:27,486 - INFO - number of words in content.txt:
+2023-04-17 16:54:27,486 - INFO - 62
+2023-04-17 16:54:27,486 - INFO - number of words in content.txt:
+2023-04-17 16:54:27,486 - INFO - 123
+2023-04-17 16:54:27,486 - INFO - number of words in content.txt:
+2023-04-17 16:54:27,487 - INFO - 230
+2023-04-17 16:54:27,487 - INFO - number of words in content.txt:
+2023-04-17 16:54:27,487 - INFO - 280
+2023-04-17 16:54:27,491 - INFO - numtokens:
+2023-04-17 16:54:27,492 - INFO - 1113
+2023-04-17 16:54:35,904 - INFO - qa result is
+2023-04-17 16:54:35,905 - INFO - {'answer': 'Energy is the ability of a system to do work or produce heat. It can exist in various forms such as kinetic energy, potential energy, thermal energy, electromagnetic energy, and so on. In the context of thermal engineering, the transfer of energy in the form of heat is of particular interest. This transfer can occur through conduction, convection, and radiation. Radiation, in particular, refers to the emission and absorption of electromagnetic waves, which can occur between objects at different temperatures. The amount of energy transferred through radiation can be calculated using the Stefan-Boltzmann law, which relates the energy emitted by a body to its temperature.', 'sources': [{'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': 'Introduction au Génie énergétique\nCours 5 –Transferts thermiques : Rayonnement\nPascal Stabat\nVendredi 24 mars 2023\nPascal Stabat Introduction au Génie énergétique 24 mars 2023 2RAYONNEMENT\nRayonnement thermique\nTout corps émet continuellement del’énergie sous forme d’un rayonnement électromagnétique surune large\ngamme defréquences (ou longueurs d’ondes) .Lerayonnement thermique d’un corps setraduit par une\ndiminution deson énergie interne (agitation desmolécules ettransition électronique). Plus uncorps'}, {'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': 'Stabat Introduction au Génie énergétique 24 mars 2023 31RAYONNEMENT MUTUEL ENTRE SURFACES NOIRES OPAQUES\nFlux net échangé entre  deux surfaces noires\nPour un corps isotrope (cas du corps noir)\nD’où Φ1↔2=Φ1→2−Φ2→1=𝑳𝑳𝟏𝟏𝟎𝟎−𝑳𝑳𝟐𝟐0�\n𝑆𝑆1�\n𝑆𝑆2�𝑑𝑑𝑆𝑆1�cos𝜃𝜃1�𝑑𝑑𝑆𝑆2�cos𝜃𝜃2\n𝐴𝐴𝐴𝐴𝐴2𝑒𝑒𝑒𝑒𝑊𝑊\n02/\n02\n00 0L d d sin  cos L  M ⋅π=ψθθθ =∫∫π\n=θπ\n=ψ\nΦ1↔2=Φ1→2−Φ2→1=𝑴𝑴𝟏𝟏𝟎𝟎−𝑴𝑴𝟐𝟐0�𝑆𝑆11\n𝜋𝜋�𝑆𝑆1�\n𝑆𝑆1�\n𝑆𝑆2�𝑑𝑑𝑆𝑆1�cos𝜃𝜃1�𝑑𝑑𝑆𝑆2�cos𝜃𝜃2\n𝐴𝐴𝐴𝐴𝐴2𝑒𝑒𝑒𝑒𝑊𝑊\nΦ1↔2=𝑴𝑴𝟏𝟏𝟎𝟎−𝑴𝑴𝟐𝟐0�𝑆𝑆1�𝐹𝐹12Pascal Stabat Introduction au Génie énergétique 24 mars 2023'}, {'filename': 'Math_S1_CalDiff.pdf', 'text': 'efractionA∈[0,1]de cette ´ energie est imm´ ediatement r´ eﬂ´ echie, o` uA0,a p p e l ´ ealbedo,e s tautour de0.3.L ’ ´ e n e r g i e´ e m i s ee nm o y e n n ep a ru n i t ´ ed es u r f a c ep a rl at erre s’´ ecritσT4,o ` uTest la temp´ erature moyenne (exprim´ ee en Kelvin), etσ=5.67×10−8Wm−2K−4.O nconsid` ere qu’une fraction de cette ´ energie n’est pas rayonn´ ee vers l’espace, du fait de l’eﬀet deserre. On noteS∈[0,1]la fraction d’´ energie qui n’est pas ´ evacu´ ee vers l’espace. Ce param` etreest'}, {'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': ':\nL’émission derayonnement qui estune conversion d’énergie matérielle\n(translation, rotation, vibration ouexcitation électronique) enénergie\nradiative (production dephotons) ;\nL’absorption ,quiestleprocessus inverse, aucours duquel lesphotons issus\ndel’environnement disparaissent encédant l’intégralité deleur énergie au\nmilieu matériel.\nLaréflexion etlatransmission durayonnement sont desphénomènes sans\ntransfert thermique .RéceptionÉmissionPascal Stabat Introduction au Génie énergétique 24 mars 2023'}]}

@@ -100,9 +100,14 @@ def save_file_to_Pinecone_metadata(filepath:str, metadata:dict, vectorstore:Pine
 
     user_id = metadata.get('user_id')
     file_id = metadata.get('file_id')
-    filename_only = metadata.get('filename_only')
+    source = metadata.get('source') #source is filename only
 
-
+    non_scientific_list = ['Janco', 'QSE']
+    if any(x in source for x in non_scientific_list):
+        metadata['scientific'] = False
+    else:
+        metadata['scientific'] = True
+    
     filename, file_extension = os.path.splitext(filepath)
     if file_extension.lower() == '.pdf':
         pdf_reader = PyPDF2.PdfReader(filepath)

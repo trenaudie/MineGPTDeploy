@@ -73,8 +73,10 @@ def ask_question(question: str, vectorstore: Pinecone,  chat_history: list[dict]
     #chat_history looks like below
     #must add the context_prompt and question to the chat history to create messages
 
-
-    docs_metadata =  vectorstore._index.query(OpenAIEmbeddings().embed_query(question), top_k = 4, filter = {'user_id': user_id}, include_metadata=True)['matches']
+    full_filter = {'$or': [{'user_id': 1}, {'user_id': user_id}] }
+    print('asking question', question, 'with user_id', user_id, 'and filter', full_filter)
+    docs_metadata =  vectorstore._index.query(OpenAIEmbeddings().embed_query(question), top_k = 4, filter = full_filter, include_metadata=True)['matches']
+    print("docs_metadata[0]", docs_metadata[0])
     messages = makeMessages_fromPinecone_and_history(question, docs_metadata, chat_history)
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",

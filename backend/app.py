@@ -336,7 +336,9 @@ def upload_file():
 
             # Construct metadata dictionary
             metadata = {'source': filename_only,
-                        'user_id': user_id, 'file_id': file_id}
+                        'user_id': user_id, 
+                        'file_id': file_id}
+            
 
             # Save file to Pinecone with metadata
             save_file_to_Pinecone_metadata(filepath, metadata, vectorstore)
@@ -411,8 +413,9 @@ def answerQuestion():
         logger.info(
             f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
-            result = ask_question(question, vectorstore,
-                                  chain, chat_history, user_id)
+            #(question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
+            
+            result = ask_question(question, vectorstore, chat_history, user_id)
             print("qa result is", result)
 
         # Combine the `processed_text
