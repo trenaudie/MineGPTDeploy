@@ -404,6 +404,8 @@ def answerQuestion():
     try:
         data = request.get_json()
         question = data.get('prompt')
+        chat_history = data.get('chathistory')
+        print("chatHistory", chat_history)
 
         auth_header = request.headers.get('Authorization')
         if auth_header and auth_header.startswith('Bearer '):
