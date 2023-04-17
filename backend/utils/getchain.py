@@ -48,12 +48,12 @@ class CustomConversationalRetrievalChain(ConversationalRetrievalChain):
         new_inputs = inputs.copy()
         new_inputs["question"] = new_question
         new_inputs["chat_history"] = chat_history_str
-        self.combine_docs_chain.return_intermediate_steps = False
+        self.combine_docs_chain.return_intermediate_steps = True
         answer, extradict = self.combine_docs_chain.combine_docs(
             docs, **new_inputs)
         print("answer", answer)
         print('extradict intermediate steps: ',
-              extradict['intermediate_steps'])
+              extradict)
         NotRelevantAnswer = all("no relevant text" in text.lower()
                                 for text in extradict['intermediate_steps'])
         if NotRelevantAnswer:
@@ -115,9 +115,8 @@ def createchain_with_filter(vectorstore):
     question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
     # 1. q2 (+ history?) + sources -> [answers with sources] ->  one answer with sources
     doc_chain = load_qa_with_sources_chain(llm, chain_type="map_reduce")
-    doc_chain.return_intermediate_steps = True
 
-    chain = ConversationalRetrievalChain(
+    chain = CustomConversationalRetrievalChain(
         retriever=vectorstore.as_retriever(),
         question_generator=question_generator,
         combine_docs_chain=doc_chain,
