@@ -1,0 +1,64 @@
+Chapitre 13
+Réservoirs sous pression
+13.1 Statique du réservoir sous pression
+Un tube homogène de longueur courante l, de rayon interne ri, de rayon externe reet d’épaisseur
+e=re−riest soumis à une pression interne piet à une pression externe pe(ﬁgure 13.1). Il est d’autre
+part soumis à une densité surfacique homogène d’eﬀort Σ(algébrique) axial (selon z) sur la surface
+z=L, et−Σenz= 0. On cherche à obtenir des informations sur les contraintes qui règnent dans
+le tube, sans tenir compte de la nature du matériau dont il est constitué. Il s’agit donc d’une analyse
+purement statique du problème du réservoir sous pression.
+−Σpi
+O/Bulletz
+peΣ
+rie
+re
+Figure 13.1 – Tube sous pression interne pi, externe peet chargement axial Σ.
+295296 CHAPITRE 13. RÉSERVOIRS SOUS PRESSION
+13.1.1 Conditions à la frontière du tube
+Déﬁnir les conditions de chargement en tout point de la frontière du tube. On utilise les coordonnées
+cylindriques (r,θ,z)d’axeez. On ne tient pas compte des forces de gravitation.
+On travaille sur la conﬁguration actuelle sur laquelle les eﬀorts sont appliqués. Le problème est posé
+en eﬀort uniquement :
+•Enz=l, le vecteur contrainte est égal à la densité d’eﬀort imposée :
+t=td= Σez=σ∼.ez=
+σrz
+σθz
+σzz
+ (13.1)
+On en déduit que, ∀r,θ
+σrz(r,θ,z=l) =σθz(r,θ,z=l) = 0, σzz(r,θ,z=l) = Σ (13.2)
+•Enz= 0, le vecteur contrainte est égal à la densité d’eﬀort imposée :
+t=td=−Σez=σ∼.(−ez) =
+−σrz
+−σθz
+−σzz
+ (13.3)
+On en déduit que, ∀r,θ
+σrz(r,θ,z= 0) =σθz(r,θ,z= 0) = 0 , σzz(r,θ,z= 0) = Σ (13.4)
+Remarquer que σzzprend la même valeur aux extrémités.
+•Enr=re, le vecteur normal nsortant est eret l’eﬀort appliqué est −peer:
+t=td=−peer=σ∼.er=
+σrr
+σθr
+σzr
+ (13.5)
+On en déduit que, ∀θ,z,
+σrr(r=re,θ,z) =−pe, σθr(r=re,θ,z) =σzr(r=re,θ,z) = 0 (13.6)
+On peut aussi obtenir le résultat précédent en raisonnant de la manière suivante. La pression
+appliquée l’est en général à l’aide d’un ﬂuide où règne la pression pe. La condition d’équilibre à
+l’interface ﬂuide/solide est donc une condition de saut :
+tfluide+ttube= [[σ∼]].n= 0 = (σ∼fluide−σ∼tube).n= (−pe1∼−σ∼).er (13.7)
+ce qui est conforme au résultat (13.6).
+•Enr=ri, le vecteur normal nsortant est −eret l’eﬀort appliqué est pier:
+t=td=σ∼.(−er) =pier=
+−σrr
+−σθr
+−σzr
+ (13.8)
+On en déduit que, ∀θ,z,
+σrr(r=ri,θ,z) =−pi, σθr(r=ri,θ,z) =σzr(r=ri,θ,z) = 0 (13.9)
+On peut aussi obtenir le résultat précédent en raisonnant de la manière suivante. La pression
+appliquée l’est en général à l’aide d’un ﬂuide où règne la pression pi. La condition d’équilibre à
+l’interface ﬂuide/solide est donc une condition de saut :
+tfluide+ttube= [[σ∼]].n= 0 = (σ∼fluide−σ∼tube).n= (−pi1∼−σ∼).(−er) (13.10)
+ce qui est conforme au résultat (13.9).

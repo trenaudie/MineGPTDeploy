@@ -1,0 +1,106 @@
+14
+Équilibre vrai. C’est avant tout un état d’équilibre pour lequel toutes les variables d’état restent constantes
+au cours du temps. Mais en outre tous les flux, y compris celui d’énergie doivent être nuls : cela implique en
+particulier l’uniformité de la température sur le système. Enfin le système ne doit pas être bloqué par les
+frottements (faux équilibre), sa tendance à l’évolution doit être compensée uniquement par la valeur bien
+déterminée des actions qu’il subit de l’extérieur. L’équilibre vrai doit être bien distingué des états (ou
+processus) stationnaires, qui impliquent des flux, bien que les valeurs des variables d’état y restent aussi
+constantes au cours du temps.
+Transformation. Une transformation (ou processus) thermodynamique est, à cause de la définition même
+des variables d’état, complètement déterminée par la donnée des états successifs du système au cours du
+temps. Les vitesses seront considérées à part et ne font pas partie de cette définition. Une même
+transformation peut ainsi être décrite à des vitesses différentes, si elle comporte la même suite de variables
+d’état. Une transformation réelle est définie par les valeurs prises par les variables d’état en fonction du
+temps, au cours de l’évolution réelle du système dans un environnement donné. Par exemple P(t); T(t); n(t)
+pour une phase simple.
+Transformation réversible : une transformation réversible menant de l’état ξ1 à l’état ξ2 est une
+transformation idéale, qui est une suite continue d’états d’équilibre vrai ; elle doit en outre être la limite
+commune de deux (familles de) transformations réelles permettant de passer de ξ1 à ξ2 et de ξ2 à ξ1.
+Transformation irréversible : toute transformation réelle accompagnée de phénomènes irréversibles,
+c’est-à-dire de l’un des facteurs d’irréversibilité suivants : hétérogénéité de température, diffusion
+(hétérogénéité de composition), réactions chimiques spontanées, frottement ou hystérésis, viscosité
+(incluant l’effet Joule). Toute transformation irréversible entraîne une génération (ou production)
+d’entropie strictement positive.
+2.2 Échanges d’énergie
+2.2.1 Travail exercé par les forces externes
+En thermodynamique, le travail exercé par les forces externes à un système est donné par la formule
+habituelle en mécanique ; c’est la somme des produits scalaires des forces (exercées par les corps extérieurs
+au système) par le déplacement de leurs points d’application (qui sont toujours des éléments de matière) :
+(1) 𝛿𝛿𝛿𝛿 = ∑ 𝑭𝑭. 𝑑𝑑𝑑𝑑
+Il faut bien noter que seules les forces exercées par les corps extérieurs au système considéré sont à prendre
+en compte ; par exemple le travail des forces de pression ne fait intervenir que celles qui agissent sur la
+frontière du système. Les actions internes jouent évidemment aussi un rôle, mais elles seront prises en
+charge par les fonctions d’état, l’énergie interne en particulier. Chaque force F doit être multipliée par le
+déplacement de son propre point d’application ; la formule (1) a alors automatiquement la bonne valeur
+algébrique, positive si de l’énergie mécanique est transférée au système, négative dans le cas contraire.
+Comme, par définition, les variables d’état décrivent complètement le système, le travail dans une
+transformation élémentaire, 𝛿𝛿𝛿𝛿, peut être exprimé en fonction de leurs différentielles :
+(2) 𝛿𝛿𝛿𝛿 = ∑ 𝐴𝐴 𝑖𝑖(𝛼𝛼1, ... 𝛼𝛼 𝑛𝑛 ; 𝛼𝛼̇1, ... 𝛼𝛼̇ 𝑛𝑛)𝑑𝑑𝛼𝛼 𝑖𝑖𝑖𝑖
+Les A i sont appelés actions extérieures ou forces généralisées, et dépendent en général non seulement des
+variables d’état, mais aussi de leurs dérivées temporelles 𝛼𝛼̇ 𝑖𝑖 (dans le cas où il y a de la viscosité par exemple).
+Ceci veut également dire que 𝛿𝛿𝛿𝛿 n’est pas en général une différentielle totale exacte : elle peut avoir des
+valeurs différentes pour deux transformations conduisant du même état initial au même état final.
+Cas particuliers
+Quand les forces externes se réduisent à une pression uniforme, par exemple dans le cas d’une phase, le
+travail élémentaire vaut
+(3) 𝛿𝛿𝛿𝛿 = −𝑃𝑃𝑑𝑑𝑃𝑃
+où P est la pression à la frontière du système, mais du côté de ce dernier. Cette formule reste valable dans
+des cas plus généraux quand la viscosité est négligeable3.
+3 Il faut enfin noter que si l’inertie d’un piston est suffisamment faible, la pression du côté interne p est égale à la pression du côté externe.
+15
+La puissance des forces électromagnétiques externes s’exerçant sur un système siège de phénomènes
+électriques lentement variables, comme un accumulateur, mais sans polarisations diélectriques ni
+magnétiques, vaut dans les cas usuels
+(4) 𝛿𝛿̇ = ∫ 𝜙𝜙 ∙ 𝑰𝑰 ∙ 𝒏𝒏 ∙ 𝑑𝑑𝐴𝐴𝜕𝜕𝜕𝜕
+où ∂V est la frontière du système, φ le potentiel électrique, I la densité de courant total, et n la normale
+intérieure à V. Dans le cas d’un régime permanent où un courant I pénètre en 1 dans le système et en sort
+en 2, cette puissance est exprimée par 𝐼𝐼[φ(1) − Φ(2)].
+2.2.2 Quantité de chaleur transférée
+C’est le concept le plus délicat à définir. Disons seulement que c’est une quantité d’énergie transférée d’un
+système à un autre, et qui peut être mesurée, pour un système fermé, par l’intermédiaire d’un calorimètre
+traditionnel : elle est basée sur le postulat que, dans le cas d’un système isolé thermiquement et composé
+de deux corps qui ne glissent pas l’un sur l’autre (pour éviter tout frottement), la chaleur absorbée par l’un
+est l’opposé de la chaleur absorbée par l’autre. Il ne faut pas confondre la quantité de chaleur avec ce qu’on
+appelle parfois la "chaleur interne" d’un corps qui n’est autre que son enthalpie.
+Comme le travail, la quantité de chaleur absorbée par le système dans une transformation élémentaire est
+une différentielle des variables d’état :
+(5) 𝛿𝛿𝛿𝛿 = ∑ 𝜒𝜒𝑖𝑖(𝛼𝛼1, ... 𝛼𝛼 𝑛𝑛 ; 𝛼𝛼̇1, ... 𝛼𝛼̇ 𝑛𝑛)𝑑𝑑𝛼𝛼 𝑖𝑖𝑖𝑖
+Ce n’est pas non plus une différentielle totale exacte : par exemple, ses coefficients, χi, dits "calorimétriques",
+peuvent dépendre des dérivées temporelles des variables d’état (s’il y a viscosité par exemple) et donc du
+déroulement de la transformation elle-même et non plus seulement des variations des variables d’état.
+Coefficients calorimétriques d’équilibre. Ce sont les expressions particulières que prennent les χi dans
+les transformations réversibles. Pratiquement, ils peuvent être très souvent utilisés dans d’autres
+transformations, pourvu que les irréversibilités ne soient pas trop importantes.
+Dans le cas d’une phase à un constituant, la différentielle de chaleur δQ s’écrit, pour l’unité de masse :
+(6) 𝛿𝛿𝛿𝛿 = 𝐶𝐶𝑝𝑝 ∙ 𝑑𝑑𝑑𝑑 + 𝑘𝑘 ∙ 𝑑𝑑𝑃𝑃
+(C p chaleur massique à pression constante, k chaleur massique de compression), ou encore
+(7) 𝛿𝛿𝛿𝛿 = 𝐶𝐶𝑣𝑣 ∙ 𝑑𝑑𝑑𝑑 + 𝑑𝑑 ∙ 𝑑𝑑𝑃𝑃
+(C v chaleur massique à volume constant, l chaleur massique de dilatation, v volume massique).
+Une conséquence des deux principes est que ces coefficients d’équilibre ne sont pas indépendants et
+satisfont les relations (dites de Mayer et de Clapeyron) :
+(8) 𝐶𝐶𝑝𝑝 − 𝐶𝐶𝑣𝑣 = 𝑑𝑑 𝜕𝜕𝑣𝑣(𝑃𝑃,𝑇𝑇)
+𝜕𝜕𝑇𝑇 = −𝑘𝑘 𝜕𝜕𝑃𝑃(𝑣𝑣,𝑇𝑇)
+𝜕𝜕𝑇𝑇
+(9) 𝑑𝑑 = 𝑑𝑑 𝜕𝜕𝑃𝑃(𝑣𝑣,𝑇𝑇)
+𝜕𝜕𝑇𝑇 , 𝑘𝑘 = −𝑑𝑑 𝜕𝜕𝑣𝑣(𝑃𝑃,𝑇𝑇)
+𝜕𝜕𝑇𝑇
+où l’on s’est servi de l’équation d’état P = P(v; T) ou v = v(P; T).
+Exemple
+Par définition, la calorie est (à quelques détails métrologiques près) la quantité de chaleur nécessaire pour élever la
+température de 1 g d’eau de 14,5 à 15,5 °C, à la pression atmosphérique standard. Sur un si faible intervalle de
+température, on suppose souvent Cp constant, et la formule (6) donne la valeur de cette quantité de chaleur :
+Q = Cp∆T + k × 0 (puisque p est constant)
+Or la mesure donne Cp = 4,1855 J g-1 K-1 , on en déduit donc 1 cal = 4;1855 J
+Dans quelle mesure peut-on se servir de cette valeur du Cp de l’eau à des pressions s’éloignant de la pression
+atmosphérique ? Pour le savoir il faut évaluer le terme en k∆P. La deuxième formule (9) donne sa valeur à partir de la
+mesure de la dilatation du fluide. Or le coefficient de dilatation de l’eau vaut :
+𝛼𝛼 = 1
+𝑣𝑣
+𝜕𝜕𝑣𝑣
+𝜕𝜕𝑇𝑇 = 0,18 10−3 𝐾𝐾 −1 d’où 𝑘𝑘 = −𝑑𝑑𝛼𝛼𝑇𝑇 ≈ −5,2 10−5 𝑚𝑚 3 𝑘𝑘𝑘𝑘 −1
+Pour qu’une variation de pression ∆p joue un rôle dans la quantité de chaleur absorbée par une masse d’eau, il faut que
+le terme k∆p soit du même ordre que celui en Cp∆T. Dans le cas d’une élévation de température de 1 K, il faudrait, pour
+la compenser, et arriver à une quantité de chaleur absorbée nulle, une augmentation de pression de
+∆𝑃𝑃 = 4,1855 103
+5,2 10−5 ≈ 0,8 108 𝑃𝑃𝑃𝑃
+soit de l’ordre de 1000 atmosphères.
