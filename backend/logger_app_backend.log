@@ -1,109 +1,80 @@
-2023-04-17 17:15:11,208 - INFO - uploading file
-2023-04-17 17:15:11,235 - INFO - uploading file CIEE FR_PAR Fee Disclosure FY23.pdf with id 85356c5d-0201-47d3-acfe-429433a19992 for user 1 
-2023-04-17 17:15:50,526 - INFO - question: heloo for user with user_id 2 
-2023-04-17 17:15:50,526 - INFO - asking question
-2023-04-17 17:15:50,529 - INFO - heloo
-2023-04-17 17:15:50,529 - INFO - with user_id
-2023-04-17 17:15:50,529 - INFO - 2
-2023-04-17 17:15:50,529 - INFO - and filter
-2023-04-17 17:15:50,529 - INFO - {'$or': [{'user_id': 1}, {'user_id': 2}]}
-2023-04-17 17:17:07,408 - INFO - question: hello for user with user_id 2 
-2023-04-17 17:17:07,437 - INFO - asking question
-2023-04-17 17:17:07,437 - INFO - hello
-2023-04-17 17:17:07,437 - INFO - with user_id
-2023-04-17 17:17:07,437 - INFO - 2
-2023-04-17 17:17:07,437 - INFO - and filter
-2023-04-17 17:17:07,437 - INFO - {'$or': [{'user_id': 1}, {'user_id': 2}]}
-2023-04-17 17:17:09,778 - INFO - docs_metadata[0]
-2023-04-17 17:17:09,778 - INFO - {'id': '1_2_106',
- 'metadata': {'file_id': 2.0,
+2023-04-17 17:12:25,138 - INFO - question: tell me about thermal energy for user with user_id 3 
+2023-04-17 17:12:25,138 - INFO - asking question
+2023-04-17 17:12:25,138 - INFO - tell me about thermal energy
+2023-04-17 17:12:25,138 - INFO - with user_id
+2023-04-17 17:12:25,138 - INFO - 3
+2023-04-17 17:12:25,138 - INFO - and filter
+2023-04-17 17:12:25,138 - INFO - {'$or': [{'user_id': 1}, {'user_id': 3}]}
+2023-04-17 17:12:27,199 - INFO - docs_metadata[0]
+2023-04-17 17:12:27,200 - INFO - {'id': '1_1_0',
+ 'metadata': {'file_id': 1.0,
               'scientific': True,
-              'source': 'Math_S1_CalDiff.pdf',
-              'text': 'dans l’autre sens, c’est-` a- dire que l’on cherche` ae '
-                      's t i m e rx`a p a r t i r d e l a c o n n a i s s a n '
-                      'c edey.O nn ep e u te s p ´ e r e rr e t r o u v e re x '
-                      'a c t e m e n tl e sp a r a m ` e t r e sque si leur '
-                      'nombre est ´ egal`a c e l u i d e s i n c o n n u e '
-                      'sn=m.O nn o t e r aq u e ,p o u rc en o u v e a up r o '
-                      'b l ` e m e ,l e sp a r a m ` e t r e sles plus '
-                      'diﬃciles ` a identiﬁer pr´ ecis´ ement sont ceux qui '
-                      'ont peu d’inﬂuence sur la solution,qui ´ etaient '
-                      'consid´ er´ es pour le probl` eme',
+              'source': 'GE_COURS 5 Transferts thermiques - Rayonnement '
+                        'V2023.pdf',
+              'text': 'Introduction au Génie énergétique\n'
+                      'Cours 5 –Transferts thermiques : Rayonnement\n'
+                      'Pascal Stabat\n'
+                      'Vendredi 24 mars 2023\n'
+                      'Pascal Stabat Introduction au Génie énergétique 24 mars '
+                      '2023 2RAYONNEMENT\n'
+                      'Rayonnement thermique\n'
+                      'Tout corps émet continuellement del’énergie sous forme '
+                      'd’un rayonnement électromagnétique surune large\n'
+                      'gamme defréquences (ou longueurs d’ondes) '
+                      '.Lerayonnement thermique d’un corps setraduit par une\n'
+                      'diminution deson énergie interne (agitation '
+                      'desmolécules ettransition électronique). Plus uncorps',
               'user_id': 1.0},
- 'score': 0.765143096,
+ 'score': 0.806828797,
  'values': []}
-2023-04-17 17:17:09,784 - INFO - example docmeta
-2023-04-17 17:17:09,784 - INFO - {'id': '1_2_106',
- 'metadata': {'file_id': 2.0,
+2023-04-17 17:12:27,200 - INFO - example docmeta
+2023-04-17 17:12:27,200 - INFO - {'id': '1_1_0',
+ 'metadata': {'file_id': 1.0,
               'scientific': True,
-              'source': 'Math_S1_CalDiff.pdf',
-              'text': 'dans l’autre sens, c’est-` a- dire que l’on cherche` ae '
-                      's t i m e rx`a p a r t i r d e l a c o n n a i s s a n '
-                      'c edey.O nn ep e u te s p ´ e r e rr e t r o u v e re x '
-                      'a c t e m e n tl e sp a r a m ` e t r e sque si leur '
-                      'nombre est ´ egal`a c e l u i d e s i n c o n n u e '
-                      'sn=m.O nn o t e r aq u e ,p o u rc en o u v e a up r o '
-                      'b l ` e m e ,l e sp a r a m ` e t r e sles plus '
-                      'diﬃciles ` a identiﬁer pr´ ecis´ ement sont ceux qui '
-                      'ont peu d’inﬂuence sur la solution,qui ´ etaient '
-                      'consid´ er´ es pour le probl` eme',
+              'source': 'GE_COURS 5 Transferts thermiques - Rayonnement '
+                        'V2023.pdf',
+              'text': 'Introduction au Génie énergétique\n'
+                      'Cours 5 –Transferts thermiques : Rayonnement\n'
+                      'Pascal Stabat\n'
+                      'Vendredi 24 mars 2023\n'
+                      'Pascal Stabat Introduction au Génie énergétique 24 mars '
+                      '2023 2RAYONNEMENT\n'
+                      'Rayonnement thermique\n'
+                      'Tout corps émet continuellement del’énergie sous forme '
+                      'd’un rayonnement électromagnétique surune large\n'
+                      'gamme defréquences (ou longueurs d’ondes) '
+                      '.Lerayonnement thermique d’un corps setraduit par une\n'
+                      'diminution deson énergie interne (agitation '
+                      'desmolécules ettransition électronique). Plus uncorps',
               'user_id': 1.0},
- 'score': 0.765143096,
+ 'score': 0.806828797,
  'values': []}
-2023-04-17 17:17:09,784 - INFO - True
-2023-04-17 17:22:12,549 - INFO - question: hello for user with user_id 2 
-2023-04-17 17:22:12,549 - INFO - asking question
-2023-04-17 17:22:12,549 - INFO - hello
-2023-04-17 17:22:12,549 - INFO - with user_id
-2023-04-17 17:22:12,549 - INFO - 2
-2023-04-17 17:22:12,549 - INFO - and filter
-2023-04-17 17:22:12,549 - INFO - {'$or': [{'user_id': 1}, {'user_id': 2}]}
-2023-04-17 17:22:14,767 - INFO - docs_metadata[0]
-2023-04-17 17:22:14,769 - INFO - {'id': '1_2_106',
- 'metadata': {'file_id': 2.0,
-              'scientific': True,
-              'source': 'Math_S1_CalDiff.pdf',
-              'text': 'dans l’autre sens, c’est-` a- dire que l’on cherche` ae '
-                      's t i m e rx`a p a r t i r d e l a c o n n a i s s a n '
-                      'c edey.O nn ep e u te s p ´ e r e rr e t r o u v e re x '
-                      'a c t e m e n tl e sp a r a m ` e t r e sque si leur '
-                      'nombre est ´ egal`a c e l u i d e s i n c o n n u e '
-                      'sn=m.O nn o t e r aq u e ,p o u rc en o u v e a up r o '
-                      'b l ` e m e ,l e sp a r a m ` e t r e sles plus '
-                      'diﬃciles ` a identiﬁer pr´ ecis´ ement sont ceux qui '
-                      'ont peu d’inﬂuence sur la solution,qui ´ etaient '
-                      'consid´ er´ es pour le probl` eme',
-              'user_id': 1.0},
- 'score': 0.765143096,
- 'values': []}
-2023-04-17 17:22:14,769 - INFO - example docmeta
-2023-04-17 17:22:14,769 - INFO - {'id': '1_2_106',
- 'metadata': {'file_id': 2.0,
-              'scientific': True,
-              'source': 'Math_S1_CalDiff.pdf',
-              'text': 'dans l’autre sens, c’est-` a- dire que l’on cherche` ae '
-                      's t i m e rx`a p a r t i r d e l a c o n n a i s s a n '
-                      'c edey.O nn ep e u te s p ´ e r e rr e t r o u v e re x '
-                      'a c t e m e n tl e sp a r a m ` e t r e sque si leur '
-                      'nombre est ´ egal`a c e l u i d e s i n c o n n u e '
-                      'sn=m.O nn o t e r aq u e ,p o u rc en o u v e a up r o '
-                      'b l ` e m e ,l e sp a r a m ` e t r e sles plus '
-                      'diﬃciles ` a identiﬁer pr´ ecis´ ement sont ceux qui '
-                      'ont peu d’inﬂuence sur la solution,qui ´ etaient '
-                      'consid´ er´ es pour le probl` eme',
-              'user_id': 1.0},
- 'score': 0.765143096,
- 'values': []}
-2023-04-17 17:22:14,769 - INFO - True
-2023-04-17 17:22:14,772 - INFO - number of words in content.txt:
-2023-04-17 17:22:14,773 - INFO - 168
-2023-04-17 17:22:14,773 - INFO - number of words in content.txt:
-2023-04-17 17:22:14,773 - INFO - 246
-2023-04-17 17:22:14,773 - INFO - number of words in content.txt:
-2023-04-17 17:22:14,773 - INFO - 374
-2023-04-17 17:22:14,773 - INFO - number of words in content.txt:
-2023-04-17 17:22:14,773 - INFO - 449
-2023-04-17 17:22:15,393 - INFO - numtokens:
-2023-04-17 17:22:15,393 - INFO - 887
-2023-04-17 17:22:17,557 - INFO - qa result is
-2023-04-17 17:22:17,557 - INFO - {'answer': 'Hello! How can I assist you today?', 'sources': [{'filename': 'Math_S1_CalDiff.pdf', 'text': 'dans l’autre sens, c’est-` a- dire que l’on cherche` ae s t i m e rx`a p a r t i r d e l a c o n n a i s s a n c edey.O nn ep e u te s p ´ e r e rr e t r o u v e re x a c t e m e n tl e sp a r a m ` e t r e sque si leur nombre est ´ egal`a c e l u i d e s i n c o n n u e sn=m.O nn o t e r aq u e ,p o u rc en o u v e a up r o b l ` e m e ,l e sp a r a m ` e t r e sles plus diﬃciles ` a identiﬁer pr´ ecis´ ement sont ceux qui ont peu d’inﬂuence sur la solution,qui ´ etaient consid´ er´ es pour le probl` eme'}, {'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': 'MUTUEL ENTRE SURFACES OPAQUES\nFacteurs de forme entre surface uniformes isotropes\nDétermination pratique des facteurs de forme ∫∫⋅ ⋅⋅⋅⋅=\ni j SSijj i j i\niijddSdS\nSF2cos cos 1 θ θ\nπRECIPROCITE :     SiFij= SjFji\nCONSERVATION : dans une enceinte fermée\n∀i   ΣFij= 1\nSURFACE CONVEXE : Fii= 0\nFORMULES &  ABAQUES\n(Siegel et Howell )Méthode d’ HottelINTEGRATION NUMERIQUE\nMéthode de Monte CarloPascal Stabat Introduction au Génie énergétique 24 mars 2023 30RAYONNEMENT MUTUEL ENTRE SURFACES OPAQUES\nMETHODE DES CORDES'}, {'filename': 'Math_S1_CalDiff.pdf', 'text': 'x+h],e l l ee s tb i e nb o r n ´ e ee ta t t e i n ts e sb o r n e s ,e np a r t i c u l i e rlemaxci-dessus est bien d´ eﬁni\n7. On pourra penser ` a une versionTour de Francede cette propri´ et´ e tr` es g´ en´ erale : si un coureur cyclisteeﬀectue un parcours de10 kmsur une route dont la pente n’exc` ede pas7%,i ls a i tq u ’ i ln ’ a u r ap a sm o n t ´ ee naltitude de plus de10 km×0.07 = 700 m.II.2. EXERCICES43comme un r´ eel positif. On prend la norme de l’identit´ e ´ etablie dans le th´ eor` eme pr´'}, {'filename': 'Math_S1_CalDiff.pdf', 'text': 'chacunedes particules, qui s’´ ecrit de fa¸ conabstraited2qi\ndt2=−∇qiV(q).e)(⋆)On se place dans le cadre des notations de la question pr´ ec´ edente. On suppose que l’onconnait une solutiont∈[0,T[/mapsto→q(t)∈Ude l’´ equation d’´ evolution (II.2.2). Montrer que l’onac o n s e r v a t i o nd el ’ ´ e n e r g i et o t a l e ,c ’ e s t` ad i r eq u el aq u antit´'}]}
+2023-04-17 17:12:27,200 - INFO - True
+2023-04-17 17:12:27,201 - INFO - number of words in content.txt:
+2023-04-17 17:12:27,201 - INFO - 62
+2023-04-17 17:12:27,201 - INFO - number of words in content.txt:
+2023-04-17 17:12:27,201 - INFO - 139
+2023-04-17 17:12:27,201 - INFO - number of words in content.txt:
+2023-04-17 17:12:27,201 - INFO - 199
+2023-04-17 17:12:27,201 - INFO - number of words in content.txt:
+2023-04-17 17:12:27,201 - INFO - 262
+2023-04-17 17:12:27,206 - INFO - numtokens:
+2023-04-17 17:12:27,206 - INFO - 747
+2023-04-17 17:12:35,066 - INFO - qa result is
+2023-04-17 17:12:35,067 - INFO - {'answer': 'Thermal energy is the energy that comes from the internal motion of particles in a substance. It can be transferred from one object to another through conduction, convection, or radiation. In the case of radiation, all objects emit thermal energy in the form of electromagnetic radiation, which includes infrared, visible, and ultraviolet light. The amount of thermal energy emitted by an object depends on its temperature and its emissivity, which is a measure of how efficiently it emits radiation compared to a perfect emitter called a blackbody. The study of thermal energy and its transfer is an important part of the field of thermodynamics.', 'sources': [{'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': 'Introduction au Génie énergétique\nCours 5 –Transferts thermiques : Rayonnement\nPascal Stabat\nVendredi 24 mars 2023\nPascal Stabat Introduction au Génie énergétique 24 mars 2023 2RAYONNEMENT\nRayonnement thermique\nTout corps émet continuellement del’énergie sous forme d’un rayonnement électromagnétique surune large\ngamme defréquences (ou longueurs d’ondes) .Lerayonnement thermique d’un corps setraduit par une\ndiminution deson énergie interne (agitation desmolécules ettransition électronique). Plus uncorps'}, {'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': 'Introduction au Génie énergétique 24 mars 2023 20PROPRIETES RADIATIVES DES CORPS\nÉmissivité des corps\n1\n0λελCORPS NOIR\nCORPS GRIS\n1\n0λελCORPS QUELCONQUE\n1\n0λελ CORPS SELECTIF CHAUDCORPS SELECTIF FROID\nPascal Stabat Introduction au Génie énergétique 24 mars 2023 21PROPRIETES RADIATIVES DES CORPS\nCorps Sélectifs\nBilan thermique dans le vide \nA l’équilibre thermique à température T, l’émission du corps noir à sa température est égal au flux solaire \nabsorbé :Face isolée\nEs0\nM\nT\nαsol.Es0=  M= εIR.σ.T4 Supposé à'}, {'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': 'estchaud,\nplus sonrayonnement thermique estimportant .\nUncorps quireçoit unrayonnement thermique, peut enabsorber, tout oupartie, etvoit son énergie interne\naugmenter .\nLe rayonnement thermique peut se faire sans support matériel (transmission dans le vide).\nUV InfraRouge micro ondes  radioλ[µm]\n0,02 0,38                   0,78 100\n1015 Hz                                    1012 Hz\nRayonnement thermique\nVISIBLEPascal Stabat Introduction au Génie énergétique 24 mars 2023 3RAYONNEMENT\nExpérience de Herschel'}, {'filename': 'GE_COURS 5 Transferts thermiques - Rayonnement V2023.pdf', 'text': 'propagation\nh\nν\nc = λ.ν\nvitesse de propagation\nPROPAGATION\nélectromagnétiqueEMISSION\nthermiqueABSORPTION\nthermiquePascal Stabat Introduction au Génie énergétique 24 mars 2023 5RAYONNEMENT\nPrincipe de l’émission d’un photon\n•Énergie de vibration des molécules : rayonnement IR\n•Énergie de transition électronique : rayonnement UV et visible\nPascal Stabat Introduction au Génie énergétique 24 mars 2023 6RAYONNEMENT\nLerayonnement thermique entre une surface etsonenvironnement s’effectue selon deux\nprocessus'}]}
+2023-04-17 17:14:51,521 - INFO - uploading file
+2023-04-17 17:14:51,529 - INFO - uploading file Article 19.1.pdf with id 709c5599-ebb9-48d3-b48a-91cf3c698882 for user 1 
+2023-04-17 17:18:09,932 - INFO - uploading file
+2023-04-17 17:18:09,950 - INFO - uploading file MMC_PC1.pdf with id 2d3fd8fd-1082-479a-9704-bc33aecb795f for user 1 
+2023-04-17 17:18:42,704 - INFO - added to vectorstore 68 chunks from backend/temp/MMC_PC1.pdf with metadata ex. {'source': 'MMC_PC1.pdf', 'user_id': 1, 'file_id': '2d3fd8fd-1082-479a-9704-bc33aecb795f', 'scientific': True, 'text': 'ÉTATS\nσ∼=σ1d1⊗d1+σ2d2⊗d2\navecd1.d2= 0\nComposantes dans le repère\n(e1=d1,e2=d2,e3):\n[σ∼] =\uf8ee\n\uf8f0σ10 0\n0σ20\n0 0 0\uf8f9\n\uf8fb\n2\n1σ1 σ1σ2\nσ2τ\nσnσ1 σ2σ1\n\x00σ2\n2σ2\n✁2σ1\n2\nTable 4.4 – Récapitulatif : l’état de contraintes bi-axial.'}
+2023-04-17 17:18:42,794 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 253}},
+ 'total_vector_count': 253}
+2023-04-17 17:20:08,294 - INFO - uploading file
+2023-04-17 17:20:08,299 - INFO - uploading file 1622591267-Mandat SEPA.pdf with id a140ad6c-c7d4-4309-864f-acd850396a1b for user 3 
+2023-04-17 17:20:11,494 - INFO - added to vectorstore 4 chunks from backend/temp/1622591267-Mandat_SEPA.pdf with metadata ex. {'source': '1622591267-Mandat_SEPA.pdf', 'user_id': 3, 'file_id': 'a140ad6c-c7d4-4309-864f-acd850396a1b', 'scientific': True, 'text': 'Récurrent\nLesinformationscontenuesdansleprésentmandat,quidoitêtrecomplété,sontdestinéesàn\x92êtreutiliséesparlecréancierquepourlagestionde\nsarelationavecsonclient.\nConformémentàla"LoiInformatiqueetLibertés"du6janvier1978modifiée,vousdisposezd\'undroitd\'accès,derectificationetd\'oppositionaux\ndonnéesvousconcernantenécrivantàOrangeServiceClientsGestiondesdonnéespersonnelles33732Bordeauxcedex9(indiquezvosnom,\nprénom,adresse,numérodetéléphoneetjoindreunjustificatifd\'identité).'}
+2023-04-17 17:20:11,588 - INFO - vectorstore stats: {'dimension': 1536,
+ 'index_fullness': 0.0,
+ 'namespaces': {'': {'vector_count': 257}},
+ 'total_vector_count': 257}

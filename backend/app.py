@@ -314,14 +314,14 @@ def logout():
 
 
 @app.route('/upload', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def upload_file():
     logger.info("uploading file")
     try:
         uploaded_file = request.files['document']
         file_id = request.form['file_id']
 
-        user_id = 1  # for testing purposes, with base user id
+        user_id = get_jwt_identity()  # for testing purposes, with base user id
         if not user_id:
             raise ValueError('Access token is missing or invalid')
 
