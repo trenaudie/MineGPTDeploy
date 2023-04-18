@@ -5,6 +5,8 @@ import traceback
 from datetime import timedelta
 import io
 import numpy as np
+import base64
+import zipfile
 
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
@@ -336,9 +338,8 @@ def upload_file():
 
             # Construct metadata dictionary
             metadata = {'source': filename_only,
-                        'user_id': user_id, 
+                        'user_id': user_id,
                         'file_id': file_id}
-            
 
             # Save file to Pinecone with metadata
             save_file_to_Pinecone_metadata(filepath, metadata, vectorstore)
@@ -406,6 +407,8 @@ def answerQuestion():
         question = data.get('prompt')
         chat_history = data.get('chathistory')
         print("chatHistory", chat_history)
+        if not chat_history:
+            chat_history = []
 
         auth_header = request.headers.get('Authorization')
         if auth_header and auth_header.startswith('Bearer '):
@@ -415,10 +418,24 @@ def answerQuestion():
         logger.info(
             f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
-            #(question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
-            
+            # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
+
             result = ask_question(question, vectorstore, chat_history, user_id)
             print("qa result is", result)
+
+        sources = result["sources"]
+        s3 = aws_session.client('s3')
+
+        pdf_files = []
+        for filename in sources:
+            s3_object = s3.get_object(Bucket=bucket_name, Key=filename)
+            file_stream = io.BytesIO(s3_object['Body'].read())
+            pdf_base64 = base64.b64encode(
+                file_stream.getvalue()).decode('utf-8')
+            pdf_files.append(pdf_base64)
+
+        # Your JSON result data
+        result['pdf_files'] = pdf_files
 
         # Combine the `processed_text
         # ` and `page_content` JSON objects into a single dictionary
@@ -433,10 +450,11 @@ def answerQuestion():
 @app.route('/delete_vector', methods=['POST'])
 @jwt_required()
 def delete_vector():
-    
+
     return
     # user id
     # file id
+
 
 with app.app_context():
     db.create_all()

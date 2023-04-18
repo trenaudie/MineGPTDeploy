@@ -9,7 +9,7 @@ import { LatestExportFormat, SupportedExportFormats } from '@/types/export';
 import { Folder, FolderType } from '@/types/folder';
 import { Key } from '@/components/Settings/Key'
 import { SERVER_ADDRESS } from '@/components/Global/Constants';
-import { setSecureCookie } from '../utils/app/cookieTool'
+import { setSecureCookie } from '../utils/app/cookieTool';
 import {
   OpenAIModel,
   OpenAIModelID,
@@ -175,6 +175,7 @@ const Home: React.FC<HomeProps> = ({
 
       const sources = data.sources
       let answer = data.answer;
+      const pdf_files = data.pdf_files
       if (sources.length == 0) {
         answer = answer.replace(/SOURCES\s*:.*$/, '');
       }
@@ -190,16 +191,19 @@ const Home: React.FC<HomeProps> = ({
 
       const updatedMessages: Message[] = [
         ...updatedConversation.messages,
-        { role: 'assistant', content: answer, title: 'answer', source: false },
+        { role: 'assistant', content: answer, title: 'answer', source: false, files: null },
       ];
 
       if (sources) {
-        for (const item of sources) {
+        const n = sources.lenght;
+        for (let i = 0; i < n; i++) {
+          const item = sources[i];
           const filename = item.filename
           const text = item.text
+          const file = pdf_files[i]
           // We added a title to the message to include the filename
           console.log("added source")
-          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true });
+          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, files: file });
         }
       }
 
