@@ -30,7 +30,6 @@ export const ChatMessage: FC<Props> = memo(
     const [isTyping, setIsTyping] = useState<boolean>(false);
     const [messageContent, setMessageContent] = useState(message.content);
     const [messagedCopied, setMessageCopied] = useState(false);
-
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const toggleEditing = () => {
@@ -99,7 +98,7 @@ export const ChatMessage: FC<Props> = memo(
         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
       }
     }, [isEditing]);
-
+    console.log(`Image received: ${message.file}`)
     return (
       <div
         className={`group px-4 ${message.role === 'assistant'
@@ -110,7 +109,7 @@ export const ChatMessage: FC<Props> = memo(
       >
         <div className="relative m-auto flex gap-4 p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
           <div className="min-w-[40px] text-right font-bold">
-            {message.role === 'assistant' && !message.source ? (
+            {message.role === 'assistant' ?(
               <IconRobot size={30} />
             ) : (
               <IconUser size={30} />
@@ -119,27 +118,32 @@ export const ChatMessage: FC<Props> = memo(
 
           <div className="prose mt-[-2px] w-full dark:prose-invert">
             {message.role === 'assistant' && message.source && (
-              <>
-                <div className="mt-2 text-sm text-gray-500 italic">
-                  Source:
-                </div>
-                <FileDownload fileName={message.title} displayText={message.title} />
+            <>
+            <div className="mt-2 text-sm text-gray-500 italic">
+              Source:
+            </div>
+            <FileDownload fileName={message.title} displayText={message.title} />
+            <div>
+              {message.file ? (
                 <div>
-                  {message.file && (
-                    <div>
-                      {(() => {
-
-                        const pdfBlob = base64ToBlob(message.file, 'application/pdf');
-                        return <PdfViewer pdfFile={pdfBlob} />;
-                      })()}
-                    </div>
-                  )}
+                  <img
+                    src={`data:image/jpeg;base64,${message.file}`}
+                    alt={message.title}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
                 </div>
-              </>
+              ) : 
+              <div>
+                  {message.content}
+                </div>}
+            </div>
+          </>
+          
             )}
 
 
-            {message.role === 'user' ? (
+
+            {message.role === 'user' && (
               <div className="flex w-full">
                 {isEditing ? (
                   <div className="flex w-full flex-col">
@@ -199,7 +203,9 @@ export const ChatMessage: FC<Props> = memo(
                   </button>
                 )}
               </div>
-            ) : (
+            ) }
+
+          {message.role === 'assistant' && !message.source && (
               <>
                 <div
                   className={`absolute ${window.innerWidth < 640

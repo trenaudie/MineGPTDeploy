@@ -150,7 +150,7 @@ const Home: React.FC<HomeProps> = ({
 
 
       const controller = new AbortController();
-      const response = await fetch(`${SERVER_ADDRESS}/qa2`, {
+      const response = await fetch(`${SERVER_ADDRESS}/qa`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -174,7 +174,6 @@ const Home: React.FC<HomeProps> = ({
 
       const sources = data.sources
       let answer = data.answer;
-      const pdf_files = data.pdf_files
       if (sources.length == 0) {
         answer = answer.replace(/SOURCES\s*:.*$/, '');
       }
@@ -194,14 +193,15 @@ const Home: React.FC<HomeProps> = ({
       ];
 
       if (sources) {
+
         const n = sources.length;
         for (let i = 0; i < n; i++) {
           const item = sources[i];
           const filename = item.filename
           const text = item.text
-          const file = sources[i]['pdf_file']
+          const file = item.file_img
           // We added a title to the message to include the filename
-          console.log("added source")
+          console.log(`adding source with filename ${filename}`)
           updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, file: file });
         }
       }
@@ -866,6 +866,30 @@ const Home: React.FC<HomeProps> = ({
 
   const handleDeleteDocsource = (docsource: Docsource) => {
     const updatedDocsources = docsources.filter((d) => d.id !== docsource.id);
+    console.log(`deleting docsource with id: ${docsource.id} and name: ${docsource.name}`)
+    const access_token = getSecureCookie("access_token");
+    fetch(`${SERVER_ADDRESS}/delete`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${access_token}`
+      },
+      body: JSON.stringify({
+        file_id: docsource.file_id,
+      }),
+    }).then(
+      (response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        return response.json();
+      }
+    ).then(
+      (data) => {
+        console.log("File deletion successful");
+        return data
+      }
+    );
     setDocsources(updatedDocsources);
     saveDocsources(updatedDocsources);
   };
@@ -977,7 +1001,7 @@ const Home: React.FC<HomeProps> = ({
 
     for (const file of files) {
       fetchedFiles.push(file as Docsource)
-      console.log(file)
+      console.log(file);
     }
 
     uploadDocs(fetchedFiles)

@@ -38,7 +38,8 @@ from utils.ask_question import ask_question
 from utils.printUsers import printUsers
 from config import Config
 from utils.getchain import createchain_with_filter
-
+from pdf2image import convert_from_bytes
+import base64
 
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
@@ -111,8 +112,7 @@ class DocSource(db.Model):
             'id': self.id,
             'description': self.description,
             'name': self.filename,
-            'source': '',
-            'folderId': None,
+            'file_id': self.file_id,
         }
 
 
@@ -334,7 +334,6 @@ def upload_file():
         with redirect_stdout_to_logger(logger):
             # add file to Pinecone
             filepath = save_file_to_temp(uploaded_file)
-            print('successfully saved file to temp', filepath)
             filename_only = os.path.basename(filepath)
 
             # Construct metadata dictionary
@@ -343,12 +342,11 @@ def upload_file():
 
             # Save file to Pinecone with metadata
             meta = savePdf_1file_to_Pinecone(filepath, metadata, vectorstore)
-            print('successfully saved file to Pinecone', meta)
             os.remove(filepath)
 
             # add file to docsource database
             description = 'File uploaded by user'  # might need to change
-
+            print(f'saving docsource with file_id {file_id}, user_id {user_id}, description {description}, filename {filename_only}')
             docsource = DocSource(file_id=file_id, user_id=user_id, description=description,
                                   filename=filename_only)
             db.session.add(docsource)
@@ -442,10 +440,12 @@ def answerQuestion():
                 print("pageObj_key", pageObj_key)
                 s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
                 file_stream = io.BytesIO(s3_object['Body'].read())
-                pdf_base64 = base64.b64encode(
-                    file_stream.getvalue()).decode('utf-8')
-                source['pdf_file'] = pdf_base64
-  
+                file_img = convert_from_bytes(file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
+                image_stream = io.BytesIO()
+                file_img.save(image_stream, format='JPEG')
+                image_stream.seek(0)
+                image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
+                source['file_img'] = image_base64
         # Combine the `processed_text
         # ` and `page_content` JSON objects into a single dictionary
         return jsonify(result), 200
@@ -472,17 +472,13 @@ def answerQuestion2():
         data = request.get_json()
         question = data.get('prompt')
         chat_history = data.get('chathistory')
-        print("chatHistory", chat_history)
 
         chat_history = []
 
         auth_header = request.headers.get('Authorization')
         if auth_header and auth_header.startswith('Bearer '):
             user_id = get_jwt_identity()
-            print(auth_header)
 
-        logger.info(
-            f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
             # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
 
@@ -502,16 +498,19 @@ def answerQuestion2():
             # switch to AWS encoding
             subjectname, lesson_name = filename.split("/", 1)
             if 'temp' in subjectname:
-                source['pdf_file'] = None
+                source['file_img'] = None
                 continue
             else:  # get the pdf from aws
                 pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
                 print("pageObj_key", pageObj_key)
                 s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
                 file_stream = io.BytesIO(s3_object['Body'].read())
-                pdf_base64 = base64.b64encode(
-                    file_stream.getvalue()).decode('utf-8')
-                source['pdf_file'] = pdf_base64
+                file_img = convert_from_bytes(file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
+                image_stream = io.BytesIO()
+                file_img.save(image_stream, format='JPEG')
+                image_stream.seek(0)
+                image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
+                source['file_img'] = image_base64
         return jsonify(result), 200
 
     except Exception as e:
@@ -524,16 +523,19 @@ def answerQuestion2():
 @app.route('/delete', methods=['POST'])
 @jwt_required()
 def delete_vector():
-    print('delete vector called')
     user_id = get_jwt_identity()
     data = request.get_json()
     print(
         f"received request to delete vector from user {user_id} with data {data}")
     vectorcount = vectorstore._index.describe_index_stats()[
         'total_vector_count']
-    file_id = data['file_id']
+    file_id = data.get('file_id', None)
     vectorstore._index.delete(filter={'file_id': file_id, 'user_id': user_id})
-    docsource = DocSource(user_id=user_id, id=file_id)
+    docsource = DocSource.query.filter_by(user_id=user_id , file_id=file_id).first()
+
+    if docsource is None:
+        return jsonify({'message': 'vector not found'}), 404
+
     db.session.delete(docsource)
     db.session.commit()
 
@@ -548,7 +550,6 @@ def delete_vector():
 
 
 with app.app_context():
-
     db.create_all()
 #     # print(f"app.py cwd {os.getcwd()}")
 #     app_module_dir = os.path.dirname(os.path.abspath(__file__))
