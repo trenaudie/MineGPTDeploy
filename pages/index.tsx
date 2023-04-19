@@ -118,20 +118,7 @@ const Home: React.FC<HomeProps> = ({
         const updatedMessages = [...selectedConversation.messages];
         for (let i = 0; i < deleteCount; i++) {
           updatedMessages.pop();
-        }if __name__ == '__main__':
-        user_id = 1
-        with app.app_context():
-            db.create_all()
-            users = db.session.execute(db.select(User).order_by(User.id)).scalars()
-            print("inside testingPinecone resolved database path:", db.engine.url.database)
-    
-            for user in users:
-                print(f"user {user}, id {user.id} email: {user.email}, pwd: {user.password}" )
-    
-            for doc in DocSource.query.all():
-                print(f"doc {doc}, id {doc.id} user_id: {doc.user_id}, path: {doc.filename}" )
-                print('deleting')
-                db.session.delete(doc)
+        }
 
         updatedConversation = {
           ...selectedConversation,
