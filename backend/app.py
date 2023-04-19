@@ -424,34 +424,17 @@ def answerQuestion():
         #     result = ask_question(question, vectorstore, chat_history, user_id)
         #     print("qa result is", result)
 
-<<<<<<< HEAD
-        sources = [{'filename': 'Math_S1_TopoCD4quizz.pdf', 'page': '3', 'text': 'bla bla bla'},
-                   {'filename': 'Math_S1_TopoCD4quizz.pdf', 'page': '3', 'text': 'bla bla bla'}]
-
-        result = {'answer': "I don't know", 'sources': sources}
+        # ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
+        sources = result["sources"]
         s3 = aws_session.client('s3')
 
         pdf_files = []
-        for source in sources:
-            filename = source['filename']
-            folder, doc = os.path.split(filename)
-            if 'temp' not in folder:
-                s3_object = s3.get_object(Bucket=bucket_name, Key=filename)
-                file_stream = io.BytesIO(s3_object['Body'].read())
-                pdf_base64 = base64.b64encode(
-                    file_stream.getvalue()).decode('utf-8')
-                pdf_files.append(pdf_base64)
-=======
-        sources = result["sources"] #ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
-        s3 = aws_session.client('s3')
-
-        pdf_files = []
-        for i,source in enumerate(sources):
-            filename = source['filename'] #ex. Math_S1_Corr1.pdf 
-            filename, file_extension  = os.path.splitext(filename)
+        for i, source in enumerate(sources):
+            filename = source['filename']  # ex. Math_S1_Corr1.pdf
+            filename, file_extension = os.path.splitext(filename)
             page_number = source['page_number']
-            ##switch to AWS encoding 
-            subjectname, lesson_name = filename.split("/",1)
+            # switch to AWS encoding
+            subjectname, lesson_name = filename.split("/", 1)
             pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
             print("pageObj_key", pageObj_key)
             s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
@@ -459,23 +442,14 @@ def answerQuestion():
             pdf_base64 = base64.b64encode(
                 file_stream.getvalue()).decode('utf-8')
             pdf_files.append(pdf_base64)
->>>>>>> f52453b70f4790d7f10e38aca76d21ed105dcd70
-
 
         # Your JSON result data
         result['pdf_files'] = pdf_files
-<<<<<<< HEAD
-        pdf_data = base64.b64decode(pdf_base64)
-
-        with open('decoded_pdf.pdf', 'wb') as file:
-            file.write(pdf_data)
-=======
         logger.info(result)
->>>>>>> f52453b70f4790d7f10e38aca76d21ed105dcd70
 
         # Combine the `processed_text
         # ` and `page_content` JSON objects into a single dictionary
-        return jsonify(result),200
+        return jsonify(result), 200
 
     except Exception as e:
         # Log the full traceback of the exception

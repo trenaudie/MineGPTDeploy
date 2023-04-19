@@ -215,45 +215,6 @@
 2023-04-19 12:44:34,949 - INFO - vectorstore total vector count: 1490
 2023-04-19 12:44:34,950 - INFO - successfully saved file to Pinecone
 2023-04-19 12:44:34,950 - INFO - {'user_id': 3, 'file_id': 'blablaid', 'scientific': True, 'source': 'temp/MMC_PC1', 'page_number': 18, 'text': '100 CHAPITRE 4. LE TENSEUR DES CONTRAINTES DANS TOUS SES ÉTATS\n\ng=md;®d;+od;@d;\n\navec d,.d, =0\n\nComposantes dans le repère\n(e1 = die = des):\n\n0, 1\n\\”/4\n\nOn\n\nTABLE 4.4 - Récapitulatif : l’état de contraintes bi-axial.'}
-<<<<<<< HEAD
-2023-04-19 12:58:37,195 - INFO - question: tell me about energy  for user with user_id 2 
-2023-04-19 12:58:37,199 - INFO - asking question
-2023-04-19 12:58:37,199 - INFO - tell me about energy
-2023-04-19 12:58:37,199 - INFO - with user_id
-2023-04-19 12:58:37,205 - INFO - 2
-2023-04-19 12:58:37,205 - INFO - and filter
-2023-04-19 12:58:37,205 - INFO - {'$or': [{'user_id': 1}, {'user_id': 2}]}
-2023-04-19 13:06:39,515 - INFO - question: tell me about energy  for user with user_id 2 
-2023-04-19 13:06:39,515 - INFO - asking question
-2023-04-19 13:06:39,515 - INFO - tell me about energy
-2023-04-19 13:06:39,515 - INFO - with user_id
-2023-04-19 13:06:39,526 - INFO - 2
-2023-04-19 13:06:39,526 - INFO - and filter
-2023-04-19 13:06:39,526 - INFO - {'$or': [{'user_id': 1}, {'user_id': 2}]}
-2023-04-19 13:10:49,219 - INFO - question: tell me about energy for user with user_id 2 
-2023-04-19 13:11:39,632 - INFO - question: tell me aout energy  for user with user_id 2 
-2023-04-19 13:12:04,504 - INFO - question: tell me aout energy  for user with user_id 2 
-2023-04-19 13:16:25,921 - INFO - question: tell me abotu ernergy ?  for user with user_id 2 
-2023-04-19 13:17:21,568 - INFO - question: tell me aout energy for user with user_id 2 
-2023-04-19 13:19:58,195 - INFO - question: tell me about energy  for user with user_id 2 
-2023-04-19 13:35:30,838 - INFO - question: tell me about energy ?  for user with user_id 2 
-2023-04-19 13:36:57,914 - INFO - question: tell me about energy ?  for user with user_id 2 
-2023-04-19 13:37:29,558 - INFO - uploading file
-2023-04-19 13:37:29,566 - INFO - uploading file Math_S1_MesInt2.pdf with id fc32fa92-8412-4962-b609-f88dbc7ab96e for user 2 
-2023-04-19 13:50:16,386 - INFO - question: tell me about enerrgy for user with user_id 2 
-2023-04-19 14:00:35,176 - INFO - question: tell me about energy for user with user_id 2 
-2023-04-19 14:02:33,381 - INFO - question: tell me about energy  for user with user_id 2 
-2023-04-19 14:03:49,258 - INFO - question: tell me about energy  for user with user_id 2 
-2023-04-19 14:12:11,354 - INFO - question: tell me about energy ?  for user with user_id 2 
-2023-04-19 14:15:21,738 - INFO - question: tell me about energy  for user with user_id 2 
-2023-04-19 14:25:46,525 - INFO - question: tell me about energy  for user with user_id 2 
-2023-04-19 14:46:30,517 - INFO - question: ok  for user with user_id 2 
-2023-04-19 14:55:31,529 - INFO - question: hey for user with user_id 2 
-2023-04-19 14:59:29,493 - INFO - question: hey for user with user_id 2 
-2023-04-19 15:08:10,856 - INFO - question: hry for user with user_id 2 
-2023-04-19 15:09:19,973 - INFO - question: hey for user with user_id 2 
-2023-04-19 15:17:03,955 - INFO - question: ok for user with user_id 2 
-=======
 2023-04-19 13:13:52,121 - INFO - question: tell me about energy for user with user_id 3 
 2023-04-19 13:13:52,122 - INFO - asking question
 2023-04-19 13:13:52,122 - INFO - tell me about energy
@@ -1284,4 +1245,3 @@
 2023-04-19 14:50:11,933 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/TopoCD1quizz.pdf, with file_id, fcde9d43-9cf5-4c6d-b04a-7533b9e22dd2
 2023-04-19 14:50:15,228 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/MesIntQuizz1.pdf, with file_id, f9e2742c-96f3-4abe-90eb-9b77eb8a7e9f
 2023-04-19 14:50:18,325 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/CorrExosMesInt.pdf, with file_id, d1712a6c-1f1c-4ca3-b500-86a3588ce9ce
->>>>>>> f52453b70f4790d7f10e38aca76d21ed105dcd70
