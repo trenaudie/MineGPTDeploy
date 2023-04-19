@@ -1245,3 +1245,91 @@
 2023-04-19 14:50:11,933 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/TopoCD1quizz.pdf, with file_id, fcde9d43-9cf5-4c6d-b04a-7533b9e22dd2
 2023-04-19 14:50:15,228 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/MesIntQuizz1.pdf, with file_id, f9e2742c-96f3-4abe-90eb-9b77eb8a7e9f
 2023-04-19 14:50:18,325 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/CorrExosMesInt.pdf, with file_id, d1712a6c-1f1c-4ca3-b500-86a3588ce9ce
+2023-04-19 14:51:12,445 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/MesIntQuizz4.pdf, with file_id, 4f655b24-f51b-486d-9032-3688c54e0da4
+2023-04-19 14:51:14,727 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/Mesint1 (1).pdf, with file_id, 995d2336-d77d-4929-bdc0-07ceba7ab38c
+2023-04-19 14:53:12,494 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/Z2.pdf, with file_id, 7f99bcac-8968-4909-b1df-5d54b8ecb48e
+2023-04-19 14:57:03,666 - INFO - SAVING FILE, /Users/tanguyrenaudie/Documents/TanguyWorkMines/CoursMines/CoursMines1A/MathS1/CalDiff.pdf, with file_id, bbd013a7-0cd4-4950-afd5-8ce8ec273cb9
+2023-04-19 15:02:27,752 - INFO - uploading file
+2023-04-19 15:02:27,756 - INFO - uploading file StageRAMConvention_fully signed (1).pdf with id 0fb51d86-9f64-48a0-a6ed-83862e3c448c for user 3 
+2023-04-19 15:02:27,761 - INFO - successfully saved file to temp
+2023-04-19 15:02:27,762 - INFO - backend/temp/StageRAMConvention_fully_signed_1.pdf
+2023-04-19 15:02:46,148 - INFO - vectorstore total vector count: 1351
+2023-04-19 15:02:56,167 - INFO - vectorstore total vector count: 1374
+2023-04-19 15:03:07,956 - INFO - vectorstore total vector count: 1400
+2023-04-19 15:03:13,065 - INFO - vectorstore total vector count: 1410
+2023-04-19 15:03:13,066 - INFO - successfully saved file to Pinecone
+2023-04-19 15:03:13,067 - INFO - {'user_id': 3, 'file_id': '0fb51d86-9f64-48a0-a6ed-83862e3c448c', 'scientific': True, 'source': 'temp/StageRAMConvention_fully_signed_1.pdf', 'page_number': 4, 'text': "d'accueil\n\nTHE IINTERNSHIP SUPERVE GS Eéigned By? °T ORGANISATION\n\nNom et signature -\nNAME AND SIGNATURE LL\n\n; C9566C7D9DB64D8.\nGuo Tian"}
+2023-04-19 15:19:38,528 - INFO - uploading file
+2023-04-19 15:19:38,555 - INFO - uploading file Article 19.1.pdf with id 7419b3fa-c857-49a6-b8f0-4b9d75a69a3d for user 3 
+2023-04-19 15:19:38,557 - INFO - successfully saved file to temp
+2023-04-19 15:19:38,557 - INFO - backend/temp/Article_19.1.pdf
+2023-04-19 15:19:45,643 - INFO - vectorstore total vector count: 1416
+2023-04-19 15:19:48,331 - INFO - vectorstore total vector count: 1422
+2023-04-19 15:19:48,333 - INFO - successfully saved file to Pinecone
+2023-04-19 15:19:48,333 - INFO - {'user_id': 3, 'file_id': '7419b3fa-c857-49a6-b8f0-4b9d75a69a3d', 'scientific': True, 'source': 'temp/Article_19.1.pdf', 'page_number': 2, 'text': 'die at the hands of those charged with protecting their lives and liberty. Even one\nunnecessary death would be reason enough for reform, but Americans should not have to wait for more\nreasons. The rule of law is essential to our democracy, and the rule of law depends on public faith in law\nenforcement as an institution. It is up to those who lead law enforcement agencies, and the elected\nofficials who choose them, to strengthen that institution.'}
+2023-04-19 15:22:40,469 - INFO - uploading file
+2023-04-19 15:22:40,472 - INFO - uploading file Article 19.1.pdf with id d92b4f07-7e59-4927-9114-8711af046922 for user 1 
+2023-04-19 15:22:40,474 - INFO - successfully saved file to temp
+2023-04-19 15:22:40,474 - INFO - backend/temp/Article_19.1.pdf
+2023-04-19 15:22:48,315 - INFO - vectorstore total vector count: 1428
+2023-04-19 15:22:51,661 - INFO - vectorstore total vector count: 1434
+2023-04-19 15:22:51,663 - INFO - successfully saved file to Pinecone
+2023-04-19 15:22:51,663 - INFO - {'user_id': 1, 'file_id': 'd92b4f07-7e59-4927-9114-8711af046922', 'scientific': True, 'source': 'temp/Article_19.1.pdf', 'page_number': 2, 'text': 'die at the hands of those charged with protecting their lives and liberty. Even one\nunnecessary death would be reason enough for reform, but Americans should not have to wait for more\nreasons. The rule of law is essential to our democracy, and the rule of law depends on public faith in law\nenforcement as an institution. It is up to those who lead law enforcement agencies, and the elected\nofficials who choose them, to strengthen that institution.'}
+2023-04-19 15:23:33,489 - INFO - uploading file
+2023-04-19 15:23:33,492 - INFO - uploading file Article 19.1.pdf with id 0ee0a96c-5431-4bc5-bfe7-534171697f54 for user 1 
+2023-04-19 15:23:33,493 - INFO - successfully saved file to temp
+2023-04-19 15:23:33,493 - INFO - backend/temp/Article_19.1.pdf
+2023-04-19 15:23:40,441 - INFO - vectorstore total vector count: 1440
+2023-04-19 15:23:44,951 - INFO - vectorstore total vector count: 1446
+2023-04-19 15:23:44,952 - INFO - successfully saved file to Pinecone
+2023-04-19 15:23:44,952 - INFO - {'user_id': 1, 'file_id': '0ee0a96c-5431-4bc5-bfe7-534171697f54', 'scientific': True, 'source': 'temp/Article_19.1.pdf', 'page_number': 2, 'text': 'die at the hands of those charged with protecting their lives and liberty. Even one\nunnecessary death would be reason enough for reform, but Americans should not have to wait for more\nreasons. The rule of law is essential to our democracy, and the rule of law depends on public faith in law\nenforcement as an institution. It is up to those who lead law enforcement agencies, and the elected\nofficials who choose them, to strengthen that institution.'}
+2023-04-19 15:24:17,250 - INFO - question: tell me about law enforcement agencies in the united states for user with user_id 1 
+2023-04-19 15:24:17,251 - INFO - asking question
+2023-04-19 15:24:17,251 - INFO - tell me about law enforcement agencies in the united states
+2023-04-19 15:24:17,251 - INFO - with user_id
+2023-04-19 15:24:17,251 - INFO - 1
+2023-04-19 15:24:17,251 - INFO - and filter
+2023-04-19 15:24:17,251 - INFO - {'$or': [{'user_id': 0}, {'user_id': 1}]}
+2023-04-19 15:24:18,363 - INFO - docs_metadata[0]
+2023-04-19 15:24:18,363 - INFO - {'id': '1_0ee0a96c-5431-4bc5-bfe7-534171697f54_002_5',
+ 'metadata': {'file_id': '0ee0a96c-5431-4bc5-bfe7-534171697f54',
+              'page_number': 2.0,
+              'scientific': True,
+              'source': 'temp/Article_19.1.pdf',
+              'text': 'die at the hands of those charged with protecting their '
+                      'lives and liberty. Even one\n'
+                      'unnecessary death would be reason enough for reform, '
+                      'but Americans should not have to wait for more\n'
+                      'reasons. The rule of law is essential to our democracy, '
+                      'and the rule of law depends on public faith in law\n'
+                      'enforcement as an institution. It is up to those who '
+                      'lead law enforcement agencies, and the elected\n'
+                      'officials who choose them, to strengthen that '
+                      'institution.',
+              'user_id': 1.0},
+ 'score': 0.826169968,
+ 'values': []}
+2023-04-19 15:24:18,363 - INFO - example docmeta
+2023-04-19 15:24:18,363 - INFO - {'id': '1_0ee0a96c-5431-4bc5-bfe7-534171697f54_002_5',
+ 'metadata': {'file_id': '0ee0a96c-5431-4bc5-bfe7-534171697f54',
+              'page_number': 2.0,
+              'scientific': True,
+              'source': 'temp/Article_19.1.pdf',
+              'text': 'die at the hands of those charged with protecting their '
+                      'lives and liberty. Even one\n'
+                      'unnecessary death would be reason enough for reform, '
+                      'but Americans should not have to wait for more\n'
+                      'reasons. The rule of law is essential to our democracy, '
+                      'and the rule of law depends on public faith in law\n'
+                      'enforcement as an institution. It is up to those who '
+                      'lead law enforcement agencies, and the elected\n'
+                      'officials who choose them, to strengthen that '
+                      'institution.',
+              'user_id': 1.0},
+ 'score': 0.826169968,
+ 'values': []}
+2023-04-19 15:24:18,363 - INFO - True
+2023-04-19 15:24:18,365 - INFO - numtokens:
+2023-04-19 15:24:18,365 - INFO - 289
+2023-04-19 15:24:27,232 - INFO - qa result is
+2023-04-19 15:24:27,234 - INFO - {'answer': "Law enforcement agencies in the United States are responsible for maintaining public safety and enforcing the law. These agencies include federal, state, and local law enforcement agencies. The Federal Bureau of Investigation (FBI), the Drug Enforcement Administration (DEA), and the Bureau of Alcohol, Tobacco, Firearms and Explosives (ATF) are examples of federal law enforcement agencies. State law enforcement agencies include the California Highway Patrol and the New York State Police, while local law enforcement agencies include police departments and sheriff's offices. These agencies are led by appointed or elected officials and are responsible for investigating crimes, making arrests, and ensuring that justice is served.", 'sources': [{'filename': 'temp/Article_19.1.pdf', 'text': 'die at the hands of those charged with protecting their lives and liberty. Even one\nunnecessary death would be reason enough for reform, but Americans should not have to wait for more\nreasons. The rule of law is essential to our democracy, and the rule of law depends on public faith in law\nenforcement as an institution. It is up to those who lead law enforcement agencies, and the elected\nofficials who choose them, to strengthen that institution.', 'page_number': 2.0}, {'filename': 'temp/Article_19.1.pdf', 'text': 'die at the hands of those charged with protecting their lives and liberty. Even one\nunnecessary death would be reason enough for reform, but Americans should not have to wait for more\nreasons. The rule of law is essential to our democracy, and the rule of law depends on public faith in law\nenforcement as an institution. It is up to those who lead law enforcement agencies, and the elected\nofficials who choose them, to strengthen that institution.', 'page_number': 2.0}]}
