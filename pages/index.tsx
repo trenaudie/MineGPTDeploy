@@ -141,7 +141,6 @@ const Home: React.FC<HomeProps> = ({
 
       const endpoint = getEndpoint(plugin);
       const chatHistory = localStorage.getItem('conversationHistory')
-      console.log("chathistory:", chatHistory)
 
       const body = JSON.stringify({
         prompt: message.content,
@@ -151,7 +150,7 @@ const Home: React.FC<HomeProps> = ({
 
 
       const controller = new AbortController();
-      const response = await fetch(`${SERVER_ADDRESS}/qa`, {
+      const response = await fetch(`${SERVER_ADDRESS}/qa2`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
