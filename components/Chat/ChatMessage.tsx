@@ -14,6 +14,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import { CodeBlock } from '../Markdown/CodeBlock';
 import { MemoizedReactMarkdown } from '../Markdown/MemoizedReactMarkdown';
+import PdfViewer from '../Global/PDFhandler';
 
 interface Props {
   message: Message;
@@ -70,6 +71,24 @@ export const ChatMessage: FC<Props> = memo(
       });
     };
 
+    const base64ToBlob = (base64: string, mimeType: string = '') => {
+      const byteCharacters = atob(base64);
+      const byteArrays = [];
+
+      for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+        const slice = byteCharacters.slice(offset, offset + 512);
+        const byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i++) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+      }
+
+      return new Blob(byteArrays, { type: mimeType });
+    };
+
+
     useEffect(() => {
       if (textareaRef.current) {
         textareaRef.current.style.height = 'inherit';
@@ -101,8 +120,16 @@ export const ChatMessage: FC<Props> = memo(
                   Source:
                 </div>
                 <FileDownload fileName={message.title} displayText={message.title} />
+                <div>
+                  {message.files && message.files.map((base64File, index) => {
+                    const pdfBlob = base64ToBlob(base64File, 'application/pdf');
+                    return <PdfViewer key={index} pdfFile={pdfBlob} />;
+                  })}
+                </div>
               </>
             )}
+
+
             {message.role === 'user' ? (
               <div className="flex w-full">
                 {isEditing ? (
@@ -148,7 +175,7 @@ export const ChatMessage: FC<Props> = memo(
                   <div className="prose whitespace-pre-wrap dark:prose-invert">
                     {message.content}
                   </div>
-                )}
+                )};
 
                 {(window.innerWidth < 640 || !isEditing) && (
                   <button
@@ -185,7 +212,6 @@ export const ChatMessage: FC<Props> = memo(
                     </button>
                   )}
                 </div>
-
                 <MemoizedReactMarkdown
                   className="prose dark:prose-invert"
                   remarkPlugins={[remarkGfm, remarkMath]}

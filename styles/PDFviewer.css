@@ -1,0 +1,10 @@
+.pdfContainer {
+    overflow-y: scroll;
+    height: 100vh;
+    /* Adjust this value according to your desired container height */
+    border: 1px solid #ccc;
+}
+
+.page {
+    margin-bottom: 1rem;
+}

@@ -1,10 +1,16 @@
 import { OpenAIModel } from './openai';
 
+export interface File {
+  fileName: string;
+  fileContent: string; // Base64 encoded content
+}
+
 export interface Message {
   role: Role;
   source: boolean;
   title: string;
   content: string;
+  files: string[] | null
 }
 
 
