@@ -201,7 +201,7 @@ const Home: React.FC<HomeProps> = ({
           const item = sources[i];
           const filename = item.filename
           const text = item.text
-          const file = pdf_files[i]
+          const file = item.file
           // We added a title to the message to include the filename
           console.log("added source")
           updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, files: file });
