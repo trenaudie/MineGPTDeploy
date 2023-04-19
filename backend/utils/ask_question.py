@@ -43,7 +43,6 @@ def makeMessages_fromPinecone_and_history(question : str, docs_metadata:list, ch
   documents = ""
   for docmeta in docs_metadata:
     documents += docmeta['metadata']['text']
-    print("number of words in content.txt:", len(documents.split()))
   userdict['content'] = f"DOCUMENTS {documents} \n QUESTION: {question} \n"
   messages.append(userdict)
   numtokens = num_tokens_from_messages(messages)
@@ -73,9 +72,9 @@ def ask_question(question: str, vectorstore: Pinecone,  chat_history: list[dict]
     #chat_history looks like below
     #must add the context_prompt and question to the chat history to create messages
 
-    full_filter = {'$or': [{'user_id': 1}, {'user_id': user_id}] }
+    full_filter = {'$or': [{'user_id': 0}, {'user_id': user_id}] }
     print('asking question', question, 'with user_id', user_id, 'and filter', full_filter)
-    docs_metadata =  vectorstore._index.query(OpenAIEmbeddings().embed_query(question), top_k = 4, filter = full_filter, include_metadata=True)['matches']
+    docs_metadata =  vectorstore._index.query(OpenAIEmbeddings().embed_query(question), top_k = 2, filter = full_filter, include_metadata=True)['matches']
     print("docs_metadata[0]", docs_metadata[0])
     messages = makeMessages_fromPinecone_and_history(question, docs_metadata, chat_history)
     response = openai.ChatCompletion.create(
@@ -87,5 +86,5 @@ def ask_question(question: str, vectorstore: Pinecone,  chat_history: list[dict]
     sources = []
     for docmeta in docs_metadata:
         sources.append(
-            {'filename': docmeta.metadata['source'], 'text': docmeta.metadata['text'], 'page': docmeta.metadata['page']})
+            {'filename': docmeta.metadata['source'], 'text': docmeta.metadata['text'], 'page_number': docmeta.metadata['page_number']})
     return {"answer": answer, "sources": sources}
