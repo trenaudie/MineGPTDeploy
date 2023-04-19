@@ -419,11 +419,11 @@ def answerQuestion():
 
         logger.info(
             f"question: {question} for user with user_id {user_id} ")
-        # with redirect_stdout_to_logger(logger):
-        #     # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
+        with redirect_stdout_to_logger(logger):
+            # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
 
-        #     result = ask_question(question, vectorstore, chat_history, user_id)
-        #     print("qa result is", result)
+            result = ask_question(question, vectorstore, chat_history, user_id)
+            print("qa result is", result)
 
         # ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
         sources = result["sources"]

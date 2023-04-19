@@ -10,7 +10,7 @@ export interface Message {
   source: boolean;
   title: string;
   content: string;
-  files: string | null
+  file: string | null
 }
 
 

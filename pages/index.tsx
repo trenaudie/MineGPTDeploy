@@ -118,7 +118,20 @@ const Home: React.FC<HomeProps> = ({
         const updatedMessages = [...selectedConversation.messages];
         for (let i = 0; i < deleteCount; i++) {
           updatedMessages.pop();
-        }
+        }if __name__ == '__main__':
+        user_id = 1
+        with app.app_context():
+            db.create_all()
+            users = db.session.execute(db.select(User).order_by(User.id)).scalars()
+            print("inside testingPinecone resolved database path:", db.engine.url.database)
+    
+            for user in users:
+                print(f"user {user}, id {user.id} email: {user.email}, pwd: {user.password}" )
+    
+            for doc in DocSource.query.all():
+                print(f"doc {doc}, id {doc.id} user_id: {doc.user_id}, path: {doc.filename}" )
+                print('deleting')
+                db.session.delete(doc)
 
         updatedConversation = {
           ...selectedConversation,
@@ -191,20 +204,19 @@ const Home: React.FC<HomeProps> = ({
 
       const updatedMessages: Message[] = [
         ...updatedConversation.messages,
-        { role: 'assistant', content: answer, title: 'answer', source: false, files: null },
+        { role: 'assistant', content: answer, title: 'answer', source: false, file: null },
       ];
 
       if (sources) {
         const n = sources.length;
-        console.log('odf_files', pdf_files)
         for (let i = 0; i < n; i++) {
           const item = sources[i];
           const filename = item.filename
           const text = item.text
-          const file = pdf_files[i]
+          const file = sources[i]['pdf_file']
           // We added a title to the message to include the filename
           console.log("added source")
-          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, files: file });
+          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, file: file });
         }
       }
 
