@@ -112,17 +112,18 @@ def logout_for_tests():
 
 
 
-def testquestion(session, question=None):
+def testquestion(question:str,session:requests.Session, access_token:str):
 
-    headers = {'Content-type': 'application/x-www-form-urlencoded'}
-    if not question:
-        question = 'Lisa Murkowsk is who?'
+    headers = {
+            'Authorization': f'Bearer {access_token}',
+            'Content-type': 'application/json'
+        }
     print('--------------')
     print('Question test', question)
     print('--------------')
-    data = {'question': question, 'session_id': session.cookies.get('session', None)}
+    data = {'prompt': question, 'chathistory':[]}
     url = 'http://localhost:5000/qa'
-    response = session.post(url, headers=headers, data=data)
+    response = session.post(url, headers=headers, json=data)
 
 
     if response.ok:
@@ -163,11 +164,11 @@ if __name__ == "__main__":
     # session, access_token = register_for_tests(good_email,good_password)
     session, access_token = login_for_tests(tanguyemail,tanguypw)
     fileid = 'blablaid'
-    testupload(session,access_token,fileid)
+    # testupload(session,access_token,fileid)
     # testdelete(session,access_token,fileid)
 
     # test_download('Probabilite1.pdf', session, access_token)
-    # testquestion(session)
+    testquestion('what is energy?',session, access_token)
 
     # session = requests.Session()
     # testupload(session, "")

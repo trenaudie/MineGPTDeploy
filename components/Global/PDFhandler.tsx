@@ -1,7 +1,6 @@
 import React, { useState, CSSProperties } from 'react';
 import { Document, Page } from 'react-pdf';
 import { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api';
-import 'react-pdf/dist/umd/Page/AnnotationLayer.css';
 
 // Define the CSS styles as a JavaScript object
 const styles: { [key: string]: CSSProperties } = {
