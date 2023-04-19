@@ -126,10 +126,10 @@ export const ChatMessage: FC<Props> = memo(
                 </div>
                 <FileDownload fileName={message.title} displayText={message.title} />
                 <div>
-                  {message.files && (
+                  {message.file && (
                     <div>
                       {(() => {
-                        const pdfBlob = base64ToBlob(message.files, 'application/pdf');
+                        const pdfBlob = base64ToBlob(message.file, 'application/pdf');
                         return <PdfViewer pdfFile={pdfBlob} />;
                       })()}
                     </div>

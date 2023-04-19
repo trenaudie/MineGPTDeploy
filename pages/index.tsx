@@ -191,20 +191,19 @@ const Home: React.FC<HomeProps> = ({
 
       const updatedMessages: Message[] = [
         ...updatedConversation.messages,
-        { role: 'assistant', content: answer, title: 'answer', source: false, files: null },
+        { role: 'assistant', content: answer, title: 'answer', source: false, file: null },
       ];
 
       if (sources) {
         const n = sources.length;
-        console.log('odf_files', pdf_files)
         for (let i = 0; i < n; i++) {
           const item = sources[i];
           const filename = item.filename
           const text = item.text
-          const file = item.file
+          const file = sources[i]['pdf_file']
           // We added a title to the message to include the filename
           console.log("added source")
-          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, files: file });
+          updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, file: file });
         }
       }
 
