@@ -73,7 +73,6 @@ export const ChatMessage: FC<Props> = memo(
     };
 
     const base64ToBlob = (base64: string, mimeType: string = '') => {
-      console.log("base64", base64)
       const byteCharacters = atob(base64);
       const byteArrays = [];
 
@@ -129,6 +128,7 @@ export const ChatMessage: FC<Props> = memo(
                   {message.file && (
                     <div>
                       {(() => {
+
                         const pdfBlob = base64ToBlob(message.file, 'application/pdf');
                         return <PdfViewer pdfFile={pdfBlob} />;
                       })()}

@@ -45,6 +45,7 @@ def makeMessages_fromPinecone_and_history(question : str, docs_metadata:list, ch
     documents += docmeta['metadata']['text']
   userdict['content'] = f"DOCUMENTS {documents} \n QUESTION: {question} \n"
   messages.append(userdict)
+  print("message", messages)
   numtokens = num_tokens_from_messages(messages)
   print("numtokens:", numtokens)
   return messages
