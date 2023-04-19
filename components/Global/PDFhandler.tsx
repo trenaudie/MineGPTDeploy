@@ -31,7 +31,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfFile }) => {
       <Document
         file={pdfFile}
         onLoadSuccess={onDocumentLoadSuccess}
-        options={{ workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js" }}
+        options={{ workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js" }}
       >
         {Array.from(new Array(numPages), (el, index) => (
           <div key={`page_${index + 1}`} style={styles.page}>
