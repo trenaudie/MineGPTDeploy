@@ -195,7 +195,8 @@ const Home: React.FC<HomeProps> = ({
       ];
 
       if (sources) {
-        const n = sources.lenght;
+        const n = sources.length;
+        console.log('odf_files', pdf_files)
         for (let i = 0; i < n; i++) {
           const item = sources[i];
           const filename = item.filename

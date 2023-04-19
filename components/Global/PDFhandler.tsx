@@ -1,7 +1,6 @@
 import React, { useState, CSSProperties } from 'react';
 import { Document, Page } from 'react-pdf';
 import { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api';
-import 'react-pdf/dist/umd/Page/AnnotationLayer.css';
 
 // Define the CSS styles as a JavaScript object
 const styles: { [key: string]: CSSProperties } = {
@@ -21,6 +20,7 @@ interface PdfViewerProps {
 
 const PdfViewer: React.FC<PdfViewerProps> = ({ pdfFile }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
+  console.log("PdfViewer received pdfFile:", pdfFile);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
@@ -31,7 +31,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfFile }) => {
       <Document
         file={pdfFile}
         onLoadSuccess={onDocumentLoadSuccess}
-        options={{ workerSrc: '/pdf.worker.js' }}
+        options={{ workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js" }}
       >
         {Array.from(new Array(numPages), (el, index) => (
           <div key={`page_${index + 1}`} style={styles.page}>

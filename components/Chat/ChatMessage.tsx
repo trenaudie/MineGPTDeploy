@@ -15,6 +15,7 @@ import remarkMath from 'remark-math';
 import { CodeBlock } from '../Markdown/CodeBlock';
 import { MemoizedReactMarkdown } from '../Markdown/MemoizedReactMarkdown';
 import PdfViewer from '../Global/PDFhandler';
+import { atob } from 'abab';
 
 interface Props {
   message: Message;
@@ -72,9 +73,13 @@ export const ChatMessage: FC<Props> = memo(
     };
 
     const base64ToBlob = (base64: string, mimeType: string = '') => {
+      console.log("base64", base64)
       const byteCharacters = atob(base64);
       const byteArrays = [];
 
+      if (!byteCharacters) {
+        throw new Error('Failed to decode base64 string.');
+      }
       for (let offset = 0; offset < byteCharacters.length; offset += 512) {
         const slice = byteCharacters.slice(offset, offset + 512);
         const byteNumbers = new Array(slice.length);
@@ -121,10 +126,14 @@ export const ChatMessage: FC<Props> = memo(
                 </div>
                 <FileDownload fileName={message.title} displayText={message.title} />
                 <div>
-                  {message.files && message.files.map((base64File, index) => {
-                    const pdfBlob = base64ToBlob(base64File, 'application/pdf');
-                    return <PdfViewer key={index} pdfFile={pdfBlob} />;
-                  })}
+                  {message.files && (
+                    <div>
+                      {(() => {
+                        const pdfBlob = base64ToBlob(message.files, 'application/pdf');
+                        return <PdfViewer pdfFile={pdfBlob} />;
+                      })()}
+                    </div>
+                  )}
                 </div>
               </>
             )}

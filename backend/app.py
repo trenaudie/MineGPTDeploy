@@ -32,7 +32,7 @@ from jwt.exceptions import InvalidTokenError
 from flask_mail import Mail, Message
 
 from utils.logger import logger
-from utils.ingest import  save_file_to_temp, savePdf_1file_to_Pinecone
+from utils.ingest import save_file_to_temp, savePdf_1file_to_Pinecone
 from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
 from utils.printUsers import printUsers
@@ -338,7 +338,7 @@ def upload_file():
             filename_only = os.path.basename(filepath)
 
             # Construct metadata dictionary
-            metadata = {'user_id': user_id, 
+            metadata = {'user_id': user_id,
                         'file_id': file_id}
 
             # Save file to Pinecone with metadata
@@ -418,25 +418,35 @@ def answerQuestion():
 
         logger.info(
             f"question: {question} for user with user_id {user_id} ")
-        with redirect_stdout_to_logger(logger):
-            # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
+        # with redirect_stdout_to_logger(logger):
+        #     # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
 
-            result = ask_question(question, vectorstore, chat_history, user_id)
-            print("qa result is", result)
+        #     result = ask_question(question, vectorstore, chat_history, user_id)
+        #     print("qa result is", result)
 
-        sources = result["sources"]
+        sources = [{'filename': 'Math_S1_TopoCD4quizz.pdf', 'page': '3', 'text': 'bla bla bla'},
+                   {'filename': 'Math_S1_TopoCD4quizz.pdf', 'page': '3', 'text': 'bla bla bla'}]
+
+        result = {'answer': "I don't know", 'sources': sources}
         s3 = aws_session.client('s3')
 
         pdf_files = []
-        for filename in sources:
-            s3_object = s3.get_object(Bucket=bucket_name, Key=filename)
-            file_stream = io.BytesIO(s3_object['Body'].read())
-            pdf_base64 = base64.b64encode(
-                file_stream.getvalue()).decode('utf-8')
-            pdf_files.append(pdf_base64)
+        for source in sources:
+            filename = source['filename']
+            folder, doc = os.path.split(filename)
+            if 'temp' not in folder:
+                s3_object = s3.get_object(Bucket=bucket_name, Key=filename)
+                file_stream = io.BytesIO(s3_object['Body'].read())
+                pdf_base64 = base64.b64encode(
+                    file_stream.getvalue()).decode('utf-8')
+                pdf_files.append(pdf_base64)
 
         # Your JSON result data
         result['pdf_files'] = pdf_files
+        pdf_data = base64.b64decode(pdf_base64)
+
+        with open('decoded_pdf.pdf', 'wb') as file:
+            file.write(pdf_data)
 
         # Combine the `processed_text
         # ` and `page_content` JSON objects into a single dictionary
@@ -454,14 +464,19 @@ def delete_vector():
 
     user_id = get_jwt_identity()
     data = request.get_json()
-    print(f"received request to delete vector from user {user_id} with data {data}")
-    vectorcount= vectorstore._index.describe_index_stats()['total_vector_count']
-    vectorstore._index.delete(filter= {'file_id': data['file_id'], 'user_id': user_id})
-    vectorcount2 = vectorstore._index.describe_index_stats()['total_vector_count']
+    print(
+        f"received request to delete vector from user {user_id} with data {data}")
+    vectorcount = vectorstore._index.describe_index_stats()[
+        'total_vector_count']
+    vectorstore._index.delete(
+        filter={'file_id': data['file_id'], 'user_id': user_id})
+    vectorcount2 = vectorstore._index.describe_index_stats()[
+        'total_vector_count']
     if vectorcount2 == vectorcount:
         return jsonify({'message': 'vector not deleted'}), 500
-    else: 
-        print(f"deleted vector from user {user_id} with data {data}, removed {vectorcount-vectorcount2} vectors")
+    else:
+        print(
+            f"deleted vector from user {user_id} with data {data}, removed {vectorcount-vectorcount2} vectors")
     return jsonify({'message': 'vector deleted'}), 200
 
 
