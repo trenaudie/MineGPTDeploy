@@ -164,7 +164,7 @@ def savePdf_1file_to_Pinecone(filepath:str, metadata : dict, vectorstore:Pinecon
         metadata['scientific'] = False
     else:
         metadata['scientific'] = True
-    metadata['source'] = os.path.join(folder, filename_only) #ex. MathematiqueS1/MesInt1.pdf
+    metadata['source'] = f"{folder}/{filename_only}{file_extension}" #ex. MathematiqueS1/MesInt1.pdf
 
     chunksize = 512
 

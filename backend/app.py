@@ -101,6 +101,7 @@ jwt = JWTManager(app)
 
 class DocSource(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    file_id = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     filename = db.Column(db.String(100), nullable=False)
@@ -124,7 +125,6 @@ class User(db.Model):
 
 
 chat_history = []
-chain = createchain_with_filter(vectorstore)
 confirmation_numbers = {}
 # Set up a store for revoked tokens
 revoked_token_store = set()
@@ -316,6 +316,7 @@ def logout():
 @app.route('/upload', methods=['POST'])
 @jwt_required()
 def upload_file():
+    #add real file id
     logger.info("uploading file")
     try:
         uploaded_file = request.files['document']
@@ -349,7 +350,7 @@ def upload_file():
             # add file to docsource database
             description = 'File uploaded by user'  # might need to change
 
-            docsource = DocSource(user_id=user_id, description=description,
+            docsource = DocSource(file_id = file_id, user_id=user_id, description=description,
                                   filename=filename_only)
             db.session.add(docsource)
             db.session.commit()
@@ -427,24 +428,25 @@ def answerQuestion():
         sources = result["sources"] #ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
         s3 = aws_session.client('s3')
 
-        pdf_files = []
         for i,source in enumerate(sources):
             filename = source['filename'] #ex. Math_S1_Corr1.pdf 
             filename, file_extension  = os.path.splitext(filename)
             page_number = source['page_number']
             ##switch to AWS encoding 
             subjectname, lesson_name = filename.split("/",1)
-            pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
-            print("pageObj_key", pageObj_key)
-            s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
-            file_stream = io.BytesIO(s3_object['Body'].read())
-            pdf_base64 = base64.b64encode(
-                file_stream.getvalue()).decode('utf-8')
-            pdf_files.append(pdf_base64)
+            if 'temp' in subjectname: 
+                source['pdf_file'] = None
+                continue
+            else: #get the pdf from aws
+                pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
+                print("pageObj_key", pageObj_key)
+                s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
+                file_stream = io.BytesIO(s3_object['Body'].read())
+                pdf_base64 = base64.b64encode(file_stream.getvalue()).decode('utf-8')
+                source['pdf_file']=pdf_base64
 
 
         # Your JSON result data
-        result['pdf_files'] = pdf_files
         logger.info(result)
 
         # Combine the `processed_text
@@ -460,21 +462,27 @@ def answerQuestion():
 @app.route('/delete', methods=['POST'])
 @jwt_required()
 def delete_vector():
-
+    print('delete vector called')
     user_id = get_jwt_identity()
     data = request.get_json()
     print(f"received request to delete vector from user {user_id} with data {data}")
     vectorcount= vectorstore._index.describe_index_stats()['total_vector_count']
-    vectorstore._index.delete(filter= {'file_id': data['file_id'], 'user_id': user_id})
+    file_id = data['file_id']
+    vectorstore._index.delete(filter= {'file_id': file_id, 'user_id': user_id})
+    docsource = DocSource(user_id=user_id,id = file_id)
+    db.session.delete(docsource)
+    db.session.commit()
+
     vectorcount2 = vectorstore._index.describe_index_stats()['total_vector_count']
     if vectorcount2 == vectorcount:
         return jsonify({'message': 'vector not deleted'}), 500
     else: 
         print(f"deleted vector from user {user_id} with data {data}, removed {vectorcount-vectorcount2} vectors")
-    return jsonify({'message': 'vector deleted'}), 200
+        return jsonify({'message': 'vector deleted'}), 200
 
 
 with app.app_context():
+
     db.create_all()
 #     # print(f"app.py cwd {os.getcwd()}")
 #     app_module_dir = os.path.dirname(os.path.abspath(__file__))
