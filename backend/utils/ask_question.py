@@ -87,5 +87,5 @@ def ask_question(question: str, vectorstore: Pinecone,  chat_history: list[dict]
     sources = []
     for docmeta in docs_metadata:
         sources.append(
-            {'filename': docmeta.metadata['source'], 'text': docmeta.metadata['text']})
+            {'filename': docmeta.metadata['source'], 'text': docmeta.metadata['text'], 'page': docmeta.metadata['page']})
     return {"answer": answer, "sources": sources}

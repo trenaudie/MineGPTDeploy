@@ -20,21 +20,34 @@ def testnot():
     checkrequest('GET', '/not', 404, None)
 
 
-def testupload(session: requests.Session, access_token :str):
+def testupload(session: requests.Session, access_token :str, file_id:str):
 
     url = "http://localhost:5000/upload"
-    with open('backend/testarticles/agi_article.txt', 'rb') as f:
+    with open('backend/testarticles/MMC_PC1.pdf', 'rb') as f:
         files = {
             "document":  f,
         }
         #session_id =  session.cookies.get('session', None) not useful with jwt
-        data = {'file_id': 'agi_article_id0'} #different for every file, even if same
+        data = {'file_id': file_id} #different for every file, even if same
         headers = {
             'Authorization': f'Bearer {access_token}'
         }
         print(f"inside testupload, access_token: {access_token}")
         response = session.post(url, data=data, files=files, headers=headers)
         assert response.status_code == 200
+
+
+def testdelete(session: requests.Session, access_token :str,file_id:str):
+    url = "http://localhost:5000/delete"
+    json = {'file_id': file_id}
+    headers = {
+        'Content-type': 'application/json',
+        'Authorization': f'Bearer {access_token}'
+    }
+    response = session.post(url, json=json, headers=headers)
+    assert response.status_code == 200
+
+
 
 
 def register_for_tests(email: str, password: str):
@@ -145,18 +158,16 @@ def test_download(filename_base:str,session, access_token:str):
 
 
 bad_email,good_email,good_password,bad_password = 'guigui.jarry@gmail.com','guigui.jarry@etu.minesparis.psl.eu','guigui', 'broken_bitch'
-
+tanguyemail, tanguypw = 'tan4@etu.minesparis.psl.eu', 'r'
 if __name__ == "__main__":
     # session, access_token = register_for_tests(good_email,good_password)
-    # session, access_token = login_for_tests(good_email,good_password)
-
-    #sid is now useless
-    # sid = session.cookies.get('session')
-    # print("sid", sid, id(sid))
-
+    session, access_token = login_for_tests(tanguyemail,tanguypw)
+    fileid = 'blablaid'
+    testupload(session,access_token,fileid)
+    # testdelete(session,access_token,fileid)
 
     # test_download('Probabilite1.pdf', session, access_token)
     # testquestion(session)
 
-    session = requests.Session()
-    testupload(session, "")
+    # session = requests.Session()
+    # testupload(session, "")

@@ -30,7 +30,7 @@ from jwt.exceptions import InvalidTokenError
 from flask_mail import Mail, Message
 
 from utils.logger import logger
-from utils.ingest import save_file_to_Pinecone, save_file_to_temp, save_file_to_Pinecone_metadata
+from utils.ingest import  save_file_to_temp, savePdf_1file_to_Pinecone
 from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.ask_question import ask_question
 from utils.printUsers import printUsers
@@ -332,16 +332,16 @@ def upload_file():
         with redirect_stdout_to_logger(logger):
             # add file to Pinecone
             filepath = save_file_to_temp(uploaded_file)
+            print('successfully saved file to temp', filepath)
             filename_only = os.path.basename(filepath)
 
             # Construct metadata dictionary
-            metadata = {'source': filename_only,
-                        'user_id': user_id, 
+            metadata = {'user_id': user_id, 
                         'file_id': file_id}
-            
 
             # Save file to Pinecone with metadata
-            save_file_to_Pinecone_metadata(filepath, metadata, vectorstore)
+            meta = savePdf_1file_to_Pinecone(filepath, metadata, vectorstore)
+            print('successfully saved file to Pinecone', meta)
             os.remove(filepath)
 
             # add file to docsource database
@@ -430,13 +430,21 @@ def answerQuestion():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/delete_vector', methods=['POST'])
+@app.route('/delete', methods=['POST'])
 @jwt_required()
 def delete_vector():
-    
-    return
-    # user id
-    # file id
+
+    user_id = get_jwt_identity()
+    data = request.get_json()
+    print(f"received request to delete vector from user {user_id} with data {data}")
+    vectorcount= vectorstore._index.describe_index_stats()['total_vector_count']
+    vectorstore._index.delete(filter= {'file_id': data['file_id'], 'user_id': user_id})
+    vectorcount2 = vectorstore._index.describe_index_stats()['total_vector_count']
+    if vectorcount2 == vectorcount:
+        return jsonify({'message': 'vector not deleted'}), 500
+    else: 
+        print(f"deleted vector from user {user_id} with data {data}, removed {vectorcount-vectorcount2} vectors")
+    return jsonify({'message': 'vector deleted'}), 200
 
 with app.app_context():
     db.create_all()

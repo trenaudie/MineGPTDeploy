@@ -1,15 +1,17 @@
+
+
+import boto3
+import os
+
+import PyPDF2
+import sys
+from io import BytesIO
+sys.path.append(os.getcwd())
+
 from backend.utils.redirect_stdout import redirect_stdout_to_logger
 from backend.config import Config
 from botocore.exceptions import ClientError
 from backend.utils.logger import logger
-
-import boto3
-import os
-import PyPDF2
-import sys
-from io import BytesIO
-
-
 
 # Create a new session using the access key and secret access key of the new user
 session = boto3.Session(aws_access_key_id=Config.AWS_ACCESS_KEY_ID,
@@ -63,8 +65,6 @@ def printUserStats(session:boto3.Session):
 def delete_file_from_s3(file_key, bucket_name, session):
     # Create an S3 client
     s3_client = session.client('s3')
-
-    # Delete the file from the S3 bucket
     try:
         s3_client.delete_object(Bucket=bucket_name, Key=file_key)
         print(f"Deleted file {file_key} from bucket {bucket_name}")
@@ -72,6 +72,19 @@ def delete_file_from_s3(file_key, bucket_name, session):
         print(f"Error deleting file {file_key} from bucket {bucket_name}: {e}")
         return False
     return True
+
+def delete_folder_from_s3(folder_key, session):
+    bucket_name = 'minefiles'
+    s3_client = session.client('s3')
+    for obj in s3_client.list_objects(Bucket=bucket_name, Prefix=folder_key)['Contents']:
+        if len(obj['Key'].split('/')) == 2: 
+            print("deleting ", obj['Key'])
+            try:
+                s3_client.delete_object(Bucket=bucket_name, Key=obj['Key'])
+            except ClientError as e:
+                print(f"Error deleting file {obj['Key']} from bucket {bucket_name}: {e}")
+                return False
+        
 
 def get_subject(filename_only:str) -> str:
     """parse out the subject from the filename_only 
@@ -149,5 +162,9 @@ def split_pdf(filepath: str) -> None:
 
 if __name__ == "__main__":
     #assuming this is running from /minegptDeploy
-    upload_file('backend/testarticles/ECUE61.1corrige-exo-4.pdf', session)
+
+    # upload_file('backend/testarticles/ECUE61.1corrige-exo-4.pdf', session)
+    print(os.getcwd())
+    delete_folder_from_s3('MMC', session)
+
     pass

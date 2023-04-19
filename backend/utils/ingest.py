@@ -9,6 +9,9 @@ from werkzeug.datastructures import FileStorage
 from utils.redirect_stdout import redirect_stdout_to_logger
 from utils.logger import logger
 from werkzeug.utils import secure_filename
+from multilingual_pdf2text.pdf2text import PDF2Text
+from multilingual_pdf2text.models.document_model.document import Document
+from tqdm import tqdm
 
 
 def getDocs():
@@ -140,3 +143,56 @@ def save_file_to_Pinecone_metadata(filepath:str, metadata:str, vectorstore:Pinec
 
     print(f"added to vectorstore {len(source_chunks)} chunks from {filepath} with metadata ex. {metadata_chunk}")
     print(f"vectorstore stats: {vectorstore._index.describe_index_stats()}")
+
+
+
+
+
+def savePdf_1file_to_Pinecone(filepath:str, metadata : dict, vectorstore:Pinecone, content: list = None):
+    """Reads one file from the CoursMines drive directory (pdf and .txt files supported) then splits and saves to Pinecone"""
+    if not all(key in metadata for key in ['user_id', 'file_id']):
+        raise ValueError(f"Invalid metadata: {metadata}. Must contain user_id, file_id")
+
+    user_id = metadata.get('user_id')
+    file_id = metadata.get('file_id')
+    
+    filename, file_extension = os.path.splitext(filepath)
+    folder = filename.split("/")[-2]
+    filename_only = filename.split("/")[-1]
+    non_scientific_list = ['Jancovici', 'QSE']
+    if any(x in folder for x in non_scientific_list):
+        metadata['scientific'] = False
+    else:
+        metadata['scientific'] = True
+    metadata['source'] = os.path.join(folder, filename_only) #ex. MathematiqueS1/MesInt1.pdf
+
+    chunksize = 512
+
+    
+    if file_extension.lower() == '.pdf':
+        pdf_document = Document(
+            document_path=filepath,
+            language='fra')
+        pdf2text = PDF2Text(document=pdf_document)
+        if content is None:
+            content = pdf2text.extract()
+        
+        for i in tqdm(range(len(content))): #for each page
+            pagenbr = content[i]['page_number']
+            page = content[i]['text']
+            vectors = []
+            splitter = CharacterTextSplitter(separator=" ", chunk_size=chunksize, chunk_overlap=0)
+            metadata_page = metadata.copy()
+            metadata_page['page_number'] = pagenbr
+            for j,chunk in enumerate(splitter.split_text(page)):
+                chunkid = f"{user_id}_{file_id}_{pagenbr:03d}_{j}"
+                embedded_chunk = vectorstore._embedding_function(chunk)
+                metadata_chunk = metadata_page.copy()
+                metadata_chunk['text'] = chunk #adding text to metadata
+                vector = (chunkid, embedded_chunk, metadata_chunk) #(i,emb, metadata) same as this code but for .txt files
+                vectors.append(vector)
+    
+            indexes = vectorstore._index.upsert(vectors = vectors, namespace='')
+            print(f"vectorstore total vector count: {vectorstore._index.describe_index_stats()['total_vector_count']}")
+        return metadata_chunk
+
