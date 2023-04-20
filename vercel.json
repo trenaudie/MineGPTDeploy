@@ -1,8 +1,14 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/backend/app" }
+    "builds": [
+        {
+            "src": "backend/app.py",
+            "use": "@vercel/python"
+        }
     ],
-     "devCommand": "npm run dev"
+
+     "rewrites": [
+      { "source": "/(.*)", "destination": "/backend/app.py" }
+    ]
     
   }
   
