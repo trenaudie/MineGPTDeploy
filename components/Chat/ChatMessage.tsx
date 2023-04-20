@@ -98,7 +98,7 @@ export const ChatMessage: FC<Props> = memo(
         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
       }
     }, [isEditing]);
-    console.log(`Image received: ${message.file}`)
+    console.log(`inside chat message, content received: ${message.content}`)
     return (
       <div
         className={`group px-4 ${message.role === 'assistant'
@@ -134,7 +134,7 @@ export const ChatMessage: FC<Props> = memo(
                 </div>
               ) : 
               <div>
-                  {message.content}
+                  {/* {message.content} */}
                 </div>}
             </div>
           </>
@@ -234,7 +234,10 @@ export const ChatMessage: FC<Props> = memo(
                   components={{
                     code({ node, inline, className, children, ...props }) {
                       const match = /language-(\w+)/.exec(className || '');
-
+                    
+                      // check if the code contains inline LaTeX
+                      const containsInlineLaTeX = /\$(.*?)\$/g.test(children.toString());
+                    
                       return !inline ? (
                         <CodeBlock
                           key={Math.random()}
@@ -243,11 +246,16 @@ export const ChatMessage: FC<Props> = memo(
                           {...props}
                         />
                       ) : (
-                        <code className={className} {...props}>
+                        <code
+                          className={className}
+                          style={containsInlineLaTeX ? { whiteSpace: 'nowrap' } : {}}
+                          {...props}
+                        >
                           {children}
                         </code>
                       );
                     },
+                    
                     table({ children }) {
                       return (
                         <table className="border-collapse border border-black px-3 py-1 dark:border-white">

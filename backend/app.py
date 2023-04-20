@@ -7,6 +7,8 @@ import io
 import numpy as np
 import base64
 import zipfile
+import openai
+import botocore
 
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
@@ -418,13 +420,16 @@ def answerQuestion():
             f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
             # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
-
+        
             result = ask_question(question, vectorstore, chat_history, user_id)
             print("qa answer is", result['answer'])
-
         # ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
         sources = result["sources"]
         s3 = aws_session.client('s3')
+
+        if 'am sorry' or 'désolé' or 'cannot find' or 'ne figure pas' or 'ne trouve pas' in result['answer']:
+            print("sorry the documents are not relevant")
+            return jsonify({'answer': result['answer'], 'sources': []}), 200
 
         for i, source in enumerate(sources):
             filename = source['filename']  # ex. Math_S1_Corr1.pdf
@@ -433,21 +438,27 @@ def answerQuestion():
             # switch to AWS encoding
             subjectname, lesson_name = filename.split("/", 1)
             if 'temp' in subjectname:
-                source['pdf_file'] = None
+                source['file_img'] = None
                 continue
+            elif i >=2 and 'temp' not in subjectname:
+                #only put the source name and not the text nor the img
+                source['file_img'] = None
             else:  # get the pdf from aws
-                pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
-                print("pageObj_key", pageObj_key)
-                s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
-                file_stream = io.BytesIO(s3_object['Body'].read())
-                file_img = convert_from_bytes(file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
-                image_stream = io.BytesIO()
-                file_img.save(image_stream, format='JPEG')
-                image_stream.seek(0)
-                image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
-                source['file_img'] = image_base64
-        # Combine the `processed_text
-        # ` and `page_content` JSON objects into a single dictionary
+                try: 
+                    pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
+                    print("pageObj_key", pageObj_key)
+                    s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
+                    file_stream = io.BytesIO(s3_object['Body'].read())
+                    file_img = convert_from_bytes(file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
+                    image_stream = io.BytesIO()
+                    file_img.save(image_stream, format='JPEG')
+                    image_stream.seek(0)
+                    image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
+                    source['file_img'] = image_base64
+                except Exception as e:
+                    print(e)
+                    source['file_img'] = None
+
         return jsonify(result), 200
 
     except Exception as e:
@@ -500,9 +511,14 @@ def answerQuestion2():
             if 'temp' in subjectname:
                 source['file_img'] = None
                 continue
+            elif i >=2 and 'temp' not in subjectname:
+                #only put the source name and not the text nor the img
+                source['text'] = ""
+                source['file_img'] = None
             else:  # get the pdf from aws
                 pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
                 print("pageObj_key", pageObj_key)
+           
                 s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
                 file_stream = io.BytesIO(s3_object['Body'].read())
                 file_img = convert_from_bytes(file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
@@ -511,6 +527,7 @@ def answerQuestion2():
                 image_stream.seek(0)
                 image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
                 source['file_img'] = image_base64
+        
         return jsonify(result), 200
 
     except Exception as e:

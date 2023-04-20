@@ -29,11 +29,9 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0301"):
   
 def makeMessages_fromPinecone_and_history(question : str, docs_metadata:list, chat_history : list):
   #creates a messages object from the various docs metadata
-  scientific_context_prompt = "You are a helpful, scientific assistant. You answer their questions using their documents as context, AND your own knowledge of the world. Answer using relevant equations and the following specific LaTeX math mode delimiters. \ninline math mode : `\(` and `\)` display math mode: insert linebreak after opening `$$`, `\[` and before closing `$$`, `\]"
+  scientific_context_prompt = "Vous êtes assistant de recherche scientifique. Vous répondez en utilisant SEULEMENT les documents fournis. Ajoutez aux termes scientifiques les délimiteurs LaTex `$`avant et `$` après. "
   non_scientific_context_prompt = "You are a helpful, reading assistant for the elderly. You answer their questions using their documents as context, AND your own knowledge of the world. Your response must be be in two sub-200 word paragraphs, one where you use your own knowledge and one where you use the documents."
   is_scientific = any(docmeta['metadata']['scientific'] for docmeta in docs_metadata)
-  print("example docmeta", docs_metadata[0])
-  print(is_scientific)
   if is_scientific:
     context_prompt = scientific_context_prompt
   else:
@@ -45,9 +43,7 @@ def makeMessages_fromPinecone_and_history(question : str, docs_metadata:list, ch
     documents += docmeta['metadata']['text']
   userdict['content'] = f"DOCUMENTS {documents} \n QUESTION: {question} \n"
   messages.append(userdict)
-  print("message", messages)
   numtokens = num_tokens_from_messages(messages)
-  print("numtokens:", numtokens)
   return messages
 
 def ask_question(question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None) -> dict:
@@ -75,15 +71,18 @@ def ask_question(question: str, vectorstore: Pinecone,  chat_history: list[dict]
 
     full_filter = {'$or': [{'user_id': 0}, {'user_id': user_id}] }
     print('asking question', question, 'with user_id', user_id, 'and filter', full_filter)
-    docs_metadata =  vectorstore._index.query(OpenAIEmbeddings().embed_query(question), top_k = 2, filter = full_filter, include_metadata=True)['matches']
+    docs_metadata =  vectorstore._index.query(OpenAIEmbeddings().embed_query(question), top_k = 5, filter = full_filter, include_metadata=True)['matches']
     print("docs_metadata[0]", docs_metadata[0])
     messages = makeMessages_fromPinecone_and_history(question, docs_metadata, chat_history)
-    response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages = messages,
-    temperature=0.2,
-    )
-    answer = response['choices'][0]['message']['content']
+    try:
+      response = openai.ChatCompletion.create(
+      model="gpt-3.5-turbo",
+      messages = messages,
+      temperature=0.5,
+      )
+      answer = response['choices'][0]['message']['content']
+    except openai.error.RateLimitError:
+      answer = 'Sorry, OpenAI is overloaded. Here are some relevant documents.'
     sources = []
     for docmeta in docs_metadata:
         sources.append(

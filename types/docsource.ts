@@ -1,6 +1,6 @@
 
 export interface Docsource {
-  id: string;
+  id: number;
   file_id : string;
   name: string;
   description: string;

@@ -213,7 +213,7 @@ const Home: React.FC<HomeProps> = ({
       };
 
       setSelectedConversation(updatedConversation);
-      saveConversation(updatedConversation);
+      // saveConversation(updatedConversation);
 
       const updatedConversations: Conversation[] = conversations.map(
         (conversation) => {
@@ -230,7 +230,7 @@ const Home: React.FC<HomeProps> = ({
       }
 
       setConversations(updatedConversations);
-      saveConversations(updatedConversations);
+      // saveConversations(updatedConversations);
 
       setLoading(false);
       setMessageIsStreaming(false);
@@ -572,7 +572,7 @@ const Home: React.FC<HomeProps> = ({
 
   const handleSelectConversation = (conversation: Conversation) => {
     setSelectedConversation(conversation);
-    saveConversation(conversation);
+    // saveConversation(conversation);
   };
 
   // FOLDER OPERATIONS  --------------------------------------------
@@ -606,7 +606,7 @@ const Home: React.FC<HomeProps> = ({
       return c;
     });
     setConversations(updatedConversations);
-    saveConversations(updatedConversations);
+    // saveConversations(updatedConversations);
 
     const updatedPrompts: Prompt[] = prompts.map((p) => {
       if (p.folderId === folderId) {
@@ -663,7 +663,7 @@ const Home: React.FC<HomeProps> = ({
     setConversations(updatedConversations);
 
     saveConversation(newConversation);
-    saveConversations(updatedConversations);
+    // saveConversations(updatedConversations);
 
     setLoading(false);
   };
@@ -673,13 +673,13 @@ const Home: React.FC<HomeProps> = ({
       (c) => c.id !== conversation.id,
     );
     setConversations(updatedConversations);
-    saveConversations(updatedConversations);
+    // saveConversations(updatedConversations);
 
     if (updatedConversations.length > 0) {
       setSelectedConversation(
         updatedConversations[updatedConversations.length - 1],
       );
-      saveConversation(updatedConversations[updatedConversations.length - 1]);
+      // saveConversation(updatedConversations[updatedConversations.length - 1]);
     } else {
       setSelectedConversation({
         id: uuidv4(),
@@ -832,7 +832,8 @@ const Home: React.FC<HomeProps> = ({
       console.log("File upload successful");
 
       const newDocsource: Docsource = {
-        id: file_id, //useful for a common index between docsources
+        file_id:file_id,
+        id: 1, //useful for a common index between docsources
         name: `${fileName}`,
         description: '', //useful for filtering docsources
         source: '', //useful for displaying where the docsource came from
