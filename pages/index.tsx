@@ -135,9 +135,10 @@ const Home: React.FC<HomeProps> = ({
       setLoading(true);
       setMessageIsStreaming(true);
 
-      const chatBody: ChatBody = {
-        prompt: updatedConversation.prompt,
-      };
+      // const chatBody: ChatBody = {
+      //   prompt: updatedConversation.prompt,
+
+      // };
 
       const endpoint = getEndpoint(plugin);
       const chatHistory = localStorage.getItem('conversationHistory')

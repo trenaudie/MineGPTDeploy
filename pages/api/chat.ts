@@ -11,7 +11,7 @@ export const config = {
 };
 
 const handler = async (req: Request): Promise<Response> => {
-  try {
+  try { 
     const { model, messages, key, prompt } = (await req.json()) as ChatBody;
 
     await init((imports) => WebAssembly.instantiate(wasm, imports));
