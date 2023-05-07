@@ -1,6 +1,7 @@
-import React, { useState, CSSProperties } from 'react';
+import React, { useState, CSSProperties, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api';
+import { SERVER_ADDRESS } from './Constants';
 
 // Define the CSS styles as a JavaScript object
 const styles: { [key: string]: CSSProperties } = {
@@ -15,23 +16,38 @@ const styles: { [key: string]: CSSProperties } = {
 };
 
 interface PdfViewerProps {
-  pdfFile: string | ArrayBuffer | Uint8Array | Blob | File | DocumentInitParameters;
+  pdfKey: string | ArrayBuffer | Uint8Array | Blob | File | DocumentInitParameters;
 }
 
-const PdfViewer: React.FC<PdfViewerProps> = ({ pdfFile }) => {
+const PdfViewer: React.FC<PdfViewerProps> = ({ pdfKey }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
-  console.log("PdfViewer received pdfFile:", pdfFile);
+  const [pdfFile, setPdfFile] = useState<Blob | null>(null);
+  const pdfUrl = `/pdf/${pdfKey}`;
+
+  console.log("PdfViewer received pdfFile:", pdfUrl);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
+
+  useEffect(() => {
+    fetch(`${SERVER_ADDRESS}/pdf/${pdfKey}`)
+      .then((response) => response.blob())
+      .then((blob) => {
+        setPdfFile(blob);
+      })
+      .catch((error) => {
+        console.error("Error fetching PDF file:", error);
+      });
+  }, [pdfKey]);
+
 
   return (
     <div style={styles.pdfContainer}>
       <Document
         file={pdfFile}
         onLoadSuccess={onDocumentLoadSuccess}
-        options={{ workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js" }}
+        options={{ workerSrc: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js` }}
       >
         {Array.from(new Array(numPages), (el, index) => (
           <div key={`page_${index + 1}`} style={styles.page}>

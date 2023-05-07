@@ -128,9 +128,7 @@ export const ChatMessage: FC<Props> = memo(
                   {message.file && (
                     <div>
                       {(() => {
-
-                        const pdfBlob = base64ToBlob(message.file, 'application/pdf');
-                        return <PdfViewer pdfFile={pdfBlob} />;
+                        return <PdfViewer pdfKey={message.file} />;
                       })()}
                     </div>
                   )}

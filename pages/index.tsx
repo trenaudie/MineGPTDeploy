@@ -150,7 +150,7 @@ const Home: React.FC<HomeProps> = ({
 
 
       const controller = new AbortController();
-      const response = await fetch(`${SERVER_ADDRESS}/qa2`, {
+      const response = await fetch(`${SERVER_ADDRESS}/qa`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ const Home: React.FC<HomeProps> = ({
           const item = sources[i];
           const filename = item.filename
           const text = item.text
-          const file = sources[i]['pdf_file']
+          const file = sources[i]['pdf_key'];
           // We added a title to the message to include the filename
           console.log("added source")
           updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, file: file });
