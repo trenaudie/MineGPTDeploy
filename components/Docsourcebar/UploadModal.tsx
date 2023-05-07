@@ -17,7 +17,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ show, onClose, onAgree }) => 
             <div className={customStyles.content}>
                 <h2>Upload Document</h2>
                 <p>
-                    Veillez bien à n'uploader des documents sur le site avec l'accord de la personne concerné.
+                    Veillez bien à nuploader des documents sur le site avec laccord de la personne concerné.
                     Nous ne sommes pas responsables des données que vous uploadez vous même sur le site.
                 </p>
                 <button onClick={onAgree}>Agree</button>

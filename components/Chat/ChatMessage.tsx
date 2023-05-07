@@ -30,7 +30,6 @@ export const ChatMessage: FC<Props> = memo(
     const [isTyping, setIsTyping] = useState<boolean>(false);
     const [messageContent, setMessageContent] = useState(message.content);
     const [messagedCopied, setMessageCopied] = useState(false);
-
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const toggleEditing = () => {
@@ -99,7 +98,7 @@ export const ChatMessage: FC<Props> = memo(
         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
       }
     }, [isEditing]);
-
+    console.log(`inside chat message, content received: ${message.content}`)
     return (
       <div
         className={`group px-4 ${message.role === 'assistant'
@@ -110,7 +109,7 @@ export const ChatMessage: FC<Props> = memo(
       >
         <div className="relative m-auto flex gap-4 p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
           <div className="min-w-[40px] text-right font-bold">
-            {message.role === 'assistant' && !message.source ? (
+            {message.role === 'assistant' ? (
               <IconRobot size={30} />
             ) : (
               <IconUser size={30} />
@@ -125,19 +124,26 @@ export const ChatMessage: FC<Props> = memo(
                 </div>
                 <FileDownload fileName={message.title} displayText={message.title} />
                 <div>
-                  {message.file && (
+                  {message.file ? (
                     <div>
-                      {(() => {
-                        return <PdfViewer pdfKey={message.file} />;
-                      })()}
+                      <img
+                        src={`data:image/jpeg;base64,${message.file}`}
+                        alt={message.title}
+                        style={{ maxWidth: "100%", height: "auto" }}
+                      />
                     </div>
-                  )}
+                  ) :
+                    <div>
+                      {/* {message.content} */}
+                    </div>}
                 </div>
               </>
+
             )}
 
 
-            {message.role === 'user' ? (
+
+            {message.role === 'user' && (
               <div className="flex w-full">
                 {isEditing ? (
                   <div className="flex w-full flex-col">
@@ -197,7 +203,9 @@ export const ChatMessage: FC<Props> = memo(
                   </button>
                 )}
               </div>
-            ) : (
+            )}
+
+            {message.role === 'assistant' && !message.source && (
               <>
                 <div
                   className={`absolute ${window.innerWidth < 640
@@ -227,6 +235,9 @@ export const ChatMessage: FC<Props> = memo(
                     code({ node, inline, className, children, ...props }) {
                       const match = /language-(\w+)/.exec(className || '');
 
+                      // check if the code contains inline LaTeX
+                      const containsInlineLaTeX = /\$(.*?)\$/g.test(children.toString());
+
                       return !inline ? (
                         <CodeBlock
                           key={Math.random()}
@@ -235,11 +246,16 @@ export const ChatMessage: FC<Props> = memo(
                           {...props}
                         />
                       ) : (
-                        <code className={className} {...props}>
+                        <code
+                          className={className}
+                          style={containsInlineLaTeX ? { whiteSpace: 'nowrap' } : {}}
+                          {...props}
+                        >
                           {children}
                         </code>
                       );
                     },
+
                     table({ children }) {
                       return (
                         <table className="border-collapse border border-black px-3 py-1 dark:border-white">

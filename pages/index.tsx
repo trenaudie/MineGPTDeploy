@@ -135,9 +135,10 @@ const Home: React.FC<HomeProps> = ({
       setLoading(true);
       setMessageIsStreaming(true);
 
-      const chatBody: ChatBody = {
-        prompt: updatedConversation.prompt,
-      };
+      // const chatBody: ChatBody = {
+      //   prompt: updatedConversation.prompt,
+
+      // };
 
       const endpoint = getEndpoint(plugin);
       const chatHistory = localStorage.getItem('conversationHistory')
@@ -174,7 +175,6 @@ const Home: React.FC<HomeProps> = ({
 
       const sources = data.sources
       let answer = data.answer;
-      const pdf_files = data.pdf_files
       if (sources.length == 0) {
         answer = answer.replace(/SOURCES\s*:.*$/, '');
       }
@@ -194,14 +194,15 @@ const Home: React.FC<HomeProps> = ({
       ];
 
       if (sources) {
+
         const n = sources.length;
         for (let i = 0; i < n; i++) {
           const item = sources[i];
           const filename = item.filename
           const text = item.text
-          const file = sources[i]['pdf_key'];
+          const file = item.file_img
           // We added a title to the message to include the filename
-          console.log("added source")
+          console.log(`adding source with filename ${filename}`)
           updatedMessages.push({ role: 'assistant', content: text, title: filename, source: true, file: file });
         }
       }
@@ -213,7 +214,7 @@ const Home: React.FC<HomeProps> = ({
       };
 
       setSelectedConversation(updatedConversation);
-      saveConversation(updatedConversation);
+      // saveConversation(updatedConversation);
 
       const updatedConversations: Conversation[] = conversations.map(
         (conversation) => {
@@ -230,7 +231,7 @@ const Home: React.FC<HomeProps> = ({
       }
 
       setConversations(updatedConversations);
-      saveConversations(updatedConversations);
+      // saveConversations(updatedConversations);
 
       setLoading(false);
       setMessageIsStreaming(false);
@@ -572,7 +573,7 @@ const Home: React.FC<HomeProps> = ({
 
   const handleSelectConversation = (conversation: Conversation) => {
     setSelectedConversation(conversation);
-    saveConversation(conversation);
+    // saveConversation(conversation);
   };
 
   // FOLDER OPERATIONS  --------------------------------------------
@@ -606,7 +607,7 @@ const Home: React.FC<HomeProps> = ({
       return c;
     });
     setConversations(updatedConversations);
-    saveConversations(updatedConversations);
+    // saveConversations(updatedConversations);
 
     const updatedPrompts: Prompt[] = prompts.map((p) => {
       if (p.folderId === folderId) {
@@ -663,7 +664,7 @@ const Home: React.FC<HomeProps> = ({
     setConversations(updatedConversations);
 
     saveConversation(newConversation);
-    saveConversations(updatedConversations);
+    // saveConversations(updatedConversations);
 
     setLoading(false);
   };
@@ -673,13 +674,13 @@ const Home: React.FC<HomeProps> = ({
       (c) => c.id !== conversation.id,
     );
     setConversations(updatedConversations);
-    saveConversations(updatedConversations);
+    // saveConversations(updatedConversations);
 
     if (updatedConversations.length > 0) {
       setSelectedConversation(
         updatedConversations[updatedConversations.length - 1],
       );
-      saveConversation(updatedConversations[updatedConversations.length - 1]);
+      // saveConversation(updatedConversations[updatedConversations.length - 1]);
     } else {
       setSelectedConversation({
         id: uuidv4(),
@@ -832,7 +833,8 @@ const Home: React.FC<HomeProps> = ({
       console.log("File upload successful");
 
       const newDocsource: Docsource = {
-        id: file_id, //useful for a common index between docsources
+        file_id: file_id,
+        id: 1, //useful for a common index between docsources
         name: `${fileName}`,
         description: '', //useful for filtering docsources
         source: '', //useful for displaying where the docsource came from
@@ -866,6 +868,30 @@ const Home: React.FC<HomeProps> = ({
 
   const handleDeleteDocsource = (docsource: Docsource) => {
     const updatedDocsources = docsources.filter((d) => d.id !== docsource.id);
+    console.log(`deleting docsource with id: ${docsource.id} and name: ${docsource.name}`)
+    const access_token = getSecureCookie("access_token");
+    fetch(`${SERVER_ADDRESS}/delete`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${access_token}`
+      },
+      body: JSON.stringify({
+        file_id: docsource.file_id,
+      }),
+    }).then(
+      (response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        return response.json();
+      }
+    ).then(
+      (data) => {
+        console.log("File deletion successful");
+        return data
+      }
+    );
     setDocsources(updatedDocsources);
     saveDocsources(updatedDocsources);
   };
@@ -977,7 +1003,7 @@ const Home: React.FC<HomeProps> = ({
 
     for (const file of files) {
       fetchedFiles.push(file as Docsource)
-      console.log(file)
+      console.log(file);
     }
 
     uploadDocs(fetchedFiles)

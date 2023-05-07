@@ -260,7 +260,7 @@ export const Chat: FC<Props> = memo(
                 Vous pouvez même uploader vos propres documents et leur poser des questions !
               </div>
               <div className="mb-2">
-                Veillez à n'uploader que des fichiers opensource pour des questions de confdentialité.
+                Veillez à nuploader que des fichiers opensource pour des questions de confdentialité.
               </div>
               <div className="mb-2">
 
