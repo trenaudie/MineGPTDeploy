@@ -109,7 +109,7 @@ export const ChatMessage: FC<Props> = memo(
       >
         <div className="relative m-auto flex gap-4 p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
           <div className="min-w-[40px] text-right font-bold">
-            {message.role === 'assistant' ?(
+            {message.role === 'assistant' ? (
               <IconRobot size={30} />
             ) : (
               <IconUser size={30} />
@@ -118,27 +118,27 @@ export const ChatMessage: FC<Props> = memo(
 
           <div className="prose mt-[-2px] w-full dark:prose-invert">
             {message.role === 'assistant' && message.source && (
-            <>
-            <div className="mt-2 text-sm text-gray-500 italic">
-              Source:
-            </div>
-            <FileDownload fileName={message.title} displayText={message.title} />
-            <div>
-              {message.file ? (
-                <div>
-                  <img
-                    src={`data:image/jpeg;base64,${message.file}`}
-                    alt={message.title}
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
+              <>
+                <div className="mt-2 text-sm text-gray-500 italic">
+                  Source:
                 </div>
-              ) : 
-              <div>
-                  {/* {message.content} */}
-                </div>}
-            </div>
-          </>
-          
+                <FileDownload fileName={message.title} displayText={message.title} />
+                <div>
+                  {message.file ? (
+                    <div>
+                      <img
+                        src={`data:image/jpeg;base64,${message.file}`}
+                        alt={message.title}
+                        style={{ maxWidth: "100%", height: "auto" }}
+                      />
+                    </div>
+                  ) :
+                    <div>
+                      {/* {message.content} */}
+                    </div>}
+                </div>
+              </>
+
             )}
 
 
@@ -203,9 +203,9 @@ export const ChatMessage: FC<Props> = memo(
                   </button>
                 )}
               </div>
-            ) }
+            )}
 
-          {message.role === 'assistant' && !message.source && (
+            {message.role === 'assistant' && !message.source && (
               <>
                 <div
                   className={`absolute ${window.innerWidth < 640
@@ -234,10 +234,10 @@ export const ChatMessage: FC<Props> = memo(
                   components={{
                     code({ node, inline, className, children, ...props }) {
                       const match = /language-(\w+)/.exec(className || '');
-                    
+
                       // check if the code contains inline LaTeX
                       const containsInlineLaTeX = /\$(.*?)\$/g.test(children.toString());
-                    
+
                       return !inline ? (
                         <CodeBlock
                           key={Math.random()}
@@ -255,7 +255,7 @@ export const ChatMessage: FC<Props> = memo(
                         </code>
                       );
                     },
-                    
+
                     table({ children }) {
                       return (
                         <table className="border-collapse border border-black px-3 py-1 dark:border-white">

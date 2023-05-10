@@ -1,9 +1,14 @@
-import React, { useState, CSSProperties } from 'react';
+import React, { useState, CSSProperties, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
+<<<<<<< HEAD
+import { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api';
+import { SERVER_ADDRESS } from './Constants';
+=======
 import { useEffect } from 'react';
 import { PDFDocumentProxy, PDFPageProxy, getDocument } from 'pdfjs-dist/types/src/pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js";
+>>>>>>> 5daf2cfcfe577bbaf8b35df713a56cb3ceb58119
 
 // Define the CSS styles as a JavaScript object
 const styles: { [key: string]: CSSProperties } = {
@@ -22,6 +27,17 @@ const styles: { [key: string]: CSSProperties } = {
 // }
 
 interface PdfViewerProps {
+<<<<<<< HEAD
+  pdfKey: string | ArrayBuffer | Uint8Array | Blob | File | DocumentInitParameters;
+}
+
+const PdfViewer: React.FC<PdfViewerProps> = ({ pdfKey }) => {
+  const [numPages, setNumPages] = useState<number | null>(null);
+  const [pdfFile, setPdfFile] = useState<Blob | null>(null);
+  const pdfUrl = `/pdf/${pdfKey}`;
+
+  console.log("PdfViewer received pdfFile:", pdfUrl);
+=======
   pdfFile: string;
 }
 
@@ -44,6 +60,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfFile }) => {
 
   const [numPages, setNumPages] = useState<number | null>(null);
   console.log('PdfViewer received pdfFile:', pdfFile.substring(0,10));
+>>>>>>> 5daf2cfcfe577bbaf8b35df713a56cb3ceb58119
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);

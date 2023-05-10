@@ -833,7 +833,7 @@ const Home: React.FC<HomeProps> = ({
       console.log("File upload successful");
 
       const newDocsource: Docsource = {
-        file_id:file_id,
+        file_id: file_id,
         id: 1, //useful for a common index between docsources
         name: `${fileName}`,
         description: '', //useful for filtering docsources

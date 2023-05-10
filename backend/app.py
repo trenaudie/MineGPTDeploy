@@ -20,7 +20,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
-from flask import Flask, request, render_template, jsonify, redirect, session, url_for, send_file
+from flask import Flask, request, make_response, jsonify, redirect, session, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_session import Session
@@ -319,6 +319,7 @@ def logout():
 @jwt_required()
 def upload_file():
     # add real file id
+    logger.info("uploading file")
     try:
         uploaded_file = request.files['document']
         file_id = request.form['file_id']
@@ -348,7 +349,8 @@ def upload_file():
 
             # add file to docsource database
             description = 'File uploaded by user'  # might need to change
-            print(f'saving docsource with file_id {file_id}, user_id {user_id}, description {description}, filename {filename_only}')
+            print(
+                f'saving docsource with file_id {file_id}, user_id {user_id}, description {description}, filename {filename_only}')
             docsource = DocSource(file_id=file_id, user_id=user_id, description=description,
                                   filename=filename_only)
             db.session.add(docsource)
@@ -413,8 +415,8 @@ def answerQuestion():
         question = data.get('prompt')
         chat_history = data.get('chathistory')
         print("chatHistory", chat_history)
-
-        chat_history = []
+        if not chat_history:
+            chat_history = []
 
         auth_header = request.headers.get('Authorization')
         if auth_header and auth_header.startswith('Bearer '):
@@ -425,7 +427,7 @@ def answerQuestion():
             f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
             # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
-        
+
             result = ask_question(question, vectorstore, chat_history, user_id)
             print("qa answer is", result['answer'])
         # ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
@@ -445,20 +447,23 @@ def answerQuestion():
             if 'temp' in subjectname:
                 source['file_img'] = None
                 continue
-            elif i >=2 and 'temp' not in subjectname:
-                #only put the source name and not the text nor the img
+            elif i >= 2 and 'temp' not in subjectname:
+                # only put the source name and not the text nor the img
                 source['file_img'] = None
             else:  # get the pdf from aws
-                try: 
+                try:
                     pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
                     print("pageObj_key", pageObj_key)
-                    s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
+                    s3_object = s3.get_object(
+                        Bucket=bucket_name, Key=pageObj_key)
                     file_stream = io.BytesIO(s3_object['Body'].read())
-                    file_img = convert_from_bytes(file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
+                    file_img = convert_from_bytes(
+                        file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
                     image_stream = io.BytesIO()
                     file_img.save(image_stream, format='JPEG')
                     image_stream.seek(0)
-                    image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
+                    image_base64 = base64.b64encode(
+                        image_stream.getvalue()).decode('utf-8')
                     source['file_img'] = image_base64
                 except Exception as e:
                     print(e)
@@ -471,19 +476,9 @@ def answerQuestion():
         print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
 
-@app.route('/qa2', methods=['POST'])
-@jwt_required()
-def answerQuestion2():
-    """Question answering endpoint
-    Returns:
-    dict with keys "answer", "sources"
-    - answer: str
-    - sources: list of dicts
-        - filename: str
-        - text: str
-        - page: str (not yet implemented)
-        - etc.
-    """
+
+@app.route('/pdf/<path:pdf_key>', methods=['GET'])
+def get_pdf(pdf_key):
     try:
         data = request.get_json()
         question = data.get('prompt')
@@ -500,12 +495,14 @@ def answerQuestion2():
 
             # result = ask_question(question, vectorstore, chat_history, user_id)
             result = {'answer': 'Energy is the capacity to do work or transfer heat, and it exists in various forms, such as potential, kinetic, thermal, electrical, chemical, and nuclear. It can be neither created nor destroyed, according to the law of conservation of energy, but can be transformed from one form to another. Renewable energy sources, like solar, wind, hydro, and geothermal, are becoming more prominent',
-                       'sources': [{'filename': 'MathS1/CalDiff.pdf', 'page_number': 1, 'text': "On sait qu'une fonction f definie sur un intervalle ouvert I inclus dans R à valeurs dans R est dérivable"}, 
-                                   {'filename': 'MathS1/CalDiff.pdf', 'page_number': 2, 'text': 'Inversement, on vérifie immédiatement que si une fonction f admet une développement limité du type..'}]}
+                      'sources': [{'filename': 'MathS1/CalDiff.pdf', 'page_number': 1, 'text': "On sait qu'une fonction f definie sur un intervalle ouvert I inclus dans R à valeurs dans R est dérivable"},
+                                  {'filename': 'MathS1/CalDiff.pdf', 'page_number': 2, 'text': 'Inversement, on vérifie immédiatement que si une fonction f admet une développement limité du type..'}]}
 
         # ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
         sources = result["sources"]
         s3 = aws_session.client('s3')
+        s3_object = s3.get_object(Bucket=bucket_name, Key=pdf_key)
+        file_stream = io.BytesIO(s3_object['Body'].read())
 
         for i, source in enumerate(sources):
             filename = source['filename']  # ex. Math_S1_Corr1.pdf
@@ -516,30 +513,30 @@ def answerQuestion2():
             if 'temp' in subjectname:
                 source['file_img'] = None
                 continue
-            elif i >=2 and 'temp' not in subjectname:
-                #only put the source name and not the text nor the img
+            elif i >= 2 and 'temp' not in subjectname:
+                # only put the source name and not the text nor the img
                 source['text'] = ""
                 source['file_img'] = None
             else:  # get the pdf from aws
                 pageObj_key = f"{subjectname}/{lesson_name}_page{int(page_number):03d}{file_extension}"
                 print("pageObj_key", pageObj_key)
-           
+
                 s3_object = s3.get_object(Bucket=bucket_name, Key=pageObj_key)
                 file_stream = io.BytesIO(s3_object['Body'].read())
-                file_img = convert_from_bytes(file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
+                file_img = convert_from_bytes(
+                    file_stream.getvalue(), dpi=300, fmt='jpeg', single_file=True)[0]
                 image_stream = io.BytesIO()
                 file_img.save(image_stream, format='JPEG')
                 image_stream.seek(0)
-                image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
+                image_base64 = base64.b64encode(
+                    image_stream.getvalue()).decode('utf-8')
                 source['file_img'] = image_base64
-        
+
         return jsonify(result), 200
 
+        return response
     except Exception as e:
-        # Log the full traceback of the exception
-        print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
-
 
 
 @app.route('/delete', methods=['POST'])
@@ -553,7 +550,8 @@ def delete_vector():
         'total_vector_count']
     file_id = data.get('file_id', None)
     vectorstore._index.delete(filter={'file_id': file_id, 'user_id': user_id})
-    docsource = DocSource.query.filter_by(user_id=user_id , file_id=file_id).first()
+    docsource = DocSource.query.filter_by(
+        user_id=user_id, file_id=file_id).first()
 
     if docsource is None:
         return jsonify({'message': 'vector not found'}), 404
