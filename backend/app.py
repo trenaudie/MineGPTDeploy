@@ -42,7 +42,7 @@ from config import Config
 from utils.getchain import createchain_with_filter
 from pdf2image import convert_from_bytes
 import base64
-
+from error_codes import ERROR_CODES
 os.environ['OPENAI_API_KEY'] = Config.openai_api_key
 os.environ['PINECONE_API_KEY'] = Config.pinecone_api_key
 
@@ -355,14 +355,19 @@ def upload_file():
             db.session.commit()
 
             return jsonify('File uploaded and saved to the database.', 200)
+    except openai.error.AuthenticationError as e:
+        error = ERROR_CODES['AUTHENTICATION_ERROR']
+        print(f"ERROR code: {error['code']} message: {error['message']}")
+        return jsonify({'error_code': error['code'], 'error_message': error['message']}), 401
 
+ 
     except ValueError as e:
         if str(e) == 'Access token is missing or invalid':
             return jsonify({'message': 'Access token is missing or invalid'}), 401
         elif str(e) == 'No file was uploaded':
             return jsonify({'message': 'No file was uploaded'}), 400
         else:
-            raise(str(e))
+            print(f"error type: ", e.__class__, e.__class__)
             return jsonify({'message': 'An unknown error occurred'}), 500
 
 
@@ -428,7 +433,7 @@ def answerQuestion():
         s3 = aws_session.client('s3')
 
         if 'am sorry' or 'désolé' or 'cannot find' or 'ne figure pas' or 'ne trouve pas' in result['answer']:
-            print("sorry the documents are not relevant")
+            print("s< orry the documents are not relevant")
             return jsonify({'answer': result['answer'], 'sources': []}), 200
 
         for i, source in enumerate(sources):

@@ -107,9 +107,6 @@ def logout_for_tests():
     print("Logout test")
     print("-------------")
     print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-
-
 
 
 def testquestion(question:str,session:requests.Session, access_token:str):
@@ -117,6 +114,8 @@ def testquestion(question:str,session:requests.Session, access_token:str):
     headers = {
             'Authorization': f'Bearer {access_token}',
             'Content-type': 'application/json'
+
+
         }
     print('--------------')
     print('Question test', question)
@@ -165,8 +164,7 @@ if __name__ == "__main__":
     session, access_token = login_for_tests(tanguyemail,tanguypw)
     fileid = 'blablaid'
     # testupload(session,access_token,fileid)
-    # testdelete(session,access_token,fileid)
-
+    # testdelete(session,access_token,filei
     # test_download('Probabilite1.pdf', session, access_token)
     testquestion('what is energy?',session, access_token)
 

@@ -1474,3 +1474,7 @@ conséquence directe de sa définition à partir de
  'values': []}
 2023-04-20 17:31:17,367 - INFO - qa answer is
 2023-04-20 17:31:17,368 - INFO - Je suis désolé, je ne peux pas répondre à votre question car le terme "langchain" n'apparaît pas dans les documents fournis. Veuillez reformuler votre question en utilisant des termes présents dans les documents.
+2023-05-06 13:42:03,320 - INFO - uploading file ColabInvoice.pdf with id b13b3006-2b50-4019-baf6-1f963b9e561c for user 1 
+2023-05-06 14:27:15,473 - INFO - uploading file ColabInvoice.pdf with id 3504deeb-5898-4178-9367-ec627ac2e565 for user 1 
+2023-05-06 14:44:07,507 - INFO - uploading file ColabInvoice.pdf with id 25b17ba8-6e8a-404f-8de8-c765ce67f836 for user 1 
+2023-05-06 14:53:37,724 - INFO - uploading file ColabInvoice.pdf with id f1a3e125-7c30-42c6-82c4-b01e74413d74 for user 1 
