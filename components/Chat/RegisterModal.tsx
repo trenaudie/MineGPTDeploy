@@ -63,7 +63,6 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
         const formData = new FormData(event.target as HTMLFormElement);
 
         const confirmation = formData.get("confirmation_code");
-        console.log(`before auth context`)
         console.log(`authenticated = ${authenticated} before submission`)
         // Send the data to the backend
         try {
@@ -81,33 +80,34 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
 
             const data = await response.json();
             console.log(data);
-
             if (response.ok && data.status === 'registration successful!') {
                 // Handle successful login (e.g., set user state, redirect, etc.)
                 setSecureCookie("access_token", data.access_token);
                 onClose(); // Close the LoginModal
+            } else if (data.error_code) {
+                // Handle error messages from backend
+                console.log(data.error_message);
+                setErrorMessage(data.error_message);
+                
             } else if (data.status === 'failed registration') {
                 // Handle incorrect login
                 console.log(data.status)
                 setAuthError('The confirmation code you provided is incorrect');
             } else if (data.status === "you can only register once") {
                 console.log(data.status)
-                setAuthError(data.status)
-            } else {
-                // Handle other errors (e.g., show a generic error message)
-                setErrorMessage('An error occurred, please try again');
-            }
+                setAuthError(data.status)}
         } catch (error) {
-            console.error('Fetch error:', error);
             setErrorMessage('An error occurred, please try again');
         }
     };
 
     useEffect(() => {
+        console.log('useEffect called because show changed')
         if (!show) {
             setShowCode(false);
-            setAuthError('')
-            onClose()
+            setAuthError('');
+            setErrorMessage(undefined);
+            onClose();
         }
     }, [show, setShowCode]);
 
@@ -120,6 +120,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
             <div className="bg-white w-full max-w-md m-auto rounded shadow-lg z-50">
                 <div className="py-4 px-8 text-black">
                     <h1 className="text-xl font-bold mb-4">Register</h1>
+
                     {!showCode && (
                         <form onSubmit={handleSubmit}>
                             {errorMessage && (
@@ -128,7 +129,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
                                 </div>
                             )}
                             {authError && (
-                                <p className="text-red-500 text-sm mt-2 mb-4">{authError}</p>
+                                <p className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{authError}</p>
                             )}
                             <input
                                 className="border w-full py-2 px-3 mb-4 rounded text-black"
@@ -168,7 +169,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
                                 </div>
                             )}
                             {authError && (
-                                <p className="text-red-500 text-sm mt-2 mb-4">{authError}</p>
+                                <p className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{authError}</p>
                             )}
                             <input
                                 className="border w-full py-2 px-3 mb-4 rounded text-black"

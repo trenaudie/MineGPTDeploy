@@ -235,7 +235,11 @@ def for_now():
 def register():
     data = request.get_json()
     email = str(data.get('email'))
-    confirmation = int(data.get("confirmation_code"))
+    try: 
+        confirmation = int(data.get("confirmation_code"))
+    except ValueError:
+        error = ERROR_CODES['INVALID_CONFIRMATION_CODE_TYPE']
+        return jsonify({'error_code': error['code'], 'error_message': error['message']}), 401
     print(confirmation)
     print(email)
     print('confirmation value', confirmation_numbers[email]['confirmation'])
