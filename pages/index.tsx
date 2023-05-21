@@ -175,8 +175,8 @@ const Home: React.FC<HomeProps> = ({
       if (data.error_code){
         // toast.error(data.error_message);
         answer = data.error_message;
-        console.log(`Error code: ${data.error_code} and error message: ${data.error_message}`)
-        return;
+        sources = [];
+        console.log(`Error code: ${data.error_code} and error message: ${data.error_message}`);
       }
       else{
         sources = data.sources;
@@ -189,9 +189,8 @@ const Home: React.FC<HomeProps> = ({
         setLoading(false);
         setMessageIsStreaming(false);
         console.log("no data");
-        return;
       }
-
+      console.log(`answer: ${answer}`)
       const updatedMessages: Message[] = [
         ...updatedConversation.messages,
         { role: 'assistant', content: answer, title: 'answer', source: false, file: null },
