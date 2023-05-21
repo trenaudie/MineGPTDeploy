@@ -200,6 +200,7 @@ send_email('recipient@example.com',
 
 @app.route('/ask_confirmation_code', methods=['POST'])
 def for_now():
+    print("inside ask_confirmation_code")
     data = request.get_json()
     if not data or 'email' not in data:
         return jsonify(status='error', message='Invalid data'), 400
@@ -233,36 +234,40 @@ def for_now():
 
 @app.route('/register', methods=['POST'])
 def register():
+    print("inside register")
     data = request.get_json()
+    print(f"data object received : {data}")
     email = str(data.get('email'))
+    password = str(data.get('password'))
+    # check if the user already exists
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        error = ERROR_CODES['ALREADY_REGISTERED']
+        return jsonify({'error_code': error['code'], 'error_message': error['message']}), 400
+    
     try: 
-        confirmation = int(data.get("confirmation_code"))
+        #confirmation = int(data.get("confirmation_code"))
+        confirmation = 666666
     except ValueError:
         error = ERROR_CODES['INVALID_CONFIRMATION_CODE_TYPE']
         return jsonify({'error_code': error['code'], 'error_message': error['message']}), 401
-    print(confirmation)
-    print(email)
-    print('confirmation value', confirmation_numbers[email]['confirmation'])
-    print(confirmation_numbers[email]['password'])
-    # try:
-    if confirmation == confirmation_numbers[email]['confirmation']:
-        password = generate_password_hash(
-            confirmation_numbers[email]['password'], method='sha256')
-        new_user = User(email=email, password=password, docsources=[])
-        db.session.add(new_user)
-        db.session.commit()
-        # Change this to your desired duration
-        expires_delta = timedelta(hours=3)
+    password = generate_password_hash(
+        password, method='sha256')
+    new_user = User(email=email, password=password, docsources=[])
+    db.session.add(new_user)
+    db.session.commit()
+    expires_delta = timedelta(hours=3)
+    access_token = create_access_token(
+        identity=new_user.id, expires_delta=expires_delta)
+    confirmation_numbers.pop(email)
+    return jsonify(status='registration successful!', access_token=access_token), 200
+    # except:
+    #     return jsonify(status='you can only register once')
 
-        access_token = create_access_token(
-            identity=new_user.id, expires_delta=expires_delta)
-        confirmation_numbers.pop(email)
-        return jsonify(status='registration successful!', access_token=access_token), 200
-        # except:
-        #     return jsonify(status='you can only register once')
-    else:
-        print("failed registration")
-        return jsonify(status='failed registration')
+    #return error if the confirmation code is wrong 
+    # else:
+    #     error = ERROR_CODES['INVALID_CONFIRMATION_CODE']
+    #     return jsonify({'error_code': error['code'], 'error_message': error['message']}), 401
 
 
 @app.route('/auto-login', methods=['POST'])
@@ -362,7 +367,7 @@ def upload_file():
 
             return jsonify('File uploaded and saved to the database.', 200)
     except openai.error.AuthenticationError as e:
-        error = ERROR_CODES['AUTHENTICATION_ERROR']
+        error = ERROR_CODES['OPENAI_AUTHENTICATION_ERROR']
         print(f"ERROR code: {error['code']} message: {error['message']}")
         return jsonify({'error_code': error['code'], 'error_message': error['message']}), 401
 
@@ -430,17 +435,18 @@ def answerQuestion():
         logger.info(
             f"question: {question} for user with user_id {user_id} ")
         with redirect_stdout_to_logger(logger):
-            # (question: str, vectorstore: Pinecone,  chat_history: list[dict], user_id: str = None)
-
-            result = ask_question(question, vectorstore, chat_history, user_id)
+            result = ask_question(question, vectorstore, chat_history, user_id) 
+            # {'answer' : 'blabla','sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, ...]
             print("qa answer is", result['answer'])
+            print(result)
         # ex source 1 --> {filename: 'MathS1/CalDiff.pdf', page: 1, text: 'blabla'}
         sources = result["sources"]
         s3 = aws_session.client('s3')
 
-        if 'am sorry' or 'désolé' or 'cannot find' or 'ne figure pas' or 'ne trouve pas' in result['answer']:
-            print("s< orry the documents are not relevant")
-            return jsonify({'answer': result['answer'], 'sources': []}), 200
+        if 'am sorry' or 'désolé' or 'cannot find' or 'ne figure pas' or 'ne trouve pas' or 'sorry'in result['answer']:
+            print("sorry the documents are not relevant")
+            error = ERROR_CODES['IRRELEVANT_DOCUMENTS']
+            return jsonify({'error_code': error['code'], 'error_message': error['message']}), 404
 
         for i, source in enumerate(sources):
             filename = source['filename']  # ex. Math_S1_Corr1.pdf
@@ -474,7 +480,11 @@ def answerQuestion():
                     source['file_img'] = None
 
         return jsonify(result), 200
-
+    except openai.error.AuthenticationError as e:
+        error = ERROR_CODES['OPENAI_AUTHENTICATION_ERROR']
+        print(f"ERROR code: {error['code']} message: {error['message']}")
+        return jsonify({'error_code': error['code'], 'error_message': error['message']}), 401
+ 
     except Exception as e:
         # Log the full traceback of the exception
         print(traceback.format_exc())

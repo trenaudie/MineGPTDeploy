@@ -111,6 +111,7 @@ const Home: React.FC<HomeProps> = ({
     plugin: Plugin | null = null,
   ) => {
     const access_token = getSecureCookie("access_token");
+    console.log(`inside handleSend with message: ${message.content}`)
     if (selectedConversation) {
       let updatedConversation: Conversation;
 
@@ -165,26 +166,29 @@ const Home: React.FC<HomeProps> = ({
       if (!response.ok) {
         setLoading(false);
         setMessageIsStreaming(false);
-        toast.error(response.statusText);
-        console.log('Error processing answer in the backend')
-        return;
+        console.log('Error processing answer in the backend');
       }
       console.log('Backend correct')
-
       const data = await response.json();
-
-      const sources = data.sources
-      let answer = data.answer;
+      let sources: any[];
+      let answer: string; 
+      if (data.error_code){
+        // toast.error(data.error_message);
+        answer = data.error_message;
+        console.log(`Error code: ${data.error_code} and error message: ${data.error_message}`)
+        return;
+      }
+      else{
+        sources = data.sources;
+        answer = data.answer;
+      }
       if (sources.length == 0) {
         answer = answer.replace(/SOURCES\s*:.*$/, '');
       }
-
-      //parse answer 
-
       if (!data) {
         setLoading(false);
         setMessageIsStreaming(false);
-        console.log("no data")
+        console.log("no data");
         return;
       }
 

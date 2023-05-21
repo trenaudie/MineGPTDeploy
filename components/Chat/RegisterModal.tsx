@@ -44,7 +44,10 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
 
                 const data = await response.json();
                 if (response.ok && data.status == 'email sent') {
-                    setShowCode(true)
+                    setShowCode(false) //removing the confirmation code
+                    // Handle successful login (e.g., set user state, redirect, etc.)
+                    setSecureCookie("access_token", data.access_token);
+                    onClose(); 
                 } else {
                     setAuthError("You can only register with your MinesParis student adress.");
                 }
@@ -52,20 +55,23 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
                 setAuthError("Failure to send email. Please try again");
             }
         } else {
-            console.log("you fucked up the passwords")
+            console.log("Wrong passwords")
             setAuthError("The passwords do not match. Please try again")
         }
     }
 
 
-    const handleSubmitCode = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitCode= async (event: React.FormEvent<HTMLFormElement>) => {
+        /* Function calls the register endpoint with the correct confirmation code */
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
+        
 
-        const confirmation = formData.get("confirmation_code");
         console.log(`authenticated = ${authenticated} before submission`)
-        // Send the data to the backend
         try {
+            console.log(`sending request with email = ${email} and password = ${password}`)
             const response = await fetch(`${SERVER_ADDRESS}/register`, {
                 method: 'POST',
                 headers: {
@@ -74,7 +80,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
                 body: JSON.stringify({
                     email: email,
                     password: password,
-                    confirmation_code: confirmation,
+                    confirmation_code: 666666,
                 }),
             });
 
@@ -122,7 +128,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onClose, show, showCode, 
                     <h1 className="text-xl font-bold mb-4">Register</h1>
 
                     {!showCode && (
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmitCode}>
                             {errorMessage && (
                                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                                     {errorMessage}

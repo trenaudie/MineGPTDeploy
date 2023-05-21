@@ -1846,3 +1846,213 @@ conséquence directe de sa définition à partir de
 =======
 >>>>>>> 5daf2cfcfe577bbaf8b35df713a56cb3ceb58119
 >>>>>>> refs/remotes/origin/main
+2023-05-14 15:48:12,761 - INFO - question: hello there for user with user_id 4 
+2023-05-14 15:48:12,762 - INFO - asking question
+2023-05-14 15:48:12,763 - INFO - hello there
+2023-05-14 15:48:12,763 - INFO - with user_id
+2023-05-14 15:48:12,763 - INFO - 4
+2023-05-14 15:48:12,763 - INFO - and filter
+2023-05-14 15:48:12,763 - INFO - {'$or': [{'user_id': 0}, {'user_id': 4}]}
+2023-05-14 15:54:01,684 - INFO - question: hello for user with user_id 4 
+2023-05-14 15:54:01,685 - INFO - asking question
+2023-05-14 15:54:01,685 - INFO - hello
+2023-05-14 15:54:01,685 - INFO - with user_id
+2023-05-14 15:54:01,685 - INFO - 4
+2023-05-14 15:54:01,685 - INFO - and filter
+2023-05-14 15:54:01,685 - INFO - {'$or': [{'user_id': 0}, {'user_id': 4}]}
+2023-05-14 15:54:03,099 - INFO - docs_metadata[0]
+2023-05-14 15:54:03,100 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.816032887,
+ 'values': []}
+2023-05-14 15:54:33,595 - INFO - qa answer is
+2023-05-14 15:54:33,596 - INFO - Sorry, OpenAI is overloaded. Here are some relevant documents.
+2023-05-14 15:57:09,226 - INFO - question: mama for user with user_id 4 
+2023-05-14 15:57:09,227 - INFO - asking question
+2023-05-14 15:57:09,227 - INFO - mama
+2023-05-14 15:57:09,227 - INFO - with user_id
+2023-05-14 15:57:09,227 - INFO - 4
+2023-05-14 15:57:09,227 - INFO - and filter
+2023-05-14 15:57:09,227 - INFO - {'$or': [{'user_id': 0}, {'user_id': 4}]}
+2023-05-14 15:57:10,301 - INFO - docs_metadata[0]
+2023-05-14 15:57:10,302 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.800916672,
+ 'values': []}
+2023-05-14 15:57:16,236 - INFO - qa answer is
+2023-05-14 15:57:16,236 - INFO - Je suis désolé, mais je ne peux pas répondre à votre question car elle n'est pas claire et ne semble pas en lien avec les documents fournis. Veuillez reformuler votre question en utilisant des termes scientifiques précis et en explicitant votre demande.
+2023-05-14 15:57:16,236 - INFO - {'answer': "Je suis désolé, mais je ne peux pas répondre à votre question car elle n'est pas claire et ne semble pas en lien avec les documents fournis. Veuillez reformuler votre question en utilisant des termes scientifiques précis et en explicitant votre demande.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}]}
+2023-05-20 20:38:49,598 - INFO - uploading file
+2023-05-20 20:38:49,601 - INFO - uploading file Bordereau-Vinted-5923843106.pdf with id 40e193d0-9206-4640-8221-98b4478f0a7e for user 5 
+2023-05-20 20:38:56,587 - INFO - vectorstore total vector count: 1344
+2023-05-20 20:38:56,591 - INFO - saving docsource with file_id 40e193d0-9206-4640-8221-98b4478f0a7e, user_id 5, description File uploaded by user, filename Bordereau-Vinted-5923843106.pdf
+2023-05-20 20:39:58,599 - INFO - question: hello for user with user_id 5 
+2023-05-20 20:39:58,599 - INFO - asking question
+2023-05-20 20:39:58,599 - INFO - hello
+2023-05-20 20:39:58,599 - INFO - with user_id
+2023-05-20 20:39:58,600 - INFO - 5
+2023-05-20 20:39:58,600 - INFO - and filter
+2023-05-20 20:39:58,600 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-20 20:39:59,373 - INFO - docs_metadata[0]
+2023-05-20 20:39:59,374 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.815972567,
+ 'values': []}
+2023-05-20 20:40:06,533 - INFO - qa answer is
+2023-05-20 20:40:06,534 - INFO - Désolé, je ne peux pas répondre à la question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question précise. Je suis là pour vous aider dans vos recherches scientifiques en utilisant les documents fournis.
+2023-05-20 20:40:06,534 - INFO - {'answer': "Désolé, je ne peux pas répondre à la question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question précise. Je suis là pour vous aider dans vos recherches scientifiques en utilisant les documents fournis.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}
+2023-05-20 20:43:19,424 - INFO - question: hello; for user with user_id 5 
+2023-05-20 20:43:19,424 - INFO - asking question
+2023-05-20 20:43:19,424 - INFO - hello;
+2023-05-20 20:43:19,424 - INFO - with user_id
+2023-05-20 20:43:19,424 - INFO - 5
+2023-05-20 20:43:19,425 - INFO - and filter
+2023-05-20 20:43:19,425 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-20 20:43:20,076 - INFO - docs_metadata[0]
+2023-05-20 20:43:20,078 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.80627352,
+ 'values': []}
+2023-05-20 20:43:25,495 - INFO - qa answer is
+2023-05-20 20:43:25,496 - INFO - Je suis désolé, il n'y a pas de question clairement posée dans votre message. Pouvez-vous reformuler votre demande avec une question précise ? Je suis là pour vous aider en utilisant les documents fournis.
+2023-05-20 20:43:25,496 - INFO - {'answer': "Je suis désolé, il n'y a pas de question clairement posée dans votre message. Pouvez-vous reformuler votre demande avec une question précise ? Je suis là pour vous aider en utilisant les documents fournis.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}]}
+2023-05-20 20:45:53,750 - INFO - question: hello for user with user_id 5 
+2023-05-20 20:45:53,751 - INFO - asking question
+2023-05-20 20:45:53,751 - INFO - hello
+2023-05-20 20:45:53,751 - INFO - with user_id
+2023-05-20 20:45:53,751 - INFO - 5
+2023-05-20 20:45:53,751 - INFO - and filter
+2023-05-20 20:45:53,751 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-20 20:45:55,829 - INFO - docs_metadata[0]
+2023-05-20 20:45:55,830 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.816049,
+ 'values': []}
+2023-05-20 20:46:00,614 - INFO - qa answer is
+2023-05-20 20:46:00,615 - INFO - Je suis désolé, il n'y a pas de question dans les documents fournis. Pouvez-vous me donner plus d'informations sur ce que vous recherchez ou sur la question que vous souhaitez poser ?
+2023-05-20 20:46:00,615 - INFO - {'answer': "Je suis désolé, il n'y a pas de question dans les documents fournis. Pouvez-vous me donner plus d'informations sur ce que vous recherchez ou sur la question que vous souhaitez poser ?", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}
+2023-05-20 20:49:00,779 - INFO - question: hello for user with user_id 5 
+2023-05-20 20:49:00,780 - INFO - asking question
+2023-05-20 20:49:00,780 - INFO - hello
+2023-05-20 20:49:00,780 - INFO - with user_id
+2023-05-20 20:49:00,780 - INFO - 5
+2023-05-20 20:49:00,780 - INFO - and filter
+2023-05-20 20:49:00,780 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-20 20:49:01,941 - INFO - docs_metadata[0]
+2023-05-20 20:49:01,941 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.816049,
+ 'values': []}
+2023-05-20 20:49:09,820 - INFO - qa answer is
+2023-05-20 20:49:09,821 - INFO - Je suis désolé, mais je ne peux pas répondre à votre question car il n'y a pas de question clairement formulée dans votre message. Les documents fournis ne contiennent que des termes scientifiques et des notations mathématiques. Si vous avez une question spécifique à poser sur ces termes, je serai heureux de vous aider.
+2023-05-20 20:49:09,821 - INFO - {'answer': "Je suis désolé, mais je ne peux pas répondre à votre question car il n'y a pas de question clairement formulée dans votre message. Les documents fournis ne contiennent que des termes scientifiques et des notations mathématiques. Si vous avez une question spécifique à poser sur ces termes, je serai heureux de vous aider.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}
+2023-05-21 18:12:46,351 - INFO - question: hello for user with user_id 5 
+2023-05-21 18:12:46,352 - INFO - asking question
+2023-05-21 18:12:46,352 - INFO - hello
+2023-05-21 18:12:46,352 - INFO - with user_id
+2023-05-21 18:12:46,352 - INFO - 5
+2023-05-21 18:12:46,352 - INFO - and filter
+2023-05-21 18:12:46,352 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 18:12:48,732 - INFO - docs_metadata[0]
+2023-05-21 18:12:48,732 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.816049,
+ 'values': []}
+2023-05-21 18:13:01,550 - INFO - qa answer is
+2023-05-21 18:13:01,551 - INFO - Désolé, je ne peux pas répondre à cette question car elle ne contient aucun élément scientifique en lien avec les documents fournis. Veuillez poser une question scientifique en utilisant les termes et les notations mathématiques présents dans les documents.
+2023-05-21 18:13:01,551 - INFO - {'answer': 'Désolé, je ne peux pas répondre à cette question car elle ne contient aucun élément scientifique en lien avec les documents fournis. Veuillez poser une question scientifique en utilisant les termes et les notations mathématiques présents dans les documents.', 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}
+2023-05-21 18:20:24,391 - INFO - question: hello; for user with user_id 5 
+2023-05-21 18:20:24,392 - INFO - asking question
+2023-05-21 18:20:24,392 - INFO - hello;
+2023-05-21 18:20:24,392 - INFO - with user_id
+2023-05-21 18:20:24,392 - INFO - 5
+2023-05-21 18:20:24,392 - INFO - and filter
+2023-05-21 18:20:24,392 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 18:20:25,489 - INFO - docs_metadata[0]
+2023-05-21 18:20:25,490 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.8062675,
+ 'values': []}
+2023-05-21 18:20:34,810 - INFO - qa answer is
+2023-05-21 18:20:34,810 - INFO - Je suis désolé, mais je ne peux pas répondre à votre question car elle ne contient pas suffisamment d'informations ou de contexte. Veuillez fournir plus de détails ou de précisions pour que je puisse vous aider. De plus, veuillez utiliser des termes scientifiques pertinents pour que je puisse mieux comprendre votre demande. Merci.
+2023-05-21 18:20:34,810 - INFO - {'answer': "Je suis désolé, mais je ne peux pas répondre à votre question car elle ne contient pas suffisamment d'informations ou de contexte. Veuillez fournir plus de détails ou de précisions pour que je puisse vous aider. De plus, veuillez utiliser des termes scientifiques pertinents pour que je puisse mieux comprendre votre demande. Merci.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}]}
+2023-05-21 19:24:01,282 - INFO - question: hello for user with user_id 5 
+2023-05-21 19:24:01,283 - INFO - asking question
+2023-05-21 19:24:01,283 - INFO - hello
+2023-05-21 19:24:01,283 - INFO - with user_id
+2023-05-21 19:24:01,283 - INFO - 5
+2023-05-21 19:24:01,283 - INFO - and filter
+2023-05-21 19:24:01,283 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 19:24:02,819 - INFO - docs_metadata[0]
+2023-05-21 19:24:02,821 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.815972567,
+ 'values': []}
+2023-05-21 19:24:09,621 - INFO - qa answer is
+2023-05-21 19:24:09,622 - INFO - Je suis désolé, je ne peux pas répondre à votre question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question précise. Je suis là pour vous aider en utilisant les documents fournis.
+2023-05-21 19:24:09,622 - INFO - {'answer': "Je suis désolé, je ne peux pas répondre à votre question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question précise. Je suis là pour vous aider en utilisant les documents fournis.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}
+2023-05-21 19:26:24,567 - INFO - question: hello for user with user_id 5 
+2023-05-21 19:26:24,568 - INFO - asking question
+2023-05-21 19:26:24,568 - INFO - hello
+2023-05-21 19:26:24,568 - INFO - with user_id
+2023-05-21 19:26:24,568 - INFO - 5
+2023-05-21 19:26:24,568 - INFO - and filter
+2023-05-21 19:26:24,568 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 19:26:25,791 - INFO - docs_metadata[0]
+2023-05-21 19:26:25,796 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.816049,
+ 'values': []}
+2023-05-21 19:26:34,209 - INFO - qa answer is
+2023-05-21 19:26:34,211 - INFO - Désolé, je ne peux pas répondre à votre question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question précise. Je suis là pour vous aider à répondre à des questions scientifiques en utilisant les documents fournis.
+2023-05-21 19:26:34,211 - INFO - {'answer': "Désolé, je ne peux pas répondre à votre question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question précise. Je suis là pour vous aider à répondre à des questions scientifiques en utilisant les documents fournis.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}

@@ -188,7 +188,7 @@ export const ChatMessage: FC<Props> = memo(
                   <div className="prose whitespace-pre-wrap dark:prose-invert">
                     {message.content}
                   </div>
-                )};
+                )}
 
                 {(window.innerWidth < 640 || !isEditing) && (
                   <button
