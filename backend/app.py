@@ -443,10 +443,10 @@ def answerQuestion():
         sources = result["sources"]
         s3 = aws_session.client('s3')
 
-        if 'am sorry' or 'désolé' or 'cannot find' or 'ne figure pas' or 'ne trouve pas' or 'sorry'in result['answer']:
-            print("sorry the documents are not relevant")
-            error = ERROR_CODES['IRRELEVANT_DOCUMENTS']
-            return jsonify({'error_code': error['code'], 'error_message': error['message']}), 404
+        # if 'am sorry' or 'désolé' or 'cannot find' or 'ne figure pas' or 'ne trouve pas' or 'sorry'in result['answer'][:10]:
+        #     print("sorry the documents are not relevant")
+        #     error = ERROR_CODES['IRRELEVANT_DOCUMENTS']
+        #     return jsonify({'error_code': error['code'], 'error_message': error['message']}), 404
 
         for i, source in enumerate(sources):
             filename = source['filename']  # ex. Math_S1_Corr1.pdf

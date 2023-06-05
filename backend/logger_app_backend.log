@@ -2116,3 +2116,209 @@ conséquence directe de sa définition à partir de
 2023-05-21 21:19:10,859 - INFO - qa answer is
 2023-05-21 21:19:10,859 - INFO - Je suis désolé, je ne peux pas répondre à cette question car elle ne contient pas suffisamment d'informations sur le sujet scientifique en question. Veuillez fournir plus de détails ou de contexte.
 2023-05-21 21:19:10,859 - INFO - {'answer': "Je suis désolé, je ne peux pas répondre à cette question car elle ne contient pas suffisamment d'informations sur le sujet scientifique en question. Veuillez fournir plus de détails ou de contexte.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}
+2023-05-21 21:19:56,073 - INFO - question: what is the meaning of mathematics for user with user_id 5 
+2023-05-21 21:19:56,073 - INFO - asking question
+2023-05-21 21:19:56,073 - INFO - what is the meaning of mathematics
+2023-05-21 21:19:56,073 - INFO - with user_id
+2023-05-21 21:19:56,073 - INFO - 5
+2023-05-21 21:19:56,073 - INFO - and filter
+2023-05-21 21:19:56,073 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 21:19:56,840 - INFO - docs_metadata[0]
+2023-05-21 21:19:56,844 - INFO - {'id': '0_02a38598-8470-48b3-ab0b-e75a7dd5e19b_002_5',
+ 'metadata': {'file_id': '02a38598-8470-48b3-ab0b-e75a7dd5e19b',
+              'page_number': 2.0,
+              'scientific': True,
+              'source': 'MathS1/MesInt1.pdf',
+              'text': 'Mathematics notion d’intégrales pour des fonctions très '
+                      'générales.\n'
+                      '\n'
+                      'Les mesures ont également vocation à représenter des '
+                      'quantités absolues de matière\n'
+                      '(fluides, matériau solide, cellules, individus, ...), '
+                      'distributions d’une certaine substance sus-\n'
+                      "ceptible d'évoluer en temps, d’être transportée, "
+                      "supprimée, développée. L'objet mathématique\n"
+                      'associé est le même, mais la nature de la réalité qu’il '
+                      'a vocation à représenter est différente.\n'
+                      'Il sera ici naturel de penser la mesure associée comme '
+                      'exprimée en kg, en moles ……,',
+              'user_id': 0.0},
+ 'score': 0.797239244,
+ 'values': []}
+2023-05-21 21:20:01,857 - INFO - qa answer is
+2023-05-21 21:20:01,858 - INFO - In this context, "Mathematics" refers to the mathematical concepts and tools used to represent and manipulate measures of quantities of matter or substances, such as integrals and measures for sets. It also includes the construction of measures for infinite sets.
+2023-05-21 21:20:01,858 - INFO - {'answer': 'In this context, "Mathematics" refers to the mathematical concepts and tools used to represent and manipulate measures of quantities of matter or substances, such as integrals and measures for sets. It also includes the construction of measures for infinite sets.', 'sources': [{'filename': 'MathS1/MesInt1.pdf', 'text': "Mathematics notion d’intégrales pour des fonctions très générales.\n\nLes mesures ont également vocation à représenter des quantités absolues de matière\n(fluides, matériau solide, cellules, individus, ...), distributions d’une certaine substance sus-\nceptible d'évoluer en temps, d’être transportée, supprimée, développée. L'objet mathématique\nassocié est le même, mais la nature de la réalité qu’il a vocation à représenter est différente.\nIl sera ici naturel de penser la mesure associée comme exprimée en kg, en moles ……,", 'page_number': 2.0}, {'filename': 'MathS1/Mesint1 (1).pdf', 'text': "Mathematics très générales.\n\nLes mesures ont également vocation à représenter des quantités absolues de matière\n(fluides, matériau solide, cellules, individus, ..….), distributions d’une certaine substance sus-\nceptible d'évoluer en temps, d’être transportée, supprimée, développée. L'objet mathématique\nassocié est le même, mais la nature de la réalité qu’il a vocation à représenter est différente.\nIl sera ici naturel de penser la mesure associée comme exprimée en kg, en moles .…, qui\nmesurent des quantités de matières", 'page_number': 2.0}, {'filename': 'MathS1/Mesint1 (1).pdf', 'text': 'Mathematics objets mathématiques sont très simples à définir. Nous évoquerons dans la suite de cette\nintroduction les difficultés posées par la construction de telles mesures pour des ensembles\ninfinis.\n\nSuperficies, densités, et nombre d’habitants.\n\nConsidérons l’ensemble X = [1,N] des grandes villes françaises, numérotées de 1 à N. On\nnote y; > 0 la superficie de la ville 4. À la collection des L; est naturellement associée une\napplication y de l’ensemble P(X) des parties de X dans R ;\n\nnu: AEP(X)r- (A) = D € R:.', 'page_number': 2.0}, {'filename': 'MathS1/Mesint1 (1).pdf', 'text': "Mathematics une mesure.\n\n4. (Mesure grossière) Soit X un ensemble de cardinal > 2, et À une tribu sur X. On\npose u() = 0 et (A) = +00 dès que À  Ÿ. Il s’agit d’une manière quelque peu\ngrossière (d’où le nom), binaire, d'appréhender le monde, en distinguant deux types\nd’ensembles (disons des zones de l’espace physique pour fixer les idées) : l’ensemble\nvide, de volume nul, et tout ensemble non vide, auquel on attribuerait par convention\nune quantité infinie. Cette mesure extérieure ne distingue en quelque sorte que", 'page_number': 13.0}, {'filename': 'MathS1/Mesint1 (1).pdf', 'text': "Mathematics d'accueillir de la matière, pour pouvoir estimer la masse correspondante. Dé-\nfinir une mesure consiste précisément à concevoir une procédure pour associer à une zone\nson volume. Même s’il n’est pas dans les usages d’affecter une unité physique aux grandeurs\nmathématiques, on pourra concevoir cette mesure comme s'exprimant en unité de volume\n(ou d’aire s’il s’agit de l’espace bi-dimensionnel, ou de longueur s’il s’agit d’un espace à une\ndimension). Il s’agit d’une donnée statique associée à l’espace", 'page_number': 2.0}]}
+2023-05-21 21:20:11,875 - INFO - question: donne moi une equation de la chaleur for user with user_id 5 
+2023-05-21 21:20:11,876 - INFO - asking question
+2023-05-21 21:20:11,876 - INFO - donne moi une equation de la chaleur
+2023-05-21 21:20:11,876 - INFO - with user_id
+2023-05-21 21:20:11,876 - INFO - 5
+2023-05-21 21:20:11,876 - INFO - and filter
+2023-05-21 21:20:11,877 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 21:20:12,915 - INFO - docs_metadata[0]
+2023-05-21 21:20:12,916 - INFO - {'id': '0_4f705d82-a85e-40ed-9b19-0867061cbd9c_021_0',
+ 'metadata': {'file_id': '4f705d82-a85e-40ed-9b19-0867061cbd9c',
+              'page_number': 21.0,
+              'scientific': True,
+              'source': 'MathS1/ExoCorrTopoCD.pdf',
+              'text': 'Mathematics VI.2. CALCUL DIFFÉRENTIEL 173\n'
+                      '\n'
+                      'hautement simplificatrices. On considère que la chaleur '
+                      "(on exclut les autres formes d'énergie)\n"
+                      'emmagasinée par la terre à un instant donné s’écrit '
+                      'comme le produit d’une constante C\n'
+                      '(capacité calorifique du système terre-atmosphère) avec '
+                      'la température. On écrit que cette\n'
+                      'énergie évolue selon le bilan radiatif, que l’on ne '
+                      'suppose plus équilibré :\n'
+                      '\n'
+                      "CT (L— A0 + BIT — To)) — aT'(1- 8) = -f(T,S).\n"
+                      '\n'
+                      'Pour $ = $5, la température Ti est dite point '
+                      "d'équilibre de l’équation",
+              'user_id': 0.0},
+ 'score': 0.865453959,
+ 'values': []}
+2023-05-21 21:20:17,417 - INFO - qa answer is
+2023-05-21 21:20:17,418 - INFO - La chaleur (Q) est donnée par le produit de la constante de capacité calorifique (C) et de la température (T) : 
+
+$Q = CT$
+2023-05-21 21:20:17,418 - INFO - {'answer': 'La chaleur (Q) est donnée par le produit de la constante de capacité calorifique (C) et de la température (T) : \n\n$Q = CT$', 'sources': [{'filename': 'MathS1/ExoCorrTopoCD.pdf', 'text': "Mathematics VI.2. CALCUL DIFFÉRENTIEL 173\n\nhautement simplificatrices. On considère que la chaleur (on exclut les autres formes d'énergie)\nemmagasinée par la terre à un instant donné s’écrit comme le produit d’une constante C\n(capacité calorifique du système terre-atmosphère) avec la température. On écrit que cette\nénergie évolue selon le bilan radiatif, que l’on ne suppose plus équilibré :\n\nCT (L— A0 + BIT — To)) — aT'(1- 8) = -f(T,S).\n\nPour $ = $5, la température Ti est dite point d'équilibre de l’équation", 'page_number': 21.0}, {'filename': 'MathS1/CorrExosTopoCD.pdf', 'text': "Mathematics VI.2. CALCUL DIFFÉRENTIEL 143\n\n(capacité calorifique du système terre-atmosphère) avec la température. On écrit que cette\nénergie évolue selon le bilan radiatif, que l’on ne suppose plus équilibré :\n\nTe (1— 40 + B(T — To))— oT*(1—S) f(T,S).\n\nPour $ = $5, la température Ti est dite point d'équilibre de l’équation d’évolution, c’est à\ndire que T = Ti en est une solution triviale. Mais si l’on perturbe légèrement la température,\ntant que la température reste proche de T5, la variation « de cette température", 'page_number': 17.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': "Mathematics en Kelvin), et « = 5.67 x 10-$ W m ? K-4. On\nconsidère qu’une fraction de cette énergie n’est pas rayonnée vers l’espace, du fait de l’effet de\nserre. On note S € [0,1] la fraction d’énergie qui n’est pas évacuée vers l’espace. Ce paramètre\nest estimé à S = 0.4. En supposant que l’on est à l'équilibre, on écrit le bilan entre les énergies\nreçue et émises :\noT4(1— S) = (1-— A)F.\n\na) Estimer la température moyenne Ty à la surface de la terre associée aux valeurs de référence\nSo, Ao et Fo selon ce modèle, et", 'page_number': 23.0}, {'filename': 'MathS1/CorrExosTopoCD.pdf', 'text': "Mathematics d'équilibre considéré n’en est\nplus un, ou plus précisément que c’est un point d’équilibre instable, qui n’a aucune chance\nd’être observé comme solution pérenne dans la réalité. Pour comprendre ce qui se passe,\nconsidérons un modèle dynamique d'évolution de la température, basée sur des hypothèses\nhautement simplificatrice. On considère que la chaleur (on exclut les autres formes d'énergie)\nemmagasinée par la terre à un instant donné s'écrit comme le produit d’une constante C", 'page_number': 16.0}, {'filename': 'MathS1/ExoCorrTopoCD.pdf', 'text': "Mathematics d’évolution, c’est à\ndire que T = Ty en est une solution triviale. Mais si l’on perturbe légèrement la température,\ntant que la température reste proche de T5, la variation « de cette température vérifie\n\ndu cd +u)\n\ndt dt\n\n(To + u, So) & — f(To, So) — Or f (Do, So) u.\n\nSi Ôr f (To, So) > 0 (petites valeurs de B), l’évolution peut être décrite par une équation linéaire\navec coefficient négatif, qui correspond à une relaxation exponentielle vers la température\nd'équilibre To. Si 8 > Bo, on à Orf(To, So) < 0,", 'page_number': 21.0}]}
+2023-05-21 21:20:29,153 - INFO - question: probabilites et travail  for user with user_id 5 
+2023-05-21 21:20:29,154 - INFO - asking question
+2023-05-21 21:20:29,154 - INFO - probabilites et travail
+2023-05-21 21:20:29,154 - INFO - with user_id
+2023-05-21 21:20:29,154 - INFO - 5
+2023-05-21 21:20:29,154 - INFO - and filter
+2023-05-21 21:20:29,154 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 21:20:29,991 - INFO - docs_metadata[0]
+2023-05-21 21:20:29,992 - INFO - {'id': '0_eda438da-45f2-4200-8a5b-32e257accc7e_003_3',
+ 'metadata': {'file_id': 'eda438da-45f2-4200-8a5b-32e257accc7e',
+              'page_number': 3.0,
+              'scientific': True,
+              'source': 'MathS1/Mesint1 (1).pdf',
+              'text': 'Mathematics prendre le train était risqué pour lui, on '
+                      'considèrera que la probabilité\n'
+                      'associée à Paris est de 0.75. Si l’on sait qu’il a des '
+                      'contacts à Lyon, on évaluera à 0.15 la\n'
+                      'probabilité qu’il y soit, le complément étant distribué '
+                      'sur le reste du pays en fonction des\n'
+                      'informations que l’on peut avoir. On à ici l’exemple '
+                      'typique d’une mesure (ici de probabilité,\n'
+                      'c’est à dire normalisée à 1) qui évolue au cours du '
+                      'temps, en fonction des informations reçues.\n'
+                      '\n'
+                      "L'intérêt d'introduire la notion de mesure pour les",
+              'user_id': 0.0},
+ 'score': 0.853354871,
+ 'values': []}
+2023-05-21 21:20:42,918 - INFO - qa answer is
+2023-05-21 21:20:42,919 - INFO - Dans le premier document, il est question de la probabilité associée à Paris dans le cadre de la recherche d'un fugitif, ainsi que de la probabilité qu'il soit à Lyon en fonction des informations disponibles. Dans le deuxième document, il est question de la productivité d'un employé sur des tâches associées à des machines, ainsi que de la maximisation de la valeur ajoutée totale. Cependant, il n'y a pas suffisamment d'informations pour répondre à une question précise sur les probabilités et le travail. Pouvez-vous préciser votre question ou donner plus de contexte ?
+2023-05-21 21:20:42,919 - INFO - {'answer': "Dans le premier document, il est question de la probabilité associée à Paris dans le cadre de la recherche d'un fugitif, ainsi que de la probabilité qu'il soit à Lyon en fonction des informations disponibles. Dans le deuxième document, il est question de la productivité d'un employé sur des tâches associées à des machines, ainsi que de la maximisation de la valeur ajoutée totale. Cependant, il n'y a pas suffisamment d'informations pour répondre à une question précise sur les probabilités et le travail. Pouvez-vous préciser votre question ou donner plus de contexte ?", 'sources': [{'filename': 'MathS1/Mesint1 (1).pdf', 'text': "Mathematics prendre le train était risqué pour lui, on considèrera que la probabilité\nassociée à Paris est de 0.75. Si l’on sait qu’il a des contacts à Lyon, on évaluera à 0.15 la\nprobabilité qu’il y soit, le complément étant distribué sur le reste du pays en fonction des\ninformations que l’on peut avoir. On à ici l’exemple typique d’une mesure (ici de probabilité,\nc’est à dire normalisée à 1) qui évolue au cours du temps, en fonction des informations reçues.\n\nL'intérêt d'introduire la notion de mesure pour les", 'page_number': 3.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': "Mathematics considère une population de n employés sur une période donnée, et l’on note y;\nle temps de travail de l'employé à durant cette période. On considère qu’il y a m tâches à\naccomplir, associée chacune, pour fixer les idées, à une machine j, et l’on suppose que le\ntemps de disponibilité de la machine durant la période considérée est égal à v;. On note u;;\nla productivité de l'employé À vis-à-vis de la tâche 7, de telle sorte que w;ju est la valeur\najoutée résultant du travail de à à la tâche ÿ pendant le temps", 'page_number': 30.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': "Mathematics probabilités. Prenons l’exemple d’un crime commis à Paris à l’heure H\nd’un jour J. Vingt-quatre heures après, l'assassin court toujours, et les enquêteurs cherchent à\nestimer dans quelle ville il pourrait être. L'état de leur opinion concernant la position du fugitif\npeut être encodé par une mesure m = (mi). Si l’on sait qu’il ne dispose pas de véhicule et\nque l’on considère que prendre le train était risqué pour lui, on considèrera que la probabilité\nassociée à Paris est de 0.75. Si l’on sait qu’il a des", 'page_number': 3.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': "Mathematics probabilités, la définition d’une mesure de masse\ntotale 1 sur la tribu choisie permettra d’affecter à chacun de ses membres À un nombre\nquantifiant la probabilité que l’assertion x € À soit vérifiée. L'événement X, de probabilité\n1, est certain, et l'événement vide, de probabilité nulle, est impossible (il correspond à la\ndernière assertion ci-dessus). Les opérations sur les parties - événements sont associées à des\nopérations logiques : AU B correspond à l'événement x € À ou x € B, ANB correspond", 'page_number': 7.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': "Mathematics y;. On suppose que le temps\nde travail total est égal au temps total de disponibilité des machines (on ne se préoccupera\npas des questions de répartition effective des tâches durant la période de temps considérée, en\nsupposant par exemple que cette période est très grande). Montrer que chercher à maximiser\nla valeur ajoutée totale conduit à un problème d'affectation du type de celui étudié dans les\nquestions précédentes. (Correction page 197)\n\nExercice III.11.7. Soit f une fonction d’un espace mesuré (X, A,", 'page_number': 30.0}]}
+2023-05-21 21:24:21,406 - INFO - question: probabilites et travail for user with user_id 5 
+2023-05-21 21:24:21,406 - INFO - asking question
+2023-05-21 21:24:21,407 - INFO - probabilites et travail
+2023-05-21 21:24:21,407 - INFO - with user_id
+2023-05-21 21:24:21,407 - INFO - 5
+2023-05-21 21:24:21,407 - INFO - and filter
+2023-05-21 21:24:21,407 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 21:24:23,359 - INFO - docs_metadata[0]
+2023-05-21 21:24:23,361 - INFO - {'id': '0_24653012-7920-476b-a2e1-bdac0e6e77f5_030_2',
+ 'metadata': {'file_id': '24653012-7920-476b-a2e1-bdac0e6e77f5',
+              'page_number': 30.0,
+              'scientific': True,
+              'source': 'MathS1/MesInt34.pdf',
+              'text': 'Mathematics considère une population de n employés sur '
+                      'une période donnée, et l’on note y;\n'
+                      "le temps de travail de l'employé à durant cette "
+                      'période. On considère qu’il y a m tâches à\n'
+                      'accomplir, associée chacune, pour fixer les idées, à '
+                      'une machine j, et l’on suppose que le\n'
+                      'temps de disponibilité de la machine durant la période '
+                      'considérée est égal à v;. On note u;;\n'
+                      "la productivité de l'employé À vis-à-vis de la tâche 7, "
+                      'de telle sorte que w;ju est la valeur\n'
+                      'ajoutée résultant du travail de à à la tâche ÿ pendant '
+                      'le temps',
+              'user_id': 0.0},
+ 'score': 0.848246694,
+ 'values': []}
+2023-05-21 21:24:47,054 - INFO - qa answer is
+2023-05-21 21:24:47,056 - INFO - Dans le premier document, il est question de la productivité d'un employé à une tâche donnée, notée $u_{ij}$, et de la valeur ajoutée résultant de son travail, notée $w_{ij}$. Le temps de travail de l'employé sur la période considérée est noté $y$. Il est également mentionné le temps de disponibilité d'une machine pour accomplir une tâche, noté $v$. Le document évoque la maximisation de la valeur ajoutée totale, qui conduit à un problème d'affectation.
+
+Dans le deuxième document, il est question d'une mesure de probabilité, notée $m$, qui permet d'estimer la position d'un fugitif recherché par la police. La mesure est encodée par un vecteur $(m_i)$ et peut évoluer au cours du temps en fonction des informations reçues. Le document évoque également la définition d'une mesure de masse totale 1 sur une tribu choisie pour quantifier la probabilité qu'un événement se réalise.
+
+Il n'y a pas de lien direct entre les deux documents en termes de contenu scientifique.
+2023-05-21 21:24:47,056 - INFO - {'answer': "Dans le premier document, il est question de la productivité d'un employé à une tâche donnée, notée $u_{ij}$, et de la valeur ajoutée résultant de son travail, notée $w_{ij}$. Le temps de travail de l'employé sur la période considérée est noté $y$. Il est également mentionné le temps de disponibilité d'une machine pour accomplir une tâche, noté $v$. Le document évoque la maximisation de la valeur ajoutée totale, qui conduit à un problème d'affectation.\n\nDans le deuxième document, il est question d'une mesure de probabilité, notée $m$, qui permet d'estimer la position d'un fugitif recherché par la police. La mesure est encodée par un vecteur $(m_i)$ et peut évoluer au cours du temps en fonction des informations reçues. Le document évoque également la définition d'une mesure de masse totale 1 sur une tribu choisie pour quantifier la probabilité qu'un événement se réalise.\n\nIl n'y a pas de lien direct entre les deux documents en termes de contenu scientifique.", 'sources': [{'filename': 'MathS1/MesInt34.pdf', 'text': "Mathematics considère une population de n employés sur une période donnée, et l’on note y;\nle temps de travail de l'employé à durant cette période. On considère qu’il y a m tâches à\naccomplir, associée chacune, pour fixer les idées, à une machine j, et l’on suppose que le\ntemps de disponibilité de la machine durant la période considérée est égal à v;. On note u;;\nla productivité de l'employé À vis-à-vis de la tâche 7, de telle sorte que w;ju est la valeur\najoutée résultant du travail de à à la tâche ÿ pendant le temps", 'page_number': 30.0}, {'filename': 'MathS1/Mesint1 (1).pdf', 'text': "Mathematics prendre le train était risqué pour lui, on considèrera que la probabilité\nassociée à Paris est de 0.75. Si l’on sait qu’il a des contacts à Lyon, on évaluera à 0.15 la\nprobabilité qu’il y soit, le complément étant distribué sur le reste du pays en fonction des\ninformations que l’on peut avoir. On à ici l’exemple typique d’une mesure (ici de probabilité,\nc’est à dire normalisée à 1) qui évolue au cours du temps, en fonction des informations reçues.\n\nL'intérêt d'introduire la notion de mesure pour les", 'page_number': 3.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': "Mathematics probabilités. Prenons l’exemple d’un crime commis à Paris à l’heure H\nd’un jour J. Vingt-quatre heures après, l'assassin court toujours, et les enquêteurs cherchent à\nestimer dans quelle ville il pourrait être. L'état de leur opinion concernant la position du fugitif\npeut être encodé par une mesure m = (mi). Si l’on sait qu’il ne dispose pas de véhicule et\nque l’on considère que prendre le train était risqué pour lui, on considèrera que la probabilité\nassociée à Paris est de 0.75. Si l’on sait qu’il a des", 'page_number': 3.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': "Mathematics probabilités, la définition d’une mesure de masse\ntotale 1 sur la tribu choisie permettra d’affecter à chacun de ses membres À un nombre\nquantifiant la probabilité que l’assertion x € À soit vérifiée. L'événement X, de probabilité\n1, est certain, et l'événement vide, de probabilité nulle, est impossible (il correspond à la\ndernière assertion ci-dessus). Les opérations sur les parties - événements sont associées à des\nopérations logiques : AU B correspond à l'événement x € À ou x € B, ANB correspond", 'page_number': 7.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': "Mathematics y;. On suppose que le temps\nde travail total est égal au temps total de disponibilité des machines (on ne se préoccupera\npas des questions de répartition effective des tâches durant la période de temps considérée, en\nsupposant par exemple que cette période est très grande). Montrer que chercher à maximiser\nla valeur ajoutée totale conduit à un problème d'affectation du type de celui étudié dans les\nquestions précédentes. (Correction page 197)\n\nExercice III.11.7. Soit f une fonction d’un espace mesuré (X, A,", 'page_number': 30.0}]}
+2023-05-21 21:25:55,403 - INFO - question: mathematiques pour optimisation minimisation d'une fonction for user with user_id 5 
+2023-05-21 21:25:55,403 - INFO - asking question
+2023-05-21 21:25:55,403 - INFO - mathematiques pour optimisation minimisation d'une fonction
+2023-05-21 21:25:55,403 - INFO - with user_id
+2023-05-21 21:25:55,403 - INFO - 5
+2023-05-21 21:25:55,403 - INFO - and filter
+2023-05-21 21:25:55,403 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 21:25:56,892 - INFO - docs_metadata[0]
+2023-05-21 21:25:56,895 - INFO - {'id': '0_b091c0ca-9eca-433b-a1b8-f716bcb0cbff_005_1',
+ 'metadata': {'file_id': 'b091c0ca-9eca-433b-a1b8-f716bcb0cbff',
+              'page_number': 5.0,
+              'scientific': True,
+              'source': 'MathS1/CorrExosTopoCD.pdf',
+              'text': 'Mathematics problème d’optimisation consiste par '
+                      'exemple à approcher une\n'
+                      'fonction par une combinaison de fonctions '
+                      'particulières, dont les coefficient sont les x;. On\n'
+                      'parle d’approximation parcimonieuse quand on cherche de '
+                      'la sorte à approcher quelque chose\n'
+                      'par une combinaison de constituants élémentaires de '
+                      'façon en quelque sorte économique (la\n'
+                      'solution sera en particulier plus légère à stocker sur '
+                      'un ordinateur).\n'
+                      '\n'
+                      'Correction du I.9.11 (page 27)\n'
+                      'a) On a, pour tout x € R,\n'
+                      '\n'
+                      '1\n'
+                      'lle < rl, < n°? lee -\n'
+                      "On réalise l'égalité à",
+              'user_id': 0.0},
+ 'score': 0.885351479,
+ 'values': []}
+2023-05-21 21:26:00,725 - INFO - qa answer is
+2023-05-21 21:26:00,726 - INFO - La question est incomplète et ne permet pas de répondre de manière précise. Pouvez-vous fournir plus de détails sur ce que vous recherchez ?
+2023-05-21 21:26:00,727 - INFO - {'answer': 'La question est incomplète et ne permet pas de répondre de manière précise. Pouvez-vous fournir plus de détails sur ce que vous recherchez ?', 'sources': [{'filename': 'MathS1/CorrExosTopoCD.pdf', 'text': "Mathematics problème d’optimisation consiste par exemple à approcher une\nfonction par une combinaison de fonctions particulières, dont les coefficient sont les x;. On\nparle d’approximation parcimonieuse quand on cherche de la sorte à approcher quelque chose\npar une combinaison de constituants élémentaires de façon en quelque sorte économique (la\nsolution sera en particulier plus légère à stocker sur un ordinateur).\n\nCorrection du I.9.11 (page 27)\na) On a, pour tout x € R,\n\n1\nlle < rl, < n°? lee -\nOn réalise l'égalité à", 'page_number': 5.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics convexe sur U. Montrer que x minimise f\nsur U, c’est à-dire-que\n\nJ()Z f(x) Vy EU.\n\nf) (Condition nécessaire d’optimalité)\nOn considère pour finir f une fonction deux fois continûment différentiable sur un ouvert U.', 'page_number': 29.0}, {'filename': 'MathS1/TopoCD4.pdf', 'text': 'Mathematics globale)\nOn suppose maintenant l’ouvert U convexe, et f convexe sur U. Montrer que x minimise f\nsur U, c’est à-dire-que\n\nf(y) > f(x) VyeU.\n\nf) (Condition nécessaire d’optimalité)\nOn considère pour finir f une fonction deux fois continûment différentiable sur un ouvert U.', 'page_number': 5.0}, {'filename': 'MathS1/ExoCorrTopoCD.pdf', 'text': "Mathematics être très intéressante à utiliser dans un contexte\nd'optimisation. Si l’on cherche à minimiser une fonctionnelle par rapport à un vecteur x de\nR, rajouter à la fonctionnelle un terme proportionnelle à ||x||, aura tendance à minimiser\ncette quantité, et donc à limiter le nombre de termes non nul dans le minimum trouvé, ce qui\npeut être très intéressant si le problème d’optimisation consistant par exemple à approcher\nune fonction par une combinaison de fonctions particulières, dont les coefficient sont les", 'page_number': 7.0}, {'filename': 'MathS1/TopoCD4.pdf', 'text': 'Mathematics c’est-à-dire telle que\n\nÀ ;\nF((L— 8) + 8y) < (1—8)f(x) + 8F(y) 50 — 6) url Ve, y EU, Va eJ0.1(.\navec À € R. Que peut-on en déduire sur la matrice H(x), pour x EU?\n\nd) (Condition suffisante d’optimalité locale )\n\nOn considère f une fonction deux fois continûment différentiable sur un ouvert U. On consi-\ndère un point x € U en lequel le gradient de f s’annule, et tel que les valeurs propres de H(x)\nsont toutes strictement positives. Que peut on dire de x vis-à-vis de f ?\n\ne) (Condition suffisante d’optimalité', 'page_number': 5.0}]}
+2023-05-21 21:26:56,714 - INFO - question: mathematiques pour optimisation minimisation d'une fonction for user with user_id 5 
+2023-05-21 21:26:56,715 - INFO - asking question
+2023-05-21 21:26:56,715 - INFO - mathematiques pour optimisation minimisation d'une fonction
+2023-05-21 21:26:56,715 - INFO - with user_id
+2023-05-21 21:26:56,715 - INFO - 5
+2023-05-21 21:26:56,715 - INFO - and filter
+2023-05-21 21:26:56,716 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-05-21 21:26:58,350 - INFO - docs_metadata[0]
+2023-05-21 21:26:58,352 - INFO - {'id': '0_b091c0ca-9eca-433b-a1b8-f716bcb0cbff_005_1',
+ 'metadata': {'file_id': 'b091c0ca-9eca-433b-a1b8-f716bcb0cbff',
+              'page_number': 5.0,
+              'scientific': True,
+              'source': 'MathS1/CorrExosTopoCD.pdf',
+              'text': 'Mathematics problème d’optimisation consiste par '
+                      'exemple à approcher une\n'
+                      'fonction par une combinaison de fonctions '
+                      'particulières, dont les coefficient sont les x;. On\n'
+                      'parle d’approximation parcimonieuse quand on cherche de '
+                      'la sorte à approcher quelque chose\n'
+                      'par une combinaison de constituants élémentaires de '
+                      'façon en quelque sorte économique (la\n'
+                      'solution sera en particulier plus légère à stocker sur '
+                      'un ordinateur).\n'
+                      '\n'
+                      'Correction du I.9.11 (page 27)\n'
+                      'a) On a, pour tout x € R,\n'
+                      '\n'
+                      '1\n'
+                      'lle < rl, < n°? lee -\n'
+                      "On réalise l'égalité à",
+              'user_id': 0.0},
+ 'score': 0.885368049,
+ 'values': []}
+2023-05-21 21:27:11,144 - INFO - qa answer is
+2023-05-21 21:27:11,145 - INFO - La question semble être sur l'optimisation et la minimisation d'une fonction. Les documents fournis contiennent des informations sur les conditions nécessaires et suffisantes d'optimalité, ainsi que sur l'approximation parcimonieuse et l'utilisation de la norme pour limiter le nombre de termes non nuls dans le minimum trouvé. Cependant, il n'y a pas de fonction spécifique donnée dans les documents sur laquelle appliquer ces concepts. Il faudrait donc avoir plus de précisions sur la fonction à optimiser pour pouvoir répondre de manière plus spécifique.
+2023-05-21 21:27:11,146 - INFO - {'answer': "La question semble être sur l'optimisation et la minimisation d'une fonction. Les documents fournis contiennent des informations sur les conditions nécessaires et suffisantes d'optimalité, ainsi que sur l'approximation parcimonieuse et l'utilisation de la norme pour limiter le nombre de termes non nuls dans le minimum trouvé. Cependant, il n'y a pas de fonction spécifique donnée dans les documents sur laquelle appliquer ces concepts. Il faudrait donc avoir plus de précisions sur la fonction à optimiser pour pouvoir répondre de manière plus spécifique.", 'sources': [{'filename': 'MathS1/CorrExosTopoCD.pdf', 'text': "Mathematics problème d’optimisation consiste par exemple à approcher une\nfonction par une combinaison de fonctions particulières, dont les coefficient sont les x;. On\nparle d’approximation parcimonieuse quand on cherche de la sorte à approcher quelque chose\npar une combinaison de constituants élémentaires de façon en quelque sorte économique (la\nsolution sera en particulier plus légère à stocker sur un ordinateur).\n\nCorrection du I.9.11 (page 27)\na) On a, pour tout x € R,\n\n1\nlle < rl, < n°? lee -\nOn réalise l'égalité à", 'page_number': 5.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics convexe sur U. Montrer que x minimise f\nsur U, c’est à-dire-que\n\nJ()Z f(x) Vy EU.\n\nf) (Condition nécessaire d’optimalité)\nOn considère pour finir f une fonction deux fois continûment différentiable sur un ouvert U.', 'page_number': 29.0}, {'filename': 'MathS1/TopoCD4.pdf', 'text': 'Mathematics globale)\nOn suppose maintenant l’ouvert U convexe, et f convexe sur U. Montrer que x minimise f\nsur U, c’est à-dire-que\n\nf(y) > f(x) VyeU.\n\nf) (Condition nécessaire d’optimalité)\nOn considère pour finir f une fonction deux fois continûment différentiable sur un ouvert U.', 'page_number': 5.0}, {'filename': 'MathS1/ExoCorrTopoCD.pdf', 'text': "Mathematics être très intéressante à utiliser dans un contexte\nd'optimisation. Si l’on cherche à minimiser une fonctionnelle par rapport à un vecteur x de\nR, rajouter à la fonctionnelle un terme proportionnelle à ||x||, aura tendance à minimiser\ncette quantité, et donc à limiter le nombre de termes non nul dans le minimum trouvé, ce qui\npeut être très intéressant si le problème d’optimisation consistant par exemple à approcher\nune fonction par une combinaison de fonctions particulières, dont les coefficient sont les", 'page_number': 7.0}, {'filename': 'MathS1/TopoCD4.pdf', 'text': 'Mathematics c’est-à-dire telle que\n\nÀ ;\nF((L— 8) + 8y) < (1—8)f(x) + 8F(y) 50 — 6) url Ve, y EU, Va eJ0.1(.\navec À € R. Que peut-on en déduire sur la matrice H(x), pour x EU?\n\nd) (Condition suffisante d’optimalité locale )\n\nOn considère f une fonction deux fois continûment différentiable sur un ouvert U. On consi-\ndère un point x € U en lequel le gradient de f s’annule, et tel que les valeurs propres de H(x)\nsont toutes strictement positives. Que peut on dire de x vis-à-vis de f ?\n\ne) (Condition suffisante d’optimalité', 'page_number': 5.0}]}
