@@ -2322,3 +2322,43 @@ Il n'y a pas de lien direct entre les deux documents en termes de contenu scient
 2023-05-21 21:27:11,144 - INFO - qa answer is
 2023-05-21 21:27:11,145 - INFO - La question semble être sur l'optimisation et la minimisation d'une fonction. Les documents fournis contiennent des informations sur les conditions nécessaires et suffisantes d'optimalité, ainsi que sur l'approximation parcimonieuse et l'utilisation de la norme pour limiter le nombre de termes non nuls dans le minimum trouvé. Cependant, il n'y a pas de fonction spécifique donnée dans les documents sur laquelle appliquer ces concepts. Il faudrait donc avoir plus de précisions sur la fonction à optimiser pour pouvoir répondre de manière plus spécifique.
 2023-05-21 21:27:11,146 - INFO - {'answer': "La question semble être sur l'optimisation et la minimisation d'une fonction. Les documents fournis contiennent des informations sur les conditions nécessaires et suffisantes d'optimalité, ainsi que sur l'approximation parcimonieuse et l'utilisation de la norme pour limiter le nombre de termes non nuls dans le minimum trouvé. Cependant, il n'y a pas de fonction spécifique donnée dans les documents sur laquelle appliquer ces concepts. Il faudrait donc avoir plus de précisions sur la fonction à optimiser pour pouvoir répondre de manière plus spécifique.", 'sources': [{'filename': 'MathS1/CorrExosTopoCD.pdf', 'text': "Mathematics problème d’optimisation consiste par exemple à approcher une\nfonction par une combinaison de fonctions particulières, dont les coefficient sont les x;. On\nparle d’approximation parcimonieuse quand on cherche de la sorte à approcher quelque chose\npar une combinaison de constituants élémentaires de façon en quelque sorte économique (la\nsolution sera en particulier plus légère à stocker sur un ordinateur).\n\nCorrection du I.9.11 (page 27)\na) On a, pour tout x € R,\n\n1\nlle < rl, < n°? lee -\nOn réalise l'égalité à", 'page_number': 5.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics convexe sur U. Montrer que x minimise f\nsur U, c’est à-dire-que\n\nJ()Z f(x) Vy EU.\n\nf) (Condition nécessaire d’optimalité)\nOn considère pour finir f une fonction deux fois continûment différentiable sur un ouvert U.', 'page_number': 29.0}, {'filename': 'MathS1/TopoCD4.pdf', 'text': 'Mathematics globale)\nOn suppose maintenant l’ouvert U convexe, et f convexe sur U. Montrer que x minimise f\nsur U, c’est à-dire-que\n\nf(y) > f(x) VyeU.\n\nf) (Condition nécessaire d’optimalité)\nOn considère pour finir f une fonction deux fois continûment différentiable sur un ouvert U.', 'page_number': 5.0}, {'filename': 'MathS1/ExoCorrTopoCD.pdf', 'text': "Mathematics être très intéressante à utiliser dans un contexte\nd'optimisation. Si l’on cherche à minimiser une fonctionnelle par rapport à un vecteur x de\nR, rajouter à la fonctionnelle un terme proportionnelle à ||x||, aura tendance à minimiser\ncette quantité, et donc à limiter le nombre de termes non nul dans le minimum trouvé, ce qui\npeut être très intéressant si le problème d’optimisation consistant par exemple à approcher\nune fonction par une combinaison de fonctions particulières, dont les coefficient sont les", 'page_number': 7.0}, {'filename': 'MathS1/TopoCD4.pdf', 'text': 'Mathematics c’est-à-dire telle que\n\nÀ ;\nF((L— 8) + 8y) < (1—8)f(x) + 8F(y) 50 — 6) url Ve, y EU, Va eJ0.1(.\navec À € R. Que peut-on en déduire sur la matrice H(x), pour x EU?\n\nd) (Condition suffisante d’optimalité locale )\n\nOn considère f une fonction deux fois continûment différentiable sur un ouvert U. On consi-\ndère un point x € U en lequel le gradient de f s’annule, et tel que les valeurs propres de H(x)\nsont toutes strictement positives. Que peut on dire de x vis-à-vis de f ?\n\ne) (Condition suffisante d’optimalité', 'page_number': 5.0}]}
+2023-06-05 20:13:48,163 - INFO - question: hey bro for user with user_id 5 
+2023-06-05 20:13:48,164 - INFO - asking question
+2023-06-05 20:13:48,164 - INFO - hey bro
+2023-06-05 20:13:48,164 - INFO - with user_id
+2023-06-05 20:13:48,164 - INFO - 5
+2023-06-05 20:13:48,164 - INFO - and filter
+2023-06-05 20:13:48,164 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-06-05 20:13:51,784 - INFO - docs_metadata[0]
+2023-06-05 20:13:51,785 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.780093431,
+ 'values': []}
+2023-06-05 20:13:56,580 - INFO - qa answer is
+2023-06-05 20:13:56,580 - INFO - Je suis désolé, je ne peux pas répondre à votre question car elle n'est pas claire et ne concerne pas les documents fournis. Pouvez-vous reformuler votre question en utilisant des termes scientifiques pertinents?
+2023-06-05 20:13:56,581 - INFO - {'answer': "Je suis désolé, je ne peux pas répondre à votre question car elle n'est pas claire et ne concerne pas les documents fournis. Pouvez-vous reformuler votre question en utilisant des termes scientifiques pertinents?", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}, {'filename': 'MathS1/Fonda.pdf', 'text': 'Mathematics grossière, tout ensemble est connexe.', 'page_number': 17.0}]}
+2023-06-05 20:57:23,010 - INFO - question: hello for user with user_id 5 
+2023-06-05 20:57:23,011 - INFO - asking question
+2023-06-05 20:57:23,012 - INFO - hello
+2023-06-05 20:57:23,012 - INFO - with user_id
+2023-06-05 20:57:23,012 - INFO - 5
+2023-06-05 20:57:23,012 - INFO - and filter
+2023-06-05 20:57:23,012 - INFO - {'$or': [{'user_id': 0}, {'user_id': 5}]}
+2023-06-05 20:57:24,166 - INFO - docs_metadata[0]
+2023-06-05 20:57:24,167 - INFO - {'id': '0_9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0_028_4',
+ 'metadata': {'file_id': '9ee5e904-a83e-44ca-bb88-c86eb4b4c9f0',
+              'page_number': 28.0,
+              'scientific': True,
+              'source': 'MathS1/CalDiff.pdf',
+              'text': 'Mathematics 5...',
+              'user_id': 0.0},
+ 'score': 0.815972567,
+ 'values': []}
+2023-06-05 20:57:31,328 - INFO - qa answer is
+2023-06-05 20:57:31,328 - INFO - Je suis désolé, je ne peux pas répondre à votre question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question spécifique. Je suis là pour vous aider à répondre à des questions scientifiques en utilisant les documents fournis.
+2023-06-05 20:57:31,329 - INFO - {'answer': "Je suis désolé, je ne peux pas répondre à votre question car il n'y a pas de question clairement posée dans votre message. Veuillez reformuler votre demande en posant une question spécifique. Je suis là pour vous aider à répondre à des questions scientifiques en utilisant les documents fournis.", 'sources': [{'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics 5...', 'page_number': 28.0}, {'filename': 'MathS1/CalDiff.pdf', 'text': 'Mathematics point x.', 'page_number': 3.0}, {'filename': 'MathS1/MesInt2.pdf', 'text': 'Mathematics borélien D de R.ona\n\n(fe) (D) — (FD) ha:', 'page_number': 12.0}, {'filename': 'MathS1/MesInt1.pdf', 'text': 'Mathematics contre-exemples.', 'page_number': 6.0}, {'filename': 'MathS1/MesInt34.pdf', 'text': 'Mathematics a; sur A; N A,\n\nD enta =D Dent n Ai) Saut, 729 = Sci ).\n\ni=1 j=1 j=1 i=1', 'page_number': 4.0}]}
